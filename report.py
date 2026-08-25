@@ -69,6 +69,59 @@ def ga4_rows(property_id, creds, start, end, dims, mets, path_prefix="/article/"
         out.append(row)
     return out
 
+def ga4_scalar(pid, creds, start, end, metric, path_prefix="/article/"):
+    """One properly-deduplicated total (no dimensions) — needed for totalUsers,
+    which must NOT be summed across per-page rows (that double-counts people)."""
+    r = ga4_rows(pid, creds, start, end, [], [metric], path_prefix)
+    return r[0][metric] if r else 0.0
+
+def fmt_hour(h):
+    h = int(h); ap = "am" if h < 12 else "pm"; return f"{h % 12 or 12}{ap}"
+
+def readers_line(pid, creds, day, peak=""):
+    """'👤 12,345 readers yesterday · ▲8% vs 11,400 last year · peak 9am'."""
+    try:
+        now = ga4_scalar(pid, creds, day.isoformat(), day.isoformat(), "totalUsers")
+        ly = year_ago(day)
+        then = ga4_scalar(pid, creds, ly.isoformat(), ly.isoformat(), "totalUsers")
+    except Exception:
+        return ""
+    if now <= 0:
+        return ""
+    s = f"👤 {fmt(now)} readers yesterday"
+    if then > 0:
+        pct = (now - then) / then * 100
+        s += f" · {'▲' if pct >= 0 else '▼'}{abs(pct):.0f}% vs {fmt(then)} last year"
+    if peak:
+        s += f" · {peak}"
+    return s
+
+def peak_hour(pid, creds, day):
+    """'peak 9am (3,204 views)' for the hour with the most article reading."""
+    try:
+        rows = ga4_rows(pid, creds, day.isoformat(), day.isoformat(), ["hour"], ["screenPageViews"])
+    except Exception:
+        return ""
+    if not rows:
+        return ""
+    top = max(rows, key=lambda r: r["screenPageViews"])
+    return f"peak {fmt_hour(top['hour'])} ({fmt(top['screenPageViews'])} views)"
+
+def channels_line(pid, creds, day, end=None):
+    """'🔗 Search 46% · Direct 27% · Social 18% · Referral 9%' — where readers came from."""
+    try:
+        rows = ga4_rows(pid, creds, day.isoformat(), (end or day).isoformat(),
+                        ["sessionDefaultChannelGroup"], ["screenPageViews"])
+    except Exception:
+        return ""
+    tot = sum(r["screenPageViews"] for r in rows)
+    if tot <= 0:
+        return ""
+    rows.sort(key=lambda r: -r["screenPageViews"])
+    parts = [f"{(r['sessionDefaultChannelGroup'] or 'Other')} {r['screenPageViews']/tot*100:.0f}%"
+             for r in rows[:4]]
+    return "🔗 " + " · ".join(parts)
+
 # ============================================================= Crimson GraphQL
 URLDATE = re.compile(r"^/article/(\d+)/(\d+)/(\d+)/([^/]+)/?$")
 
@@ -323,8 +376,13 @@ def daily():
             fresh.append(r)
     if not fresh:
         slack_post([], f"*Crimson Daily* ({ystr}) — no fresh articles with traffic yet."); return
-    meta = enrich([r["pagePath"] for r in fresh])
-    for r in fresh:
+    # #5 still-hot: older stories (published >7d ago) still pulling real traffic yesterday
+    still_hot = sorted([r for r in rows
+                        if (pubday_of(r["pagePath"]) and (today - pubday_of(r["pagePath"])).days > 7
+                            and r["screenPageViews"] >= 300)],
+                       key=lambda r: -r["screenPageViews"])[:3]
+    meta = enrich([r["pagePath"] for r in fresh] + [r["pagePath"] for r in still_hot])
+    for r in fresh + still_hot:
         md = meta.get(r["pagePath"], {})
         r.update(section=md.get("section", "?"), title=md.get("title", r["pagePath"]),
                  byline=md.get("byline", "—"), scoop=md.get("scoop", False),
@@ -340,14 +398,15 @@ def daily():
     tot = sum(r["screenPageViews"] for r in news)
     blocks.append({"type": "context", "elements": [{"type": "mrkdwn",
         "text": f"{len(news)} fresh News stories · {fmt(tot)} views · median {fmt(med)}/story"}]})
-    # site-wide day-over-year (reuse yesterday's rows; only last year needs a fetch)
-    yday_total = sum(r["screenPageViews"] for r in rows)
-    yl = yoy_line(pid, creds, y, "yesterday", now=yday_total)
-    if yl:
-        blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text": yl}]})
-    pl = published_yoy_daily(y)
-    if pl:
-        blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text": pl}]})
+    # --- audience context lines ---
+    yday_total = sum(r["screenPageViews"] for r in rows)   # reuse yesterday's rows
+    for txt in (yoy_line(pid, creds, y, "yesterday", now=yday_total),
+                published_yoy_daily(y),
+                readers_line(pid, creds, y, peak=peak_hour(pid, creds, y)),   # #3 + #12
+                channels_line(pid, creds, y)):               # #2
+        if txt:
+            blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text": txt}]})
+
     def line(r, tag=""):
         rel = r["screenPageViews"] / med if med else 1
         badge = "🔥" if rel >= 2 else ("✅" if rel >= 1 else "▪️")
@@ -357,6 +416,28 @@ def daily():
                 f"     {fmt(r['screenPageViews'])} views · {secs(r['eng_per_user'])} read{pt} · {r['byline']}")
     blocks.append({"type": "section", "text": {"type": "mrkdwn",
         "text": "*Top performers*\n" + "\n".join(line(r) for r in winners)}})
+
+    # --- Also notable: milestone (#9), concentration (#4), still-hot (#5) ---
+    notable = []
+    if news:
+        top = news[0]
+        tier = next((t for t in (100000, 50000, 25000, 10000) if top["screenPageViews"] >= t), None)
+        if tier:
+            flag = "🚨" if tier >= 50000 else "🏆"
+            notable.append(f"{flag} Story of the day: <{url_of(top['pagePath'])}|{top['title'][:60]}> "
+                           f"— {fmt(top['screenPageViews'])} views"
+                           + (f" (crossed {tier//1000}k)" if tier >= 50000 else ""))
+    if yday_total > 0:
+        top3 = sum(r["screenPageViews"] for r in sorted(rows, key=lambda r: -r["screenPageViews"])[:3])
+        notable.append(f"🎯 Top 3 stories = {top3/yday_total*100:.0f}% of yesterday's article views")
+    for r in still_hot:
+        pd = pubday_of(r["pagePath"])
+        notable.append(f"♻️ Still hot: <{url_of(r['pagePath'])}|{r['title'][:52]}> "
+                       f"({pd.strftime('%b %-d')}) — {fmt(r['screenPageViews'])} views")
+    if notable:
+        blocks.append({"type": "section", "text": {"type": "mrkdwn",
+                       "text": "*Also notable*\n" + "\n".join(notable)}})
+
     if duds:
         blocks.append({"type": "section", "text": {"type": "mrkdwn",
             "text": "*Underperformed (fresh, well below median)*\n" +
@@ -418,6 +499,21 @@ def weekly():
     pl = published_yoy_week(start, end)
     if pl:
         blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text": pl}]})
+    # #3 unique readers this week (deduplicated) vs same week last year
+    try:
+        u_now = ga4_scalar(pid, creds, start.isoformat(), end.isoformat(), "totalUsers")
+        u_then = ga4_scalar(pid, creds, year_ago(start).isoformat(), year_ago(end).isoformat(), "totalUsers")
+        if u_now > 0:
+            s = f"👤 {fmt(u_now)} readers this week"
+            if u_then > 0:
+                p = (u_now - u_then) / u_then * 100
+                s += f" · {'▲' if p >= 0 else '▼'}{abs(p):.0f}% vs {fmt(u_then)} last year"
+            blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text": s}]})
+    except Exception:
+        pass
+    ch = channels_line(pid, creds, start, end)               # #2 over the week
+    if ch:
+        blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text": ch}]})
     blocks.append({"type": "section", "text": {"type": "mrkdwn",
         "text": "*Top stories of the week*\n" + "\n".join(
             f"{i+1}. <{url_of(r['pagePath'])}|{r['title'][:66]}>{' 🗞️' if r['scoop'] else ''} — "
@@ -427,6 +523,31 @@ def weekly():
     blocks.append({"type": "section", "text": {"type": "mrkdwn",
         "text": "*Sections by readership*\n" + "\n".join(
             f"• {s}: {fmt(v)} views ({n} stories, {fmt(v/max(n,1))}/story)" for s, v, n in sec_rank[:6])}})
+    # --- Also notable: milestone (#9), concentration (#4), still-hot (#5) ---
+    notable = []
+    if news:
+        top = news[0]
+        tier = next((t for t in (100000, 50000, 25000) if top["screenPageViews"] >= t), None)
+        if tier:
+            flag = "🚨" if tier >= 50000 else "🏆"
+            notable.append(f"{flag} Biggest story: <{url_of(top['pagePath'])}|{top['title'][:58]}> "
+                           f"— {fmt(top['screenPageViews'])} views")
+    if week_total > 0:
+        top3 = sum(r["screenPageViews"] for r in sorted(rows, key=lambda r: -r["screenPageViews"])[:3])
+        notable.append(f"🎯 Top 3 stories = {top3/week_total*100:.0f}% of the week's article views")
+    sh = sorted([r for r in rows
+                 if (pubday_of(r["pagePath"]) and pubday_of(r["pagePath"]) < start
+                     and r["screenPageViews"] >= 1000)],
+                key=lambda r: -r["screenPageViews"])[:3]
+    if sh:
+        shmeta = enrich([r["pagePath"] for r in sh])
+        for r in sh:
+            pd = pubday_of(r["pagePath"]); t = shmeta.get(r["pagePath"], {}).get("title", r["pagePath"])
+            notable.append(f"♻️ Still hot: <{url_of(r['pagePath'])}|{t[:50]}> "
+                           f"({pd.strftime('%b %-d')}) — {fmt(r['screenPageViews'])} views")
+    if notable:
+        blocks.append({"type": "section", "text": {"type": "mrkdwn",
+                       "text": "*Also notable*\n" + "\n".join(notable)}})
     cb = corrections_block(today, start.isoformat(), window_days=7)
     if cb:
         blocks.append(cb)
