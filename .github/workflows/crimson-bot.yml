@@ -1,0 +1,37 @@
+name: Crimson performance bot
+
+on:
+  schedule:
+    # times are UTC. Boston is UTC-4 (EDT) / UTC-5 (EST).
+    - cron: "0 13 * * 1-6"   # DAILY  ~9am ET, Mon–Sat (yesterday's wrap)
+    - cron: "30 13 * * 1"    # WEEKLY ~9:30am ET, Monday (7-day rollup)
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "daily or weekly"
+        default: "daily"
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r requirements.txt
+      - name: Pick mode
+        id: mode
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "mode=${{ github.event.inputs.mode }}" >> $GITHUB_OUTPUT
+          elif [ "${{ github.event.schedule }}" = "30 13 * * 1" ]; then
+            echo "mode=weekly" >> $GITHUB_OUTPUT
+          else
+            echo "mode=daily" >> $GITHUB_OUTPUT
+          fi
+      - name: Run report
+        env:
+          GA4_PROPERTY_ID:      ${{ secrets.GA4_PROPERTY_ID }}
+          GA4_CREDENTIALS_JSON: ${{ secrets.GA4_CREDENTIALS_JSON }}
+          SLACK_WEBHOOK_URL:    ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: python report.py ${{ steps.mode.outputs.mode }}
