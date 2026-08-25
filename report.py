@@ -134,7 +134,10 @@ _MON = (r"(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(
 CORR_HDR = re.compile(r"\b(Correction|Clarification)s?\s*:\s*(" + _MON + r"\s+\d{1,2},?\s*\d{4})", re.I)
 PREV_VER = re.compile(r"\b(?:a previous version|an earlier version|a prior version)\s+of\s+th", re.I)
 
+_SITEMAP_CACHE = {}
 def _sitemap_year(year):
+    if year in _SITEMAP_CACHE:
+        return _SITEMAP_CACHE[year]
     q = ('{ sitemap(year:%d){ issues{ issue{ issueDate } articles{ title url '
          'section{name} publishAt } } } }' % year)
     d = gql(q)
@@ -145,7 +148,45 @@ def _sitemap_year(year):
             pa = (a.get("publishAt") or iss.get("issueDate") or "")[:10]
             out.append(dict(day=pa, title=a.get("title") or "", url=a.get("url") or "",
                             section=(a.get("section") or {}).get("name")))
+    _SITEMAP_CACHE[year] = out
     return out
+
+def published_by_day(years):
+    """Counter of News stories published per YYYY-MM-DD across the given years."""
+    c = collections.Counter()
+    for y in years:
+        for r in _sitemap_year(y):
+            if r.get("section") == "News" and r.get("day"):
+                c[r["day"]] += 1
+    return c
+
+def published_yoy_daily(day):
+    """'📝 4 News stories published yesterday · vs 6 a year ago' (or '' if no data)."""
+    pub = published_by_day({day.year, day.year - 1})
+    ly = year_ago(day)
+    n_now, n_then = pub.get(day.isoformat(), 0), pub.get(ly.isoformat(), 0)
+    if n_now == 0 and n_then == 0:
+        return ""
+    return (f"📝 {n_now} News {'story' if n_now == 1 else 'stories'} published yesterday · "
+            f"vs {n_then} on {ly.strftime('%b %-d, %Y')}")
+
+def published_yoy_week(start, end):
+    """Weekly stories-published count vs the same week last year."""
+    pub = published_by_day({start.year, end.year, start.year - 1, end.year - 1})
+    def rng(a, b):
+        d, tot = a, 0
+        while d <= b:
+            tot += pub.get(d.isoformat(), 0); d += datetime.timedelta(days=1)
+        return tot
+    now = rng(start, end)
+    then = rng(year_ago(start), year_ago(end))
+    if now == 0 and then == 0:
+        return ""
+    tail = ""
+    if then:
+        pct = (now - then) / then * 100
+        tail = f" · {'▲' if pct >= 0 else '▼'}{abs(pct):.0f}%"
+    return f"📝 {now} News stories published this week · vs {then} the same week last year{tail}"
 
 def season_news_urls(start_day):
     """All News article stubs (day/title/url) published on/after start_day."""
@@ -304,6 +345,9 @@ def daily():
     yl = yoy_line(pid, creds, y, "yesterday", now=yday_total)
     if yl:
         blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text": yl}]})
+    pl = published_yoy_daily(y)
+    if pl:
+        blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text": pl}]})
     def line(r, tag=""):
         rel = r["screenPageViews"] / med if med else 1
         badge = "🔥" if rel >= 2 else ("✅" if rel >= 1 else "▪️")
@@ -371,6 +415,9 @@ def weekly():
                         f"vs {fmt(ly_total)} the same week last year"}]})
     except Exception:
         pass
+    pl = published_yoy_week(start, end)
+    if pl:
+        blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text": pl}]})
     blocks.append({"type": "section", "text": {"type": "mrkdwn",
         "text": "*Top stories of the week*\n" + "\n".join(
             f"{i+1}. <{url_of(r['pagePath'])}|{r['title'][:66]}>{' 🗞️' if r['scoop'] else ''} — "
