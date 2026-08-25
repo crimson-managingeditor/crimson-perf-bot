@@ -187,19 +187,32 @@ _MON = (r"(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(
 CORR_HDR = re.compile(r"\b(Correction|Clarification)s?\s*:\s*(" + _MON + r"\s+\d{1,2},?\s*\d{4})", re.I)
 PREV_VER = re.compile(r"\b(?:a previous version|an earlier version|a prior version)\s+of\s+th", re.I)
 
+def iso_et_date(s):
+    """ISO timestamp -> 'YYYY-MM-DD' in the report timezone (ET), or '' if unparseable."""
+    if not s:
+        return ""
+    try:
+        return datetime.datetime.fromisoformat(s.replace("Z", "+00:00")).astimezone(TZ).date().isoformat()
+    except Exception:
+        return s[:10]
+
 _SITEMAP_CACHE = {}
 def _sitemap_year(year):
     if year in _SITEMAP_CACHE:
         return _SITEMAP_CACHE[year]
+    # Date each article by createdOn (actual web publish, in ET). publishAt is null
+    # for ~99% of articles, and issueDate is the PRINT date — an evening-ET web story
+    # gets a next-morning print date and lands on the wrong day. createdOn is right.
     q = ('{ sitemap(year:%d){ issues{ issue{ issueDate } articles{ title url '
-         'section{name} publishAt } } } }' % year)
+         'section{name} createdOn publishAt } } } }' % year)
     d = gql(q)
     out = []
     for i in (((d.get("data") or {}).get("sitemap") or {}).get("issues") or []):
         iss = i.get("issue") or {}
         for a in (i.get("articles") or []):
-            pa = (a.get("publishAt") or iss.get("issueDate") or "")[:10]
-            out.append(dict(day=pa, title=a.get("title") or "", url=a.get("url") or "",
+            day = (iso_et_date(a.get("createdOn")) or iso_et_date(a.get("publishAt"))
+                   or (iss.get("issueDate") or "")[:10])
+            out.append(dict(day=day, title=a.get("title") or "", url=a.get("url") or "",
                             section=(a.get("section") or {}).get("name")))
     _SITEMAP_CACHE[year] = out
     return out
