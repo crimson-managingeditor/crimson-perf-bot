@@ -27,8 +27,24 @@ export default {
     } catch (e) {
       return reply({ text: `⚠️ ${e.message}` });
     }
+  },
+  // Cloudflare Cron Trigger (reliable, unlike GitHub cron) -> kick the GitHub
+  // Actions page-watch workflow. Configure the schedule in the Cloudflare dashboard.
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(dispatchWatch(env));
   }
 };
+
+async function dispatchWatch(env) {
+  // needs GITHUB_TOKEN with Actions: read+write on the repo
+  try {
+    const r = await fetch(`${GH}/repos/${env.GITHUB_REPO}/actions/workflows/watch.yml/dispatches`,
+      { method: "POST", headers: ghHeaders(env), body: JSON.stringify({ ref: "main" }) });
+    if (!r.ok) console.log("dispatch failed", r.status, await r.text());
+  } catch (e) {
+    console.log("dispatch error", e.message);
+  }
+}
 
 function reply(msg) {
   return new Response(JSON.stringify({ response_type: "ephemeral", ...msg }),

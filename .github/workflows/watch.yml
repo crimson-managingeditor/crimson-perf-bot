@@ -2,9 +2,10 @@ name: Crimson page watch
 
 on:
   schedule:
-    # GitHub's own */5 cron is too flaky to trust. Start a job every 30 min and let
-    # it LOOP internally every 5 min — that gives real 5-min cadence. Free on public.
-    - cron: "*/30 * * * *"
+    # FALLBACK ONLY. The PRIMARY trigger is a Cloudflare Cron Trigger every 30 min
+    # (reliable — GitHub's scheduler drops runs). This sparse cron just covers a
+    # Cloudflare outage. Each job still loops internally every 5 min for ~27 min.
+    - cron: "13 */6 * * *"
   workflow_dispatch: {}
 
 concurrency:
