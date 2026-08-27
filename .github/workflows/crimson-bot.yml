@@ -49,8 +49,8 @@ jobs:
           fi
           python report.py daily        # article performance
           run_ig ig-daily               # Instagram (separate message)
-          # Mondays also get the weekly rollups.
-          if [ "$(TZ=America/New_York date +%u)" = "1" ]; then
+          # Saturdays also get the weekly rollups (%u: 6 = Saturday).
+          if [ "$(TZ=America/New_York date +%u)" = "6" ]; then
             python report.py weekly
             run_ig ig-weekly
           fi

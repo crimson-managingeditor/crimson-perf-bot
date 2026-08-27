@@ -630,16 +630,33 @@ def ig_media_between(igid, since, until):
         m["_ins"] = {x["name"]: (x.get("values") or [{}])[0].get("value") for x in d.get("data", [])}
     return inwin
 
-def _ig_post_line(m, badge="▪️"):
-    cap = clean(m.get("caption") or "").strip().replace("\n", " ")[:64] or "(no caption)"
+def _ig_flag(reach, avg):
+    """🔥 well above the 30-day norm · ⚠️ below it (low performer) · ✅ in range."""
+    if avg and reach is not None:
+        if reach >= 1.5 * avg: return "🔥"
+        if reach < avg:        return "⚠️"
+    return "✅"
+
+def _ig_post_line(m, avg=None, rank=None):
+    cap = clean(m.get("caption") or "").strip().replace("\n", " ")[:56] or "(no caption)"
     ins = m.get("_ins", {})
     reach = ins.get("reach"); saves = ins.get("saved"); shares = ins.get("shares")
+    tag = f"{rank}." if rank else _ig_flag(reach, avg)
+    d = datetime.datetime.fromtimestamp(m["_ts"], TZ).strftime("%b %-d") if m.get("_ts") else ""
     parts = [f"{fmt(reach)} reached"] if reach is not None else []
     parts.append(f"❤️{fmt(m.get('like_count') or 0)}")
     if m.get("comments_count"): parts.append(f"💬{fmt(m['comments_count'])}")
     if saves: parts.append(f"🔖{fmt(saves)}")
     if shares: parts.append(f"↗️{fmt(shares)}")
-    return f"{badge} <{m.get('permalink','')}|{cap}>\n     " + " · ".join(parts)
+    return f"{tag} <{m.get('permalink','')}|{cap}> · {d}\n     " + " · ".join(parts)
+
+def _ig_month(igid, until):
+    """Last 30 days of posts (with per-post insights) + the average reach/post."""
+    month = ig_media_between(igid, until - 30 * 86400, until)
+    reaches = [m["_ins"]["reach"] for m in month
+               if m.get("_ins", {}).get("reach") is not None]
+    avg = int(statistics.mean(reaches)) if reaches else 0
+    return month, avg, len(reaches)
 
 def _ig_header_stats(igid):
     a = ig_get(igid, fields="username,followers_count,media_count")
@@ -653,8 +670,8 @@ def instagram_daily():
     until = int(datetime.datetime.combine(today, datetime.time(), TZ).timestamp())
     user, followers = _ig_header_stats(igid)
     delta = ig_follower_delta(igid, since, until)
-    t = ig_totals(igid, ["reach", "views", "profile_views", "website_clicks",
-                         "total_interactions", "likes", "comments", "saves", "shares"], since, until)
+    t = ig_totals(igid, ["reach", "views", "profile_views", "website_clicks"], since, until)
+    month, avg, npost = _ig_month(igid, until)
 
     blocks = [{"type": "header", "text": {"type": "plain_text",
                "text": f"📸 Instagram — {y.strftime('%A, %b %-d')}"}}]
@@ -669,23 +686,25 @@ def instagram_daily():
     if t.get("website_clicks"): reach_bits.append(f"🔗 {fmt(t['website_clicks'])} link taps")
     if reach_bits:
         blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text": " · ".join(reach_bits)}]})
-    if t.get("total_interactions") is not None:
-        eng = (f"📊 {fmt(t['total_interactions'])} interactions — ❤️{fmt(t.get('likes') or 0)} "
-               f"💬{fmt(t.get('comments') or 0)} 🔖{fmt(t.get('saves') or 0)} ↗️{fmt(t.get('shares') or 0)}")
-        blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text": eng}]})
 
-    posted = ig_media_between(igid, since, until)
-    posted.sort(key=lambda m: -(m.get("_ins", {}).get("reach") or 0))
-    if posted:
+    # post-by-post: yesterday's posts only, flagged vs the 30-day average;
+    # count compared to the same weekday one week earlier.
+    yposts = sorted([m for m in month if since <= m["_ts"] < until],
+                    key=lambda m: -(m.get("_ins", {}).get("reach") or 0))
+    lw = y - datetime.timedelta(days=7)
+    lw_since, lw_until = since - 7 * 86400, until - 7 * 86400
+    lw_count = sum(1 for m in month if lw_since <= m["_ts"] < lw_until)
+    hdr = f"*Posts yesterday: {len(yposts)}* (vs {lw_count} on {lw.strftime('%a %b %-d')})"
+    if yposts:
         blocks.append({"type": "section", "text": {"type": "mrkdwn",
-            "text": f"*Posted yesterday ({len(posted)})*\n" +
-                    "\n".join(_ig_post_line(m, "🔥" if i == 0 else "▪️") for i, m in enumerate(posted))}})
-    # best recent post (last 7d) for context / when nothing posted yesterday
-    recent = ig_media_between(igid, until - 7 * 86400, until)
-    recent.sort(key=lambda m: -(m.get("_ins", {}).get("reach") or 0))
-    if recent and (not posted or recent[0]["id"] != posted[0]["id"]):
-        blocks.append({"type": "section", "text": {"type": "mrkdwn",
-            "text": "*Top post (last 7 days)*\n" + _ig_post_line(recent[0], "🏆")}})
+            "text": hdr + "\n" + "\n".join(_ig_post_line(m, avg) for m in yposts)}})
+        blocks.append({"type": "context", "elements": [{"type": "mrkdwn",
+            "text": f"📅 30-day average: {fmt(avg)} reach/post across {npost} posts · "
+                    f"🔥 ≥1.5× avg · ⚠️ below avg (low performer)"}]})
+    else:
+        blocks.append({"type": "section", "text": {"type": "mrkdwn", "text": hdr}})
+        blocks.append({"type": "context", "elements": [{"type": "mrkdwn",
+            "text": f"📅 30-day average: {fmt(avg)} reach/post across {npost} posts"}]})
     slack_post(blocks, f"Instagram daily {y}")
 
 def instagram_weekly():
@@ -700,6 +719,7 @@ def instagram_weekly():
     t = ig_totals(igid, ["reach", "views", "accounts_engaged", "total_interactions",
                          "likes", "comments", "saves", "shares", "website_clicks"], since, until)
     preach = ig_total(igid, "reach", since - 7 * 86400, since)
+    month, avg, npost = _ig_month(igid, until)
 
     blocks = [{"type": "header", "text": {"type": "plain_text",
                "text": f"📸 Instagram Weekly — {start.strftime('%b %-d')}–{end.strftime('%b %-d')}"}}]
@@ -726,15 +746,21 @@ def instagram_weekly():
         if t.get("website_clicks"): eng += f" · 🔗{fmt(t['website_clicks'])} link taps"
         blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text": eng}]})
 
-    posts = ig_media_between(igid, since, until)
-    posts.sort(key=lambda m: -(m.get("_ins", {}).get("reach") or 0))
-    if posts:
+    # posts this week vs last week + full post-by-post breakdown (best reach first)
+    this_week = sorted([m for m in month if since <= m["_ts"] < until],
+                       key=lambda m: -(m.get("_ins", {}).get("reach") or 0))
+    last_week_n = sum(1 for m in month if since - 7 * 86400 <= m["_ts"] < since)
+    if this_week:
+        wow = f" (vs {last_week_n} last week)"
         blocks.append({"type": "section", "text": {"type": "mrkdwn",
-            "text": f"*Top posts of the week*\n" + "\n".join(
-                _ig_post_line(m, f"{i+1}.") for i, m in enumerate(posts[:5]))}})
+            "text": f"*Posts this week: {len(this_week)}{wow}*\n" +
+                    "\n".join(_ig_post_line(m, avg) for m in this_week[:12])}})
         blocks.append({"type": "context", "elements": [{"type": "mrkdwn",
-            "text": f"{len(posts)} posts this week · "
-                    f"median {fmt(statistics.median([m.get('_ins',{}).get('reach') or 0 for m in posts]))} reach/post"}]})
+            "text": f"median {fmt(statistics.median([m.get('_ins',{}).get('reach') or 0 for m in this_week]))} "
+                    f"reach/post · 30-day avg {fmt(avg)} across {npost} posts · 🔥 ≥1.5× · ⚠️ below avg"}]})
+    else:
+        blocks.append({"type": "section", "text": {"type": "mrkdwn",
+            "text": f"*Posts this week: 0* (vs {last_week_n} last week)"}})
     slack_post(blocks, f"Instagram weekly {start}–{end}")
 
 # =============================================================
