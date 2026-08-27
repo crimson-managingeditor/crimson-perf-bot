@@ -52,7 +52,9 @@ async function handle(env, p) {
 
 async function postToSlack(responseUrl, msg) {
   if (!responseUrl) return;
-  const payload = msg.response_type ? msg : { response_type: "in_channel", ...msg };
+  // ephemeral + replace_original => the result replaces the "working…" ack in place,
+  // and only the person who ran the command ever sees it (no channel noise).
+  const payload = { response_type: "ephemeral", replace_original: true, ...msg };
   await fetch(responseUrl, { method: "POST",
     headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
 }
