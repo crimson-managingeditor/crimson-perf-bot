@@ -2,13 +2,12 @@ name: Crimson performance bot
 
 on:
   schedule:
-    # Goal: a ping at ~9am ET EVERY morning, year-round.
-    # GitHub cron is UTC with no DST awareness, so we fire at BOTH 13:05 (=9am ET
-    # in summer/EDT) and 14:05 (=9am ET in winter/EST) and let the job skip the
-    # one that isn't in the 9 o'clock ET hour. Minute is off :00 on purpose —
-    # GitHub's best-effort scheduler drops top-of-hour runs most often under load.
-    - cron: "5 13 * * *"   # 9:05am ET during EDT (summer)
-    - cron: "5 14 * * *"   # 9:05am ET during EST (winter)
+    # Goal: the morning digest at ~9am ET, reliably, year-round.
+    # GitHub's scheduler is best-effort and routinely delays/drops runs, so we fire
+    # MANY times across 13:00–15:45 UTC (covers the 9–10am ET window in both EDT and
+    # EST). The job posts exactly ONCE per day (dedup marker) and only when it's the
+    # 9 or 10 o'clock ET hour — so a late fire still posts instead of silently dying.
+    - cron: "5,25,45 13,14,15 * * *"
   workflow_dispatch:
     inputs:
       mode:
@@ -18,15 +17,28 @@ on:
         description: "backfill/test: treat this date as 'today' (YYYY-MM-DD). Blank = real today."
         default: ""
 
+concurrency:
+  group: digest
+  cancel-in-progress: false
+
 jobs:
   report:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with: { python-version: "3.12" }
+        with:
+          python-version: "3.12"
+          cache: pip
       - run: pip install -r requirements.txt
+      - name: Restore daily post-marker
+        uses: actions/cache/restore@v4
+        with:
+          path: .digest-state
+          key: digest-${{ github.run_id }}
+          restore-keys: digest-
       - name: Run report
+        id: report
         env:
           GA4_PROPERTY_ID:      ${{ secrets.GA4_PROPERTY_ID }}
           GA4_CREDENTIALS_JSON: ${{ secrets.GA4_CREDENTIALS_JSON }}
@@ -37,8 +49,6 @@ jobs:
           REPORT_DATE:          ${{ github.event.inputs.date }}
         run: |
           set -e
-          # Instagram/Mailchimp are best-effort: a failure (or missing secret) must
-          # never break the article report, so they run guarded.
           run_ig() { [ -n "$IG_ACCESS_TOKEN" ] && (python report.py "$1" || echo "IG $1 failed — continuing") || echo "IG $1 skipped (no token)"; }
           run_mc() { [ -n "$MAILCHIMP_API_KEY" ] && (python report.py "$1" || echo "MC $1 failed — continuing") || echo "MC $1 skipped (no key)"; }
           # Manual runs: honor the chosen mode, any time of day.
@@ -46,19 +56,30 @@ jobs:
             python report.py "${{ github.event.inputs.mode }}"
             exit 0
           fi
-          # Scheduled: only the fire that lands in the 9 o'clock ET hour posts.
-          # This dedupes the 13:05 / 14:05 UTC DST pair down to one 9am ET run.
+          # Scheduled: post once, in the 9–10am ET window (tolerates GitHub delays).
           HOUR=$(TZ=America/New_York date +%H)
-          if [ "$HOUR" != "09" ]; then
-            echo "Runtime is ${HOUR}:xx ET, outside the 9am window — skipping (DST off-hour)."
-            exit 0
+          case "$HOUR" in
+            09|10) ;;
+            *) echo "Runtime ${HOUR}:xx ET — outside the 9–10am window, skipping."; exit 0 ;;
+          esac
+          TODAY=$(TZ=America/New_York date +%F)
+          if [ "$(cat .digest-state/last 2>/dev/null)" = "$TODAY" ]; then
+            echo "Already posted for $TODAY — skipping duplicate."; exit 0
           fi
           python report.py daily        # article performance
           run_ig ig-daily               # Instagram (separate message)
           run_mc mc-daily               # Mailchimp newsletters (separate message)
-          run_ig social-gap             # "share these on IG" (needs IG token; silent if no gaps)
+          run_ig social-gap             # "share these on IG" (silent if no gaps)
           # Saturdays also get the weekly rollups (%u: 6 = Saturday).
           if [ "$(TZ=America/New_York date +%u)" = "6" ]; then
             python report.py weekly
             run_ig ig-weekly
           fi
+          mkdir -p .digest-state; echo "$TODAY" > .digest-state/last
+          echo "posted=true" >> "$GITHUB_OUTPUT"
+      - name: Save daily post-marker
+        if: steps.report.outputs.posted == 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: .digest-state
+          key: digest-${{ github.run_id }}
