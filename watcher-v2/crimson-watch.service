@@ -1,0 +1,16 @@
+[Unit]
+Description=Crimson Watch v2
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=crimson
+WorkingDirectory=/home/crimson/crimson-perf-bot/watcher-v2
+EnvironmentFile=/home/crimson/crimson-perf-bot/watcher-v2/.env
+ExecStart=/home/crimson/crimson-perf-bot/watcher-v2/.venv/bin/python app.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
