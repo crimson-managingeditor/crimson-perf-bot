@@ -1011,6 +1011,25 @@ def _fetch(url, timeout=25, depth=0):
             return _fetch(urllib.parse.urljoin(url, html.unescape(mr.group(1))), timeout, depth + 1)
     return "text", text
 
+def _fetch_rendered(url, timeout=35):
+    """Render a JS page with headless Chromium (Playwright) -> ('text', DOM html).
+    Only used for watches flagged `render`; raises on failure so the caller logs +
+    backs off (and it never blocks the plain-fetch path)."""
+    from playwright.sync_api import sync_playwright
+    with sync_playwright() as pw:
+        browser = pw.chromium.launch(args=["--no-sandbox", "--disable-dev-shm-usage"])
+        try:
+            page = browser.new_page(user_agent=_UA)
+            page.set_default_timeout(timeout * 1000)
+            page.goto(url, wait_until="networkidle")
+            html = page.content()
+        finally:
+            browser.close()
+    return "text", html
+
+def _truthy(v):
+    return v in (True, 1, "1", "true", "yes", "on", "render")
+
 _BLOCKED = re.compile(r"(enable javascript|checking your browser|verify you are (a )?human|"
                       r"attention required|access denied|just a moment|cf-browser-verification|"
                       r"are you a robot|complete the security check|unusual traffic)", re.I)
@@ -1252,14 +1271,19 @@ def watch():
         print(f"0 of {len(wl)} due this run"); return
 
     # fetch each unique URL once; entries with the same URL but different filters
-    # share the raw HTML but extract/snapshot independently.
-    urls = list({e["url"] for e in due})
+    # share the raw HTML but extract/snapshot independently. A URL flagged `render`
+    # anywhere is rendered with a headless browser (JS pages).
+    render_urls = {e["url"] for e in due if _truthy(e.get("render"))}
+    plain_urls = [u for u in {e["url"] for e in due} if u not in render_urls]
     def fetch_one(u):
         try: return u, _fetch(_fetch_target(u))
         except Exception as e: return u, ("error", str(e))
     workers = int(os.environ.get("WATCH_WORKERS", "20"))
     with cf.ThreadPoolExecutor(max_workers=workers) as ex:
-        raw = dict(ex.map(fetch_one, urls))
+        raw = dict(ex.map(fetch_one, plain_urls))
+    for u in render_urls:            # sequential — Playwright sync isn't thread-safe
+        try: raw[u] = _fetch_rendered(u)
+        except Exception as e: raw[u] = ("error", f"render failed: {e}")
 
     changed = 0
     for entry in due:

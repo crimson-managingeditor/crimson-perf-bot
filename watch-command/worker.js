@@ -67,6 +67,7 @@ async function handle(env, p) {
     opts,
     sort: flags.has("sort"),
     dedupe: flags.has("dedupe"),
+    render: flags.has("render") || flags.has("js"),   // headless-browser render (JS pages)
     channel: p.get("channel_id") || "",
     channel_name: p.get("channel_name") || "",
     user: p.get("user_name") || p.get("user_id") || "someone",
@@ -140,10 +141,10 @@ async function mutate(env, op, c) {
       for (const [k, v] of Object.entries(c.opts)) if (v) rec[k] = v;
       if (c.sort) rec.sort = true;
       if (c.dedupe) rec.dedupe = true;
+      if (c.render) rec.render = true;
       const fbits = [];
       for (const k of OPT_KEYS) if (rec[k]) fbits.push(`${k}=\`${rec[k]}\``);
-      if (rec.sort) fbits.push("sort");
-      if (rec.dedupe) fbits.push("dedupe");
+      for (const fl of ["render", "sort", "dedupe"]) if (rec[fl]) fbits.push(fl);
       const filt = fbits.length ? "  ·  " + fbits.join(" ") : "";
       const i = list.findIndex(e => sameWatch(e, c.url, c.channel));
       if (i >= 0) {
@@ -179,7 +180,10 @@ async function listCmd(env, c) {
   const shown = here.slice(0, 50).map(e => {
     const iv = (typeof e === "object" && e.interval) ? ` — every ${e.interval}m` : "";
     let f = "";
-    if (typeof e === "object") for (const k of OPT_KEYS) if (e[k]) f += `  ${k}=\`${e[k]}\``;
+    if (typeof e === "object") {
+      for (const k of OPT_KEYS) if (e[k]) f += `  ${k}=\`${e[k]}\``;
+      for (const fl of ["render", "sort", "dedupe"]) if (e[fl]) f += `  ${fl}`;
+    }
     return `• ${urlOf(e)}${iv}${f}`;
   }).join("\n");
   const more = here.length > 50 ? `\n…and ${here.length - 50} more` : "";
