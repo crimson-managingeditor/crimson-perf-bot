@@ -1079,6 +1079,18 @@ def _text_diff(old, new, n=14):
          if l[:1] in "+-" and not l.startswith(("+++", "---"))]
     return d[:n]
 
+def _watch_log(line):
+    """Append an audit line to the repo-committed change log (if WATCH_LOG is set)."""
+    p = os.environ.get("WATCH_LOG", "")
+    if not p:
+        return
+    try:
+        os.makedirs(os.path.dirname(p) or ".", exist_ok=True)
+        with open(p, "a") as f:
+            f.write(line + "\n")
+    except Exception:
+        pass
+
 def _watch_alert(entry, diff):
     label = entry.get("label") or entry["url"]
     who = f"  ·  _flagged by {entry['added_by']}_" if entry.get("added_by") else ""
@@ -1088,11 +1100,12 @@ def _watch_alert(entry, diff):
               {"type": "section", "text": {"type": "mrkdwn", "text": "```\n" + body + "\n```"}}]
     text = f"Page changed: {label[:60]}"
     # DM whoever flagged the page (private); fall back to the webhook channel if we
-    # don't have their id or no bot token is configured.
+    # don't have their id or no bot token is configured. Returns the delivery result.
     if entry.get("added_by_id") and slack_dm(entry["added_by_id"], blocks, text):
         print(f"DMed {entry.get('added_by','?')} about {entry['url']}")
-    else:
-        slack_post(blocks, text)
+        return f"DM->{entry.get('added_by','?')}"
+    slack_post(blocks, text)
+    return "channel"
 
 WATCH_INTERVALS = (5, 30, 60, 120)   # allowed per-URL check cadences (minutes)
 
@@ -1147,6 +1160,7 @@ def watch():
         url = entry["url"]; st, payload = results.get(url, ("error", "no result"))
         if st != "ok":                       # back off failures until next interval
             print(f"skip {url}: {payload}")
+            _watch_log(f"{nowiso}  ERROR    {url}  {str(payload)[:90]}")
             snaps[url] = {**(snaps.get(url) or {}), "last": nowiso}; continue
         text = payload; h = hashlib.sha256(text.encode()).hexdigest()
         prev = snaps.get(url)
@@ -1161,11 +1175,14 @@ def watch():
                 stable = False
             if not stable:
                 print(f"unstable/flapping change on {url} — not alerting")
+                _watch_log(f"{nowiso}  FLAPPED  {url}  (change not stable — held, not alerted)")
                 snaps[url] = {**prev, "last": nowiso}   # keep baseline, back off to next interval
                 continue
-            _watch_alert(entry, _text_diff(prev.get("text", ""), text)); changed += 1
+            status = _watch_alert(entry, _text_diff(prev.get("text", ""), text)); changed += 1
+            _watch_log(f"{nowiso}  CHANGED  {url}  flagged_by={entry.get('added_by','?')}  alert={status}")
         elif not prev:
             print(f"baseline set: {url}")     # first sighting, no alert
+            _watch_log(f"{nowiso}  BASELINE {url}")
         snaps[url] = {"hash": h, "text": text[:40000], "last": nowiso}
     _save_state(snaps)
     print(f"due {len(due)}/{len(wl)} pages, {changed} changed")
