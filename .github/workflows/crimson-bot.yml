@@ -30,11 +30,13 @@ jobs:
           SLACK_WEBHOOK_URL:    ${{ secrets.SLACK_WEBHOOK_URL }}
           IG_ACCESS_TOKEN:      ${{ secrets.IG_ACCESS_TOKEN }}
           IG_USER_ID:           ${{ secrets.IG_USER_ID }}
+          MAILCHIMP_API_KEY:    ${{ secrets.MAILCHIMP_API_KEY }}
         run: |
           set -e
-          # Instagram is best-effort: a failure (or missing token) must never
-          # break the article report, so it runs guarded.
+          # Instagram/Mailchimp are best-effort: a failure (or missing secret) must
+          # never break the article report, so they run guarded.
           run_ig() { [ -n "$IG_ACCESS_TOKEN" ] && (python report.py "$1" || echo "IG $1 failed — continuing") || echo "IG $1 skipped (no token)"; }
+          run_mc() { [ -n "$MAILCHIMP_API_KEY" ] && (python report.py "$1" || echo "MC $1 failed — continuing") || echo "MC $1 skipped (no key)"; }
           # Manual runs: honor the chosen mode, any time of day.
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             python report.py "${{ github.event.inputs.mode }}"
@@ -49,6 +51,7 @@ jobs:
           fi
           python report.py daily        # article performance
           run_ig ig-daily               # Instagram (separate message)
+          run_mc mc-daily               # Mailchimp newsletters (separate message)
           # Saturdays also get the weekly rollups (%u: 6 = Saturday).
           if [ "$(TZ=America/New_York date +%u)" = "6" ]; then
             python report.py weekly

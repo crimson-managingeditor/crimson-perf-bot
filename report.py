@@ -14,7 +14,7 @@ Config via environment variables (see SETUP.md):
     SLACK_WEBHOOK_URL        https://hooks.slack.com/services/...
     CRIMSON_TZ              (optional) default "America/New_York"
 """
-import os, sys, json, re, datetime, urllib.request, urllib.parse, statistics, collections
+import os, sys, json, re, datetime, urllib.request, urllib.parse, base64, statistics, collections
 from zoneinfo import ZoneInfo
 
 # Load a .env sitting next to this script, if present (so secrets live in a file,
@@ -763,9 +763,65 @@ def instagram_weekly():
             "text": f"*Posts this week: 0* (vs {last_week_n} last week)"}})
     slack_post(blocks, f"Instagram weekly {start}–{end}")
 
+# ============================================================= MAILCHIMP
+# READ-ONLY. This integration must NEVER send, create, or modify anything — only
+# GET. The API key is full-access (Mailchimp has no read-only keys), so the code
+# itself is the guardrail: mc_get() issues GET requests and nothing else.
+#   MAILCHIMP_API_KEY   e.g. "…-us6"  (the suffix after '-' is the data center)
+def mc_get(path):
+    """GET only. Returns parsed JSON, or {} on any error."""
+    key = os.environ["MAILCHIMP_API_KEY"]; dc = key.split("-")[-1]
+    h = {"Authorization": "Basic " + base64.b64encode(f"crimson:{key}".encode()).decode()}
+    req = urllib.request.Request(f"https://{dc}.api.mailchimp.com/3.0{path}", headers=h)  # GET
+    try: return json.load(urllib.request.urlopen(req, timeout=60))
+    except Exception: return {}
+
+def _mc_et(iso):
+    return datetime.datetime.fromisoformat(iso.replace("Z", "+00:00")).astimezone(TZ)
+
+def mailchimp_daily():
+    today = datetime.datetime.now(TZ).date()
+    y = today - datetime.timedelta(days=1)
+    since = datetime.datetime.combine(y, datetime.time(), TZ).isoformat()
+    before = datetime.datetime.combine(today, datetime.time(), TZ).isoformat()
+    q = ("/campaigns?status=sent&count=100&sort_field=send_time&sort_dir=DESC"
+         f"&since_send_time={urllib.parse.quote(since)}&before_send_time={urllib.parse.quote(before)}"
+         "&fields=campaigns.id,campaigns.send_time,campaigns.emails_sent,"
+         "campaigns.settings.title,campaigns.settings.subject_line")
+    camps = [c for c in mc_get(q).get("campaigns", [])
+             if c.get("send_time") and _mc_et(c["send_time"]).date() == y]
+
+    blocks = [{"type": "header", "text": {"type": "plain_text",
+               "text": f"📧 Newsletters — {y.strftime('%A, %b %-d')}"}}]
+    if not camps:
+        blocks.append({"type": "context", "elements": [{"type": "mrkdwn",
+            "text": "No newsletter sent yesterday."}]})
+        slack_post(blocks, f"Mailchimp daily {y}"); return
+
+    camps.sort(key=lambda c: c["send_time"])  # chronological
+    for c in camps:
+        rep = mc_get(f"/reports/{c['id']}?fields=opens,clicks,emails_sent")
+        op = rep.get("opens", {}); cl = rep.get("clicks", {}); s = c.get("settings", {})
+        name = s.get("subject_line") or s.get("title") or "(untitled)"
+        sent = _mc_et(c["send_time"]).strftime("%-I:%M %p").lstrip("0")
+        recips = c.get("emails_sent") or rep.get("emails_sent") or 0
+        opens = op.get("proxy_excluded_unique_opens", op.get("unique_opens")) or 0
+        orate = op.get("proxy_excluded_open_rate", op.get("open_rate")) or 0
+        clicks = cl.get("unique_subscriber_clicks") or 0
+        crate = cl.get("click_rate") or 0
+        blocks.append({"type": "section", "text": {"type": "mrkdwn",
+            "text": (f"*{name[:90]}*\n"
+                     f"🕐 Sent {sent} ET · 👥 {fmt(recips)} recipients\n"
+                     f"📬 {fmt(opens)} opens ({orate*100:.0f}%) · "
+                     f"🖱️ {fmt(clicks)} clicks ({crate*100:.1f}%)")}})
+    blocks.append({"type": "context", "elements": [{"type": "mrkdwn",
+        "text": "Opens exclude Apple Mail Privacy auto-opens (raw open rate runs higher); clicks are the truer signal."}]})
+    slack_post(blocks, f"Mailchimp daily {y}")
+
 # =============================================================
 if __name__ == "__main__":
     modes = {"daily": daily, "weekly": weekly,
-             "ig-daily": instagram_daily, "ig-weekly": instagram_weekly}
+             "ig-daily": instagram_daily, "ig-weekly": instagram_weekly,
+             "mc-daily": mailchimp_daily}
     mode = next((a for a in sys.argv[1:] if a in modes), "daily")
     modes[mode]()
