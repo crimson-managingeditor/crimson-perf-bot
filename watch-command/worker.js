@@ -17,7 +17,7 @@ const ALLOWED = [5, 30, 60, 120];
 const DEFAULT_INTERVAL = 60;
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     if (request.method !== "POST") return new Response("Crimson Watch command endpoint");
     const body = await request.text();
     const ok = await verifySlack(env.SLACK_SIGNING_SECRET,
@@ -26,21 +26,36 @@ export default {
     if (!ok) return reply({ text: "⛔ Slack signature check failed." }, "ephemeral");
 
     const p = new URLSearchParams(body);
-    const command = p.get("command") || "";
-    const parts = (p.get("text") || "").trim().split(/\s+/).filter(Boolean);
-    const url = parts[0] || "";
-    const interval = parseInterval(parts[1]);   // number, null (unspecified), or NaN (bad)
-    const user = p.get("user_name") || p.get("user_id") || "someone";
-    try {
-      if (command === "/links")  return reply(await listCmd(env), "ephemeral");
-      if (command === "/unlink") return reply(await mutate(env, "remove", url, user, null));
-      if (command === "/link")   return reply(await mutate(env, "add", url, user, interval));
-      return reply({ text: `Unknown command ${command}` }, "ephemeral");
-    } catch (e) {
-      return reply({ text: `⚠️ ${e.message}` }, "ephemeral");
-    }
+    const responseUrl = p.get("response_url");
+    // Ack within Slack's 3s window, then do the GitHub work in the background and
+    // post the real result back via response_url (never times out).
+    ctx.waitUntil(
+      handle(env, p)
+        .catch(e => ({ response_type: "ephemeral", text: `⚠️ ${e.message}` }))
+        .then(msg => postToSlack(responseUrl, msg))
+    );
+    return reply({ text: "⏳ working…" }, "ephemeral");
   }
 };
+
+async function handle(env, p) {
+  const command = p.get("command") || "";
+  const parts = (p.get("text") || "").trim().split(/\s+/).filter(Boolean);
+  const url = parts[0] || "";
+  const interval = parseInterval(parts[1]);   // number, null (unspecified), or NaN (bad)
+  const user = p.get("user_name") || p.get("user_id") || "someone";
+  if (command === "/links")  return { response_type: "ephemeral", ...(await listCmd(env)) };
+  if (command === "/unlink") return await mutate(env, "remove", url, user, null);
+  if (command === "/link")   return await mutate(env, "add", url, user, interval);
+  return { response_type: "ephemeral", text: `Unknown command ${command}` };
+}
+
+async function postToSlack(responseUrl, msg) {
+  if (!responseUrl) return;
+  const payload = msg.response_type ? msg : { response_type: "in_channel", ...msg };
+  await fetch(responseUrl, { method: "POST",
+    headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+}
 
 function reply(obj, response_type = "in_channel") {
   return new Response(JSON.stringify({ response_type, ...obj }),
