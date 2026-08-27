@@ -40,10 +40,17 @@ function parseInterval(tok) {
   return ALLOWED.includes(n) ? n : NaN;
 }
 
+// Slack wraps typed URLs as <url> or <url|label> — unwrap to the bare URL.
+function cleanUrl(tok) {
+  if (!tok) return "";
+  const m = tok.match(/^<(.+?)(?:\|.*)?>$/);
+  return (m ? m[1] : tok).trim();
+}
+
 async function handle(env, p) {
   const command = p.get("command") || "";
   const parts = (p.get("text") || "").trim().split(/\s+/).filter(Boolean);
-  const url = parts[0] || "";
+  const url = cleanUrl(parts[0]);
   const interval = parseInterval(parts[1]);
   const user = p.get("user_name") || p.get("user_id") || "someone";
   const userId = p.get("user_id") || "";       // stored so the watcher can DM the flagger
