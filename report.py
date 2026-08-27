@@ -1091,29 +1091,86 @@ def _watch_log(line):
     except Exception:
         pass
 
-def _extract(kind, payload, css=None, ignore=None):
-    """changedetection.io-style content extraction for a fetched page:
-    optional CSS selector (watch only that part), structured text, then optional
-    'ignore' regex that drops matching lines (kills timestamp/counter noise)."""
+def _as_list(v):
+    if not v: return []
+    if isinstance(v, list): return v
+    parts = [x for x in str(v).split("\n") if x.strip()]
+    return parts or [str(v)]
+
+def _css_select(html, css):
+    try:
+        from bs4 import BeautifulSoup
+        sel = BeautifulSoup(html, "html.parser").select(css)
+        return "\n".join(str(x) for x in sel) if sel else "[css matched nothing]"
+    except Exception as e:
+        print("css select failed:", e); return html
+
+def _css_remove(html, css):
+    try:
+        from bs4 import BeautifulSoup
+        soup = BeautifulSoup(html, "html.parser")
+        for el in soup.select(css): el.decompose()
+        return str(soup)
+    except Exception as e:
+        print("css remove failed:", e); return html
+
+def _xpath_select(html, xpath):
+    try:
+        import lxml.html
+        nodes = lxml.html.fromstring(html).xpath(xpath)
+        out = [n if isinstance(n, str) else lxml.html.tostring(n, encoding="unicode") for n in nodes]
+        return "\n".join(out) if out else "[xpath matched nothing]"
+    except Exception as e:
+        print("xpath failed:", e); return html
+
+def _json_extract(raw, jsonpath):
+    try:
+        obj = json.loads(raw)
+    except Exception:
+        return None
+    if jsonpath:
+        try:
+            from jsonpath_ng.ext import parse as jp
+            vals = [m.value for m in jp(jsonpath).find(obj)]
+            return json.dumps(vals, indent=2, sort_keys=True, ensure_ascii=False)
+        except Exception as e:
+            return f"[jsonpath error: {e}]"
+    return "JSON:\n" + json.dumps(obj, indent=2, sort_keys=True, ensure_ascii=False)
+
+def _post_filters(text, opts):
+    if opts.get("extract"):                    # keep ONLY regex matches (extract_text)
+        try:
+            rx = re.compile(opts["extract"], re.I | re.M)
+            text = "\n".join(m.group(0) for m in rx.finditer(text))
+        except Exception: pass
+    for pat in _as_list(opts.get("ignore")):   # drop lines matching ignore
+        try:
+            rx = re.compile(pat, re.I)
+            text = "\n".join(l for l in text.split("\n") if not rx.search(l))
+        except Exception: pass
+    lines = text.split("\n")
+    if opts.get("dedupe"):
+        seen = set(); lines = [l for l in lines if not (l in seen or seen.add(l))]
+    if opts.get("sort"):
+        lines = sorted(lines)
+    return "\n".join(lines).strip()
+
+def _extract(kind, payload, opts=None):
+    """changedetection.io-style pipeline: remove subtractive selectors, include via
+    CSS/XPath or JSONPath, render to structured text, then extract/ignore/sort/dedupe."""
+    opts = opts or {}
     if kind != "text":
         return f"[binary file] sha256:{hashlib.sha256(payload).hexdigest()}"
-    h = payload
-    if css:
-        try:
-            from bs4 import BeautifulSoup
-            sel = BeautifulSoup(h, "html.parser").select(css)
-            h = "\n".join(str(x) for x in sel) if sel else "[selector matched nothing]"
-        except Exception as e:
-            print("css select failed:", e)   # fall back to whole page
-    text = _page_text(h)
-    if ignore:
-        for pat in (ignore if isinstance(ignore, list) else [ignore]):
-            try:
-                rx = re.compile(pat, re.I)
-                text = "\n".join(ln for ln in text.split("\n") if not rx.search(ln))
-            except Exception:
-                pass
-    return text
+    raw = payload
+    if opts.get("json") or (raw.lstrip()[:1] in "{[" and not opts.get("css") and not opts.get("xpath")):
+        j = _json_extract(raw, opts.get("json"))
+        if j is not None:
+            return _post_filters(j, opts)
+    html = raw
+    if opts.get("subtract"): html = _css_remove(html, opts["subtract"])
+    if opts.get("css"):      html = _css_select(html, opts["css"])
+    if opts.get("xpath"):    html = _xpath_select(html, opts["xpath"])
+    return _post_filters(_page_text(html), opts)
 
 def slack_channel_post(channel, blocks, text):
     """Post to a Slack channel via the bot token (needs chat:write, and chat:write.public
@@ -1162,10 +1219,16 @@ def _interval_min(entry):
     return iv if iv in WATCH_INTERVALS else 120
 
 def _watch_key(entry):
-    """A watch is unique by (url + selector + ignore) — the same URL can be watched
-    with different filters (and in different channels) as independent watches."""
-    raw = f"{entry['url']}|{entry.get('css','')}|{entry.get('ignore','')}"
+    """A watch is unique by url + all CONTENT filters — the same URL can be watched
+    with different filters (and in different channels) as independent watches.
+    (trigger is excluded: it gates alerting, not what content is compared.)"""
+    raw = "|".join(str(entry.get(k, "")) for k in
+                   ("url", "css", "xpath", "json", "subtract", "extract", "ignore", "sort", "dedupe"))
     return hashlib.sha1(raw.encode()).hexdigest()
+
+def _re_ok(pat, s):
+    try: return bool(re.search(pat, s, re.I))
+    except Exception: return pat.lower() in s.lower()
 
 def _due(prev, interval_min, now):
     """Due if never seen, or its interval has elapsed (90s grace for a late run)."""
@@ -1208,7 +1271,7 @@ def watch():
             _watch_log(f"{nowiso}  ERROR    {url}  {str(msg)[:90]}")
             snaps[key] = {**(snaps.get(key) or {}), "last": nowiso}; continue
         kind, payload = fr
-        text = _extract(kind, payload, entry.get("css"), entry.get("ignore"))
+        text = _extract(kind, payload, entry)
         if kind == "text" and len(text) < 800 and _BLOCKED.search(text):   # bot wall
             print(f"blocked/challenge page {url}")
             _watch_log(f"{nowiso}  BLOCKED  {url}")
@@ -1219,7 +1282,7 @@ def watch():
             # confirm stable (kills A/B flapping): re-fetch + re-extract, same result?
             try:
                 k2, p2 = _fetch(_fetch_target(url))
-                t2 = _extract(k2, p2, entry.get("css"), entry.get("ignore"))
+                t2 = _extract(k2, p2, entry)
                 stable = hashlib.sha256(t2.encode()).hexdigest() == h
             except Exception:
                 stable = False
@@ -1227,7 +1290,13 @@ def watch():
                 print(f"unstable/flapping change on {url} — not alerting")
                 _watch_log(f"{nowiso}  FLAPPED  {url}")
                 snaps[key] = {**prev, "last": nowiso}; continue
-            status = _watch_alert(entry, _text_diff(prev.get("text", ""), text)); changed += 1
+            diff = _text_diff(prev.get("text", ""), text)
+            trig = entry.get("trigger")   # only alert if the change contains this
+            if trig and not any(_re_ok(t, "\n".join(diff)) for t in _as_list(trig)):
+                print(f"change on {url} didn't match trigger — accepting silently")
+                _watch_log(f"{nowiso}  NOTRIGGER {url}  (change didn't match trigger)")
+                snaps[key] = {"hash": h, "text": text[:40000], "last": nowiso}; continue
+            status = _watch_alert(entry, diff); changed += 1
             _watch_log(f"{nowiso}  CHANGED  {url}  by={entry.get('added_by','?')}  "
                        f"ch={entry.get('channel_name', entry.get('channel','?'))}  via={status}")
         elif not prev:

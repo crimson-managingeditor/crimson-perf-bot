@@ -48,16 +48,25 @@ function cleanUrl(tok) {
   return u;
 }
 
+const OPT_KEYS = ["css", "xpath", "json", "subtract", "extract", "ignore", "trigger"];
+
 async function handle(env, p) {
   const command = p.get("command") || "";
   const text = (p.get("text") || "").trim();
   const tokens = text.split(/\s+/).filter(Boolean);
   const ivTok = tokens.slice(1).find(x => /^\d+m?$/i.test(x));
+  const opts = {};
+  for (const k of OPT_KEYS) {
+    const m = text.match(new RegExp("\\b" + k + "=(.+?)(?=\\s+[a-z]+=|$)", "i"));
+    if (m) opts[k] = m[1].trim();
+  }
+  const flags = new Set(tokens.map(t => t.toLowerCase()));
   const ctx = {
     url: cleanUrl(tokens[0]),
     interval: ivTok ? parseInterval(ivTok) : null,
-    css: (text.match(/\bcss=(.+?)(?=\s+\w+=|$)/i) || [, ""])[1].trim(),
-    ignore: (text.match(/\bignore=(.+?)(?=\s+\w+=|$)/i) || [, ""])[1].trim(),
+    opts,
+    sort: flags.has("sort"),
+    dedupe: flags.has("dedupe"),
     channel: p.get("channel_id") || "",
     channel_name: p.get("channel_name") || "",
     user: p.get("user_name") || p.get("user_id") || "someone",
@@ -115,7 +124,7 @@ const sameWatch = (e, url, channel) => urlOf(e) === url && chanOf(e) === (channe
 // read-modify-write with one retry on sha conflict
 async function mutate(env, op, c) {
   if (!/^https?:\/\//i.test(c.url))
-    return { text: "Usage: `/link thecrimson.com 30m [css=<selector>] [ignore=<regex>]`  (interval = 5, 30, 60, 120)" };
+    return { text: "Usage: `/link <url> <5|30|60|120>m [css=… | xpath=… | json=…] [subtract=… extract=… ignore=… trigger=… sort dedupe]`" };
   let interval = c.interval;
   if (op === "add") {
     if (Number.isNaN(interval)) return { text: "Interval must be `5m`, `30m`, `60m`, or `120m`." };
@@ -126,11 +135,16 @@ async function mutate(env, op, c) {
     const { list, sha } = await ghGet(env);
     let msg, done;
     if (op === "add") {
-      const filt = c.css ? ` · watching \`${c.css}\`` : "";
       const rec = { url: c.url, channel: c.channel, channel_name: c.channel_name,
                     added_by: c.user, added_by_id: c.userId, interval };
-      if (c.css) rec.css = c.css;
-      if (c.ignore) rec.ignore = c.ignore;
+      for (const [k, v] of Object.entries(c.opts)) if (v) rec[k] = v;
+      if (c.sort) rec.sort = true;
+      if (c.dedupe) rec.dedupe = true;
+      const fbits = [];
+      for (const k of OPT_KEYS) if (rec[k]) fbits.push(`${k}=\`${rec[k]}\``);
+      if (rec.sort) fbits.push("sort");
+      if (rec.dedupe) fbits.push("dedupe");
+      const filt = fbits.length ? "  ·  " + fbits.join(" ") : "";
       const i = list.findIndex(e => sameWatch(e, c.url, c.channel));
       if (i >= 0) {
         rec.added_by = (typeof list[i] === "object" && list[i].added_by) || c.user;
@@ -164,8 +178,9 @@ async function listCmd(env, c) {
     return { text: "Nothing is being watched in this channel yet. Add one with `/link <url> <interval>`." };
   const shown = here.slice(0, 50).map(e => {
     const iv = (typeof e === "object" && e.interval) ? ` — every ${e.interval}m` : "";
-    const cs = (typeof e === "object" && e.css) ? `  \`${e.css}\`` : "";
-    return `• ${urlOf(e)}${iv}${cs}`;
+    let f = "";
+    if (typeof e === "object") for (const k of OPT_KEYS) if (e[k]) f += `  ${k}=\`${e[k]}\``;
+    return `• ${urlOf(e)}${iv}${f}`;
   }).join("\n");
   const more = here.length > 50 ? `\n…and ${here.length - 50} more` : "";
   const where = c.channel_name && c.channel_name !== "directmessage" ? `#${c.channel_name}` : "this channel";
