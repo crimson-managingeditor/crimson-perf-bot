@@ -14,7 +14,7 @@ Config via environment variables (see SETUP.md):
     SLACK_WEBHOOK_URL        https://hooks.slack.com/services/...
     CRIMSON_TZ              (optional) default "America/New_York"
 """
-import os, sys, json, re, datetime, urllib.request, urllib.parse, base64, statistics, collections
+import os, sys, json, re, datetime, urllib.request, urllib.parse, base64, html, hashlib, difflib, statistics, collections
 from zoneinfo import ZoneInfo
 
 # Load a .env sitting next to this script, if present (so secrets live in a file,
@@ -988,10 +988,90 @@ def social_gap():
               {"type": "section", "text": {"type": "mrkdwn", "text": "\n".join(lines)}}]
     slack_post(blocks, "Social gap — share these on Instagram")
 
+# ============================================================= PAGE WATCH
+# Watches a curated list of URLs and alerts Slack when a page's MAIN TEXT changes
+# (scripts/nav/boilerplate stripped, so ad/timestamp churn doesn't fire). Reporters
+# add links via the /watch slash command (writes watch/watchlist.json); this engine
+# reads that list. Snapshots persist between runs in the Actions cache.
+#   WATCHLIST_FILE   default watch/watchlist.json  — [ "url" | {url,label,added_by} ]
+#   STATE_FILE       default watch/state.json      — {url: {hash, text}}
+def _load_watchlist():
+    p = os.environ.get("WATCHLIST_FILE", "watch/watchlist.json")
+    try: data = json.load(open(p))
+    except Exception: return []
+    out = []
+    for e in (data if isinstance(data, list) else []):
+        if isinstance(e, str): out.append({"url": e})
+        elif isinstance(e, dict) and e.get("url"): out.append(e)
+    return out
+
+def _fetch_html(url, timeout=20):
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 crimson-watch"})
+    with urllib.request.urlopen(req, timeout=timeout) as r:
+        return r.read(3_000_000).decode("utf-8", "replace")
+
+def _page_text(h):
+    """Main visible text: drop script/style/nav/header/footer/comments, strip tags."""
+    s = re.sub(r"(?is)<(script|style|noscript|svg|template)[^>]*>.*?</\1>", " ", h or "")
+    s = re.sub(r"(?is)<!--.*?-->", " ", s)
+    s = re.sub(r"(?is)<(nav|header|footer|aside)[^>]*>.*?</\1>", " ", s)
+    s = re.sub(r"(?s)<[^>]+>", " ", s)
+    return re.sub(r"\s+", " ", html.unescape(s)).strip()
+
+def _text_diff(old, new, n=14):
+    o = re.split(r"(?<=[.!?])\s+", old); m = re.split(r"(?<=[.!?])\s+", new)
+    d = [l for l in difflib.unified_diff(o, m, lineterm="")
+         if l[:1] in "+-" and not l.startswith(("+++", "---"))]
+    return d[:n]
+
+def _watch_alert(entry, diff):
+    label = entry.get("label") or entry["url"]
+    who = f"  ·  _watched by {entry['added_by']}_" if entry.get("added_by") else ""
+    body = "\n".join(diff)[:2600] or "(main text changed — no line-level diff)"
+    slack_post([{"type": "section", "text": {"type": "mrkdwn",
+                 "text": f"🔎 *Page changed* — <{entry['url']}|{label[:80]}>{who}"}},
+                {"type": "section", "text": {"type": "mrkdwn", "text": "```\n" + body + "\n```"}}],
+               f"Page changed: {label[:60]}")
+
+def watch():
+    import concurrent.futures as cf
+    wl = _load_watchlist()
+    if not wl:
+        print("watchlist empty — nothing to check"); return
+    snaps = _load_state()  # {url: {hash, text}}
+
+    def check(entry):
+        url = entry["url"]
+        try:
+            text = _page_text(_fetch_html(url))
+        except Exception as e:
+            return url, "error", str(e)
+        return url, "ok", text
+
+    with cf.ThreadPoolExecutor(max_workers=12) as ex:
+        fetched = list(ex.map(check, wl))
+    results = {u: (st, payload) for (u, st, payload) in fetched}
+
+    changed = 0
+    for entry in wl:
+        url = entry["url"]; st, payload = results.get(url, ("error", "no result"))
+        if st != "ok":
+            print(f"skip {url}: {payload}"); continue
+        text = payload; h = hashlib.sha256(text.encode()).hexdigest()
+        prev = snaps.get(url)
+        snaps[url] = {"hash": h, "text": text[:40000]}  # cap stored snapshot
+        if prev and prev.get("hash") and prev["hash"] != h:
+            _watch_alert(entry, _text_diff(prev.get("text", ""), text)); changed += 1
+        elif not prev:
+            print(f"baseline set: {url}")   # first sighting, no alert
+    _save_state(snaps)
+    print(f"checked {len(wl)} pages, {changed} changed")
+
 # =============================================================
 if __name__ == "__main__":
     modes = {"daily": daily, "weekly": weekly,
              "ig-daily": instagram_daily, "ig-weekly": instagram_weekly,
-             "mc-daily": mailchimp_daily, "breakout": breakout, "social-gap": social_gap}
+             "mc-daily": mailchimp_daily, "breakout": breakout,
+             "social-gap": social_gap, "watch": watch}
     mode = next((a for a in sys.argv[1:] if a in modes), "daily")
     modes[mode]()
