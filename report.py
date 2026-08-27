@@ -14,7 +14,7 @@ Config via environment variables (see SETUP.md):
     SLACK_WEBHOOK_URL        https://hooks.slack.com/services/...
     CRIMSON_TZ              (optional) default "America/New_York"
 """
-import os, sys, json, re, datetime, urllib.request, urllib.parse, base64, html, hashlib, difflib, statistics, collections
+import os, sys, json, re, datetime, urllib.request, urllib.parse, base64, html, hashlib, difflib, unicodedata, statistics, collections
 from zoneinfo import ZoneInfo
 
 # Load a .env sitting next to this script, if present (so secrets live in a file,
@@ -961,10 +961,10 @@ def _fetch_target(url):
             return url + ("&dl=1" if "?" in url else "?dl=1")
     return url
 
-def _fetch(url, timeout=25):
+def _fetch(url, timeout=25, depth=0):
     """Fetch robustly -> ('text', str) or ('bytes', bytes). Handles a browser UA,
-    gzip/deflate, charset detection, non-HTML content, and (only if the cert fails)
-    a relaxed-TLS retry — acceptable since we only READ public pages."""
+    gzip/deflate, charset detection, non-HTML content, meta-refresh redirects, and
+    (only if the cert fails) a relaxed-TLS retry — acceptable since we only READ."""
     import gzip, zlib, ssl
     req = urllib.request.Request(url, headers={
         "User-Agent": _UA,
@@ -1004,15 +1004,74 @@ def _fetch(url, timeout=25):
         if mm:
             try: charset = mm.group(1).decode("ascii", "ignore")
             except Exception: charset = None
-    return "text", raw.decode(charset or "utf-8", "replace")
+    text = raw.decode(charset or "utf-8", "replace")
+    if depth < 2:   # follow a <meta http-equiv=refresh> bounce (common on gov sites)
+        mr = re.search(r'(?is)<meta[^>]+http-equiv=["\']?refresh["\']?[^>]+content=["\']?\s*\d+\s*;\s*url=([^"\'>\s]+)', text[:4096])
+        if mr:
+            return _fetch(urllib.parse.urljoin(url, html.unescape(mr.group(1))), timeout, depth + 1)
+    return "text", text
+
+_BLOCKED = re.compile(r"(enable javascript|checking your browser|verify you are (a )?human|"
+                      r"attention required|access denied|just a moment|cf-browser-verification|"
+                      r"are you a robot|complete the security check|unusual traffic)", re.I)
+
+def _normalize_json(s):
+    try:
+        return "JSON:\n" + json.dumps(json.loads(s), indent=2, sort_keys=True, ensure_ascii=False)
+    except Exception:
+        return None
+
+def _feed_text(s):
+    """RSS/Atom/sitemap -> one line per item (title + link), so NEW items diff cleanly."""
+    if not re.search(r"<(rss|feed|rdf:RDF|urlset|sitemapindex)\b", s[:3000], re.I):
+        return None
+    out = []
+    for it in re.findall(r"(?is)<(?:item|entry|url)\b.*?</(?:item|entry|url)>", s)[:200]:
+        title = re.search(r"(?is)<title[^>]*>(.*?)</title>", it)
+        loc = re.search(r"(?is)<(?:loc|link)[^>]*>(.*?)</(?:loc|link)>", it) \
+              or re.search(r'(?is)<link[^>]+href=["\']([^"\']+)', it)
+        t = clean(title.group(1)) if title else ""
+        l = clean(loc.group(1)) if loc else ""
+        if t or l: out.append(f"• {t} {l}".strip())
+    return "\n".join(out) if out else None
 
 def _page_text(h):
-    """Main visible text: drop script/style/nav/header/footer/comments, strip tags."""
-    s = re.sub(r"(?is)<(script|style|noscript|svg|template)[^>]*>.*?</\1>", " ", h or "")
+    """Extract readable, STRUCTURE-PRESERVING text so diffs are legible and
+    change-sensitive: JSON is normalized, feeds list their items, and HTML keeps
+    tables (rows/cells), lists, and headings as separate lines instead of one blob."""
+    if not h:
+        return ""
+    t = h.lstrip("﻿")                       # strip BOM
+    if t.lstrip()[:1] in "{[":                   # JSON API response
+        j = _normalize_json(t)
+        if j is not None: return j
+    feed = _feed_text(t)                          # RSS / Atom / sitemap
+    if feed is not None: return feed
+
+    title_m = re.search(r"(?is)<title[^>]*>(.*?)</title>", t)
+    title = clean(title_m.group(1)) if title_m else ""
+    s = t
+    # drop non-content blocks entirely
+    s = re.sub(r"(?is)<(script|style|noscript|svg|template|iframe|object|embed|canvas|form|button|select)\b.*?</\1>", " ", s)
     s = re.sub(r"(?is)<!--.*?-->", " ", s)
-    s = re.sub(r"(?is)<(nav|header|footer|aside)[^>]*>.*?</\1>", " ", s)
-    s = re.sub(r"(?s)<[^>]+>", " ", s)
-    return re.sub(r"\s+", " ", html.unescape(s)).strip()
+    s = re.sub(r"(?is)<(nav|header|footer|aside)\b.*?</\1>", " ", s)
+    # focus on the real content if the page marks it
+    mm = re.search(r"(?is)<main\b[^>]*>(.*?)</main>", s) or re.search(r"(?is)<article\b[^>]*>(.*?)</article>", s)
+    if mm: s = mm.group(1)
+    # structure -> newlines (tables become rows of "cell | cell", lists get bullets)
+    s = re.sub(r"(?is)<(th|td)\b[^>]*>", " | ", s)
+    s = re.sub(r"(?is)<tr\b[^>]*>", "\n", s)
+    s = re.sub(r"(?is)<li\b[^>]*>", "\n• ", s)
+    s = re.sub(r"(?is)<br\s*/?>", "\n", s)
+    s = re.sub(r"(?is)<h[1-6]\b[^>]*>", "\n\n", s)
+    s = re.sub(r"(?is)</(p|div|h[1-6]|section|article|tr|ul|ol|dl|dd|dt|blockquote|pre|table|thead|tbody|caption)>", "\n", s)
+    s = re.sub(r"(?s)<[^>]+>", " ", s)            # drop any remaining tags
+    s = unicodedata.normalize("NFC", html.unescape(s))
+    s = re.sub(r"[ \t\f\v]+", " ", s)             # collapse intra-line spaces (keep newlines)
+    s = re.sub(r" *\n *", "\n", s)
+    s = re.sub(r"(?m)^\|\s*", "", s)              # drop the leading cell separator on table rows
+    s = re.sub(r"\n{3,}", "\n\n", s).strip()
+    return (f"[title] {title}\n{s}" if title else s)
 
 def _text_diff(old, new, n=14):
     o = re.split(r"(?<=[.!?])\s+", old); m = re.split(r"(?<=[.!?])\s+", new)
@@ -1068,8 +1127,12 @@ def watch():
         url = entry["url"]
         try:
             kind, payload = _fetch(_fetch_target(url))
-            text = (_page_text(payload) if kind == "text"
-                    else f"[binary file] sha256:{hashlib.sha256(payload).hexdigest()}")
+            if kind == "text":
+                text = _page_text(payload)
+                if len(text) < 800 and _BLOCKED.search(text):   # bot wall / JS challenge
+                    return url, "error", "blocked/challenge page (not real content)"
+            else:
+                text = f"[binary file] sha256:{hashlib.sha256(payload).hexdigest()}"
             return url, "ok", text
         except Exception as e:
             return url, "error", str(e)
@@ -1088,6 +1151,18 @@ def watch():
         text = payload; h = hashlib.sha256(text.encode()).hexdigest()
         prev = snaps.get(url)
         if prev and prev.get("hash") and prev["hash"] != h:
+            # confirm the change is stable — one re-fetch kills A/B-test flapping and
+            # transient blips; only alert if the same new content comes back.
+            try:
+                k2, p2 = _fetch(_fetch_target(url))
+                t2 = _page_text(p2) if k2 == "text" else f"[binary file] sha256:{hashlib.sha256(p2).hexdigest()}"
+                stable = hashlib.sha256(t2.encode()).hexdigest() == h
+            except Exception:
+                stable = False
+            if not stable:
+                print(f"unstable/flapping change on {url} — not alerting")
+                snaps[url] = {**prev, "last": nowiso}   # keep baseline, back off to next interval
+                continue
             _watch_alert(entry, _text_diff(prev.get("text", ""), text)); changed += 1
         elif not prev:
             print(f"baseline set: {url}")     # first sighting, no alert
