@@ -56,6 +56,7 @@ jobs:
           python report.py daily        # article performance
           run_ig ig-daily               # Instagram (separate message)
           run_mc mc-daily               # Mailchimp newsletters (separate message)
+          run_ig social-gap             # "share these on IG" (needs IG token; silent if no gaps)
           # Saturdays also get the weekly rollups (%u: 6 = Saturday).
           if [ "$(TZ=America/New_York date +%u)" = "6" ]; then
             python report.py weekly

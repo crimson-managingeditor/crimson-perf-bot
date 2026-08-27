@@ -197,6 +197,7 @@ def enrich(paths):
                 section=(v.get("section") or {}).get("name") or "?",
                 byline=", ".join(c["name"] for c in (v.get("contributors") or []) if c.get("name"))[:80] or "—",
                 posted=pub_time(v.get("createdOn")),
+                lede=clean(v.get("text"))[:300],
                 scoop=bool(scoop_markers(v.get("text"), p)))
     return meta
 
@@ -928,10 +929,69 @@ def breakout():
     slack_post(blocks, f"Breakout: {title[:60]}")
     st[key] = now.isoformat(); _save_state(st)
 
+# ============================================================= SOCIAL GAP
+# Stories crushing it on-site that never made it to Instagram → "share these".
+# Match is by content, not URL (IG captions carry no link): a story counts as
+# "already posted" if a recent IG caption's words are mostly found in the story's
+# headline+lede (captions are usually drawn from the lede).
+_STOP = set(("the a an and or of to in on for with at by from as is are was were be "
+             "been this that these those it its into over after before amid about his "
+             "her their they them has have had will would could new news student students "
+             "university college harvard crimson said says year years first").split())
+
+def _tok(s):
+    return {w for w in re.findall(r"[a-z0-9]+", (s or "").lower()) if len(w) >= 4 and w not in _STOP}
+
+def social_gap():
+    pid = os.environ["GA4_PROPERTY_ID"]; creds = os.environ["GA4_CREDENTIALS_JSON"]
+    igid = os.environ["IG_USER_ID"]
+    floor = int(os.environ.get("SOCIAL_GAP_MIN_VIEWS", "1500"))
+    today = now_date()
+    start = today - datetime.timedelta(days=3); end = today - datetime.timedelta(days=1)
+    rows = ga4_rows(pid, creds, start.isoformat(), end.isoformat(), ["pagePath"], ["screenPageViews"])
+    cand = [r for r in rows
+            if pubday_of(r["pagePath"]) and (today - pubday_of(r["pagePath"])).days <= 4
+            and r["screenPageViews"] >= floor]
+    if not cand:
+        print("no candidate stories"); return
+    cand.sort(key=lambda r: -r["screenPageViews"]); cand = cand[:15]
+    meta = enrich([r["pagePath"] for r in cand])
+    # recent IG captions -> token sets
+    until = int(datetime.datetime.combine(today, datetime.time(), TZ).timestamp())
+    try:
+        media = ig_media_between(igid, until - 7 * 86400, until)
+    except Exception as e:
+        print("IG fetch failed:", e); return
+    caps = [_tok(m.get("caption")) for m in media if m.get("caption")]
+
+    def posted(fingerprint):
+        for ct in caps:
+            if ct and len(ct & fingerprint) / len(ct) >= 0.6:  # caption words mostly in the story
+                return True
+        return False
+
+    gaps = []
+    for r in cand:
+        md = meta.get(r["pagePath"], {})
+        fp = _tok((md.get("title") or "") + " " + (md.get("lede") or ""))
+        if fp and not posted(fp):
+            gaps.append((r, md))
+    gaps = gaps[:5]
+    if not gaps:
+        print("no social gaps — top stories are on IG"); return
+
+    lines = [f"• <{url_of(r['pagePath'])}|{(md.get('title') or r['pagePath'])[:66]}> — "
+             f"{fmt(r['screenPageViews'])} views · {md.get('byline','—')}" for r, md in gaps]
+    blocks = [{"type": "header", "text": {"type": "plain_text", "text": "🔗 Share these on Instagram"}},
+              {"type": "context", "elements": [{"type": "mrkdwn",
+               "text": "Crushing it on-site, not yet on @theharvardcrimson (last 3 days)"}]},
+              {"type": "section", "text": {"type": "mrkdwn", "text": "\n".join(lines)}}]
+    slack_post(blocks, "Social gap — share these on Instagram")
+
 # =============================================================
 if __name__ == "__main__":
     modes = {"daily": daily, "weekly": weekly,
              "ig-daily": instagram_daily, "ig-weekly": instagram_weekly,
-             "mc-daily": mailchimp_daily, "breakout": breakout}
+             "mc-daily": mailchimp_daily, "breakout": breakout, "social-gap": social_gap}
     mode = next((a for a in sys.argv[1:] if a in modes), "daily")
     modes[mode]()
