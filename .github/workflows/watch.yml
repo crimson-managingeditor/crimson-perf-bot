@@ -31,6 +31,7 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           WATCHLIST_FILE:    watch/watchlist.json
           STATE_FILE:        watch/.state/snapshots.json
+          WATCH_WORKERS:     "20"   # concurrent fetches — sized for a ~1,000-link list
         run: python report.py watch
       - name: Save snapshots
         if: always()
