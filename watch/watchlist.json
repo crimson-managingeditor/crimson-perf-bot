@@ -16,5 +16,14 @@
     "added_by": "dhruv.patel",
     "added_by_id": "U0ADPHTCCMQ",
     "interval": 5
+  },
+  {
+    "url": "https://quotes.toscrape.com/js/",
+    "interval": 5,
+    "render": true,
+    "added_by": "rendertest",
+    "added_by_id": "",
+    "channel": "",
+    "channel_name": ""
   }
 ]
