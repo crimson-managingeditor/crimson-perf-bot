@@ -3,71 +3,54 @@
 // Slash commands (all point their Request URL at this Worker):
 //   /link <url> <X>m   watch a page, checked every X min (X = 5, 30, 60, or 120)
 //   /unlink <url>      stop watching a page
-//   /links             list what's watched (only you see it)
-//
+//   /links             list what's watched
 // Re-running /link on a URL already watched just changes its interval.
 //
-// Cloudflare secrets to set (Settings -> Variables and Secrets):
-//   SLACK_SIGNING_SECRET   from the Slack app's Basic Information
-//   GITHUB_TOKEN           token with Contents:write on the repo
-//   GITHUB_REPO            e.g. crimson-managingeditor/crimson-perf-bot
-//   WATCHLIST_PATH         watch/watchlist.json   (optional; this is the default)
+// Cloudflare secrets: SLACK_SIGNING_SECRET, GITHUB_TOKEN,
+//   GITHUB_REPO (e.g. crimson-managingeditor/crimson-perf-bot), WATCHLIST_PATH.
 const GH = "https://api.github.com";
 const ALLOWED = [5, 30, 60, 120];
 const DEFAULT_INTERVAL = 60;
 
 export default {
-  async fetch(request, env, ctx) {
+  async fetch(request, env) {
     if (request.method !== "POST") return new Response("Crimson Watch command endpoint");
     const body = await request.text();
     const ok = await verifySlack(env.SLACK_SIGNING_SECRET,
       request.headers.get("X-Slack-Request-Timestamp"),
       body, request.headers.get("X-Slack-Signature"));
-    if (!ok) return reply({ text: "⛔ Slack signature check failed." }, "ephemeral");
-
+    if (!ok) return reply({ text: "⛔ Slack signature check failed." });
     const p = new URLSearchParams(body);
-    const responseUrl = p.get("response_url");
-    // Ack within Slack's 3s window, then do the GitHub work in the background and
-    // post the real result back via response_url (never times out).
-    ctx.waitUntil(
-      handle(env, p)
-        .catch(e => ({ response_type: "ephemeral", text: `⚠️ ${e.message}` }))
-        .then(msg => postToSlack(responseUrl, msg))
-    );
-    return reply({ text: "⏳ working…" }, "ephemeral");
+    try {
+      return reply(await handle(env, p));   // do the work and answer directly (private)
+    } catch (e) {
+      return reply({ text: `⚠️ ${e.message}` });
+    }
   }
 };
 
-async function handle(env, p) {
-  const command = p.get("command") || "";
-  const parts = (p.get("text") || "").trim().split(/\s+/).filter(Boolean);
-  const url = parts[0] || "";
-  const interval = parseInterval(parts[1]);   // number, null (unspecified), or NaN (bad)
-  const user = p.get("user_name") || p.get("user_id") || "someone";
-  const userId = p.get("user_id") || "";   // stored so the watcher can DM the flagger
-  if (command === "/links")  return { response_type: "ephemeral", ...(await listCmd(env)) };
-  if (command === "/unlink") return await mutate(env, "remove", url, user, userId, null);
-  if (command === "/link")   return await mutate(env, "add", url, user, userId, interval);
-  return { response_type: "ephemeral", text: `Unknown command ${command}` };
-}
-
-async function postToSlack(responseUrl, msg) {
-  if (!responseUrl) return;
-  // ephemeral + replace_original => the result replaces the "working…" ack in place,
-  // and only the person who ran the command ever sees it (no channel noise).
-  const payload = { response_type: "ephemeral", replace_original: true, ...msg };
-  await fetch(responseUrl, { method: "POST",
-    headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
-}
-
-function reply(obj, response_type = "in_channel") {
-  return new Response(JSON.stringify({ response_type, ...obj }),
+function reply(msg) {
+  // ephemeral = only the person who ran the command ever sees it
+  return new Response(JSON.stringify({ response_type: "ephemeral", ...msg }),
     { headers: { "Content-Type": "application/json" } });
 }
 function parseInterval(tok) {
   if (!tok) return null;
   const n = parseInt(String(tok).replace(/m$/i, ""), 10);
   return ALLOWED.includes(n) ? n : NaN;
+}
+
+async function handle(env, p) {
+  const command = p.get("command") || "";
+  const parts = (p.get("text") || "").trim().split(/\s+/).filter(Boolean);
+  const url = parts[0] || "";
+  const interval = parseInterval(parts[1]);
+  const user = p.get("user_name") || p.get("user_id") || "someone";
+  const userId = p.get("user_id") || "";       // stored so the watcher can DM the flagger
+  if (command === "/links")  return await listCmd(env);
+  if (command === "/unlink") return await mutate(env, "remove", url, user, userId, null);
+  if (command === "/link")   return await mutate(env, "add", url, user, userId, interval);
+  return { text: `Unknown command ${command}` };
 }
 
 // --- Slack request signature (v0 HMAC-SHA256, 5-min replay window) ---
@@ -126,16 +109,16 @@ async function mutate(env, op, url, user, userId, interval) {
       const i = list.findIndex(e => urlOf(e) === url);
       if (i >= 0) {
         const prevIv = (typeof list[i] === "object" && list[i].interval) || null;
-        if (prevIv === interval) return { text: `Already checking ${url} every ${interval}m.` };
+        if (prevIv === interval) return { text: `Already watching <${url}> every ${interval}m.` };
         const added_by = (typeof list[i] === "object" && list[i].added_by) || user;
         const added_by_id = (typeof list[i] === "object" && list[i].added_by_id) || userId;
         list[i] = { url, added_by, added_by_id, interval };
         msg = `watch: set ${url} to ${interval}m (via /link by ${user})`;
-        done = { text: `🔁 Now checking <${url}> every ${interval}m.` };
+        done = { text: `🔁 Updated: watching <${url}> every ${interval}m now.` };
       } else {
         list.push({ url, added_by: user, added_by_id: userId, interval });
         msg = `watch: add ${url} @${interval}m (via /link by ${user})`;
-        done = { text: `👀 Now checking <${url}> every ${interval}m — I'll DM you if it changes.` };
+        done = { text: `✅ Watching <${url}> — checking every ${interval}m. I'll DM you if it changes.` };
       }
     } else {
       const next = list.filter(e => urlOf(e) !== url);
