@@ -84,6 +84,26 @@ def ga4_scalar(pid, creds, start, end, metric, path_prefix="/article/"):
     r = ga4_rows(pid, creds, start, end, [], [metric], path_prefix)
     return r[0][metric] if r else 0.0
 
+def ga4_realtime(pid, creds, dims, mets):
+    """Realtime report (last 30 min). Note: realtime has NO pagePath dimension —
+    web pages are identified by unifiedScreenName (the page title)."""
+    from google.analytics.data_v1beta import BetaAnalyticsDataClient
+    from google.analytics.data_v1beta.types import RunRealtimeReportRequest, Dimension, Metric
+    from google.oauth2 import service_account
+    info = json.loads(creds) if creds.strip().startswith("{") else json.load(open(creds))
+    client = BetaAnalyticsDataClient(credentials=service_account.Credentials.from_service_account_info(info))
+    req = RunRealtimeReportRequest(property=f"properties/{pid}",
+        dimensions=[Dimension(name=d) for d in dims],
+        metrics=[Metric(name=m) for m in mets], limit=200)
+    resp = client.run_realtime_report(req)
+    out = []
+    for r in resp.rows:
+        row = {dims[i]: r.dimension_values[i].value for i in range(len(dims))}
+        for i, m in enumerate(mets):
+            row[m] = float(r.metric_values[i].value)
+        out.append(row)
+    return out
+
 def fmt_hour(h):
     h = int(h); ap = "am" if h < 12 else "pm"; return f"{h % 12 or 12}{ap}"
 
@@ -825,10 +845,93 @@ def mailchimp_daily():
                      f"🖱️ {fmt(clicks)} clicks ({crate*100:.1f}%)")}})
     slack_post(blocks, f"Mailchimp daily {y}")
 
+# ============================================================= REALTIME BREAKOUT
+# Fires when one story is dominating LIVE traffic right now, so the desk can
+# amplify it in the moment. Runs every ~30 min on its own workflow. Cooldown state
+# lives in a small JSON persisted between runs (GitHub Actions cache).
+# Thresholds are env-tunable so you can calibrate against real behavior:
+#   BREAKOUT_MIN_ACTIVE  min live readers on the one story   (default 150)
+#   BREAKOUT_MIN_SHARE   min share of all live traffic        (default 0.25)
+#   BREAKOUT_COOLDOWN_H  don't re-alert same story within N h (default 3)
+_BAD_TITLE = ("page not found", "writer page", "author page", "contributor",
+              "sponsored", "search results", "| search", "| tag", "privacy policy",
+              "subscribe", "donate", "about the crimson", "advertis", "newsletter")
+
+def _is_article_title(t):
+    """A real article page: title ends with '… | The Harvard Crimson' (site name
+    LAST) and isn't the home page, a '<site> | Section' landing, or a utility page."""
+    low = (t or "").strip().lower()
+    if not low.endswith("the harvard crimson") or low == "the harvard crimson":
+        return False
+    if low.startswith("the harvard crimson"):      # "The Harvard Crimson | News" landing
+        return False
+    return not any(b in low for b in _BAD_TITLE)
+
+def _state_path(): return os.environ.get("STATE_FILE", "state/breakout.json")
+def _load_state():
+    try: return json.load(open(_state_path()))
+    except Exception: return {}
+def _save_state(st):
+    p = _state_path(); os.makedirs(os.path.dirname(p) or ".", exist_ok=True)
+    try: json.dump(st, open(p, "w"))
+    except Exception: pass
+
+def _resolve_title_url(title):
+    """Best-effort: match a live page title back to a recent article URL."""
+    try:
+        norm = lambda s: re.sub(r"[^a-z0-9]", "", (s or "").lower())
+        want = norm(title)
+        if not want: return None
+        today = now_date()
+        arts = _sitemap_year(today.year) + (_sitemap_year(today.year - 1) if today.month == 1 else [])
+        for a in arts:
+            if norm(a["title"]) == want:
+                return url_of(a["url"])
+    except Exception:
+        pass
+    return None
+
+def breakout():
+    pid = os.environ["GA4_PROPERTY_ID"]; creds = os.environ["GA4_CREDENTIALS_JSON"]
+    min_active = int(os.environ.get("BREAKOUT_MIN_ACTIVE", "150"))
+    min_share = float(os.environ.get("BREAKOUT_MIN_SHARE", "0.25"))
+    cooldown = float(os.environ.get("BREAKOUT_COOLDOWN_H", "3")) * 3600
+    try:
+        rows = ga4_realtime(pid, creds, ["unifiedScreenName"], ["activeUsers"])
+    except Exception as e:
+        print("realtime fetch failed:", e); return
+    total = sum(r["activeUsers"] for r in rows)
+    arts = [r for r in rows if _is_article_title(r["unifiedScreenName"])]
+    if not arts or total <= 0:
+        print("no article candidates"); return
+    arts.sort(key=lambda r: -r["activeUsers"])
+    top = arts[0]; active = int(top["activeUsers"]); share = active / total
+    if active < min_active or share < min_share:
+        print(f"no breakout (top={active} active, {share:.0%} share)"); return
+    title = re.sub(r"\s*\|\s*[^|]*\|\s*The Harvard Crimson\s*$", "", top["unifiedScreenName"])
+    title = re.sub(r"\s*\|\s*The Harvard Crimson\s*$", "", title).strip()
+
+    st = _load_state(); key = title[:90]
+    now = datetime.datetime.now(datetime.timezone.utc)
+    last = st.get(key)
+    if last:
+        try:
+            if (now - datetime.datetime.fromisoformat(last)).total_seconds() < cooldown:
+                print("within cooldown, skipping"); return
+        except Exception:
+            pass
+    url = _resolve_title_url(title)
+    link = f"<{url}|{title}>" if url else f"*{title}*"
+    blocks = [{"type": "section", "text": {"type": "mrkdwn",
+        "text": (f"🚨 *Trending now* — {link}\n"
+                 f"{fmt(active)} readers on it right now · {share*100:.0f}% of live site traffic")}}]
+    slack_post(blocks, f"Breakout: {title[:60]}")
+    st[key] = now.isoformat(); _save_state(st)
+
 # =============================================================
 if __name__ == "__main__":
     modes = {"daily": daily, "weekly": weekly,
              "ig-daily": instagram_daily, "ig-weekly": instagram_weekly,
-             "mc-daily": mailchimp_daily}
+             "mc-daily": mailchimp_daily, "breakout": breakout}
     mode = next((a for a in sys.argv[1:] if a in modes), "daily")
     modes[mode]()
