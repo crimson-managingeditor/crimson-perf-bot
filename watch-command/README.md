@@ -4,13 +4,16 @@
 `watch/watchlist.json` in this repo. The page-watch workflow already reads that file.
 
 ```
-Reporter types  /watch <url>  in Slack
+Reporter types  /link <url> 30m  in Slack
       → Slack POSTs to the Worker
       → Worker verifies Slack + edits watch/watchlist.json via the GitHub API
-      → the Crimson page watch workflow (every 2h) picks it up
+      → the Crimson page watch workflow picks it up and checks it every 30 min
 ```
 
-Commands: `/watch <url>`, `/unwatch <url>`, `/watchlist`.
+Commands:
+- `/link <url> <X>m` — watch a page, checked every X minutes (**X = 5, 30, 60, or 120**; omit → 60). Re-running `/link` on the same URL changes its interval.
+- `/unlink <url>` — stop watching
+- `/links` — list what's watched (only you see it)
 
 ## 1. GitHub token (Contents: write on this repo)
 Fine-grained token at **github.com/settings/personal-access-tokens/new**:
@@ -43,14 +46,14 @@ Re-deploy after adding secrets.
 
 ## 4. Point Slack at the Worker
 In the Slack app → **Slash Commands → Create New Command**, three times:
-| Command | Request URL | Short description |
-|---|---|---|
-| `/watch` | the Worker URL | Watch a page for changes |
-| `/unwatch` | the Worker URL | Stop watching a page |
-| `/watchlist` | the Worker URL | Show watched pages |
+| Command | Request URL | Short description | Usage hint |
+|---|---|---|---|
+| `/link` | the Worker URL | Watch a page for changes | `<url> 30m` |
+| `/unlink` | the Worker URL | Stop watching a page | `<url>` |
+| `/links` | the Worker URL | Show watched pages | |
 
 Then **Install App** (Basic Information → Install to Workspace).
 
 ## 5. Test
-In Slack: `/watch https://www.harvard.edu/` → you should see
-"👀 Now watching …". Confirm the commit landed in `watch/watchlist.json`.
+In Slack: `/link https://www.harvard.edu/ 30m` → you should see
+"👀 Now checking … every 30m". Confirm the commit landed in `watch/watchlist.json`.

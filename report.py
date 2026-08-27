@@ -942,40 +942,62 @@ def _watch_alert(entry, diff):
                 {"type": "section", "text": {"type": "mrkdwn", "text": "```\n" + body + "\n```"}}],
                f"Page changed: {label[:60]}")
 
+WATCH_INTERVALS = (5, 30, 60, 120)   # allowed per-URL check cadences (minutes)
+
+def _interval_min(entry):
+    try: iv = int(entry.get("interval", 120))
+    except Exception: iv = 120
+    return iv if iv in WATCH_INTERVALS else 120
+
+def _due(prev, interval_min, now):
+    """Is this URL due for a check? True if never seen, or its interval has elapsed
+    (90s grace so a slightly-late run doesn't skip a tier)."""
+    if not prev or not prev.get("last"): return True
+    try:
+        last = datetime.datetime.fromisoformat(prev["last"])
+    except Exception:
+        return True
+    return (now - last).total_seconds() >= interval_min * 60 - 90
+
 def watch():
     import concurrent.futures as cf
     wl = _load_watchlist()
     if not wl:
         print("watchlist empty — nothing to check"); return
-    snaps = _load_state()  # {url: {hash, text}}
+    snaps = _load_state()  # {url: {hash, text, last}}
+    now = datetime.datetime.now(datetime.timezone.utc); nowiso = now.isoformat()
+    # only fetch the URLs whose cadence is due this run (5-min tier every run, etc.)
+    due = [e for e in wl if _due(snaps.get(e["url"]), _interval_min(e), now)]
+    if not due:
+        print(f"0 of {len(wl)} due this run"); return
 
     def check(entry):
         url = entry["url"]
         try:
-            text = _page_text(_fetch_html(url))
+            return url, "ok", _page_text(_fetch_html(url))
         except Exception as e:
             return url, "error", str(e)
-        return url, "ok", text
 
-    workers = int(os.environ.get("WATCH_WORKERS", "12"))  # concurrency (politeness cap)
+    workers = int(os.environ.get("WATCH_WORKERS", "20"))  # concurrency (politeness cap)
     with cf.ThreadPoolExecutor(max_workers=workers) as ex:
-        fetched = list(ex.map(check, wl))
+        fetched = list(ex.map(check, due))
     results = {u: (st, payload) for (u, st, payload) in fetched}
 
     changed = 0
-    for entry in wl:
+    for entry in due:
         url = entry["url"]; st, payload = results.get(url, ("error", "no result"))
-        if st != "ok":
-            print(f"skip {url}: {payload}"); continue
+        if st != "ok":                       # back off failures until next interval
+            print(f"skip {url}: {payload}")
+            snaps[url] = {**(snaps.get(url) or {}), "last": nowiso}; continue
         text = payload; h = hashlib.sha256(text.encode()).hexdigest()
         prev = snaps.get(url)
-        snaps[url] = {"hash": h, "text": text[:40000]}  # cap stored snapshot
         if prev and prev.get("hash") and prev["hash"] != h:
             _watch_alert(entry, _text_diff(prev.get("text", ""), text)); changed += 1
         elif not prev:
-            print(f"baseline set: {url}")   # first sighting, no alert
+            print(f"baseline set: {url}")     # first sighting, no alert
+        snaps[url] = {"hash": h, "text": text[:40000], "last": nowiso}
     _save_state(snaps)
-    print(f"checked {len(wl)} pages, {changed} changed")
+    print(f"due {len(due)}/{len(wl)} pages, {changed} changed")
 
 # =============================================================
 if __name__ == "__main__":
