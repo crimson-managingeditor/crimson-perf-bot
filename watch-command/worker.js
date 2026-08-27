@@ -40,11 +40,14 @@ function parseInterval(tok) {
   return ALLOWED.includes(n) ? n : NaN;
 }
 
-// Slack wraps typed URLs as <url> or <url|label> — unwrap to the bare URL.
+// Slack wraps typed URLs as <url> or <url|label> — unwrap to the bare URL, and
+// add https:// if they typed a bare domain like "thecrimson.com/foo".
 function cleanUrl(tok) {
   if (!tok) return "";
   const m = tok.match(/^<(.+?)(?:\|.*)?>$/);
-  return (m ? m[1] : tok).trim();
+  let u = (m ? m[1] : tok).trim();
+  if (u && !/^https?:\/\//i.test(u) && /^[^\s/]+\.[^\s/]+/.test(u)) u = "https://" + u;
+  return u;
 }
 
 async function handle(env, p) {
