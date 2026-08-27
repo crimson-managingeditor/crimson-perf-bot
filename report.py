@@ -944,6 +944,15 @@ def _fetch_html(url, timeout=20):
     with urllib.request.urlopen(req, timeout=timeout) as r:
         return r.read(3_000_000).decode("utf-8", "replace")
 
+def _fetch_target(url):
+    """Google Docs/Sheets '/edit' pages are JS-rendered — a plain fetch can't read
+    them. Rewrite to the server-rendered export (works only for link-shared files)."""
+    m = re.match(r"https?://docs\.google\.com/(document|spreadsheets)/d/([A-Za-z0-9_-]+)", url)
+    if m:
+        kind, doc_id = m.group(1), m.group(2)
+        return f"https://docs.google.com/{kind}/d/{doc_id}/export?format=" + ("csv" if kind == "spreadsheets" else "txt")
+    return url
+
 def _page_text(h):
     """Main visible text: drop script/style/nav/header/footer/comments, strip tags."""
     s = re.sub(r"(?is)<(script|style|noscript|svg|template)[^>]*>.*?</\1>", " ", h or "")
@@ -1005,7 +1014,7 @@ def watch():
     def check(entry):
         url = entry["url"]
         try:
-            return url, "ok", _page_text(_fetch_html(url))
+            return url, "ok", _page_text(_fetch_html(_fetch_target(url)))
         except Exception as e:
             return url, "error", str(e)
 
