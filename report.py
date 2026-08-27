@@ -36,6 +36,15 @@ except Exception:
 
 TZ = ZoneInfo(os.environ.get("CRIMSON_TZ", "America/New_York"))
 DRY = "--dry-run" in sys.argv
+
+def now_date():
+    """Report date = REPORT_DATE (YYYY-MM-DD) if set, else today in TZ.
+    Lets a manual run backfill/test any day; empty on scheduled runs."""
+    ov = os.environ.get("REPORT_DATE", "").strip()
+    if ov:
+        try: return datetime.date.fromisoformat(ov)
+        except Exception: pass
+    return datetime.datetime.now(TZ).date()
 HDR = {"Content-Type": "application/json",
        "User-Agent": "Mozilla/5.0 crimson-bot", "Origin": "https://www.thecrimson.com",
        "Referer": "https://www.thecrimson.com/"}
@@ -373,7 +382,7 @@ def corrections_block(today, since, window_days):
 # ============================================================= DAILY
 def daily():
     pid = os.environ["GA4_PROPERTY_ID"]; creds = os.environ["GA4_CREDENTIALS_JSON"]
-    today = datetime.datetime.now(TZ).date()
+    today = now_date()
     y = today - datetime.timedelta(days=1)
     ystr = y.isoformat()
     # metrics for yesterday
@@ -463,7 +472,7 @@ def daily():
 # ============================================================= WEEKLY
 def weekly():
     pid = os.environ["GA4_PROPERTY_ID"]; creds = os.environ["GA4_CREDENTIALS_JSON"]
-    today = datetime.datetime.now(TZ).date()
+    today = now_date()
     start = today - datetime.timedelta(days=7); end = today - datetime.timedelta(days=1)
     rows = ga4_rows(pid, creds, start.isoformat(), end.isoformat(), ["pagePath"],
                     ["screenPageViews", "userEngagementDuration", "totalUsers"])
@@ -664,7 +673,7 @@ def _ig_header_stats(igid):
 
 def instagram_daily():
     igid = os.environ["IG_USER_ID"]
-    today = datetime.datetime.now(TZ).date()
+    today = now_date()
     y = today - datetime.timedelta(days=1)
     since = int(datetime.datetime.combine(y, datetime.time(), TZ).timestamp())
     until = int(datetime.datetime.combine(today, datetime.time(), TZ).timestamp())
@@ -709,7 +718,7 @@ def instagram_daily():
 
 def instagram_weekly():
     igid = os.environ["IG_USER_ID"]
-    today = datetime.datetime.now(TZ).date()
+    today = now_date()
     start = today - datetime.timedelta(days=7); end = today - datetime.timedelta(days=1)
     since = int(datetime.datetime.combine(start, datetime.time(), TZ).timestamp())
     until = int(datetime.datetime.combine(today, datetime.time(), TZ).timestamp())
@@ -780,7 +789,7 @@ def _mc_et(iso):
     return datetime.datetime.fromisoformat(iso.replace("Z", "+00:00")).astimezone(TZ)
 
 def mailchimp_daily():
-    today = datetime.datetime.now(TZ).date()
+    today = now_date()
     y = today - datetime.timedelta(days=1)
     since = datetime.datetime.combine(y, datetime.time(), TZ).isoformat()
     before = datetime.datetime.combine(today, datetime.time(), TZ).isoformat()
@@ -814,8 +823,6 @@ def mailchimp_daily():
                      f"🕐 Sent {sent} ET · 👥 {fmt(recips)} recipients\n"
                      f"📬 {fmt(opens)} opens ({orate*100:.0f}%) · "
                      f"🖱️ {fmt(clicks)} clicks ({crate*100:.1f}%)")}})
-    blocks.append({"type": "context", "elements": [{"type": "mrkdwn",
-        "text": "Opens exclude Apple Mail Privacy auto-opens (raw open rate runs higher); clicks are the truer signal."}]})
     slack_post(blocks, f"Mailchimp daily {y}")
 
 # =============================================================
