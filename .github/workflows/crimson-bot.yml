@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "daily or weekly"
+        description: "daily | weekly | ig-daily | ig-weekly"
         default: "daily"
 
 jobs:
@@ -28,8 +28,13 @@ jobs:
           GA4_PROPERTY_ID:      ${{ secrets.GA4_PROPERTY_ID }}
           GA4_CREDENTIALS_JSON: ${{ secrets.GA4_CREDENTIALS_JSON }}
           SLACK_WEBHOOK_URL:    ${{ secrets.SLACK_WEBHOOK_URL }}
+          IG_ACCESS_TOKEN:      ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_USER_ID:           ${{ secrets.IG_USER_ID }}
         run: |
           set -e
+          # Instagram is best-effort: a failure (or missing token) must never
+          # break the article report, so it runs guarded.
+          run_ig() { [ -n "$IG_ACCESS_TOKEN" ] && (python report.py "$1" || echo "IG $1 failed — continuing") || echo "IG $1 skipped (no token)"; }
           # Manual runs: honor the chosen mode, any time of day.
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             python report.py "${{ github.event.inputs.mode }}"
@@ -42,8 +47,10 @@ jobs:
             echo "Runtime is ${HOUR}:xx ET, outside the 9am window — skipping (DST off-hour)."
             exit 0
           fi
-          python report.py daily
-          # Mondays also get the weekly rollup.
+          python report.py daily        # article performance
+          run_ig ig-daily               # Instagram (separate message)
+          # Mondays also get the weekly rollups.
           if [ "$(TZ=America/New_York date +%u)" = "1" ]; then
             python report.py weekly
+            run_ig ig-weekly
           fi

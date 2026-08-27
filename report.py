@@ -14,7 +14,7 @@ Config via environment variables (see SETUP.md):
     SLACK_WEBHOOK_URL        https://hooks.slack.com/services/...
     CRIMSON_TZ              (optional) default "America/New_York"
 """
-import os, sys, json, re, datetime, urllib.request, statistics, collections
+import os, sys, json, re, datetime, urllib.request, urllib.parse, statistics, collections
 from zoneinfo import ZoneInfo
 
 # Load a .env sitting next to this script, if present (so secrets live in a file,
@@ -566,7 +566,180 @@ def weekly():
         blocks.append(cb)
     slack_post(blocks, f"Crimson Weekly {start}–{end}")
 
+# ============================================================= INSTAGRAM
+# Instagram Graph API (Meta). Auth = a Business-Manager System User token that
+# never expires. Reads @theharvardcrimson insights via the linked Facebook Page.
+#   IG_ACCESS_TOKEN   system-user token with instagram_manage_insights + pages_*
+#   IG_USER_ID        the IG Business Account id (numeric)
+IG_BASE = "https://graph.facebook.com/v21.0"
+
+def ig_get(path, **p):
+    p["access_token"] = os.environ["IG_ACCESS_TOKEN"]
+    url = f"{IG_BASE}/{path}?" + urllib.parse.urlencode(p)
+    try:
+        return json.load(urllib.request.urlopen(url, timeout=90))
+    except urllib.error.HTTPError as e:
+        try: return {"error": json.loads(e.read().decode()).get("error", {}).get("message", "")}
+        except Exception: return {"error": f"HTTP {e.code}"}
+    except Exception as e:
+        return {"error": str(e)}
+
+def ig_total(igid, metric, since, until):
+    """One total_value account metric summed over [since, until] (unix). None on error."""
+    r = ig_get(f"{igid}/insights", metric=metric, period="day",
+               metric_type="total_value", since=since, until=until)
+    try: return int(r["data"][0]["total_value"]["value"])
+    except Exception: return None
+
+def ig_totals(igid, metrics, since, until):
+    return {m: ig_total(igid, m, since, until) for m in metrics}
+
+def ig_follower_delta(igid, since, until):
+    """Net new followers over the window (sum of the daily follower_count series)."""
+    r = ig_get(f"{igid}/insights", metric="follower_count", period="day", since=since, until=until)
+    try: return sum(v["value"] for v in r["data"][0]["values"])
+    except Exception: return None
+
+def _ts(iso):
+    try: return int(datetime.datetime.fromisoformat(iso.replace("+0000", "+00:00")).timestamp())
+    except Exception: return 0
+
+def ig_media_between(igid, since, until):
+    """Posts whose timestamp is in [since, until) (unix), newest first, with per-post insights."""
+    out, url = [], f"{IG_BASE}/{igid}/media"
+    params = dict(fields="id,caption,timestamp,media_type,media_product_type,permalink,"
+                         "like_count,comments_count", limit=50, access_token=os.environ["IG_ACCESS_TOKEN"])
+    for _ in range(20):  # page guard
+        full = url + ("?" + urllib.parse.urlencode(params) if params else "")
+        try: r = json.load(urllib.request.urlopen(full, timeout=90))
+        except Exception: break
+        data = r.get("data", [])
+        for m in data:
+            m["_ts"] = _ts(m.get("timestamp", ""))
+        out += data
+        if data and data[-1]["_ts"] < since:  # gone past the window
+            break
+        nxt = (r.get("paging") or {}).get("next")
+        if not nxt: break
+        url, params = nxt, None
+    inwin = [m for m in out if since <= m["_ts"] < until]
+    for m in inwin:
+        reel = m.get("media_product_type") == "REELS"
+        mset = "reach,saved,shares,total_interactions" + (",views" if reel else "")
+        d = ig_get(f"{m['id']}/insights", metric=mset)
+        m["_ins"] = {x["name"]: (x.get("values") or [{}])[0].get("value") for x in d.get("data", [])}
+    return inwin
+
+def _ig_post_line(m, badge="▪️"):
+    cap = clean(m.get("caption") or "").strip().replace("\n", " ")[:64] or "(no caption)"
+    ins = m.get("_ins", {})
+    reach = ins.get("reach"); saves = ins.get("saved"); shares = ins.get("shares")
+    parts = [f"{fmt(reach)} reached"] if reach is not None else []
+    parts.append(f"❤️{fmt(m.get('like_count') or 0)}")
+    if m.get("comments_count"): parts.append(f"💬{fmt(m['comments_count'])}")
+    if saves: parts.append(f"🔖{fmt(saves)}")
+    if shares: parts.append(f"↗️{fmt(shares)}")
+    return f"{badge} <{m.get('permalink','')}|{cap}>\n     " + " · ".join(parts)
+
+def _ig_header_stats(igid):
+    a = ig_get(igid, fields="username,followers_count,media_count")
+    return a.get("username", "theharvardcrimson"), a.get("followers_count") or 0
+
+def instagram_daily():
+    igid = os.environ["IG_USER_ID"]
+    today = datetime.datetime.now(TZ).date()
+    y = today - datetime.timedelta(days=1)
+    since = int(datetime.datetime.combine(y, datetime.time(), TZ).timestamp())
+    until = int(datetime.datetime.combine(today, datetime.time(), TZ).timestamp())
+    user, followers = _ig_header_stats(igid)
+    delta = ig_follower_delta(igid, since, until)
+    t = ig_totals(igid, ["reach", "views", "profile_views", "website_clicks",
+                         "total_interactions", "likes", "comments", "saves", "shares"], since, until)
+
+    blocks = [{"type": "header", "text": {"type": "plain_text",
+               "text": f"📸 Instagram — {y.strftime('%A, %b %-d')}"}}]
+    fol = f"👥 {fmt(followers)} followers"
+    if delta is not None:
+        fol += f" · {'▲' if delta >= 0 else '▼'}{fmt(abs(delta))} yesterday"
+    blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text": fol}]})
+    reach_bits = []
+    if t.get("reach") is not None: reach_bits.append(f"👁 {fmt(t['reach'])} reached")
+    if t.get("views") is not None: reach_bits.append(f"👀 {fmt(t['views'])} views")
+    if t.get("profile_views"): reach_bits.append(f"🪧 {fmt(t['profile_views'])} profile visits")
+    if t.get("website_clicks"): reach_bits.append(f"🔗 {fmt(t['website_clicks'])} link taps")
+    if reach_bits:
+        blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text": " · ".join(reach_bits)}]})
+    if t.get("total_interactions") is not None:
+        eng = (f"📊 {fmt(t['total_interactions'])} interactions — ❤️{fmt(t.get('likes') or 0)} "
+               f"💬{fmt(t.get('comments') or 0)} 🔖{fmt(t.get('saves') or 0)} ↗️{fmt(t.get('shares') or 0)}")
+        blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text": eng}]})
+
+    posted = ig_media_between(igid, since, until)
+    posted.sort(key=lambda m: -(m.get("_ins", {}).get("reach") or 0))
+    if posted:
+        blocks.append({"type": "section", "text": {"type": "mrkdwn",
+            "text": f"*Posted yesterday ({len(posted)})*\n" +
+                    "\n".join(_ig_post_line(m, "🔥" if i == 0 else "▪️") for i, m in enumerate(posted))}})
+    # best recent post (last 7d) for context / when nothing posted yesterday
+    recent = ig_media_between(igid, until - 7 * 86400, until)
+    recent.sort(key=lambda m: -(m.get("_ins", {}).get("reach") or 0))
+    if recent and (not posted or recent[0]["id"] != posted[0]["id"]):
+        blocks.append({"type": "section", "text": {"type": "mrkdwn",
+            "text": "*Top post (last 7 days)*\n" + _ig_post_line(recent[0], "🏆")}})
+    slack_post(blocks, f"Instagram daily {y}")
+
+def instagram_weekly():
+    igid = os.environ["IG_USER_ID"]
+    today = datetime.datetime.now(TZ).date()
+    start = today - datetime.timedelta(days=7); end = today - datetime.timedelta(days=1)
+    since = int(datetime.datetime.combine(start, datetime.time(), TZ).timestamp())
+    until = int(datetime.datetime.combine(today, datetime.time(), TZ).timestamp())
+    user, followers = _ig_header_stats(igid)
+    delta = ig_follower_delta(igid, since, until)
+    prev = ig_follower_delta(igid, since - 7 * 86400, since)  # week before
+    t = ig_totals(igid, ["reach", "views", "accounts_engaged", "total_interactions",
+                         "likes", "comments", "saves", "shares", "website_clicks"], since, until)
+    preach = ig_total(igid, "reach", since - 7 * 86400, since)
+
+    blocks = [{"type": "header", "text": {"type": "plain_text",
+               "text": f"📸 Instagram Weekly — {start.strftime('%b %-d')}–{end.strftime('%b %-d')}"}}]
+    fol = f"👥 {fmt(followers)} followers"
+    if delta is not None:
+        fol += f" · {'▲' if delta >= 0 else '▼'}{fmt(abs(delta))} this week"
+        if prev:
+            fol += f" (vs {'▲' if prev >= 0 else '▼'}{fmt(abs(prev))} last week)"
+    blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text": fol}]})
+    rb = []
+    if t.get("reach") is not None:
+        s = f"👁 {fmt(t['reach'])} reached"
+        if preach:
+            p = (t["reach"] - preach) / preach * 100
+            s += f" ({'▲' if p >= 0 else '▼'}{abs(p):.0f}% wow)"
+        rb.append(s)
+    if t.get("views") is not None: rb.append(f"👀 {fmt(t['views'])} views")
+    if t.get("accounts_engaged"): rb.append(f"🤝 {fmt(t['accounts_engaged'])} engaged")
+    if rb:
+        blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text": " · ".join(rb)}]})
+    if t.get("total_interactions") is not None:
+        eng = (f"📊 {fmt(t['total_interactions'])} interactions — ❤️{fmt(t.get('likes') or 0)} "
+               f"💬{fmt(t.get('comments') or 0)} 🔖{fmt(t.get('saves') or 0)} ↗️{fmt(t.get('shares') or 0)}")
+        if t.get("website_clicks"): eng += f" · 🔗{fmt(t['website_clicks'])} link taps"
+        blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text": eng}]})
+
+    posts = ig_media_between(igid, since, until)
+    posts.sort(key=lambda m: -(m.get("_ins", {}).get("reach") or 0))
+    if posts:
+        blocks.append({"type": "section", "text": {"type": "mrkdwn",
+            "text": f"*Top posts of the week*\n" + "\n".join(
+                _ig_post_line(m, f"{i+1}.") for i, m in enumerate(posts[:5]))}})
+        blocks.append({"type": "context", "elements": [{"type": "mrkdwn",
+            "text": f"{len(posts)} posts this week · "
+                    f"median {fmt(statistics.median([m.get('_ins',{}).get('reach') or 0 for m in posts]))} reach/post"}]})
+    slack_post(blocks, f"Instagram weekly {start}–{end}")
+
 # =============================================================
 if __name__ == "__main__":
-    mode = next((a for a in sys.argv[1:] if a in ("daily", "weekly")), "daily")
-    (weekly if mode == "weekly" else daily)()
+    modes = {"daily": daily, "weekly": weekly,
+             "ig-daily": instagram_daily, "ig-weekly": instagram_weekly}
+    mode = next((a for a in sys.argv[1:] if a in modes), "daily")
+    modes[mode]()
