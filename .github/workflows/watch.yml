@@ -3,12 +3,11 @@ name: Crimson page watch
 on:
   schedule:
     # Each URL is only fetched when ITS own interval (5/30/60/120m, set via /link)
-    # is due — so the sweep cron just sets the FINEST achievable tier.
-    #   Private repo (now): every 30 min → ~1,440 min/mo, safe under the 2,000 cap.
-    #     The 5-min tier is effectively capped at 30 min until the repo is public.
-    #   Public repo: change this to "*/5 * * * *" to unlock true 5-min (free minutes).
-    #     (GitHub's 5-min cron is best-effort; for rock-solid 5-min, use a loop/host.)
-    - cron: "*/30 * * * *"
+    # is due — so this 5-min sweep just sets the FINEST achievable tier.
+    # Repo is public → Actions minutes are free, so ~288 runs/day is fine.
+    # (GitHub's 5-min cron is best-effort — expect ~5–15 min in practice; for
+    # rock-solid 5-min, move to a self-looping job or a small always-on host.)
+    - cron: "*/5 * * * *"
   workflow_dispatch: {}
 
 concurrency:
