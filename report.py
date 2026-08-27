@@ -357,6 +357,31 @@ def slack_post(blocks, text):
     urllib.request.urlopen(rq, timeout=30)
     print("posted to Slack")
 
+def slack_dm(user_id, blocks, text):
+    """DM a Slack user via the bot token (opens the IM, then posts). Returns True
+    on success. Needs SLACK_BOT_TOKEN with chat:write + im:write."""
+    token = os.environ.get("SLACK_BOT_TOKEN")
+    if not token or not user_id:
+        return False
+    if DRY:
+        print(f"── DRY RUN — would DM {user_id} ──"); print(text); return True
+    hdr = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
+    def api(method, payload):
+        rq = urllib.request.Request(f"https://slack.com/api/{method}",
+                                    data=json.dumps(payload).encode(), headers=hdr)
+        return json.load(urllib.request.urlopen(rq, timeout=20))
+    try:
+        opened = api("conversations.open", {"users": user_id})
+        ch = (opened.get("channel") or {}).get("id")
+        if not ch:
+            print("conversations.open failed:", opened.get("error")); return False
+        r = api("chat.postMessage", {"channel": ch, "text": text, "blocks": blocks})
+        if not r.get("ok"):
+            print("chat.postMessage failed:", r.get("error"))
+        return bool(r.get("ok"))
+    except Exception as e:
+        print("slack_dm error:", e); return False
+
 def url_of(p): return f"https://www.thecrimson.com{p}"
 
 def season_start(today):
@@ -935,12 +960,18 @@ def _text_diff(old, new, n=14):
 
 def _watch_alert(entry, diff):
     label = entry.get("label") or entry["url"]
-    who = f"  ·  _watched by {entry['added_by']}_" if entry.get("added_by") else ""
+    who = f"  ·  _flagged by {entry['added_by']}_" if entry.get("added_by") else ""
     body = "\n".join(diff)[:2600] or "(main text changed — no line-level diff)"
-    slack_post([{"type": "section", "text": {"type": "mrkdwn",
-                 "text": f"🔎 *Page changed* — <{entry['url']}|{label[:80]}>{who}"}},
-                {"type": "section", "text": {"type": "mrkdwn", "text": "```\n" + body + "\n```"}}],
-               f"Page changed: {label[:60]}")
+    blocks = [{"type": "section", "text": {"type": "mrkdwn",
+               "text": f"🔎 *Page changed* — <{entry['url']}|{label[:80]}>{who}"}},
+              {"type": "section", "text": {"type": "mrkdwn", "text": "```\n" + body + "\n```"}}]
+    text = f"Page changed: {label[:60]}"
+    # DM whoever flagged the page (private); fall back to the webhook channel if we
+    # don't have their id or no bot token is configured.
+    if entry.get("added_by_id") and slack_dm(entry["added_by_id"], blocks, text):
+        print(f"DMed {entry.get('added_by','?')} about {entry['url']}")
+    else:
+        slack_post(blocks, text)
 
 WATCH_INTERVALS = (5, 30, 60, 120)   # allowed per-URL check cadences (minutes)
 

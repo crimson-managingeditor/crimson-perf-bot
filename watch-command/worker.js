@@ -44,9 +44,10 @@ async function handle(env, p) {
   const url = parts[0] || "";
   const interval = parseInterval(parts[1]);   // number, null (unspecified), or NaN (bad)
   const user = p.get("user_name") || p.get("user_id") || "someone";
+  const userId = p.get("user_id") || "";   // stored so the watcher can DM the flagger
   if (command === "/links")  return { response_type: "ephemeral", ...(await listCmd(env)) };
-  if (command === "/unlink") return await mutate(env, "remove", url, user, null);
-  if (command === "/link")   return await mutate(env, "add", url, user, interval);
+  if (command === "/unlink") return await mutate(env, "remove", url, user, userId, null);
+  if (command === "/link")   return await mutate(env, "add", url, user, userId, interval);
   return { response_type: "ephemeral", text: `Unknown command ${command}` };
 }
 
@@ -111,7 +112,7 @@ async function ghPut(env, list, sha, message) {
 const urlOf = e => (typeof e === "string" ? e : e.url);
 
 // read-modify-write with one retry if another edit lands first (sha conflict)
-async function mutate(env, op, url, user, interval) {
+async function mutate(env, op, url, user, userId, interval) {
   if (!/^https?:\/\//i.test(url))
     return { text: "Usage: `/link https://example.com/page 30m`  (interval = 5, 30, 60, or 120)" };
   if (op === "add") {
@@ -127,13 +128,14 @@ async function mutate(env, op, url, user, interval) {
         const prevIv = (typeof list[i] === "object" && list[i].interval) || null;
         if (prevIv === interval) return { text: `Already checking ${url} every ${interval}m.` };
         const added_by = (typeof list[i] === "object" && list[i].added_by) || user;
-        list[i] = { url, added_by, interval };
+        const added_by_id = (typeof list[i] === "object" && list[i].added_by_id) || userId;
+        list[i] = { url, added_by, added_by_id, interval };
         msg = `watch: set ${url} to ${interval}m (via /link by ${user})`;
         done = { text: `🔁 Now checking <${url}> every ${interval}m.` };
       } else {
-        list.push({ url, added_by: user, interval });
+        list.push({ url, added_by: user, added_by_id: userId, interval });
         msg = `watch: add ${url} @${interval}m (via /link by ${user})`;
-        done = { text: `👀 Now checking <${url}> every ${interval}m — added by ${user}. First check within ~${interval}m.` };
+        done = { text: `👀 Now checking <${url}> every ${interval}m — I'll DM you if it changes.` };
       }
     } else {
       const next = list.filter(e => urlOf(e) !== url);

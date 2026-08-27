@@ -34,6 +34,7 @@ jobs:
       - name: Check watched pages
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_BOT_TOKEN:   ${{ secrets.SLACK_BOT_TOKEN }}   # DMs the flagger on a change
           WATCHLIST_FILE:    watch/watchlist.json
           STATE_FILE:        watch/.state/snapshots.json
           WATCH_WORKERS:     "20"   # concurrent fetches — sized for a ~1,000-link list
