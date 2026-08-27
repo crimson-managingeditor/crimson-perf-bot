@@ -939,19 +939,72 @@ def _load_watchlist():
         elif isinstance(e, dict) and e.get("url"): out.append(e)
     return out
 
-def _fetch_html(url, timeout=20):
-    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 crimson-watch"})
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        return r.read(3_000_000).decode("utf-8", "replace")
+_UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
+       "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36")
 
 def _fetch_target(url):
-    """Google Docs/Sheets '/edit' pages are JS-rendered — a plain fetch can't read
-    them. Rewrite to the server-rendered export (works only for link-shared files)."""
-    m = re.match(r"https?://docs\.google\.com/(document|spreadsheets)/d/([A-Za-z0-9_-]+)", url)
+    """Rewrite common 'view' URLs to a server-rendered form a plain fetch can read.
+    All are link-shared / public only — no authentication is performed."""
+    # Google Docs / Sheets / Slides -> text/csv export
+    m = re.match(r"https?://docs\.google\.com/(document|spreadsheets|presentation)/d/([A-Za-z0-9_-]+)", url)
     if m:
-        kind, doc_id = m.group(1), m.group(2)
-        return f"https://docs.google.com/{kind}/d/{doc_id}/export?format=" + ("csv" if kind == "spreadsheets" else "txt")
+        kind = m.group(1)
+        return f"https://docs.google.com/{kind}/d/{m.group(2)}/export?format=" + ("csv" if kind == "spreadsheets" else "txt")
+    # GitHub blob page -> raw file
+    m = re.match(r"https?://github\.com/([^/]+)/([^/]+)/blob/(.+)$", url)
+    if m:
+        return f"https://raw.githubusercontent.com/{m.group(1)}/{m.group(2)}/{m.group(3)}"
+    # Dropbox share -> direct content
+    if "dropbox.com/" in url:
+        if "dl=0" in url: return url.replace("dl=0", "dl=1")
+        if "dl=1" not in url and "raw=1" not in url:
+            return url + ("&dl=1" if "?" in url else "?dl=1")
     return url
+
+def _fetch(url, timeout=25):
+    """Fetch robustly -> ('text', str) or ('bytes', bytes). Handles a browser UA,
+    gzip/deflate, charset detection, non-HTML content, and (only if the cert fails)
+    a relaxed-TLS retry — acceptable since we only READ public pages."""
+    import gzip, zlib, ssl
+    req = urllib.request.Request(url, headers={
+        "User-Agent": _UA,
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Accept-Encoding": "gzip, deflate"})
+    try:
+        r = urllib.request.urlopen(req, timeout=timeout)
+    except urllib.error.URLError as e:
+        if isinstance(getattr(e, "reason", None), ssl.SSLError):
+            ctx = ssl.create_default_context(); ctx.check_hostname = False; ctx.verify_mode = ssl.CERT_NONE
+            r = urllib.request.urlopen(req, timeout=timeout, context=ctx)
+        else:
+            raise
+    with r:
+        raw = r.read(5_000_000)
+        cenc = (r.headers.get("Content-Encoding") or "").lower()
+        ctype = (r.headers.get("Content-Type") or "").lower()
+    if "gzip" in cenc:
+        try: raw = gzip.decompress(raw)
+        except Exception: pass
+    elif "deflate" in cenc:
+        try: raw = zlib.decompress(raw)
+        except Exception:
+            try: raw = zlib.decompress(raw, -zlib.MAX_WBITS)
+            except Exception: pass
+    binary = any(t in ctype for t in ("pdf", "octet-stream", "image/", "zip", "officedocument",
+                                      "msword", "ms-excel", "spreadsheetml", "font", "audio/", "video/"))
+    textual = (ctype == "") or any(t in ctype for t in ("html", "xml", "json", "csv", "javascript", "text/", "plain"))
+    if binary or not textual:
+        return "bytes", raw
+    charset = None
+    mc = re.search(r"charset=([\w-]+)", ctype)
+    if mc: charset = mc.group(1)
+    if not charset:
+        mm = re.search(rb'charset=["\']?([\w-]+)', raw[:4096], re.I)
+        if mm:
+            try: charset = mm.group(1).decode("ascii", "ignore")
+            except Exception: charset = None
+    return "text", raw.decode(charset or "utf-8", "replace")
 
 def _page_text(h):
     """Main visible text: drop script/style/nav/header/footer/comments, strip tags."""
@@ -1014,7 +1067,10 @@ def watch():
     def check(entry):
         url = entry["url"]
         try:
-            return url, "ok", _page_text(_fetch_html(_fetch_target(url)))
+            kind, payload = _fetch(_fetch_target(url))
+            text = (_page_text(payload) if kind == "text"
+                    else f"[binary file] sha256:{hashlib.sha256(payload).hexdigest()}")
+            return url, "ok", text
         except Exception as e:
             return url, "error", str(e)
 
