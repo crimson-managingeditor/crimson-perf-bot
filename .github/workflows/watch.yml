@@ -53,7 +53,8 @@ jobs:
             fi
             python report.py watch || true
             N=$((N+1))
-            [ $(date +%s) -ge $END ] && break
+            # stop before a sleep would push us past the window (avoids a timeout cancel)
+            [ $(( $(date +%s) + 300 )) -ge "$END" ] && break
             sleep 300
           done
           echo "completed $N checks"
