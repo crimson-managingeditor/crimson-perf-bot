@@ -1073,9 +1073,9 @@ def _page_text(h):
     s = re.sub(r"\n{3,}", "\n\n", s).strip()
     return (f"[title] {title}\n{s}" if title else s)
 
-def _text_diff(old, new, n=14):
-    o = re.split(r"(?<=[.!?])\s+", old); m = re.split(r"(?<=[.!?])\s+", new)
-    d = [l for l in difflib.unified_diff(o, m, lineterm="")
+def _text_diff(old, new, n=40):
+    """Line-level unified diff (added/removed lines), like changedetection.io."""
+    d = [l for l in difflib.unified_diff((old or "").split("\n"), (new or "").split("\n"), lineterm="")
          if l[:1] in "+-" and not l.startswith(("+++", "---"))]
     return d[:n]
 
@@ -1091,32 +1091,84 @@ def _watch_log(line):
     except Exception:
         pass
 
+def _extract(kind, payload, css=None, ignore=None):
+    """changedetection.io-style content extraction for a fetched page:
+    optional CSS selector (watch only that part), structured text, then optional
+    'ignore' regex that drops matching lines (kills timestamp/counter noise)."""
+    if kind != "text":
+        return f"[binary file] sha256:{hashlib.sha256(payload).hexdigest()}"
+    h = payload
+    if css:
+        try:
+            from bs4 import BeautifulSoup
+            sel = BeautifulSoup(h, "html.parser").select(css)
+            h = "\n".join(str(x) for x in sel) if sel else "[selector matched nothing]"
+        except Exception as e:
+            print("css select failed:", e)   # fall back to whole page
+    text = _page_text(h)
+    if ignore:
+        for pat in (ignore if isinstance(ignore, list) else [ignore]):
+            try:
+                rx = re.compile(pat, re.I)
+                text = "\n".join(ln for ln in text.split("\n") if not rx.search(ln))
+            except Exception:
+                pass
+    return text
+
+def slack_channel_post(channel, blocks, text):
+    """Post to a Slack channel via the bot token (needs chat:write, and chat:write.public
+    for channels the bot hasn't been invited to). Returns True on success."""
+    token = os.environ.get("SLACK_BOT_TOKEN")
+    if not token or not channel:
+        return False
+    if DRY:
+        print(f"── DRY — would post to channel {channel} ──"); print(text); return True
+    try:
+        rq = urllib.request.Request("https://slack.com/api/chat.postMessage",
+            data=json.dumps({"channel": channel, "text": text, "blocks": blocks}).encode(),
+            headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"})
+        r = json.load(urllib.request.urlopen(rq, timeout=20))
+        if not r.get("ok"):
+            print("channel post failed:", r.get("error"))
+        return bool(r.get("ok"))
+    except Exception as e:
+        print("channel post error:", e); return False
+
 def _watch_alert(entry, diff):
     label = entry.get("label") or entry["url"]
-    who = f"  ·  _flagged by {entry['added_by']}_" if entry.get("added_by") else ""
-    body = "\n".join(diff)[:2600] or "(main text changed — no line-level diff)"
+    meta = []
+    if entry.get("css"): meta.append(f"`{entry['css']}`")
+    if entry.get("added_by"): meta.append(f"flagged by {entry['added_by']}")
+    sub = ("  ·  " + " · ".join(meta)) if meta else ""
+    body = "\n".join(diff)[:2800] or "(content changed — no line-level diff)"
     blocks = [{"type": "section", "text": {"type": "mrkdwn",
-               "text": f"🔎 *Page changed* — <{entry['url']}|{label[:80]}>{who}"}},
+               "text": f"🔎 *Page changed* — <{entry['url']}|{label[:80]}>{sub}"}},
               {"type": "section", "text": {"type": "mrkdwn", "text": "```\n" + body + "\n```"}}]
     text = f"Page changed: {label[:60]}"
-    # DM whoever flagged the page (private); fall back to the webhook channel if we
-    # don't have their id or no bot token is configured. Returns the delivery result.
+    # Route to the channel where it was /link'd; fall back to DM the flagger, then webhook.
+    ch = entry.get("channel")
+    if ch and slack_channel_post(ch, blocks, text):
+        return f"channel:{entry.get('channel_name', ch)}"
     if entry.get("added_by_id") and slack_dm(entry["added_by_id"], blocks, text):
-        print(f"DMed {entry.get('added_by','?')} about {entry['url']}")
         return f"DM->{entry.get('added_by','?')}"
     slack_post(blocks, text)
-    return "channel"
+    return "webhook"
 
-WATCH_INTERVALS = (5, 30, 60, 120)   # allowed per-URL check cadences (minutes)
+WATCH_INTERVALS = (5, 30, 60, 120)   # allowed per-watch check cadences (minutes)
 
 def _interval_min(entry):
     try: iv = int(entry.get("interval", 120))
     except Exception: iv = 120
     return iv if iv in WATCH_INTERVALS else 120
 
+def _watch_key(entry):
+    """A watch is unique by (url + selector + ignore) — the same URL can be watched
+    with different filters (and in different channels) as independent watches."""
+    raw = f"{entry['url']}|{entry.get('css','')}|{entry.get('ignore','')}"
+    return hashlib.sha1(raw.encode()).hexdigest()
+
 def _due(prev, interval_min, now):
-    """Is this URL due for a check? True if never seen, or its interval has elapsed
-    (90s grace so a slightly-late run doesn't skip a tier)."""
+    """Due if never seen, or its interval has elapsed (90s grace for a late run)."""
     if not prev or not prev.get("last"): return True
     try:
         last = datetime.datetime.fromisoformat(prev["last"])
@@ -1129,63 +1181,61 @@ def watch():
     wl = _load_watchlist()
     if not wl:
         print("watchlist empty — nothing to check"); return
-    snaps = _load_state()  # {url: {hash, text, last}}
+    snaps = _load_state()  # keyed by watch-key {hash, text, last}
     now = datetime.datetime.now(datetime.timezone.utc); nowiso = now.isoformat()
-    # only fetch the URLs whose cadence is due this run (5-min tier every run, etc.)
-    due = [e for e in wl if _due(snaps.get(e["url"]), _interval_min(e), now)]
+
+    due = [e for e in wl if _due(snaps.get(_watch_key(e)), _interval_min(e), now)]
     if not due:
         print(f"0 of {len(wl)} due this run"); return
 
-    def check(entry):
-        url = entry["url"]
-        try:
-            kind, payload = _fetch(_fetch_target(url))
-            if kind == "text":
-                text = _page_text(payload)
-                if len(text) < 800 and _BLOCKED.search(text):   # bot wall / JS challenge
-                    return url, "error", "blocked/challenge page (not real content)"
-            else:
-                text = f"[binary file] sha256:{hashlib.sha256(payload).hexdigest()}"
-            return url, "ok", text
-        except Exception as e:
-            return url, "error", str(e)
-
-    workers = int(os.environ.get("WATCH_WORKERS", "20"))  # concurrency (politeness cap)
+    # fetch each unique URL once; entries with the same URL but different filters
+    # share the raw HTML but extract/snapshot independently.
+    urls = list({e["url"] for e in due})
+    def fetch_one(u):
+        try: return u, _fetch(_fetch_target(u))
+        except Exception as e: return u, ("error", str(e))
+    workers = int(os.environ.get("WATCH_WORKERS", "20"))
     with cf.ThreadPoolExecutor(max_workers=workers) as ex:
-        fetched = list(ex.map(check, due))
-    results = {u: (st, payload) for (u, st, payload) in fetched}
+        raw = dict(ex.map(fetch_one, urls))
 
     changed = 0
     for entry in due:
-        url = entry["url"]; st, payload = results.get(url, ("error", "no result"))
-        if st != "ok":                       # back off failures until next interval
-            print(f"skip {url}: {payload}")
-            _watch_log(f"{nowiso}  ERROR    {url}  {str(payload)[:90]}")
-            snaps[url] = {**(snaps.get(url) or {}), "last": nowiso}; continue
-        text = payload; h = hashlib.sha256(text.encode()).hexdigest()
-        prev = snaps.get(url)
+        url = entry["url"]; key = _watch_key(entry)
+        fr = raw.get(url)
+        if not fr or fr[0] == "error":
+            msg = fr[1] if fr else "no result"
+            print(f"skip {url}: {msg}")
+            _watch_log(f"{nowiso}  ERROR    {url}  {str(msg)[:90]}")
+            snaps[key] = {**(snaps.get(key) or {}), "last": nowiso}; continue
+        kind, payload = fr
+        text = _extract(kind, payload, entry.get("css"), entry.get("ignore"))
+        if kind == "text" and len(text) < 800 and _BLOCKED.search(text):   # bot wall
+            print(f"blocked/challenge page {url}")
+            _watch_log(f"{nowiso}  BLOCKED  {url}")
+            snaps[key] = {**(snaps.get(key) or {}), "last": nowiso}; continue
+        h = hashlib.sha256(text.encode()).hexdigest()
+        prev = snaps.get(key)
         if prev and prev.get("hash") and prev["hash"] != h:
-            # confirm the change is stable — one re-fetch kills A/B-test flapping and
-            # transient blips; only alert if the same new content comes back.
+            # confirm stable (kills A/B flapping): re-fetch + re-extract, same result?
             try:
                 k2, p2 = _fetch(_fetch_target(url))
-                t2 = _page_text(p2) if k2 == "text" else f"[binary file] sha256:{hashlib.sha256(p2).hexdigest()}"
+                t2 = _extract(k2, p2, entry.get("css"), entry.get("ignore"))
                 stable = hashlib.sha256(t2.encode()).hexdigest() == h
             except Exception:
                 stable = False
             if not stable:
                 print(f"unstable/flapping change on {url} — not alerting")
-                _watch_log(f"{nowiso}  FLAPPED  {url}  (change not stable — held, not alerted)")
-                snaps[url] = {**prev, "last": nowiso}   # keep baseline, back off to next interval
-                continue
+                _watch_log(f"{nowiso}  FLAPPED  {url}")
+                snaps[key] = {**prev, "last": nowiso}; continue
             status = _watch_alert(entry, _text_diff(prev.get("text", ""), text)); changed += 1
-            _watch_log(f"{nowiso}  CHANGED  {url}  flagged_by={entry.get('added_by','?')}  alert={status}")
+            _watch_log(f"{nowiso}  CHANGED  {url}  by={entry.get('added_by','?')}  "
+                       f"ch={entry.get('channel_name', entry.get('channel','?'))}  via={status}")
         elif not prev:
-            print(f"baseline set: {url}")     # first sighting, no alert
-            _watch_log(f"{nowiso}  BASELINE {url}")
-        snaps[url] = {"hash": h, "text": text[:40000], "last": nowiso}
+            print(f"baseline set: {url}")
+            _watch_log(f"{nowiso}  BASELINE {url}  ch={entry.get('channel_name', entry.get('channel','?'))}")
+        snaps[key] = {"hash": h, "text": text[:40000], "last": nowiso}
     _save_state(snaps)
-    print(f"due {len(due)}/{len(wl)} pages, {changed} changed")
+    print(f"due {len(due)}/{len(wl)} watches, {changed} changed")
 
 # =============================================================
 if __name__ == "__main__":
