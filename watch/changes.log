@@ -1,3 +1,4 @@
 # Crimson page-watch change log — one line per baseline/change/error/flap.
 2026-08-27T17:20:45.669730+00:00  BASELINE https://docs.google.com/document/d/1upqE9BA2fnDPZqtfLzWLDiO4rYdPpSas7nnbMZg5N3Y/edit  ch=sandbox
 2026-08-27T17:40:48.991766+00:00  CHANGED  https://docs.google.com/document/d/1upqE9BA2fnDPZqtfLzWLDiO4rYdPpSas7nnbMZg5N3Y/edit  by=dhruv.patel  ch=sandbox  via=DM->dhruv.patel
+2026-08-28T15:11:32.599605+00:00  ERROR    https://docs.google.com/document/d/1upqE9BA2fnDPZqtfLzWLDiO4rYdPpSas7nnbMZg5N3Y/edit  The read operation timed out
