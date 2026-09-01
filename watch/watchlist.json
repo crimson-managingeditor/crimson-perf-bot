@@ -6,5 +6,13 @@
     "added_by": "dhruv.patel",
     "added_by_id": "U0ADPHTCCMQ",
     "interval": 5
+  },
+  {
+    "url": "https://thecrimson.com",
+    "channel": "D0AEHSCD27J",
+    "channel_name": "directmessage",
+    "added_by": "dhruv.patel",
+    "added_by_id": "U0ADPHTCCMQ",
+    "interval": 60
   }
 ]
