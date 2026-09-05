@@ -96,12 +96,40 @@ async function handle(env, exctx, p) {
     user: p.get("user_name") || p.get("user_id") || "someone",
     userId: p.get("user_id") || "",
     responseUrl: p.get("response_url") || "",
+    text,
   };
+  if (command === "/roster") return await rosterCmd(env, ctx);
   if (command === "/save")   return saveCmd(env, exctx, ctx);
   if (command === "/links")  return await listCmd(env, ctx);
   if (command === "/unlink") return await mutate(env, "remove", ctx);
   if (command === "/link")   return await mutate(env, "add", ctx);
   return { text: `Unknown command ${command}` };
+}
+
+// --- /roster : show a Harvard varsity roster (read the tracker's committed JSON) ---
+async function rosterCmd(env, c) {
+  const SORTS = ["jersey", "class", "hometown", "highschool", "name", "pos"];
+  const toks = (c.text || "").split(/\s+/).filter(Boolean);
+  let sortby = "jersey";
+  const rest = toks.filter(t => { if (SORTS.includes(t.toLowerCase())) { sortby = t.toLowerCase(); return false; } return true; });
+  const sport = rest.join(" ").toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+  if (!sport) return { text: "Usage: `/roster <sport> [class|hometown|highschool|name|pos]` — e.g. `/roster mens-basketball hometown`" };
+  const repo = env.GITHUB_REPO || "crimson-managingeditor/crimson-perf-bot";
+  const r = await fetch(`https://raw.githubusercontent.com/${repo}/main/research/rosters_data/${sport}.json`,
+    { headers: { "User-Agent": "crimson-watch" } });
+  if (r.status === 404) return { text: `No roster for \`${sport}\`. Use the slug form, e.g. \`mens-basketball\`, \`womens-ice-hockey\`, \`football\`.` };
+  if (!r.ok) return { text: `Couldn't read the roster (${r.status}).` };
+  let players = await r.json();
+  const jn = j => parseInt(String(j).replace(/\D/g, "")) || 999;
+  const kf = { jersey: p => jn(p.jersey), class: p => p.class || "", hometown: p => p.hometown || "",
+    highschool: p => p.highschool || "", name: p => (p.name || "").split(" ").pop(), pos: p => p.pos || "" };
+  const f = kf[sortby] || kf.jersey;
+  players = players.slice().sort((a, b) => { const av = f(a), bv = f(b); return av < bv ? -1 : av > bv ? 1 : 0; });
+  const cap = 60;
+  const lines = players.slice(0, cap).map(p =>
+    `#${p.jersey || "–"} ${p.name} · ${p.class || "?"} ${p.pos || ""} · ${p.hometown || ""}${p.highschool ? " · " + p.highschool : ""}`);
+  const more = players.length > cap ? `\n…and ${players.length - cap} more` : "";
+  return { text: `*${sport}* — ${players.length} players (by ${sortby}):\n` + lines.join("\n") + more };
 }
 
 // --- /save : preserve a page in the Wayback Machine, reply async via response_url ---

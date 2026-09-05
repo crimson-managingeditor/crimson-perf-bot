@@ -1,0 +1,54 @@
+name: Roster tracker
+
+# Scrapes every Harvard varsity roster daily, diffs vs the committed baseline,
+# posts adds/drops to Slack, and commits the updated rosters.
+on:
+  schedule:
+    - cron: "17 12 * * *"     # ~08:17 ET daily
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  track:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Scrape + diff rosters
+        run: python research/rosters.py track > /tmp/roster_changes.txt || true
+      - name: Post changes to Slack
+        if: ${{ env.SLACK_WEBHOOK_URL != '' }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          if [ -s /tmp/roster_changes.txt ]; then
+            python3 - "$SLACK_WEBHOOK_URL" <<'PY'
+          import sys, json, urllib.request
+          hook = sys.argv[1]
+          rows = [l.split("\t") for l in open("/tmp/roster_changes.txt").read().strip().splitlines() if l.strip()]
+          if not rows: sys.exit()
+          body = "*🏟️ Harvard roster changes*\n" + "\n".join(
+              f"{'🟢' if t=='ADDED' else '🔴'} *{s}* — {t.title()}: {n}" for s, t, n in rows)
+          req = urllib.request.Request(hook, data=json.dumps({"text": body}).encode(),
+                                       headers={"Content-Type": "application/json"})
+          urllib.request.urlopen(req, timeout=20)
+          print("posted", len(rows), "roster changes")
+          PY
+          fi
+      - name: Commit updated rosters
+        if: always()
+        run: |
+          if [ -n "$(git status --porcelain research/rosters_data 2>/dev/null)" ]; then
+            git config user.name  "crimson-rosters"
+            git config user.email "actions@users.noreply.github.com"
+            git add research/rosters_data
+            git commit -m "rosters: update $(date -u +%FT%TZ)"
+            git pull --rebase --quiet origin main || true
+            git push || true
+          fi
