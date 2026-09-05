@@ -326,5 +326,13 @@
     "added_by": "stephanie.dragoi",
     "added_by_id": "U0ADJTYA53M",
     "interval": 5
+  },
+  {
+    "url": "https://www.war.gov/News/releases/",
+    "channel": "D0ADUS7P2Q4",
+    "channel_name": "directmessage",
+    "added_by": "hugo.chiasson",
+    "added_by_id": "U0ADP6M5ZCN",
+    "interval": 5
   }
 ]
