@@ -105,6 +105,7 @@ async function handle(env, exctx, p) {
   if (command === "/unalert") return await alertCmd(env, "remove", ctx);
   if (command === "/job")     return await mutate(env, "add", ctx);   // watch a job page for changes
   if (command === "/jobs")    return await jobsCmd(ctx);              // search current Harvard postings
+  if (command === "/people")  return await peopleCmd(env, ctx);       // extract people from any page
   if (command === "/case")    return await caseCmd(env, ctx);
   if (command === "/casewatch")   return await caseWatchCmd(env, "add", ctx);
   if (command === "/cases")       return await caseWatchCmd(env, "list", ctx);
@@ -114,6 +115,21 @@ async function handle(env, exctx, p) {
   if (command === "/unlink") return await mutate(env, "remove", ctx);
   if (command === "/link")   return await mutate(env, "add", ctx);
   return { text: `Unknown command ${command}` };
+}
+
+// --- /people : extract {name, role, email} from ANY people page (renders JS + LLM) ---
+// Dispatches a GitHub Actions job (research/people.py) because agnostic extraction needs a
+// headless render for JS-built member lists — which a Worker can't do — plus the LLM.
+async function peopleCmd(env, c) {
+  const url = cleanUrl(((c.text || "").trim().split(/\s+/)[0]) || "");
+  if (!/^https?:\/\//i.test(url))
+    return { text: "Usage: `/people <url>` — pulls everyone on a lab/org people page (name, role, email), whatever the layout." };
+  const r = await fetch(`${GH}/repos/${env.GITHUB_REPO}/actions/workflows/people.yml/dispatches`, {
+    method: "POST", headers: ghHeaders(env),
+    body: JSON.stringify({ ref: "main", inputs: { url, response_url: c.responseUrl || "" } }),
+  });
+  if (!r.ok) return { text: `Couldn't start the extractor (${r.status}). Needs the GitHub token's Actions:write scope.` };
+  return { text: `🔎 Extracting people from <${url}>… (headless render + AI, ~1–2 min) — I'll post the list here.` };
 }
 
 // --- /jobs : search current Harvard postings (SmartRecruiters public API) ---
