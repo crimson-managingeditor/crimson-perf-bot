@@ -302,5 +302,13 @@
     "added_by": "sebastian.connolly",
     "added_by_id": "U0ADR7TE29Y",
     "interval": 120
+  },
+  {
+    "url": "https://cabot.harvard.edu/resident-tutors",
+    "channel": "D0AEKGCAL72",
+    "channel_name": "directmessage",
+    "added_by": "sebastian.connolly",
+    "added_by_id": "U0ADR7TE29Y",
+    "interval": 120
   }
 ]
