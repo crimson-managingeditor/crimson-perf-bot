@@ -158,5 +158,13 @@
     "added_by": "sierra.pape",
     "added_by_id": "U0ADME1V2SH",
     "interval": 60
+  },
+  {
+    "url": "https://seas.harvard.edu/faculty",
+    "channel": "D0ADMSVCGP7",
+    "channel_name": "directmessage",
+    "added_by": "stephanie.dragoi",
+    "added_by_id": "U0ADJTYA53M",
+    "interval": 5
   }
 ]
