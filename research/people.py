@@ -15,26 +15,41 @@ MODEL = os.environ.get("ANTHROPIC_MODEL", "claude-haiku-4-5-20251001")
 
 import urllib.parse
 
-def page_text(url):
-    """Render a page to text. If SCRAPER_API_KEY is set, fetch through ScraperAPI's
-    residential-IP renderer — needed for sites behind Akamai (e.g. *.harvard.edu) that
-    block datacenter IPs like GitHub Actions. Otherwise render locally (headless Chromium)."""
-    key = os.environ.get("SCRAPER_API_KEY")
-    kind = payload = None
-    if key:
-        api = "https://api.scraperapi.com/?" + urllib.parse.urlencode(
-            {"api_key": key, "url": url, "render": "true"})
+def fetch_html(url):
+    """Get a page's HTML. Sites behind Akamai (e.g. *.harvard.edu) block datacenter IPs
+    (GitHub Actions) AND require running the Akamai sensor JS — so we route through a
+    free-tier anti-bot API that fetches from a residential IP and solves the challenge:
+      SCRAPFLY_KEY   -> Scrapfly with asp=true (purpose-built for Akamai; 1000/mo free, no CC)
+      SCRAPER_API_KEY-> ScraperAPI render (1000/mo free)
+    With neither, render locally with headless Chromium (fine for non-Akamai sites)."""
+    sf, sa = os.environ.get("SCRAPFLY_KEY"), os.environ.get("SCRAPER_API_KEY")
+    if sf:
+        api = "https://api.scrapfly.io/scrape?" + urllib.parse.urlencode(
+            {"key": sf, "url": url, "render_js": "true", "asp": "true", "country": "us"})
         try:
-            kind, payload = report._fetch(api, timeout=75)
+            kind, payload = report._fetch(api, timeout=120)
+            if kind == "text":
+                return json.loads(payload).get("result", {}).get("content", "")
+        except Exception as e:
+            print(f"[debug] scrapfly failed ({e})")
+    if sa:
+        api = "https://api.scraperapi.com/?" + urllib.parse.urlencode(
+            {"api_key": sa, "url": url, "render": "true"})
+        try:
+            kind, payload = report._fetch(api, timeout=90)
+            if kind == "text":
+                return payload
         except Exception as e:
             print(f"[debug] scraperapi failed ({e})")
-    if payload is None:
-        try:
-            kind, payload = report._fetch_rendered(url)
-        except Exception as e:
-            print(f"[debug] render failed ({e}); plain fetch")
-            kind, payload = report._fetch(report._fetch_target(url))
-    return report._page_text(payload) if kind == "text" and payload else ""
+    try:
+        kind, payload = report._fetch_rendered(url)
+    except Exception as e:
+        print(f"[debug] local render failed ({e}); plain fetch")
+        kind, payload = report._fetch(report._fetch_target(url))
+    return payload if kind == "text" else ""
+
+def page_text(url):
+    return report._page_text(fetch_html(url))
 
 def extract(text):
     key = os.environ["ANTHROPIC_API_KEY"]

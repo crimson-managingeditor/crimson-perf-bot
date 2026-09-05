@@ -32,5 +32,6 @@ jobs:
           PEOPLE_URL: ${{ inputs.url }}
           PEOPLE_RESPONSE_URL: ${{ inputs.response_url }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          SCRAPER_API_KEY: ${{ secrets.SCRAPER_API_KEY }}   # optional: residential IP for Akamai-blocked (*.harvard.edu) sites
+          SCRAPFLY_KEY: ${{ secrets.SCRAPFLY_KEY }}          # free 1000/mo, no CC — solves Akamai on *.harvard.edu
+          SCRAPER_API_KEY: ${{ secrets.SCRAPER_API_KEY }}   # alt residential-IP renderer
         run: python research/people.py
