@@ -190,5 +190,13 @@
     "added_by": "shawn.boehmer",
     "added_by_id": "U0ADNQV76ES",
     "interval": 5
+  },
+  {
+    "url": "https://13f.info/manager/0001082621-harvard-management-co-inc",
+    "channel": "D0ADUS7DQVA",
+    "channel_name": "directmessage",
+    "added_by": "megan.blonigen",
+    "added_by_id": "U0AD9QLRK0F",
+    "interval": 120
   }
 ]
