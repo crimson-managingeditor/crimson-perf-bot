@@ -278,5 +278,13 @@
     "added_by": "alexa.schmitt",
     "added_by_id": "U0ADME2L7HB",
     "interval": 60
+  },
+  {
+    "url": "https://college.harvard.edu/financial-aid",
+    "channel": "D0AD9DF0WT1",
+    "channel_name": "directmessage",
+    "added_by": "alexa.schmitt",
+    "added_by_id": "U0ADME2L7HB",
+    "interval": 60
   }
 ]
