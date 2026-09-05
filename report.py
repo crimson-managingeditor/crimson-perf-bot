@@ -1250,6 +1250,19 @@ def slack_channel_post(channel, blocks, text):
     except Exception as e:
         print("channel post error:", e); return False
 
+def _deliver(entry, blocks, text):
+    """Route a message to where the watch was /link'd: the channel, else DM the flagger,
+    else the webhook. A DM watch stores a DM channel id (D…) that chat.postMessage can't
+    target — skip straight to the DM path instead of a guaranteed-failing channel post."""
+    ch = entry.get("channel")
+    is_dm = entry.get("channel_name") == "directmessage" or (isinstance(ch, str) and ch[:1] == "D")
+    if ch and not is_dm and slack_channel_post(ch, blocks, text):
+        return f"channel:{entry.get('channel_name', ch)}"
+    if entry.get("added_by_id") and slack_dm(entry["added_by_id"], blocks, text):
+        return f"DM->{entry.get('added_by','?')}"
+    slack_post(blocks, text)
+    return "webhook"
+
 def _watch_alert(entry, diff):
     label = entry.get("label") or entry["url"]
     meta = []
@@ -1260,18 +1273,11 @@ def _watch_alert(entry, diff):
     blocks = [{"type": "section", "text": {"type": "mrkdwn",
                "text": f"🔎 *Page changed* — <{entry['url']}|{label[:80]}>{sub}"}},
               {"type": "section", "text": {"type": "mrkdwn", "text": "```\n" + body + "\n```"}}]
-    text = f"Page changed: {label[:60]}"
-    # Route to the channel where it was /link'd; fall back to DM the flagger, then webhook.
-    # A DM watch stores a DM channel id (D…) that chat.postMessage can't target — skip
-    # straight to the DM path instead of a guaranteed-failing channel post.
-    ch = entry.get("channel")
-    is_dm = entry.get("channel_name") == "directmessage" or (isinstance(ch, str) and ch[:1] == "D")
-    if ch and not is_dm and slack_channel_post(ch, blocks, text):
-        return f"channel:{entry.get('channel_name', ch)}"
-    if entry.get("added_by_id") and slack_dm(entry["added_by_id"], blocks, text):
-        return f"DM->{entry.get('added_by','?')}"
-    slack_post(blocks, text)
-    return "webhook"
+    return _deliver(entry, blocks, f"Page changed: {label[:60]}")
+
+def _watch_notice(entry, text):
+    """A plain one-off notice to the watch's destination (e.g. 'this site blocks us')."""
+    return _deliver(entry, [{"type": "section", "text": {"type": "mrkdwn", "text": text}}], text)
 
 WATCH_INTERVALS = (5, 30, 60, 120)   # allowed per-watch check cadences (minutes)
 
@@ -1301,14 +1307,20 @@ def _re_ok(pat, s):
     try: return bool(re.search(pat, s, re.I))
     except Exception: return pat.lower() in s.lower()
 
+FAIL_NOTIFY = 3   # consecutive failures before we DM the flagger once that a site is unreachable
+
 def _due(prev, interval_min, now):
-    """Due if never seen, or its interval has elapsed (90s grace for a late run)."""
+    """Due if never seen, or its interval has elapsed (90s grace for a late run). After
+    consecutive failures (unreachable/bot-walled site) back off exponentially — up to 12×
+    the interval — so a blocked page isn't re-hammered every few minutes forever."""
     if not prev or not prev.get("last"): return True
     try:
         last = datetime.datetime.fromisoformat(prev["last"])
     except Exception:
         return True
-    return (now - last).total_seconds() >= interval_min * 60 - 90
+    fails = prev.get("fails", 0)
+    eff = interval_min * (min(2 ** fails, 12) if fails else 1)
+    return (now - last).total_seconds() >= eff * 60 - 90
 
 def watch():
     import concurrent.futures as cf
@@ -1345,6 +1357,19 @@ def watch():
 
     changed = 0
     recheck = {}   # (url, render) -> re-fetched raw, so N subscribers to one URL don't each re-fetch
+    def _record_fail(entry, key, label, detail):
+        # bump the consecutive-failure count (drives back-off in _due) and, the first time a
+        # site is clearly unreachable, DM the flagger once so they aren't left wondering.
+        prev = snaps.get(key) or {}
+        fails = prev.get("fails", 0) + 1
+        st = {**prev, "last": nowiso, "fails": fails}
+        if fails == FAIL_NOTIFY and not prev.get("notified"):
+            _watch_notice(entry, f"⚠️ Can't check <{entry['url']}> — it's blocking automated "
+                f"requests ({label}). I'll keep trying occasionally, but consider watching a "
+                f"different source (an RSS feed or API) or `/unlink`-ing it.")
+            st["notified"] = True
+        snaps[key] = st
+
     for entry in due:
         url = entry["url"]; key = _watch_key(entry)
         fr = raw.get(url)
@@ -1352,13 +1377,13 @@ def watch():
             msg = fr[1] if fr else "no result"
             print(f"skip {url}: {msg}")
             _watch_log(f"{nowiso}  ERROR    {url}  {str(msg)[:90]}")
-            snaps[key] = {**(snaps.get(key) or {}), "last": nowiso}; continue
+            _record_fail(entry, key, "not reachable", msg); continue
         kind, payload = fr
         text = _extract(kind, payload, entry)
         if kind == "text" and len(text) < 800 and _BLOCKED.search(text):   # bot wall
             print(f"blocked/challenge page {url}")
             _watch_log(f"{nowiso}  BLOCKED  {url}")
-            snaps[key] = {**(snaps.get(key) or {}), "last": nowiso}; continue
+            _record_fail(entry, key, "bot-wall / challenge page", "blocked"); continue
         h = hashlib.sha256(text.encode()).hexdigest()
         prev = snaps.get(key)
         if prev and prev.get("hash") and prev["hash"] != h:
