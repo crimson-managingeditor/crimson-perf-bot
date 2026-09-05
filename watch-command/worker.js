@@ -73,7 +73,9 @@ async function handle(env, p) {
   const ivTok = tokens.slice(1).find(x => /^\d+m?$/i.test(x));
   const opts = {};
   for (const k of OPT_KEYS) {
-    const m = text.match(new RegExp("\\b" + k + "=(.+?)(?=\\s+[a-z]+=|$)", "i"));
+    // stop the value at the next `key=`, at a bare flag (sort/dedupe/render/js), or end —
+    // otherwise `trigger=resign sort` swallows the trailing flag into the value.
+    const m = text.match(new RegExp("\\b" + k + "=(.+?)(?=\\s+[a-z]+=|\\s+(?:sort|dedupe|render|js)\\b|$)", "i"));
     if (m) opts[k] = m[1].trim();
   }
   const flags = new Set(tokens.map(t => t.toLowerCase()));

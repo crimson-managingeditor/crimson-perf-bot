@@ -859,8 +859,14 @@ def _load_state():
     try: return json.load(open(_state_path()))
     except Exception: return {}
 def _save_state(st):
+    # atomic write: a partial/corrupt state file would make _load_state return {} and
+    # re-baseline every watch (losing all snapshots). Write a temp file then rename.
     p = _state_path(); os.makedirs(os.path.dirname(p) or ".", exist_ok=True)
-    try: json.dump(st, open(p, "w"))
+    try:
+        tmp = p + ".tmp"
+        with open(tmp, "w") as f:
+            json.dump(st, f)
+        os.replace(tmp, p)
     except Exception: pass
 
 # ============================================================= SOCIAL GAP
@@ -1222,8 +1228,11 @@ def _watch_alert(entry, diff):
               {"type": "section", "text": {"type": "mrkdwn", "text": "```\n" + body + "\n```"}}]
     text = f"Page changed: {label[:60]}"
     # Route to the channel where it was /link'd; fall back to DM the flagger, then webhook.
+    # A DM watch stores a DM channel id (D…) that chat.postMessage can't target — skip
+    # straight to the DM path instead of a guaranteed-failing channel post.
     ch = entry.get("channel")
-    if ch and slack_channel_post(ch, blocks, text):
+    is_dm = entry.get("channel_name") == "directmessage" or (isinstance(ch, str) and ch[:1] == "D")
+    if ch and not is_dm and slack_channel_post(ch, blocks, text):
         return f"channel:{entry.get('channel_name', ch)}"
     if entry.get("added_by_id") and slack_dm(entry["added_by_id"], blocks, text):
         return f"DM->{entry.get('added_by','?')}"
@@ -1295,6 +1304,7 @@ def watch():
         except Exception as e: raw[u] = ("error", f"render failed: {e}")
 
     changed = 0
+    recheck = {}   # (url, render) -> re-fetched raw, so N subscribers to one URL don't each re-fetch
     for entry in due:
         url = entry["url"]; key = _watch_key(entry)
         fr = raw.get(url)
@@ -1313,8 +1323,15 @@ def watch():
         prev = snaps.get(key)
         if prev and prev.get("hash") and prev["hash"] != h:
             # confirm stable (kills A/B flapping): re-fetch + re-extract, same result?
+            # Must re-fetch the SAME way the snapshot was built — a render watch that
+            # re-fetched plainly would never match, so it could never alert. Cache the
+            # re-fetch per (url, render) so many subscribers to one URL share it.
+            is_render = _truthy(entry.get("render"))
             try:
-                k2, p2 = _fetch(_fetch_target(url))
+                rk = (url, is_render)
+                if rk not in recheck:
+                    recheck[rk] = _fetch_rendered(url) if is_render else _fetch(_fetch_target(url))
+                k2, p2 = recheck[rk]
                 t2 = _extract(k2, p2, entry)
                 stable = hashlib.sha256(t2.encode()).hexdigest() == h
             except Exception:
@@ -1336,6 +1353,10 @@ def watch():
             print(f"baseline set: {url}")
             _watch_log(f"{nowiso}  BASELINE {url}  ch={entry.get('channel_name', entry.get('channel','?'))}")
         snaps[key] = {"hash": h, "text": text[:40000], "last": nowiso}
+    # drop snapshots for watches no longer in the list (unlinked, or old key formats)
+    valid = {_watch_key(e) for e in wl}
+    for k in [k for k in snaps if k not in valid]:
+        del snaps[k]
     _save_state(snaps)
     print(f"due {len(due)}/{len(wl)} watches, {changed} changed")
 
