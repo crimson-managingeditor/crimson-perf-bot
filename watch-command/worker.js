@@ -104,11 +104,33 @@ async function handle(env, exctx, p) {
   if (command === "/alerts")  return await alertCmd(env, "list", ctx);
   if (command === "/unalert") return await alertCmd(env, "remove", ctx);
   if (command === "/job")     return await mutate(env, "add", ctx);   // watch a job page for changes
+  if (command === "/case")    return await caseCmd(env, ctx);
   if (command === "/save")   return saveCmd(env, exctx, ctx);
   if (command === "/links")  return await listCmd(env, ctx);
   if (command === "/unlink") return await mutate(env, "remove", ctx);
   if (command === "/link")   return await mutate(env, "add", ctx);
   return { text: `Unknown command ${command}` };
+}
+
+// --- /case : reporters search federal + state court dockets (CourtListener) ---
+async function caseCmd(env, c) {
+  const q = (c.text || "").trim();
+  if (!q) return { text: "Usage: `/case <search>` — searches federal & state court dockets. e.g. `/case harvard admissions`" };
+  const headers = { "User-Agent": "crimson-watch", "Accept": "application/json" };
+  if (env.COURTLISTENER_TOKEN) headers["Authorization"] = "Token " + env.COURTLISTENER_TOKEN;
+  const u = `https://www.courtlistener.com/api/rest/v4/search/?q=${encodeURIComponent(q)}`
+    + `&type=r&order_by=${encodeURIComponent("dateFiled desc")}`;
+  const r = await fetch(u, { headers });
+  if (!r.ok) return { text: `CourtListener returned ${r.status}.` };
+  const d = await r.json();
+  const res = (d.results || []).slice(0, 6);
+  if (!res.length) return { text: `No dockets found for \`${q}\`.` };
+  const lines = res.map(x => {
+    const url = x.docket_absolute_url ? "https://www.courtlistener.com" + x.docket_absolute_url : "";
+    return `• <${url}|${(x.caseName || "(case)").slice(0, 80)}> — ${x.court_id || x.court || ""}, filed ${x.dateFiled || "?"}`;
+  });
+  return { text: `*${d.count} dockets match \`${q}\`* (newest first):\n` + lines.join("\n")
+    + "\n_Use `/casewatch <docket url>` to get pinged on new filings (coming next)._" };
 }
 
 // --- /alert : reporters drop keywords; new Google-News matches ping this channel ---
