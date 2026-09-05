@@ -133,3 +133,33 @@
 2026-09-05T17:25:54.130232+00:00  ERROR    https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation  HTTP Error 403: Forbidden
 2026-09-05T17:25:54.130232+00:00  ERROR    https://www.war.gov/News/releases/  HTTP Error 403: Forbidden
 2026-09-05T17:25:54.130232+00:00  ERROR    https://www.hhs.gov/press-room/index.html  HTTP Error 403: Forbidden
+2026-09-05T17:30:40.470420+00:00  ERROR    https://www.fas.harvard.edu/initiatives  HTTP Error 403: Forbidden
+2026-09-05T17:30:40.470420+00:00  ERROR    https://dso.college.harvard.edu/office-culture-community/about-culture-community  HTTP Error 403: Forbidden
+2026-09-05T17:30:40.470420+00:00  ERROR    https://forklightning.substack.com/  HTTP Error 403: Forbidden
+2026-09-05T17:30:40.470420+00:00  ERROR    https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation  HTTP Error 403: Forbidden
+2026-09-05T17:30:40.470420+00:00  ERROR    https://www.war.gov/News/releases/  HTTP Error 403: Forbidden
+2026-09-05T17:30:40.470420+00:00  ERROR    https://www.hhs.gov/press-room/index.html  HTTP Error 403: Forbidden
+2026-09-05T17:30:40.470420+00:00  BASELINE https://secretary.college.harvard.edu/data/  ch=directmessage
+2026-09-05T17:35:42.049163+00:00  ERROR    https://www.fas.harvard.edu/initiatives  HTTP Error 403: Forbidden
+2026-09-05T17:35:42.049163+00:00  ERROR    https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation  HTTP Error 403: Forbidden
+2026-09-05T17:35:42.049163+00:00  ERROR    https://titleix.college.harvard.edu/resources  HTTP Error 403: Forbidden
+2026-09-05T17:35:42.049163+00:00  ERROR    https://www.hupd.harvard.edu/campus-hazing-transparency-report  HTTP Error 403: Forbidden
+2026-09-05T17:35:42.049163+00:00  ERROR    https://www.war.gov/News/releases/  HTTP Error 403: Forbidden
+2026-09-05T17:35:42.049163+00:00  ERROR    https://www.hhs.gov/press-room/index.html  HTTP Error 403: Forbidden
+2026-09-05T17:40:44.338368+00:00  ERROR    https://www.fas.harvard.edu/initiatives  HTTP Error 403: Forbidden
+2026-09-05T17:40:44.338368+00:00  ERROR    https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation  HTTP Error 403: Forbidden
+2026-09-05T17:40:44.338368+00:00  ERROR    https://www.war.gov/News/releases/  HTTP Error 403: Forbidden
+2026-09-05T17:40:44.338368+00:00  ERROR    https://www.hhs.gov/press-room/index.html  HTTP Error 403: Forbidden
+2026-09-05T17:45:46.396705+00:00  ERROR    https://www.fas.harvard.edu/initiatives  HTTP Error 403: Forbidden
+2026-09-05T17:45:46.396705+00:00  ERROR    https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation  HTTP Error 403: Forbidden
+2026-09-05T17:45:46.396705+00:00  ERROR    https://www.war.gov/News/releases/  HTTP Error 403: Forbidden
+2026-09-05T17:45:46.396705+00:00  ERROR    https://www.hhs.gov/press-room/index.html  HTTP Error 403: Forbidden
+2026-09-05T17:50:48.107287+00:00  ERROR    https://www.fas.harvard.edu/initiatives  HTTP Error 403: Forbidden
+2026-09-05T17:50:48.107287+00:00  ERROR    https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation  HTTP Error 403: Forbidden
+2026-09-05T17:50:48.107287+00:00  ERROR    https://www.war.gov/News/releases/  HTTP Error 403: Forbidden
+2026-09-05T17:50:48.107287+00:00  ERROR    https://www.hhs.gov/press-room/index.html  HTTP Error 403: Forbidden
+2026-09-05T17:55:49.366683+00:00  ERROR    https://www.fas.harvard.edu/initiatives  HTTP Error 403: Forbidden
+2026-09-05T17:55:49.366683+00:00  ERROR    https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation  HTTP Error 403: Forbidden
+2026-09-05T17:55:49.366683+00:00  CHANGED  https://www.courtlistener.com/docket/72520538/united-states-v-president-and-fellows-of-harvard-college/?order_by=desc  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-09-05T17:55:49.366683+00:00  ERROR    https://www.war.gov/News/releases/  HTTP Error 403: Forbidden
+2026-09-05T17:55:49.366683+00:00  ERROR    https://www.hhs.gov/press-room/index.html  HTTP Error 403: Forbidden
