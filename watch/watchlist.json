@@ -214,5 +214,13 @@
     "added_by": "celine.muir",
     "added_by_id": "U0AEK5LKRLY",
     "interval": 60
+  },
+  {
+    "url": "https://www.cambridgema.gov/departments/transportation/news",
+    "channel": "D0AD9DF85EK",
+    "channel_name": "directmessage",
+    "added_by": "shawn.boehmer",
+    "added_by_id": "U0ADNQV76ES",
+    "interval": 5
   }
 ]
