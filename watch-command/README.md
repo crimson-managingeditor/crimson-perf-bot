@@ -14,6 +14,7 @@ Commands:
 - `/link <url> <X>m` — watch a page, checked every X minutes (**X = 5, 30, 60, or 120**; omit → 60). Re-running `/link` on the same URL changes its interval.
 - `/unlink <url>` — stop watching
 - `/links` — list what's watched (only you see it)
+- `/save <url>` — preserve a page in the Wayback Machine and get a permalink back (cite it, or grab it before it changes/disappears). Acks instantly, then posts the permalink a few seconds later. No GitHub involved — it talks to archive.org directly.
 
 ## 1. GitHub token (Contents: write on this repo)
 Fine-grained token at **github.com/settings/personal-access-tokens/new**:
@@ -41,16 +42,18 @@ pick the workspace.
 | `GITHUB_TOKEN` | from step 1 |
 | `GITHUB_REPO` | `crimson-managingeditor/crimson-perf-bot` |
 | `WATCHLIST_PATH` | `watch/watchlist.json` |
+| `WAYBACK_KEY` *(optional)* | `accesskey:secret` from https://archive.org/account/s3.php — set it for guaranteed-fresh `/save` captures; `/save` still works without it |
 
 Re-deploy after adding secrets.
 
 ## 4. Point Slack at the Worker
-In the Slack app → **Slash Commands → Create New Command**, three times:
+In the Slack app → **Slash Commands → Create New Command**, once per command:
 | Command | Request URL | Short description | Usage hint |
 |---|---|---|---|
 | `/link` | the Worker URL | Watch a page for changes | `<url> 30m` |
 | `/unlink` | the Worker URL | Stop watching a page | `<url>` |
 | `/links` | the Worker URL | Show watched pages | |
+| `/save` | the Worker URL | Archive a page to the Wayback Machine | `<url>` |
 
 Then **Install App** (Basic Information → Install to Workspace).
 

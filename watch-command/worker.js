@@ -1,4 +1,4 @@
-// Cloudflare Worker — Slack /link commands -> edits watch/watchlist.json in GitHub.
+// Cloudflare Worker — Slack /link + /save commands.
 //
 //   /link <url> <X>m [css=<selector>] [ignore=<regex>]
 //        watch a page (checked every X min = 5/30/60/120); alerts post in THIS channel.
@@ -6,15 +6,20 @@
 //        ignore=  drop lines matching a regex before diffing (kills timestamp noise)
 //   /unlink <url>   stop watching it in this channel
 //   /links          list what's watched in THIS channel (only)
+//   /save <url>     preserve a page in the Wayback Machine and get a permalink back
+//                   (for citing / before it changes or gets deleted).
 //
 // Cloudflare secrets: SLACK_SIGNING_SECRET, GITHUB_TOKEN,
 //   GITHUB_REPO (e.g. crimson-managingeditor/crimson-perf-bot), WATCHLIST_PATH.
+//   WAYBACK_KEY (optional) — "accesskey:secret" from https://archive.org/account/s3.php;
+//   set it for guaranteed-fresh captures. Without it, /save still works (best-effort
+//   capture + the latest snapshot), just without the reliability of an authenticated save.
 const GH = "https://api.github.com";
 const ALLOWED = [5, 30, 60, 120];
 const DEFAULT_INTERVAL = 60;
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, exctx) {
     if (request.method !== "POST") return new Response("Crimson Watch command endpoint");
     const body = await request.text();
     const ok = await verifySlack(env.SLACK_SIGNING_SECRET,
@@ -23,7 +28,7 @@ export default {
     if (!ok) return reply({ text: "⛔ Slack signature check failed." });
     const p = new URLSearchParams(body);
     try {
-      return reply(await handle(env, p));
+      return reply(await handle(env, exctx, p));
     } catch (e) {
       return reply({ text: `⚠️ ${e.message}` });
     }
@@ -66,7 +71,7 @@ function cleanUrl(tok) {
 
 const OPT_KEYS = ["css", "xpath", "json", "subtract", "extract", "ignore", "trigger"];
 
-async function handle(env, p) {
+async function handle(env, exctx, p) {
   const command = p.get("command") || "";
   const text = (p.get("text") || "").trim();
   const tokens = text.split(/\s+/).filter(Boolean);
@@ -90,11 +95,108 @@ async function handle(env, p) {
     channel_name: p.get("channel_name") || "",
     user: p.get("user_name") || p.get("user_id") || "someone",
     userId: p.get("user_id") || "",
+    responseUrl: p.get("response_url") || "",
   };
+  if (command === "/save")   return saveCmd(env, exctx, ctx);
   if (command === "/links")  return await listCmd(env, ctx);
   if (command === "/unlink") return await mutate(env, "remove", ctx);
   if (command === "/link")   return await mutate(env, "add", ctx);
   return { text: `Unknown command ${command}` };
+}
+
+// --- /save : preserve a page in the Wayback Machine, reply async via response_url ---
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+function saveCmd(env, exctx, c) {
+  if (!/^https?:\/\//i.test(c.url))
+    return { text: "Usage: `/save <url>` — archives the page to the Wayback Machine and returns a permalink you can cite." };
+  // The capture takes longer than Slack's 3s window, so ack now and post the result to
+  // response_url when it's done (valid for 30 min).
+  exctx.waitUntil(archiveAndReport(env, c.url, c.responseUrl));
+  return { text: `📼 Saving <${c.url}> to the Wayback Machine… I'll drop the permalink here in a moment.` };
+}
+
+async function archiveAndReport(env, url, responseUrl) {
+  let res;
+  try { res = await waybackArchive(env, url); }
+  catch (e) { res = { ok: false, error: e.message }; }
+  const today = "https://archive.ph/newest/" + url;   // click to view/save a second copy
+  const text = res.ok
+    ? `✅ Saved <${url}>\n• Wayback permalink: ${res.permalink}\n• Second copy on archive.today: ${today}`
+    : `⚠️ Couldn't confirm a Wayback capture of <${url}> yet (${res.error || "archiver busy"}). `
+      + `It may still be processing — check <https://web.archive.org/web/2/${url}|the latest snapshot> in a minute, `
+      + `or save directly: https://web.archive.org/save/${url}\n• archive.today: ${today}`;
+  await postResponse(responseUrl, text);
+}
+
+async function waybackArchive(env, url) {
+  const key = env.WAYBACK_KEY;   // optional "accesskey:secret"
+  if (key) {
+    // authenticated Save Page Now 2 — reliable, returns the fresh capture timestamp
+    try {
+      const r = await fetch("https://web.archive.org/save/", {
+        method: "POST",
+        headers: { "Authorization": "LOW " + key, "Accept": "application/json",
+                   "Content-Type": "application/x-www-form-urlencoded", "User-Agent": "crimson-watch" },
+        body: "url=" + encodeURIComponent(url) + "&skip_first_archive=1",
+      });
+      const j = await r.json().catch(() => null);
+      if (j && j.job_id) {
+        const ts = await pollSpn(key, j.job_id);
+        if (ts) return { ok: true, permalink: `https://web.archive.org/web/${ts}/${url}` };
+      }
+    } catch (_) { /* fall through to availability */ }
+  } else {
+    // no key: trigger a best-effort capture but DON'T block ~40s for it to finish (that
+    // would blow the Worker's execution budget). The request enqueues the capture
+    // server-side; we abort our connection after a few seconds and resolve below.
+    try {
+      const ac = new AbortController();
+      const t = setTimeout(() => ac.abort(), 4000);
+      await fetch("https://web.archive.org/save/" + url,
+        { headers: { "User-Agent": "crimson-watch" }, redirect: "manual", signal: ac.signal }).catch(() => {});
+      clearTimeout(t);
+    } catch (_) {}
+  }
+  // resolve a real permalink via the availability API (poll to catch a fresh capture)
+  for (let i = 0; i < 4; i++) {
+    await sleep(4000);
+    const snap = await availability(url);
+    if (snap) return { ok: true, permalink: snap };
+  }
+  return { ok: false, error: "no snapshot confirmed yet" };
+}
+
+async function pollSpn(key, jobId) {
+  for (let i = 0; i < 6; i++) {
+    await sleep(3000);
+    try {
+      const r = await fetch("https://web.archive.org/save/status/" + jobId,
+        { headers: { "Authorization": "LOW " + key, "Accept": "application/json" } });
+      const j = await r.json().catch(() => null);
+      if (j && j.status === "success" && j.timestamp) return j.timestamp;
+      if (j && j.status === "error") return null;
+    } catch (_) {}
+  }
+  return null;
+}
+
+async function availability(url) {
+  try {
+    const r = await fetch("https://archive.org/wayback/available?url=" + encodeURIComponent(url),
+      { headers: { "User-Agent": "crimson-watch" } });
+    const j = await r.json().catch(() => null);
+    const c = j && j.archived_snapshots && j.archived_snapshots.closest;
+    return c && c.available ? c.url.replace(/^http:/, "https:") : null;
+  } catch (_) { return null; }
+}
+
+async function postResponse(responseUrl, text) {
+  if (!responseUrl) return;
+  try {
+    await fetch(responseUrl, { method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ response_type: "ephemeral", text }) });
+  } catch (_) {}
 }
 
 // --- Slack request signature (v0 HMAC-SHA256, 5-min replay window) ---
