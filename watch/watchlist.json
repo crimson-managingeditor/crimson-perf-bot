@@ -102,5 +102,13 @@
     "added_by": "julia.karabolli",
     "added_by_id": "U0AD9Q48PKR",
     "interval": 60
+  },
+  {
+    "url": "https://hls.harvard.edu",
+    "channel": "D0ADNQUELMC",
+    "channel_name": "directmessage",
+    "added_by": "uy.pham",
+    "added_by_id": "U0AEK5NN76C",
+    "interval": 120
   }
 ]
