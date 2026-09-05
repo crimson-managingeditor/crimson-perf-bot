@@ -86,5 +86,13 @@
     "added_by": "kevin.zhong",
     "added_by_id": "U0ADHTLLXL7",
     "interval": 5
+  },
+  {
+    "url": "https://gocrimson.com",
+    "channel": "D0ADURRLQDA",
+    "channel_name": "directmessage",
+    "added_by": "tanya.vidhun",
+    "added_by_id": "U0AD9Q51YRM",
+    "interval": 60
   }
 ]
