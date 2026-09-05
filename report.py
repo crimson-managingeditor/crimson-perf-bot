@@ -974,9 +974,15 @@ def _fetch(url, timeout=25, depth=0):
     import gzip, zlib, ssl
     req = urllib.request.Request(url, headers={
         "User-Agent": _UA,
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
         "Accept-Language": "en-US,en;q=0.9",
-        "Accept-Encoding": "gzip, deflate"})
+        "Accept-Encoding": "gzip, deflate",   # NOT br — we only decode gzip/deflate below
+        # browser-signal headers: many WAFs (gov/university sites) 403 a bare fetch without them
+        "Upgrade-Insecure-Requests": "1",
+        "Sec-Fetch-Dest": "document", "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-Site": "none", "Sec-Fetch-User": "?1",
+        "sec-ch-ua": '"Chromium";v="124", "Not.A/Brand";v="24", "Google Chrome";v="124"',
+        "sec-ch-ua-mobile": "?0", "sec-ch-ua-platform": '"macOS"'})
     try:
         r = urllib.request.urlopen(req, timeout=timeout)
     except urllib.error.URLError as e:
@@ -1039,6 +1045,34 @@ def _truthy(v):
 _BLOCKED = re.compile(r"(enable javascript|checking your browser|verify you are (a )?human|"
                       r"attention required|access denied|just a moment|cf-browser-verification|"
                       r"are you a robot|complete the security check|unusual traffic)", re.I)
+
+def _needs_browser(res):
+    """True if a plain-fetch result looks like a bot-wall a real browser might pass: an
+    HTTP 403/401/429/503 (or forbidden/blocked/captcha) error, or a short challenge page."""
+    if not res: return False
+    kind, payload = res
+    if kind == "error":
+        m = str(payload).lower()
+        return any(s in m for s in ("403", "forbidden", "401", "429", "503",
+                                    "captcha", "blocked", "access denied"))
+    if kind == "text":
+        return len(payload) < 1500 and bool(_BLOCKED.search(payload))
+    return False
+
+def _fetch_for_watch(url, render):
+    """Fetch a URL the way the watcher does: rendered if flagged, else a plain fetch with a
+    headless-browser fallback when the plain fetch is bot-walled (403 etc.). Returns
+    (kind, payload); never raises. NOT thread-safe (may drive Playwright) — call it
+    sequentially, e.g. from the stability re-check, not inside the fetch threadpool."""
+    if render:
+        try: return _fetch_rendered(url)
+        except Exception as e: return ("error", f"render failed: {e}")
+    try: res = _fetch(_fetch_target(url))
+    except Exception as e: res = ("error", str(e))
+    if _needs_browser(res):
+        try: return _fetch_rendered(url)
+        except Exception as e: return ("error", f"blocked (bot-wall) + headless render failed: {e}")
+    return res
 
 def _normalize_json(s):
     try:
@@ -1299,9 +1333,15 @@ def watch():
     workers = int(os.environ.get("WATCH_WORKERS", "20"))
     with cf.ThreadPoolExecutor(max_workers=workers) as ex:
         raw = dict(ex.map(fetch_one, plain_urls))
-    for u in render_urls:            # sequential — Playwright sync isn't thread-safe
+    # Sites behind bot-walls (Akamai etc.) 403 a plain fetch but load in a real browser —
+    # retry those with headless Chromium. Capped so a bad batch can't blow the run's budget.
+    cap = int(os.environ.get("RENDER_MAX", "12"))
+    retry = [u for u in plain_urls if u not in render_urls and _needs_browser(raw.get(u))][:cap]
+    for u in list(render_urls) + retry:   # sequential — Playwright sync isn't thread-safe
         try: raw[u] = _fetch_rendered(u)
-        except Exception as e: raw[u] = ("error", f"render failed: {e}")
+        except Exception as e:
+            if u in retry: raw[u] = ("error", f"blocked (bot-wall) + headless render failed: {e}")
+            else: raw[u] = ("error", f"render failed: {e}")
 
     changed = 0
     recheck = {}   # (url, render) -> re-fetched raw, so N subscribers to one URL don't each re-fetch
@@ -1323,17 +1363,20 @@ def watch():
         prev = snaps.get(key)
         if prev and prev.get("hash") and prev["hash"] != h:
             # confirm stable (kills A/B flapping): re-fetch + re-extract, same result?
-            # Must re-fetch the SAME way the snapshot was built — a render watch that
-            # re-fetched plainly would never match, so it could never alert. Cache the
-            # re-fetch per (url, render) so many subscribers to one URL share it.
+            # Must re-fetch the SAME way the snapshot was built — including the headless
+            # fallback for bot-walled sites — or a render/blocked page would never match and
+            # could never alert. Cache per (url, render) so many subscribers share the refetch.
             is_render = _truthy(entry.get("render"))
             try:
                 rk = (url, is_render)
                 if rk not in recheck:
-                    recheck[rk] = _fetch_rendered(url) if is_render else _fetch(_fetch_target(url))
+                    recheck[rk] = _fetch_for_watch(url, is_render)
                 k2, p2 = recheck[rk]
-                t2 = _extract(k2, p2, entry)
-                stable = hashlib.sha256(t2.encode()).hexdigest() == h
+                if k2 == "error":
+                    stable = False
+                else:
+                    t2 = _extract(k2, p2, entry)
+                    stable = hashlib.sha256(t2.encode()).hexdigest() == h
             except Exception:
                 stable = False
             if not stable:
