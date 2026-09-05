@@ -174,5 +174,13 @@
     "added_by": "chantel.dejesus",
     "added_by_id": "U0ADP644F2S",
     "interval": 5
+  },
+  {
+    "url": "https://titleix.college.harvard.edu/resources",
+    "channel": "D0AE464EAG1",
+    "channel_name": "directmessage",
+    "added_by": "caroline.hennigan",
+    "added_by_id": "U0ADP6M79NJ",
+    "interval": 60
   }
 ]
