@@ -78,5 +78,13 @@
     "added_by": "jen.phan",
     "added_by_id": "U0AE3QBNZB3",
     "interval": 60
+  },
+  {
+    "url": "https://www.thecrimson.com/widget/2026/9/1/live-results-2026/",
+    "channel": "D0AE2V7NSJG",
+    "channel_name": "directmessage",
+    "added_by": "kevin.zhong",
+    "added_by_id": "U0ADHTLLXL7",
+    "interval": 5
   }
 ]
