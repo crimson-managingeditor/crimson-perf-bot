@@ -99,11 +99,49 @@ async function handle(env, exctx, p) {
     text,
   };
   if (command === "/roster") return await rosterCmd(env, ctx);
+  if (command === "/wayback") return waybackCmd(exctx, ctx);
   if (command === "/save")   return saveCmd(env, exctx, ctx);
   if (command === "/links")  return await listCmd(env, ctx);
   if (command === "/unlink") return await mutate(env, "remove", ctx);
   if (command === "/link")   return await mutate(env, "add", ctx);
   return { text: `Unknown command ${command}` };
+}
+
+// --- /wayback : list the snapshots where a page's CONTENT changed (not day-by-day) ---
+function waybackCmd(exctx, c) {
+  const url = cleanUrl(((c.text || "").trim().split(/\s+/)[0]) || "");
+  if (!/^https?:\/\//i.test(url))
+    return { text: "Usage: `/wayback <url>` — lists the Wayback snapshots where the page's content actually changed, each with a compare-what-changed link." };
+  exctx.waitUntil(waybackReport(url, c.responseUrl));
+  return { text: `🔎 Scanning the Wayback Machine for content changes to <${url}>…` };
+}
+
+async function waybackReport(url, responseUrl) {
+  let text;
+  try {
+    // collapse=digest -> only snapshots where the content HASH changed = the real change-points
+    const api = `https://web.archive.org/cdx/search/cdx?url=${encodeURIComponent(url)}`
+      + `&output=json&fl=timestamp,statuscode,digest&collapse=digest&limit=-30`;
+    const r = await fetch(api, { headers: { "User-Agent": "crimson-watch" } });
+    if (!r.ok) throw new Error("Wayback CDX returned " + r.status);
+    let rows = await r.json();
+    if (rows.length && rows[0][0] === "timestamp") rows = rows.slice(1);   // drop header row
+    if (!rows.length) { await postResponse(responseUrl, `No Wayback snapshots found for <${url}>.`); return; }
+    rows.reverse();   // newest first
+    const fmt = ts => `${ts.slice(0,4)}-${ts.slice(4,6)}-${ts.slice(6,8)}`;
+    const lines = rows.map(([ts, code], i) => {
+      const snap = `https://web.archive.org/web/${ts}/${url}`;
+      let line = `• *${fmt(ts)}* — <${snap}|snapshot> (HTTP ${code})`;
+      if (i < rows.length - 1)   // diff this version against the next-older distinct one
+        line += `  ·  <https://web.archive.org/web/diff/${rows[i+1][0]}/${ts}/${url}|↔ what changed>`;
+      return line;
+    });
+    text = `*${rows.length} content-versions* of <${url}> — each row is where the content actually changed (newest first). `
+      + `"↔ what changed" opens the Wayback diff vs. the previous version.\n` + lines.join("\n");
+  } catch (e) {
+    text = `⚠️ Couldn't scan the Wayback Machine for <${url}> (${e.message}).`;
+  }
+  await postResponse(responseUrl, text);
 }
 
 // --- /roster : show a Harvard varsity roster (read the tracker's committed JSON) ---
