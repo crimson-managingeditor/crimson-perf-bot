@@ -238,5 +238,13 @@
     "added_by": "risha.sinha",
     "added_by_id": "U0ADQSDKENN",
     "interval": 60
+  },
+  {
+    "url": "https://gsas.harvard.edu/programs/life-sciences",
+    "channel": "D0AD9DF2ZLP",
+    "channel_name": "directmessage",
+    "added_by": "saron.elias",
+    "added_by_id": "U0ADME2NG13",
+    "interval": 5
   }
 ]
