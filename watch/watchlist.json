@@ -206,5 +206,13 @@
     "added_by": "sebastian.connolly",
     "added_by_id": "U0ADR7TE29Y",
     "interval": 30
+  },
+  {
+    "url": "https://college.harvard.edu/admissions",
+    "channel": "D0ADNQSD8BY",
+    "channel_name": "directmessage",
+    "added_by": "celine.muir",
+    "added_by_id": "U0AEK5LKRLY",
+    "interval": 60
   }
 ]
