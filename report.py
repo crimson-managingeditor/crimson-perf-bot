@@ -1237,13 +1237,22 @@ def _interval_min(entry):
     except Exception: iv = 120
     return iv if iv in WATCH_INTERVALS else 120
 
+def _watch_dest(entry):
+    """The alert destination — exactly what _watch_alert routes to: the channel it was
+    /link'd in, else a DM to the flagger. Two watches that land in the same place are
+    the same watch (one alert); different places are independent."""
+    return entry.get("channel") or ("dm:" + str(entry.get("added_by_id", "")))
+
 def _watch_key(entry):
-    """A watch is unique by url + all CONTENT filters — the same URL can be watched
-    with different filters (and in different channels) as independent watches.
+    """A watch is unique by url + CONTENT filters + DESTINATION. The same URL can be
+    watched with different filters, AND — critically — the same URL/filters watched from
+    different channels or DMs are INDEPENDENT watches, each with its own snapshot and its
+    own alerts. The destination MUST be in the key: without it, several people watching
+    one URL collapse to a single snapshot and only the first ever gets alerted.
     (trigger is excluded: it gates alerting, not what content is compared.)"""
     raw = "|".join(str(entry.get(k, "")) for k in
                    ("url", "css", "xpath", "json", "subtract", "extract", "ignore", "sort", "dedupe"))
-    return hashlib.sha1(raw.encode()).hexdigest()
+    return hashlib.sha1((raw + "|@" + _watch_dest(entry)).encode()).hexdigest()
 
 def _re_ok(pat, s):
     try: return bool(re.search(pat, s, re.I))
