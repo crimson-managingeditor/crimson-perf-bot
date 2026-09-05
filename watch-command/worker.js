@@ -100,11 +100,55 @@ async function handle(env, exctx, p) {
   };
   if (command === "/roster") return await rosterCmd(env, ctx);
   if (command === "/wayback") return waybackCmd(exctx, ctx);
+  if (command === "/alert")   return await alertCmd(env, "add", ctx);
+  if (command === "/alerts")  return await alertCmd(env, "list", ctx);
+  if (command === "/unalert") return await alertCmd(env, "remove", ctx);
+  if (command === "/job")     return await mutate(env, "add", ctx);   // watch a job page for changes
   if (command === "/save")   return saveCmd(env, exctx, ctx);
   if (command === "/links")  return await listCmd(env, ctx);
   if (command === "/unlink") return await mutate(env, "remove", ctx);
   if (command === "/link")   return await mutate(env, "add", ctx);
   return { text: `Unknown command ${command}` };
+}
+
+// --- /alert : reporters drop keywords; new Google-News matches ping this channel ---
+// Stored as a watch on a Google-News RSS feed, so the deployed watcher does the polling,
+// de-duping and channel routing; report.py formats an `alert` entry as "New results for …".
+function newsRss(query) {
+  return `https://news.google.com/rss/search?q=${encodeURIComponent(query)}&hl=en-US&gl=US&ceid=US:en`;
+}
+async function alertCmd(env, op, c) {
+  const query = (c.text || "").trim();
+  const where = c.channel_name && c.channel_name !== "directmessage" ? `#${c.channel_name}` : "here";
+  const mine = e => typeof e === "object" && e.alert === query && (e.channel || "") === (c.channel || "");
+  if (op === "list") {
+    const { list } = await ghGet(env);
+    const here = list.filter(e => typeof e === "object" && e.alert && (e.channel || "") === (c.channel || ""));
+    if (!here.length) return { text: "No alerts here yet. Add one with `/alert <keywords>` — e.g. `/alert harvard AND penny` (AND, OR, quotes, `site:` all work)." };
+    return { text: `*Alerts in ${where}:*\n` + here.map(e => `• \`${e.alert}\``).join("\n") };
+  }
+  if (!query)
+    return { text: "Usage: `/alert <keywords>` — e.g. `/alert harvard AND penny`. Google-News operators work (AND, OR, \"quotes\", site:). `/alerts` lists them, `/unalert <keywords>` stops one." };
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const { list, sha } = await ghGet(env);
+    let msg, done;
+    if (op === "add") {
+      const rec = { url: newsRss(query), alert: query, channel: c.channel, channel_name: c.channel_name,
+                    added_by: c.user, added_by_id: c.userId, interval: 30 };
+      const i = list.findIndex(mine);
+      if (i >= 0) { list[i] = rec; msg = `alert: update ${query}`; done = { text: `🔁 Updated alert \`${query}\` — new results post ${where}.` }; }
+      else { list.push(rec); msg = `alert: add ${query}`; done = { text: `🔔 Alert set for \`${query}\` — I'll post new results ${where} (checked every 30m).` }; }
+    } else {
+      const next = list.filter(e => !mine(e));
+      if (next.length === list.length) return { text: `No alert \`${query}\` in this channel.` };
+      list.length = 0; list.push(...next);
+      msg = `alert: remove ${query}`; done = { text: `🗑️ Stopped the alert \`${query}\`.` };
+    }
+    const put = await ghPut(env, list, sha, msg);
+    if (put.ok) return done;
+    if (put.status !== 409) throw new Error(`GitHub write failed (${put.status})`);
+  }
+  throw new Error("watchlist was busy — try again in a moment");
 }
 
 // --- /wayback : list the snapshots where a page's CONTENT changed (not day-by-day) ---
@@ -360,7 +404,8 @@ async function mutate(env, op, c) {
 
 async function listCmd(env, c) {
   const { list } = await ghGet(env);
-  const here = list.filter(e => chanOf(e) === (c.channel || ""));
+  // page-watches only — keyword alerts live under /alerts
+  const here = list.filter(e => chanOf(e) === (c.channel || "") && !(typeof e === "object" && e.alert));
   if (!here.length)
     return { text: "Nothing is being watched in this channel yet. Add one with `/link <url> <interval>`." };
   const shown = here.slice(0, 50).map(e => {

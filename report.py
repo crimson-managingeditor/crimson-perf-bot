@@ -1264,6 +1264,15 @@ def _deliver(entry, blocks, text):
     return "webhook"
 
 def _watch_alert(entry, diff):
+    # keyword alerts (/alert): the watched page is a Google-News RSS feed, so a "change"
+    # is new matching articles — show just the new (added) headlines, framed as an alert.
+    if entry.get("alert"):
+        q = entry["alert"]
+        added = [l[1:].strip() for l in diff if l.startswith("+") and l[1:].strip()][:12]
+        body = "\n".join(added) or "(new activity — open the search to see)"
+        blocks = [{"type": "section", "text": {"type": "mrkdwn", "text": f"🔔 *New results for* `{q}`"}},
+                  {"type": "section", "text": {"type": "mrkdwn", "text": body[:2800]}}]
+        return _deliver(entry, blocks, f"New results for {q}")
     label = entry.get("label") or entry["url"]
     meta = []
     if entry.get("css"): meta.append(f"`{entry['css']}`")
