@@ -4,7 +4,8 @@ name: Court docket watcher
 # posts each to Slack (free RECAP link, or open-and-buy-on-PACER), commits state.
 on:
   schedule:
-    - cron: "23 */2 * * *"     # every 2 hours
+    - cron: "*/15 * * * *"     # every 15 min (GitHub may drop some short-interval runs;
+                               # for true real-time, CourtListener webhooks push instantly)
   workflow_dispatch: {}
 
 permissions:
