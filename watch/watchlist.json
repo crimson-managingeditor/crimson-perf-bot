@@ -70,5 +70,13 @@
     "added_by": "hugo.chiasson",
     "added_by_id": "U0ADP6M5ZCN",
     "interval": 5
+  },
+  {
+    "url": "https://www.hks.harvard.edu",
+    "channel": "D0ADJF5D6CT",
+    "channel_name": "directmessage",
+    "added_by": "jen.phan",
+    "added_by_id": "U0AE3QBNZB3",
+    "interval": 60
   }
 ]
