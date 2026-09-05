@@ -134,5 +134,13 @@
     "added_by": "sebastian.connolly",
     "added_by_id": "U0ADR7TE29Y",
     "interval": 30
+  },
+  {
+    "url": "https://allstonbrightoncdc.org",
+    "channel": "D0ADNQVRP8E",
+    "channel_name": "directmessage",
+    "added_by": "thamini.vijeyasingam",
+    "added_by_id": "U0AEK5Q1UTA",
+    "interval": 120
   }
 ]
