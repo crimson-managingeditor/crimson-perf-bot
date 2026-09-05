@@ -288,14 +288,6 @@
     "interval": 60
   },
   {
-    "url": "https://cabot.harvard.edu/resident-tutors",
-    "channel": "D0AEKGCAL72",
-    "channel_name": "directmessage",
-    "added_by": "sebastian.connolly",
-    "added_by_id": "U0ADR7TE29Y",
-    "interval": 120
-  },
-  {
     "url": "https://www.courtlistener.com/docket/72090192/president-and-fellows-of-harvard-college-v-us-department-of-health-and/?order_by=desc",
     "channel": "D0ADUS7P2Q4",
     "channel_name": "directmessage",
