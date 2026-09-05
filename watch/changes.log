@@ -243,3 +243,5 @@ Call log
 2026-09-05T22:36:26.808386+00:00  ERROR    https://forklightning.substack.com/  blocked (bot-wall) + headless render failed: Page.goto: Timeout 35000ms exceeded.
 Call log
 2026-09-05T22:42:05.123314+00:00  BLOCKED  https://titleix.college.harvard.edu/resources
+2026-09-05T23:31:23.815586+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-09-05T23:41:30.240328+00:00  BLOCKED  https://www.hupd.harvard.edu/campus-hazing-transparency-report
