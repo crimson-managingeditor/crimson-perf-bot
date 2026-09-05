@@ -262,12 +262,25 @@ function waybackCmd(exctx, c) {
   return { text: `🔎 Scanning the Wayback Machine for content changes to <${url}>…` };
 }
 
+function wbStripLines(html) {
+  const t = html.replace(/<script[\s\S]*?<\/script>/gi, " ").replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<\s*(\/p|\/div|\/li|br|\/h[1-6]|\/tr|\/section|\/article)[^>]*>/gi, "\n")
+    .replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&")
+    .replace(/&#(\d+);/g, (m, n) => String.fromCharCode(+n));
+  return [...new Set(t.split("\n").map(s => s.replace(/\s+/g, " ").trim()).filter(s => s.length > 2))];
+}
+async function wbText(ts, url) {
+  try {  // id_ = the raw archived capture, without the Wayback toolbar
+    const r = await fetch(`https://web.archive.org/web/${ts}id_/${url}`, { headers: { "User-Agent": "crimson-watch" } });
+    return r.ok ? wbStripLines(await r.text()) : null;
+  } catch { return null; }
+}
 async function waybackReport(url, responseUrl) {
   let text;
   try {
     // collapse=digest -> only snapshots where the content HASH changed = the real change-points
     const api = `https://web.archive.org/cdx/search/cdx?url=${encodeURIComponent(url)}`
-      + `&output=json&fl=timestamp,statuscode,digest&collapse=digest&limit=-30`;
+      + `&output=json&fl=timestamp,statuscode,digest&collapse=digest&limit=-40`;
     const r = await fetch(api, { headers: { "User-Agent": "crimson-watch" } });
     if (!r.ok) throw new Error("Wayback CDX returned " + r.status);
     let rows = await r.json();
@@ -275,19 +288,39 @@ async function waybackReport(url, responseUrl) {
     if (!rows.length) { await postResponse(responseUrl, `No Wayback snapshots found for <${url}>.`); return; }
     rows.reverse();   // newest first
     const fmt = ts => `${ts.slice(0,4)}-${ts.slice(4,6)}-${ts.slice(6,8)}`;
-    const lines = rows.map(([ts, code], i) => {
-      const snap = `https://web.archive.org/web/${ts}/${url}`;
-      let line = `• *${fmt(ts)}* — <${snap}|snapshot> (HTTP ${code})`;
-      if (i < rows.length - 1)   // diff this version against the next-older distinct one
-        line += `  ·  <https://web.archive.org/web/diff/${rows[i+1][0]}/${ts}/${url}|↔ what changed>`;
+
+    // Surface WHAT changed at the most recent few change-points (fetch raw snapshots + diff)
+    const recent = rows.slice(0, 5);
+    const texts = await Promise.all(recent.map(([ts]) => wbText(ts, url)));
+    const blocks = [];
+    for (let i = 0; i < recent.length - 1 && blocks.length < 4; i++) {
+      const nw = texts[i], od = texts[i + 1];
+      if (!nw || !od) continue;
+      const oset = new Set(od), nset = new Set(nw);
+      const added = nw.filter(l => !oset.has(l)).slice(0, 5);
+      const removed = od.filter(l => !nset.has(l)).slice(0, 4);
+      if (!added.length && !removed.length) continue;
+      let b = `*${fmt(recent[i][0])}* (vs ${fmt(recent[i + 1][0])})  <https://web.archive.org/web/diff/${recent[i + 1][0]}/${recent[i][0]}/${url}|full diff>`;
+      added.forEach(a => b += `\n  + ${a.slice(0, 160)}`);
+      removed.forEach(rm => b += `\n  − ${rm.slice(0, 160)}`);
+      blocks.push(b);
+    }
+
+    // Full change timeline (when), with links
+    const tl = rows.map(([ts, code], i) => {
+      let line = `• *${fmt(ts)}* — <https://web.archive.org/web/${ts}/${url}|snapshot>${code !== "200" ? ` (HTTP ${code})` : ""}`;
+      if (i < rows.length - 1)
+        line += `  ·  <https://web.archive.org/web/diff/${rows[i + 1][0]}/${ts}/${url}|↔ diff>`;
       return line;
     });
-    text = `*${rows.length} content-versions* of <${url}> — each row is where the content actually changed (newest first). `
-      + `"↔ what changed" opens the Wayback diff vs. the previous version.\n` + lines.join("\n");
+    text = `*${rows.length} content-versions* of <${url}> — where the content actually changed, newest first.\n`;
+    if (blocks.length) text += `\n*What changed most recently* (＋added / −removed):\n` + blocks.join("\n\n") + "\n";
+    text += `\n*Full change timeline:*\n` + tl.slice(0, 30).join("\n");
+    if (tl.length > 30) text += `\n…and ${tl.length - 30} older versions.`;
   } catch (e) {
     text = `⚠️ Couldn't scan the Wayback Machine for <${url}> (${e.message}).`;
   }
-  await postResponse(responseUrl, text);
+  await postResponse(responseUrl, text.slice(0, 38000));
 }
 
 // --- /roster : show a Harvard varsity roster (read the tracker's committed JSON) ---

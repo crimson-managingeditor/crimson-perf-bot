@@ -35,8 +35,10 @@ def extract(text):
     with urllib.request.urlopen(req, timeout=120) as r:
         d = json.load(r)
     out = d["content"][0]["text"].strip()
-    out = re.sub(r"^```(?:json)?|```$", "", out).strip()
-    return json.loads(out)
+    m = re.search(r"\[.*\]", out, re.S)   # pull the JSON array out of any fences/prose
+    if not m:
+        raise ValueError("no JSON array in model output: " + out[:200])
+    return json.loads(m.group(0))
 
 def post(resp_url, text):
     if resp_url:
