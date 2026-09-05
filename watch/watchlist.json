@@ -182,5 +182,13 @@
     "added_by": "caroline.hennigan",
     "added_by_id": "U0ADP6M79NJ",
     "interval": 60
+  },
+  {
+    "url": "https://progressivecambridge.org/",
+    "channel": "D0AD9DF85EK",
+    "channel_name": "directmessage",
+    "added_by": "shawn.boehmer",
+    "added_by_id": "U0ADNQV76ES",
+    "interval": 5
   }
 ]
