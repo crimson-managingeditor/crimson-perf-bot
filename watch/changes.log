@@ -238,3 +238,8 @@ Call log
 2026-09-05T21:28:43.044385+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
 2026-09-05T21:36:26.021990+00:00  CHANGED  https://www.hks.harvard.edu  by=jen.phan  ch=directmessage  via=DM->jen.phan
 2026-09-05T21:41:28.226274+00:00  BLOCKED  https://www.hupd.harvard.edu/campus-hazing-transparency-report
+2026-09-05T22:31:22.404494+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-09-05T22:36:26.808386+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-culture-community
+2026-09-05T22:36:26.808386+00:00  ERROR    https://forklightning.substack.com/  blocked (bot-wall) + headless render failed: Page.goto: Timeout 35000ms exceeded.
+Call log
+2026-09-05T22:42:05.123314+00:00  BLOCKED  https://titleix.college.harvard.edu/resources
