@@ -104,6 +104,7 @@ async function handle(env, exctx, p) {
   if (command === "/alerts")  return await alertCmd(env, "list", ctx);
   if (command === "/unalert") return await alertCmd(env, "remove", ctx);
   if (command === "/job")     return await mutate(env, "add", ctx);   // watch a job page for changes
+  if (command === "/jobs")    return await jobsCmd(ctx);              // search current Harvard postings
   if (command === "/case")    return await caseCmd(env, ctx);
   if (command === "/casewatch")   return await caseWatchCmd(env, "add", ctx);
   if (command === "/cases")       return await caseWatchCmd(env, "list", ctx);
@@ -113,6 +114,25 @@ async function handle(env, exctx, p) {
   if (command === "/unlink") return await mutate(env, "remove", ctx);
   if (command === "/link")   return await mutate(env, "add", ctx);
   return { text: `Unknown command ${command}` };
+}
+
+// --- /jobs : search current Harvard postings (SmartRecruiters public API) ---
+async function jobsCmd(c) {
+  const q = (c.text || "").trim();
+  const u = "https://api.smartrecruiters.com/v1/companies/HarvardUniversity/postings?limit=8"
+    + (q ? `&q=${encodeURIComponent(q)}` : "");
+  const r = await fetch(u, { headers: { "User-Agent": "crimson-watch", "Accept": "application/json" } });
+  if (!r.ok) return { text: `Harvard jobs API returned ${r.status}.` };
+  const d = await r.json();
+  const posts = (d.content || []).slice(0, 8);
+  if (!posts.length) return { text: `No Harvard postings${q ? ` matching \`${q}\`` : ""} right now.` };
+  const lines = posts.map(p => {
+    const loc = p.location || {}, dept = (p.department || {}).label || "";
+    const where = [loc.city, loc.region].filter(Boolean).join(", ");
+    return `• <https://jobs.smartrecruiters.com/HarvardUniversity/${p.id}|${(p.name || "").slice(0, 70)}> — ${where}${dept ? " · " + dept : ""}`;
+  });
+  return { text: `*${d.totalFound} Harvard postings${q ? ` matching \`${q}\`` : ""}* (showing ${posts.length}):\n` + lines.join("\n")
+    + "\n_`/job <url>` to get pinged when one posting page changes._" };
 }
 
 // --- /casewatch : subscribe to a docket; the poller (research/courtbot.py) pings new filings ---
