@@ -150,5 +150,13 @@
     "added_by": "summer.rose",
     "added_by_id": "U0ADURQNQSY",
     "interval": 60
+  },
+  {
+    "url": "https://hls.harvard.edu/today/",
+    "channel": "D0ADQSHP4M8",
+    "channel_name": "directmessage",
+    "added_by": "sierra.pape",
+    "added_by_id": "U0ADME1V2SH",
+    "interval": 60
   }
 ]
