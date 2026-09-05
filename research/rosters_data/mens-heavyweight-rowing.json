@@ -1,0 +1,418 @@
+[
+ {
+  "name": "Joe Baker",
+  "jersey": "",
+  "class": "So.",
+  "pos": "",
+  "hometown": "Gatlinburg, Tennessee",
+  "highschool": "Saint Andrew's High School"
+ },
+ {
+  "name": "Leo Bessler",
+  "jersey": "",
+  "class": "Sr.",
+  "pos": "",
+  "hometown": "Tacoma, Wash.",
+  "highschool": "Bellarmine Preparatory School"
+ },
+ {
+  "name": "Cameron Beyki",
+  "jersey": "",
+  "class": "Sr.",
+  "pos": "",
+  "hometown": "Reading, England",
+  "highschool": "Reading Blue Coat School"
+ },
+ {
+  "name": "Max Blackbourn",
+  "jersey": "",
+  "class": "So.",
+  "pos": "",
+  "hometown": "Buckinghamshire, U.K.",
+  "highschool": "Sir William Borlase's Grammar School"
+ },
+ {
+  "name": "Josh Brangan",
+  "jersey": "",
+  "class": "Sr.",
+  "pos": "",
+  "hometown": "Lymington, England",
+  "highschool": "St. Edward's School"
+ },
+ {
+  "name": "George Burney",
+  "jersey": "",
+  "class": "Jr.",
+  "pos": "",
+  "hometown": "Melborne, Australia",
+  "highschool": "Scotch College"
+ },
+ {
+  "name": "Echo Caise",
+  "jersey": "",
+  "class": "So.",
+  "pos": "",
+  "hometown": "Santa Monica, Calif.",
+  "highschool": "Harvard-Westlake High School"
+ },
+ {
+  "name": "Adam Cech",
+  "jersey": "",
+  "class": "So.",
+  "pos": "",
+  "hometown": "Prague, Czech Republic",
+  "highschool": "Lycee Francais de Vienne"
+ },
+ {
+  "name": "Marcus Chung",
+  "jersey": "",
+  "class": "So.",
+  "pos": "",
+  "hometown": "Greenwich, Conn.",
+  "highschool": "Greenwich High School"
+ },
+ {
+  "name": "Ryan Cornelius",
+  "jersey": "",
+  "class": "Jr.",
+  "pos": "",
+  "hometown": "Melbourne, Australia",
+  "highschool": "St. Kevin's College"
+ },
+ {
+  "name": "Mason Cruz-Abrams",
+  "jersey": "",
+  "class": "Jr.",
+  "pos": "",
+  "hometown": "Aspen, Colo.",
+  "highschool": "Vail Mountain School"
+ },
+ {
+  "name": "Sam Davidson",
+  "jersey": "",
+  "class": "Sr.",
+  "pos": "",
+  "hometown": "Brooklyn, N.Y.",
+  "highschool": "Trinity"
+ },
+ {
+  "name": "Jack  Dorney",
+  "jersey": "",
+  "class": "Sr.",
+  "pos": "",
+  "hometown": "Monkstown, Ireland",
+  "highschool": "Bruce College"
+ },
+ {
+  "name": "Jordan Dykema",
+  "jersey": "",
+  "class": "Sr.",
+  "pos": "",
+  "hometown": "Seattle, Wash.",
+  "highschool": "University Prep"
+ },
+ {
+  "name": "George Farkas",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "New York, N.Y.",
+  "highschool": "Trinity School"
+ },
+ {
+  "name": "Owen Finnerty",
+  "jersey": "",
+  "class": "Jr.",
+  "pos": "",
+  "hometown": "Ardmore, PA",
+  "highschool": "St. Joseph's Prep"
+ },
+ {
+  "name": "Will Flintoft",
+  "jersey": "",
+  "class": "Sr.",
+  "pos": "",
+  "hometown": "Toorak, Australia",
+  "highschool": "Melbourne Grammar School"
+ },
+ {
+  "name": "Will Fowler",
+  "jersey": "",
+  "class": "So.",
+  "pos": "",
+  "hometown": "Sydney, Australia",
+  "highschool": "The Scots College"
+ },
+ {
+  "name": "Cate Frerichs",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Palm Beach, Fla.",
+  "highschool": "Pine Crest School"
+ },
+ {
+  "name": "Sam Gallaudet",
+  "jersey": "",
+  "class": "Jr.",
+  "pos": "",
+  "hometown": "Andover, Mass.",
+  "highschool": "Phillips Academy Andover"
+ },
+ {
+  "name": "Marco Gandola",
+  "jersey": "",
+  "class": "Jr.",
+  "pos": "",
+  "hometown": "Bellagio, Italy",
+  "highschool": "IISS Ezio Vanoni"
+ },
+ {
+  "name": "Alexander Grundy",
+  "jersey": "",
+  "class": "Sr.",
+  "pos": "",
+  "hometown": "Henley on Thames, England",
+  "highschool": "Eton College"
+ },
+ {
+  "name": "Jack Hansen-Knarhoi",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Perth, Australia",
+  "highschool": "Trinity College"
+ },
+ {
+  "name": "Iris Hennin",
+  "jersey": "",
+  "class": "Sr.",
+  "pos": "",
+  "hometown": "Woolwich, Maine",
+  "highschool": "Morse High School"
+ },
+ {
+  "name": "Tyler Horler",
+  "jersey": "",
+  "class": "Sr.",
+  "pos": "",
+  "hometown": "Sarasota, Fla.",
+  "highschool": "Pine View School"
+ },
+ {
+  "name": "Martin Houska",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Prague, Czech Republic",
+  "highschool": "Gymnasium Jana Nerudy"
+ },
+ {
+  "name": "Elam Hughes",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Halifax, United Kingdom",
+  "highschool": "St. Edwards"
+ },
+ {
+  "name": "Helena Inzerillo",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "New York City, N.Y.",
+  "highschool": "Hotchkiss School"
+ },
+ {
+  "name": "Micah John",
+  "jersey": "",
+  "class": "So.",
+  "pos": "",
+  "hometown": "Boston, MA",
+  "highschool": "Boston Latin Academy"
+ },
+ {
+  "name": "Alp Karadogan",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "London, England",
+  "highschool": "St. Paul's School"
+ },
+ {
+  "name": "Asante Kiio",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Acton, Mass.",
+  "highschool": "The Groton School"
+ },
+ {
+  "name": "Pierce Lapham",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Toronto, Canada",
+  "highschool": "Deerfield Academy"
+ },
+ {
+  "name": "Apostolos Lykomitros",
+  "jersey": "",
+  "class": "Sr.",
+  "pos": "",
+  "hometown": "Thessaloniki, Greece",
+  "highschool": "Anatolia College"
+ },
+ {
+  "name": "Owen Marcovitz",
+  "jersey": "",
+  "class": "Sr.",
+  "pos": "",
+  "hometown": "Victoria, Canada",
+  "highschool": "Mount Douglas High School"
+ },
+ {
+  "name": "Lucas Menin",
+  "jersey": "",
+  "class": "So.",
+  "pos": "",
+  "hometown": "New York City, N.Y.",
+  "highschool": "PCS High School"
+ },
+ {
+  "name": "Max Morehead",
+  "jersey": "",
+  "class": "Sr.",
+  "pos": "",
+  "hometown": "Greenwood Village, Colorado",
+  "highschool": "Shattuck St. Mary's"
+ },
+ {
+  "name": "Julian Paul",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Pittsburgh, Pa.",
+  "highschool": "Choate Rosemary Hall"
+ },
+ {
+  "name": "Theodore Plimpton",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Lawrenceville, N.J.",
+  "highschool": "The Lawrenceville School"
+ },
+ {
+  "name": "Robert Rawlinson",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Moreto-in-Marsh, United Kingdom",
+  "highschool": "Radley College"
+ },
+ {
+  "name": "Charles Richards",
+  "jersey": "",
+  "class": "Jr.",
+  "pos": "",
+  "hometown": "Winston-Salem, N.C.",
+  "highschool": "Deerfield Academy"
+ },
+ {
+  "name": "Alexander Sanchez Fretz",
+  "jersey": "",
+  "class": "So.",
+  "pos": "",
+  "hometown": "London, England",
+  "highschool": "Dulwich College London"
+ },
+ {
+  "name": "Ben Schnalke",
+  "jersey": "",
+  "class": "Sr.",
+  "pos": "",
+  "hometown": "Cologne, Germany",
+  "highschool": "Humboldt-Gymnasium Köln"
+ },
+ {
+  "name": "Ben Scott",
+  "jersey": "",
+  "class": "Sr.",
+  "pos": "",
+  "hometown": "Perth, Australia",
+  "highschool": "Scotch College Perth"
+ },
+ {
+  "name": "Leyth Sousou",
+  "jersey": "",
+  "class": "Sr.",
+  "pos": "",
+  "hometown": "London, England",
+  "highschool": "The American School in London"
+ },
+ {
+  "name": "Jack Sulger",
+  "jersey": "",
+  "class": "So.",
+  "pos": "",
+  "hometown": "Hong Kong",
+  "highschool": "St. Paul's School"
+ },
+ {
+  "name": "Kynan Tallec-Botos",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "London, England",
+  "highschool": "St. Paul's School"
+ },
+ {
+  "name": "Natalia Toms",
+  "jersey": "",
+  "class": "So.",
+  "pos": "",
+  "hometown": "Shrewsbury, U.K.",
+  "highschool": "Shrewsbury School"
+ },
+ {
+  "name": "Luca Vicino",
+  "jersey": "",
+  "class": "So.",
+  "pos": "",
+  "hometown": "Napoli, Italy",
+  "highschool": "Istituto Superiore Giovanni Falcone"
+ },
+ {
+  "name": "Marco Vicino",
+  "jersey": "",
+  "class": "So.",
+  "pos": "",
+  "hometown": "Napoli, Italy",
+  "highschool": "Istituto Superiore Giovanni Falcone"
+ },
+ {
+  "name": "Kevin Weldon",
+  "jersey": "",
+  "class": "So.",
+  "pos": "",
+  "hometown": "Walpole, Mass.",
+  "highschool": "Belmont Hill High School"
+ },
+ {
+  "name": "Sam Woodgate",
+  "jersey": "",
+  "class": "So.",
+  "pos": "",
+  "hometown": "Christchurch, New Zealand",
+  "highschool": "St. Bedes High School"
+ },
+ {
+  "name": "Nicholas Yoo",
+  "jersey": "",
+  "class": "So.",
+  "pos": "",
+  "hometown": "Ramsey, N.J.",
+  "highschool": "Delbarton School"
+ }
+]

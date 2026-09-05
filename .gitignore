@@ -1,6 +1,8 @@
 .env
 *.json
 !watch/watchlist.json
+!research/rosters_data/*.json
+!court/watches.json
 .venv/
 __pycache__/
 *.pyc

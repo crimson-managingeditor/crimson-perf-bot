@@ -1,0 +1,36 @@
+name: Court docket watcher
+
+# Polls CourtListener for new filings on dockets reporters added with /casewatch,
+# posts each to Slack (free RECAP link, or open-and-buy-on-PACER), commits state.
+on:
+  schedule:
+    - cron: "23 */2 * * *"     # every 2 hours
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  poll:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Poll dockets + alert on new filings
+        env:
+          COURTLISTENER_TOKEN: ${{ secrets.COURTLISTENER_TOKEN }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        run: python research/courtbot.py
+      - name: Commit updated state
+        if: always()
+        run: |
+          if [ -n "$(git status --porcelain court/watches.json 2>/dev/null)" ]; then
+            git config user.name  "crimson-court"
+            git config user.email "actions@users.noreply.github.com"
+            git add court/watches.json
+            git commit -m "court: update $(date -u +%FT%TZ)"
+            git pull --rebase --quiet origin main || true
+            git push || true
+          fi

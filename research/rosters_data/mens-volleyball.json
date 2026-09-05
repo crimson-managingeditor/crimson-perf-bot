@@ -1,0 +1,114 @@
+[
+ {
+  "name": "Thomas Phung",
+  "jersey": "2",
+  "class": "Jr.",
+  "pos": "Libero",
+  "hometown": "Dallas, Texas",
+  "highschool": "North Garland"
+ },
+ {
+  "name": "Oliver Doty",
+  "jersey": "3",
+  "class": "So.",
+  "pos": "Middle",
+  "hometown": "Carlsbad, Calif.",
+  "highschool": "Carlsbad"
+ },
+ {
+  "name": "Eric Su",
+  "jersey": "5",
+  "class": "So.",
+  "pos": "Setter/Libero",
+  "hometown": "Cambridge, Mass.",
+  "highschool": "Cambridge Rindge and Latin School"
+ },
+ {
+  "name": "Julian Hong",
+  "jersey": "6",
+  "class": "So.",
+  "pos": "Outside",
+  "hometown": "Palo Alto, CA.",
+  "highschool": "Palo Alto"
+ },
+ {
+  "name": "Adrian Shevchuk",
+  "jersey": "7",
+  "class": "Sr.",
+  "pos": "Setter",
+  "hometown": "Kennett Square, Pa.",
+  "highschool": "Kennett"
+ },
+ {
+  "name": "Kai Gan",
+  "jersey": "10",
+  "class": "So.",
+  "pos": "Setter",
+  "hometown": "Huntington Beach, Calif.",
+  "highschool": "Huntington Beach"
+ },
+ {
+  "name": "Ben Vaught",
+  "jersey": "11",
+  "class": "So.",
+  "pos": "Outside",
+  "hometown": "Bluffton, S.C.",
+  "highschool": "Bluffton"
+ },
+ {
+  "name": "Quinn Bishop",
+  "jersey": "14",
+  "class": "Sr.",
+  "pos": "Outside",
+  "hometown": "Jupiter, Fla.",
+  "highschool": "William T. Dwyer"
+ },
+ {
+  "name": "Owen Woolbert",
+  "jersey": "35",
+  "class": "Sr.",
+  "pos": "Middle",
+  "hometown": "Jackson, Ohio",
+  "highschool": "Jackson"
+ },
+ {
+  "name": "Miles Hiscox",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "Middle",
+  "hometown": "Vancouver, British Columbia",
+  "highschool": "Sir Charles Tupper Secondary School"
+ },
+ {
+  "name": "Kahi Marumoto",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "Setter",
+  "hometown": "Honolulu, Hawaii",
+  "highschool": "Punahou School"
+ },
+ {
+  "name": "Tyler Pence",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "Setter",
+  "hometown": "Newport Beach, Calif.",
+  "highschool": "Newport Harbor"
+ },
+ {
+  "name": "Mateo Sanz",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "Outside",
+  "hometown": "The Woodlands, Texas",
+  "highschool": "The Woodlands"
+ },
+ {
+  "name": "Simon Vardeh",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "Outside",
+  "hometown": "Newton, Mass.",
+  "highschool": "Newton North"
+ }
+]

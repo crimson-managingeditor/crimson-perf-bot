@@ -1,0 +1,194 @@
+[
+ {
+  "name": "Fio Eddy",
+  "jersey": "0",
+  "class": "Fy",
+  "pos": "Goalkeeper",
+  "hometown": "Cambridge, Mass.",
+  "highschool": "Cambridge Rindge and Latin High School"
+ },
+ {
+  "name": "Sophie Fleishman",
+  "jersey": "00",
+  "class": "So.",
+  "pos": "Goalkeeper",
+  "hometown": "Newton, Mass.",
+  "highschool": "The Winsor School"
+ },
+ {
+  "name": "Olivia Busby",
+  "jersey": "1",
+  "class": "Fy",
+  "pos": "Goalkeeper",
+  "hometown": "Markham, Ontario",
+  "highschool": "Bill Crothers Secondary School"
+ },
+ {
+  "name": "Danicka Miller",
+  "jersey": "3",
+  "class": "So.",
+  "pos": "Defender",
+  "hometown": "Arlington, Va.",
+  "highschool": "Washington-Liberty High School"
+ },
+ {
+  "name": "Erin Gordon",
+  "jersey": "4",
+  "class": "Jr.",
+  "pos": "Defender",
+  "hometown": "Sydney, Australia",
+  "highschool": "Moriah College"
+ },
+ {
+  "name": "Phoebe Chadwick",
+  "jersey": "5",
+  "class": "So.",
+  "pos": "Defender",
+  "hometown": "Stoke-on-Trent, England",
+  "highschool": "Blythe Bridge School"
+ },
+ {
+  "name": "Claire Kessenger",
+  "jersey": "6",
+  "class": "Fy",
+  "pos": "Defender",
+  "hometown": "Barcelona, Spain",
+  "highschool": "Benjamin Franklin International School"
+ },
+ {
+  "name": "Elsa Santos López",
+  "jersey": "7",
+  "class": "So.",
+  "pos": "Midfielder",
+  "hometown": "Valdemoro, Spain",
+  "highschool": "Valle del Miro"
+ },
+ {
+  "name": "Ólöf Kristinsdóttir",
+  "jersey": "9",
+  "class": "Sr.",
+  "pos": "Forward",
+  "hometown": "Reykjavík, Iceland",
+  "highschool": "Kvennaskólinn í Reykjavík"
+ },
+ {
+  "name": "Brooke Huleatt",
+  "jersey": "10",
+  "class": "Fy",
+  "pos": "Forward",
+  "hometown": "Rifton, N.Y.",
+  "highschool": "Mount Academy"
+ },
+ {
+  "name": "Sarah Lloyd",
+  "jersey": "11",
+  "class": "Jr.",
+  "pos": "Forward",
+  "hometown": "Denver, Colo.",
+  "highschool": "Cherry Creek High School"
+ },
+ {
+  "name": "Lou Ruffien",
+  "jersey": "12",
+  "class": "Fy",
+  "pos": "Midfielder/Forward",
+  "hometown": "Edina, Minn.",
+  "highschool": "Edina High School"
+ },
+ {
+  "name": "Susie Long",
+  "jersey": "13",
+  "class": "Sr.",
+  "pos": "Midfielder/Defender",
+  "hometown": "Sacramento, Calif.",
+  "highschool": "CK McClatchy High School"
+ },
+ {
+  "name": "Írena  Héðinsdóttir Gonzalez",
+  "jersey": "14",
+  "class": "Sr.",
+  "pos": "Midfielder",
+  "hometown": "Kópavogur, Iceland",
+  "highschool": "Fjölbrautaskólinn í Garðabæ"
+ },
+ {
+  "name": "Camila Reinaldo",
+  "jersey": "15",
+  "class": "Fy",
+  "pos": "Midfielder",
+  "hometown": "Barcelona, Spain",
+  "highschool": "Escola Pia Santa Anna"
+ },
+ {
+  "name": "Jasmine Leshnick",
+  "jersey": "16",
+  "class": "Sr.",
+  "pos": "Defender",
+  "hometown": "San Francisco, Calif.",
+  "highschool": "Lick Wilmerding High School"
+ },
+ {
+  "name": "Amy König",
+  "jersey": "18",
+  "class": "Sr.",
+  "pos": "Defender",
+  "hometown": "Berlin, Germany",
+  "highschool": "Schul- und Leistungssportzentrum Berlin"
+ },
+ {
+  "name": "Anna Rayhill",
+  "jersey": "19",
+  "class": "Sr.",
+  "pos": "Forward",
+  "hometown": "New Hartford, N.Y.",
+  "highschool": "New Hartford H.S."
+ },
+ {
+  "name": "Anya Van Den Einde",
+  "jersey": "20",
+  "class": "Sr.",
+  "pos": "Midfielder",
+  "hometown": "San Diego, Calif.",
+  "highschool": "Westview High School"
+ },
+ {
+  "name": "Molly Vana",
+  "jersey": "21",
+  "class": "Fy",
+  "pos": "Forward",
+  "hometown": "Boxford, Mass.",
+  "highschool": "Governor's Academy"
+ },
+ {
+  "name": "Lauren Muniz",
+  "jersey": "22",
+  "class": "Jr.",
+  "pos": "Forward",
+  "hometown": "Broomfield, Colo.",
+  "highschool": "Alexander Dawson School"
+ },
+ {
+  "name": "Kennedy Belfon",
+  "jersey": "23",
+  "class": "So.",
+  "pos": "Forward",
+  "hometown": "Whitby, Ontario",
+  "highschool": "All Saints Catholic Secondary School"
+ },
+ {
+  "name": "Nicole Bidun",
+  "jersey": "30",
+  "class": "So.",
+  "pos": "Goalkeeper",
+  "hometown": "Brooklyn, N.Y.",
+  "highschool": "Brooklyn Technical High School"
+ },
+ {
+  "name": "Hannah Eftekhari",
+  "jersey": "47",
+  "class": "So.",
+  "pos": "Midfielder",
+  "hometown": "San Diego, Calif.",
+  "highschool": "La Jolla Country Day School"
+ }
+]

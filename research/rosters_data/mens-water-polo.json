@@ -1,0 +1,130 @@
+[
+ {
+  "name": "Oliver  Price",
+  "jersey": "1",
+  "class": "Sr.",
+  "pos": "Goalie",
+  "hometown": "La Jolla, Calif.",
+  "highschool": "The Bishop's School"
+ },
+ {
+  "name": "1A Jonas Ransford",
+  "jersey": "1A",
+  "class": "Fy",
+  "pos": "Goalie",
+  "hometown": "Newport Beach, Calif.",
+  "highschool": "JSerra Catholic"
+ },
+ {
+  "name": "Jack Burghardt",
+  "jersey": "2",
+  "class": "Sr.",
+  "pos": "Utility",
+  "hometown": "Manhattan Beach, Calif.",
+  "highschool": "Harvard-Westlake"
+ },
+ {
+  "name": "Clay Carrington",
+  "jersey": "3",
+  "class": "Fy",
+  "pos": "Attacker",
+  "hometown": "Menlo Park, Calif.",
+  "highschool": "Sacred Heart Preparatory"
+ },
+ {
+  "name": "Tyler  Hogan",
+  "jersey": "5",
+  "class": "Jr.",
+  "pos": "Defender",
+  "hometown": "Atherton, Calif.",
+  "highschool": "Sacred Heart Prep"
+ },
+ {
+  "name": "Lukas  Peabody",
+  "jersey": "7",
+  "class": "Jr.",
+  "pos": "Attacker",
+  "hometown": "San Diego, Calif.",
+  "highschool": "The Bishop's School"
+ },
+ {
+  "name": "Connor  Kim",
+  "jersey": "8",
+  "class": "So.",
+  "pos": "Attacker",
+  "hometown": "Los Angeles, Calif.",
+  "highschool": "Harvard-Westlake"
+ },
+ {
+  "name": "Bradford  Dickson",
+  "jersey": "9",
+  "class": "Sr.",
+  "pos": "Attacker",
+  "hometown": "Imperial Beach, Calif.",
+  "highschool": "Mar Vista High School"
+ },
+ {
+  "name": "Vilas Sogaard-Srikrishnan",
+  "jersey": "10",
+  "class": "Sr.",
+  "pos": "Attacker",
+  "hometown": "Greenwich, Conn.",
+  "highschool": "Brunswick School"
+ },
+ {
+  "name": "Dean  Strauser",
+  "jersey": "11",
+  "class": "Jr.",
+  "pos": "Attacker",
+  "hometown": "Calabasas, Calif.",
+  "highschool": "Harvard Westlake High School"
+ },
+ {
+  "name": "Jacob  Tsotadze",
+  "jersey": "12",
+  "class": "Sr.",
+  "pos": "Attacker",
+  "hometown": "Menlo Park, Calif.",
+  "highschool": "Sacred Heart Preparatory"
+ },
+ {
+  "name": "Mason Cruz-Abrams",
+  "jersey": "13",
+  "class": "Sr.",
+  "pos": "Utility",
+  "hometown": "Aspen, Colo.",
+  "highschool": "Vail Mountain School"
+ },
+ {
+  "name": "Felix  Pal",
+  "jersey": "14",
+  "class": "So.",
+  "pos": "Attacker",
+  "hometown": "Sydney, Australia",
+  "highschool": "The Scots College"
+ },
+ {
+  "name": "Geoff Slutzky",
+  "jersey": "15",
+  "class": "Fy",
+  "pos": "Center",
+  "hometown": "Newport Beach, Calif.",
+  "highschool": "Newport Harbor"
+ },
+ {
+  "name": "Rigby Snapp",
+  "jersey": "16",
+  "class": "Fy",
+  "pos": "Center",
+  "hometown": "Ventura, Calif.",
+  "highschool": "Ventura"
+ },
+ {
+  "name": "Emil Sogaard-Srikrishnan",
+  "jersey": "20",
+  "class": "So.",
+  "pos": "Attacker",
+  "hometown": "Greenwich, Conn.",
+  "highschool": "Brunswick High School"
+ }
+]

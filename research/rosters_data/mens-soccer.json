@@ -1,0 +1,234 @@
+[
+ {
+  "name": "Nicholas Willen",
+  "jersey": "0",
+  "class": "Sr.",
+  "pos": "Goalkeeper",
+  "hometown": "Worcester, Pa.",
+  "highschool": "Methacton"
+ },
+ {
+  "name": "Jan Hejna",
+  "jersey": "1",
+  "class": "Fy",
+  "pos": "Goalkeeper",
+  "hometown": "Montclair, N.J.",
+  "highschool": "Montclair Kimberley Academy"
+ },
+ {
+  "name": "Mikey Cortellessa",
+  "jersey": "2",
+  "class": "So.",
+  "pos": "Defender",
+  "hometown": "San Jose, Calif.",
+  "highschool": "Lone Star (Texas)"
+ },
+ {
+  "name": "Juan Pablo Fregoso",
+  "jersey": "3",
+  "class": "Jr.",
+  "pos": "Defender",
+  "hometown": "La Puente, Calif.",
+  "highschool": "Nogales"
+ },
+ {
+  "name": "Alexander Castel",
+  "jersey": "4",
+  "class": "Jr.",
+  "pos": "Defender",
+  "hometown": "Chevy Chase, Md.",
+  "highschool": "Sidwell Friends School (D.C.)"
+ },
+ {
+  "name": "Maxwell Mobray",
+  "jersey": "5",
+  "class": "So.",
+  "pos": "Defender",
+  "hometown": "Washingtonville, N.Y.",
+  "highschool": "Washingtonville"
+ },
+ {
+  "name": "Nayan Das",
+  "jersey": "6",
+  "class": "Jr.",
+  "pos": "Defender",
+  "hometown": "Lexington, Mass.",
+  "highschool": "Lexington"
+ },
+ {
+  "name": "Dylan Tellado",
+  "jersey": "7",
+  "class": "Sr.",
+  "pos": "Forward",
+  "hometown": "Mountain View, Calif.",
+  "highschool": "Mountain View"
+ },
+ {
+  "name": "Phoenix Wooten",
+  "jersey": "8",
+  "class": "Jr.",
+  "pos": "Midfielder",
+  "hometown": "Kill Devil Hills, N.C.",
+  "highschool": "First Flight"
+ },
+ {
+  "name": "Yuta Hata",
+  "jersey": "9",
+  "class": "Sr.",
+  "pos": "Forward",
+  "hometown": "Tokyo, Japan",
+  "highschool": "The American School in Japan"
+ },
+ {
+  "name": "Ben Kelly",
+  "jersey": "10",
+  "class": "Sr.",
+  "pos": "Midfield",
+  "hometown": "Cambridge, Mass.",
+  "highschool": "The Roxbury Latin School"
+ },
+ {
+  "name": "Andreas Savva",
+  "jersey": "11",
+  "class": "Sr.",
+  "pos": "Forward",
+  "hometown": "Nicosia, Cyprus",
+  "highschool": "The Grammar School, Nicosia"
+ },
+ {
+  "name": "Andreas Engle",
+  "jersey": "12",
+  "class": "Fy",
+  "pos": "Forward/Midfielder",
+  "hometown": "Edina, Minn.",
+  "highschool": "Edina High School"
+ },
+ {
+  "name": "Tim Langenbahn",
+  "jersey": "13",
+  "class": "Jr.",
+  "pos": "Defender",
+  "hometown": "Miesenheim, Germany",
+  "highschool": "Kurfürst-Salentin-Gymnasium Andernach"
+ },
+ {
+  "name": "Xavier Tanyi",
+  "jersey": "14",
+  "class": "Jr.",
+  "pos": "Forward",
+  "hometown": "Kensington, Md.",
+  "highschool": "Washington International School"
+ },
+ {
+  "name": "Lucas Benuce Sarvas",
+  "jersey": "15",
+  "class": "So.",
+  "pos": "Midfielder",
+  "hometown": "São Paulo, Brazil",
+  "highschool": "Northfield (Colo.)"
+ },
+ {
+  "name": "Drew Lobley",
+  "jersey": "16",
+  "class": "So.",
+  "pos": "Forward",
+  "hometown": "Hagerstown, Md.",
+  "highschool": "North Hagerstown"
+ },
+ {
+  "name": "Adam Poliakov",
+  "jersey": "17",
+  "class": "So.",
+  "pos": "Forward",
+  "hometown": "Kiev, Ukraine",
+  "highschool": "King’s College School Wimbledon (England)"
+ },
+ {
+  "name": "Tobias Barnas",
+  "jersey": "18",
+  "class": "Fy",
+  "pos": "Midfielder",
+  "hometown": "Bratislava, Slovakia",
+  "highschool": "Prague British International School"
+ },
+ {
+  "name": "Christo Velikin",
+  "jersey": "19",
+  "class": "So.",
+  "pos": "Forward",
+  "hometown": "Boston, Mass.",
+  "highschool": "The Roxbury Latin School"
+ },
+ {
+  "name": "Shane Lonergan",
+  "jersey": "20",
+  "class": "Jr.",
+  "pos": "Midfielder",
+  "hometown": "San Francisco, Calif.",
+  "highschool": "Mission"
+ },
+ {
+  "name": "Gil de Souza",
+  "jersey": "24",
+  "class": "Fy",
+  "pos": "Midfielder",
+  "hometown": "New York, N.Y.",
+  "highschool": "Packer Collegiate Institute"
+ },
+ {
+  "name": "Kiko Elliott",
+  "jersey": "25",
+  "class": "Fy",
+  "pos": "Midfielder",
+  "hometown": "Santa Barbara, Calif.",
+  "highschool": "Santa Barbara Senior High School"
+ },
+ {
+  "name": "Arnav Maskey",
+  "jersey": "26",
+  "class": "Fy",
+  "pos": "Midfielder",
+  "hometown": "Madison, Ala.",
+  "highschool": "Bob Jones High School"
+ },
+ {
+  "name": "Alejandro Palacio",
+  "jersey": "27",
+  "class": "So.",
+  "pos": "Defender",
+  "hometown": "North Andover, Mass.",
+  "highschool": "Milton Academy"
+ },
+ {
+  "name": "Sophian Lovato",
+  "jersey": "28",
+  "class": "So.",
+  "pos": "Forward",
+  "hometown": "San Francisco Calif.",
+  "highschool": "Phillips Exeter Academy (N.H.)"
+ },
+ {
+  "name": "Ryan  Shen",
+  "jersey": "29",
+  "class": "So.",
+  "pos": "Defender",
+  "hometown": "Auckland, New Zealand",
+  "highschool": "Mount Albert Grammar School"
+ },
+ {
+  "name": "Will Sherwood",
+  "jersey": "77",
+  "class": "Sr.",
+  "pos": "Goalkeeper",
+  "hometown": "Los Angeles, Calif.",
+  "highschool": "Harvard-Westlake School"
+ },
+ {
+  "name": "Jason Broome",
+  "jersey": "99",
+  "class": "So.",
+  "pos": "Goalkeeper",
+  "hometown": "Owings Mills, Md.",
+  "highschool": "McDonogh School"
+ }
+]

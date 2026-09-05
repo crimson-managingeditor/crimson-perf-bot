@@ -1,0 +1,234 @@
+[
+ {
+  "name": "Natalie Marvin",
+  "jersey": "1",
+  "class": "So.",
+  "pos": "Midfield",
+  "hometown": "La Jolla, Calif.",
+  "highschool": "The Bishop's School"
+ },
+ {
+  "name": "Grace Mullahy",
+  "jersey": "2",
+  "class": "Sr.",
+  "pos": "Midfield",
+  "hometown": "Morrisville, N.C.",
+  "highschool": "Cardinal Gibbons"
+ },
+ {
+  "name": "Cecelia Batchelder",
+  "jersey": "3",
+  "class": "So.",
+  "pos": "Midfield",
+  "hometown": "Newburyport, Mass.",
+  "highschool": "The Governor's Academy"
+ },
+ {
+  "name": "Kate Kenney",
+  "jersey": "4",
+  "class": "Fy",
+  "pos": "Attack",
+  "hometown": "Hermosa Beach, Calif.",
+  "highschool": "Redondo Union"
+ },
+ {
+  "name": "Stella Shea",
+  "jersey": "5",
+  "class": "Sr.",
+  "pos": "Midfield",
+  "hometown": "Chevy Chase, Md.",
+  "highschool": "St. John's College High School (D.C.)"
+ },
+ {
+  "name": "Hayla  Dora",
+  "jersey": "6",
+  "class": "Jr.",
+  "pos": "Defense",
+  "hometown": "Spring Lake, N.J.",
+  "highschool": "The Lawrenceville School"
+ },
+ {
+  "name": "Natasha Tribolet",
+  "jersey": "7",
+  "class": "Sr.",
+  "pos": "Midfield",
+  "hometown": "Kentfield, Calif.",
+  "highschool": "St. Ignatius Preparatory"
+ },
+ {
+  "name": "Lauren Park",
+  "jersey": "8",
+  "class": "Jr.",
+  "pos": "Attack",
+  "hometown": "Medina, Wash.",
+  "highschool": "Bellevue"
+ },
+ {
+  "name": "Molly Vana",
+  "jersey": "9",
+  "class": "Fy",
+  "pos": "Midfield",
+  "hometown": "Boxford, Mass.",
+  "highschool": "The Governor's Academy"
+ },
+ {
+  "name": "Emerson Midura",
+  "jersey": "10",
+  "class": "So.",
+  "pos": "Midfield",
+  "hometown": "Wellesley, Mass.",
+  "highschool": "Noble and Greenough School"
+ },
+ {
+  "name": "Callie Batchelder",
+  "jersey": "11",
+  "class": "Sr.",
+  "pos": "Attack",
+  "hometown": "Newburyport, Mass.",
+  "highschool": "The Governor's Academy"
+ },
+ {
+  "name": "Addison Kosiewicz",
+  "jersey": "12",
+  "class": "Fy",
+  "pos": "Midfield",
+  "hometown": "Madison, Conn.",
+  "highschool": "The Hotchkiss School"
+ },
+ {
+  "name": "Riley Austin",
+  "jersey": "13",
+  "class": "Fy",
+  "pos": "Midfield",
+  "hometown": "Haddonfield, N.J.",
+  "highschool": "Haddonfield Memorial"
+ },
+ {
+  "name": "Lexie Koch",
+  "jersey": "14",
+  "class": "So.",
+  "pos": "Midfield",
+  "hometown": "Skillman, N.J.",
+  "highschool": "The Lawrenceville School"
+ },
+ {
+  "name": "Chloe Bednar",
+  "jersey": "15",
+  "class": "Sr.",
+  "pos": "Defense",
+  "hometown": "Owatonna, Minn.",
+  "highschool": "Shattuck St. Mary's"
+ },
+ {
+  "name": "Hattie Manser",
+  "jersey": "16",
+  "class": "Sr.",
+  "pos": "Midfield",
+  "hometown": "Orangeville, Ontario",
+  "highschool": "The Hill Academy"
+ },
+ {
+  "name": "Lily  Kacyvenski",
+  "jersey": "17",
+  "class": "Jr.",
+  "pos": "Defense",
+  "hometown": "Weston, Mass.",
+  "highschool": "Weston"
+ },
+ {
+  "name": "Ellie Chen",
+  "jersey": "18",
+  "class": "Jr.",
+  "pos": "Midfield",
+  "hometown": "Kensington, Md.",
+  "highschool": "St. John's College High School (D.C.)"
+ },
+ {
+  "name": "Tori Balser",
+  "jersey": "19",
+  "class": "Jr.",
+  "pos": "Midfield",
+  "hometown": "Ponte Vedra, Fla.",
+  "highschool": "Noble and Greenough School (Mass.)"
+ },
+ {
+  "name": "Kenighan Mattice",
+  "jersey": "20",
+  "class": "So.",
+  "pos": "Attack",
+  "hometown": "Chester Springs, Pa.",
+  "highschool": "William Penn Charter School"
+ },
+ {
+  "name": "Nicole Giannakopoulos",
+  "jersey": "21",
+  "class": "Jr.",
+  "pos": "Midfield",
+  "hometown": "Manhasset, N.Y.",
+  "highschool": "Manhasset"
+ },
+ {
+  "name": "Rebecca Arpano",
+  "jersey": "22",
+  "class": "Sr.",
+  "pos": "Goalie",
+  "hometown": "Greenwich, Conn.",
+  "highschool": "Greenwich Academy"
+ },
+ {
+  "name": "Victoria Ottomanelli",
+  "jersey": "23",
+  "class": "So.",
+  "pos": "Midfield",
+  "hometown": "Garden City, N.Y.",
+  "highschool": "Garden City"
+ },
+ {
+  "name": "Ava Detweiler",
+  "jersey": "24",
+  "class": "So.",
+  "pos": "Defense",
+  "hometown": "Philadelphia, Pa.",
+  "highschool": "St. Paul's School (N.H.)"
+ },
+ {
+  "name": "Charlotte Schultz",
+  "jersey": "25",
+  "class": "So.",
+  "pos": "Midfield",
+  "hometown": "Dallas, Texas",
+  "highschool": "The Hockaday School"
+ },
+ {
+  "name": "Haven Moneypenny",
+  "jersey": "26",
+  "class": "Fy",
+  "pos": "Defense",
+  "hometown": "Darien, Conn.",
+  "highschool": "Darien"
+ },
+ {
+  "name": "Ashley Clark",
+  "jersey": "28",
+  "class": "Fy",
+  "pos": "Attack",
+  "hometown": "Garden City, N.Y.",
+  "highschool": "Garden City"
+ },
+ {
+  "name": "Emma Barkauskas",
+  "jersey": "30",
+  "class": "Jr.",
+  "pos": "Goalie",
+  "hometown": "Mountain Lakes, N.J.",
+  "highschool": "Mountain Lakes"
+ },
+ {
+  "name": "Aubrey Geibelson",
+  "jersey": "33",
+  "class": "Fy",
+  "pos": "Goalie",
+  "hometown": "Los Angeles, Calif.",
+  "highschool": "Marlborough School"
+ }
+]

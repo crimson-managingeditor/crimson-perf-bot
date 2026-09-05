@@ -1,0 +1,226 @@
+[
+ {
+  "name": "Gavin Smith",
+  "jersey": "1",
+  "class": "So.",
+  "pos": "Infielder/Outfielder",
+  "hometown": "Queen Creek, Ariz.",
+  "highschool": "Basha"
+ },
+ {
+  "name": "Ryan Mooney",
+  "jersey": "3",
+  "class": "Jr.",
+  "pos": "Outfielder",
+  "hometown": "Rochester Hills, Mich.",
+  "highschool": "St. Mary’s Preparatory"
+ },
+ {
+  "name": "Tyler Shulman",
+  "jersey": "5",
+  "class": "Jr.",
+  "pos": "Infielder",
+  "hometown": "Calabasas, Calif.",
+  "highschool": "Calabasas"
+ },
+ {
+  "name": "Gio Colasante",
+  "jersey": "7",
+  "class": "Sr.",
+  "pos": "Infielder/Right-Handed",
+  "hometown": "New York, N.Y.",
+  "highschool": "Poly Prep Country Day School"
+ },
+ {
+  "name": "Dominic Brancel",
+  "jersey": "8",
+  "class": "Jr.",
+  "pos": "Catcher",
+  "hometown": "Claridon, Ohio",
+  "highschool": "Hawken School"
+ },
+ {
+  "name": "Cullen Stone",
+  "jersey": "9",
+  "class": "So.",
+  "pos": "Utility",
+  "hometown": "New Milford, Conn.",
+  "highschool": "Canterbury School"
+ },
+ {
+  "name": "Jack Smith",
+  "jersey": "10",
+  "class": "Sr.",
+  "pos": "Right-Handed",
+  "hometown": "Pittsburgh, Pa.",
+  "highschool": "Mount Lebanon"
+ },
+ {
+  "name": "Ryan McHugh",
+  "jersey": "11",
+  "class": "Jr.",
+  "pos": "Right-Handed",
+  "hometown": "Narragansett, R.I.",
+  "highschool": "Deerfield Academy (Mass.)"
+ },
+ {
+  "name": "Jack Rickheim",
+  "jersey": "12",
+  "class": "Jr.",
+  "pos": "Infielder",
+  "hometown": "Milton, Ga.",
+  "highschool": "Fellowship Christian"
+ },
+ {
+  "name": "Jordan Kang",
+  "jersey": "13",
+  "class": "Sr.",
+  "pos": "Infielder",
+  "hometown": "Los Angeles, Calif.",
+  "highschool": "Harvard-Westlake School"
+ },
+ {
+  "name": "Daniel Sams",
+  "jersey": "15",
+  "class": "So.",
+  "pos": "Right-Handed",
+  "hometown": "Atlanta, Ga.",
+  "highschool": "The Lovett School"
+ },
+ {
+  "name": "Finn Whipple",
+  "jersey": "16",
+  "class": "Fy",
+  "pos": "Outfielder",
+  "hometown": "Richmond, Va.",
+  "highschool": "Douglas S. Freeman"
+ },
+ {
+  "name": "Owen Tahnk",
+  "jersey": "17",
+  "class": "So.",
+  "pos": "Right-Handed",
+  "hometown": "Newburyport, Mass.",
+  "highschool": "Newburyport"
+ },
+ {
+  "name": "Charley Bergsma",
+  "jersey": "19",
+  "class": "So.",
+  "pos": "Left-Handed",
+  "hometown": "Naples, Fla.",
+  "highschool": "St. John Neumann Catholic"
+ },
+ {
+  "name": "Aidan Colasante",
+  "jersey": "20",
+  "class": "Fy",
+  "pos": "Infielder",
+  "hometown": "New York, N.Y.",
+  "highschool": "Poly Prep Country Day School"
+ },
+ {
+  "name": "Max Lane",
+  "jersey": "21",
+  "class": "Sr.",
+  "pos": "Outfielder",
+  "hometown": "Newport Beach, Calif.",
+  "highschool": "Corona del Mar"
+ },
+ {
+  "name": "Brett Gable",
+  "jersey": "22",
+  "class": "Fy",
+  "pos": "Left-Handed",
+  "hometown": "Marlton, N.J.",
+  "highschool": "Cherokee"
+ },
+ {
+  "name": "Davis Kahn",
+  "jersey": "23",
+  "class": "Fy",
+  "pos": "Right-Handed",
+  "hometown": "Milton, Mass.",
+  "highschool": "Milton Academy"
+ },
+ {
+  "name": "Andrew Abler",
+  "jersey": "24",
+  "class": "Jr.",
+  "pos": "Right-Handed",
+  "hometown": "Novi, Mich.",
+  "highschool": "Novi"
+ },
+ {
+  "name": "Justin King",
+  "jersey": "26",
+  "class": "Sr.",
+  "pos": "Infielder",
+  "hometown": "Westminster, Mass.",
+  "highschool": "Oakwood (Ohio)"
+ },
+ {
+  "name": "Liam Wilson",
+  "jersey": "29",
+  "class": "So.",
+  "pos": "Catcher/First",
+  "hometown": "Chandler, Ariz.",
+  "highschool": "Hamilton"
+ },
+ {
+  "name": "Brian Dowling",
+  "jersey": "31",
+  "class": "Sr.",
+  "pos": "Left-Handed",
+  "hometown": "Avon, Conn.",
+  "highschool": "Avon Old Farms"
+ },
+ {
+  "name": "Matthew Witkow",
+  "jersey": "32",
+  "class": "Fy",
+  "pos": "Infielder",
+  "hometown": "Calabasas, Calif.",
+  "highschool": "Calabasas"
+ },
+ {
+  "name": "Zach Khozozian",
+  "jersey": "33",
+  "class": "Fy",
+  "pos": "Outfielder",
+  "hometown": "Weston, Mass.",
+  "highschool": "Belmont Hill School"
+ },
+ {
+  "name": "Will Burns",
+  "jersey": "34",
+  "class": "Jr.",
+  "pos": "Right-Handed",
+  "hometown": "Sandy Hook, Conn.",
+  "highschool": "Newtown"
+ },
+ {
+  "name": "Kai So",
+  "jersey": "37",
+  "class": "Fy",
+  "pos": "Catcher",
+  "hometown": "Gainesville, Fla.",
+  "highschool": "F.W. Buchholz"
+ },
+ {
+  "name": "Luca Alagheband",
+  "jersey": "44",
+  "class": "So.",
+  "pos": "Left-Handed",
+  "hometown": "Toronto, Ontario",
+  "highschool": "Crescent School"
+ },
+ {
+  "name": "Vedant Sharma",
+  "jersey": "45",
+  "class": "Fy",
+  "pos": "Right-Handed",
+  "hometown": "Timnath, Colo.",
+  "highschool": "Fossil Ridge"
+ }
+]

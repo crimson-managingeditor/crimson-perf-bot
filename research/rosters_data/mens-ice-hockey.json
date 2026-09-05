@@ -1,0 +1,234 @@
+[
+ {
+  "name": "Evan  Zhang",
+  "jersey": "1",
+  "class": "Jr.",
+  "pos": "Goaltender",
+  "hometown": "Sherborn, Mass.",
+  "highschool": "Roxbury Latin"
+ },
+ {
+  "name": "David Hejduk",
+  "jersey": "2",
+  "class": "Sr.",
+  "pos": "Defenseman",
+  "hometown": "Parker, Colo.",
+  "highschool": "Legend"
+ },
+ {
+  "name": "Matthew Biotti",
+  "jersey": "3",
+  "class": "So.",
+  "pos": "Defense",
+  "hometown": "Cambridge, Mass.",
+  "highschool": "Belmont Hill School"
+ },
+ {
+  "name": "Sean  Keohane",
+  "jersey": "5",
+  "class": "Jr.",
+  "pos": "Defenseman",
+  "hometown": "Milton, Mass.",
+  "highschool": "Dexter Southfield"
+ },
+ {
+  "name": "Richard  Gallant",
+  "jersey": "6",
+  "class": "So.",
+  "pos": "Forward",
+  "hometown": "Concord, Mass.",
+  "highschool": "St. Mark's School"
+ },
+ {
+  "name": "Niles  Benson",
+  "jersey": "7",
+  "class": "Fy",
+  "pos": "Forward",
+  "hometown": "Tampa, Fla.",
+  "highschool": "Canisius High School"
+ },
+ {
+  "name": "C Michael Callow",
+  "jersey": "8 C",
+  "class": "Sr.",
+  "pos": "Forward",
+  "hometown": "Boston, Mass.",
+  "highschool": "St. Sebastian's School"
+ },
+ {
+  "name": "Heikki Ruohonen",
+  "jersey": "9",
+  "class": "So.",
+  "pos": "Forward",
+  "hometown": "Helsinki, Finland",
+  "highschool": "Haukilahti Secondary High School"
+ },
+ {
+  "name": "Ryan Fine",
+  "jersey": "10",
+  "class": "Sr.",
+  "pos": "Forward",
+  "hometown": "Center Moriches, N.Y.",
+  "highschool": "Don Bosco Prep"
+ },
+ {
+  "name": "Justin  Solovey",
+  "jersey": "11",
+  "class": "Jr.",
+  "pos": "Forward",
+  "hometown": "Holmdel, NJ.",
+  "highschool": "The Lawrenceville School"
+ },
+ {
+  "name": "Alex  Huang",
+  "jersey": "12",
+  "class": "Fy",
+  "pos": "Defense",
+  "hometown": "Rosemère, Québec",
+  "highschool": "École Saint-Gabriel"
+ },
+ {
+  "name": "C Matthew Morden",
+  "jersey": "14 C",
+  "class": "Sr.",
+  "pos": "Defenseman",
+  "hometown": "Hamilton, Ont.",
+  "highschool": "St. Andrew's College"
+ },
+ {
+  "name": "Joseph Salandra",
+  "jersey": "15",
+  "class": "Fy",
+  "pos": "Forward",
+  "hometown": "Pleasantville, N.Y.",
+  "highschool": "Brunswick"
+ },
+ {
+  "name": "William  McDonough",
+  "jersey": "16",
+  "class": "Jr.",
+  "pos": "Forward",
+  "hometown": "Duxbury, Mass.",
+  "highschool": "Duxbury High School"
+ },
+ {
+  "name": "Will Hughes",
+  "jersey": "17",
+  "class": "Jr.",
+  "pos": "Forward",
+  "hometown": "Andover, Mass.",
+  "highschool": "Dexter Southfield"
+ },
+ {
+  "name": "Donato  Bracco",
+  "jersey": "18",
+  "class": "So.",
+  "pos": "Defense",
+  "hometown": "Locust Valley, N.Y.",
+  "highschool": "Michigan International"
+ },
+ {
+  "name": "Ben MacDonald",
+  "jersey": "19",
+  "class": "Sr.",
+  "pos": "Forward",
+  "hometown": "Weston, Mass.",
+  "highschool": "Noble & Greenough School"
+ },
+ {
+  "name": "Drake Murray",
+  "jersey": "20",
+  "class": "So.",
+  "pos": "Defense",
+  "hometown": "Manhattan Beach, Calif.",
+  "highschool": "Shattuck St. Mary's"
+ },
+ {
+  "name": "Cameron Johnson",
+  "jersey": "21",
+  "class": "Sr.",
+  "pos": "Forward",
+  "hometown": "Vancouver, B.C.",
+  "highschool": "St. George's School"
+ },
+ {
+  "name": "Justin Graf",
+  "jersey": "22",
+  "class": "Fy",
+  "pos": "Forward",
+  "hometown": "Lincoln, Mass.",
+  "highschool": "The Rivers School"
+ },
+ {
+  "name": "Salvatore Guzzo",
+  "jersey": "23",
+  "class": "Sr.",
+  "pos": "Forward",
+  "hometown": "Old Tappan, N.J.",
+  "highschool": "Don Bosco Prep"
+ },
+ {
+  "name": "Chase  Stefanek",
+  "jersey": "24",
+  "class": "So.",
+  "pos": "Forward",
+  "hometown": "Yorba Linda, Calif.",
+  "highschool": "Mount St. Charles"
+ },
+ {
+  "name": "Rudy  Guimond",
+  "jersey": "25",
+  "class": "Fy",
+  "pos": "Goaltender",
+  "hometown": "Pointe-Claire, Québec",
+  "highschool": "Taft School"
+ },
+ {
+  "name": "Lucas  St. Louis",
+  "jersey": "26",
+  "class": "Jr.",
+  "pos": "Defenseman",
+  "hometown": "Old Greenwich, Conn.",
+  "highschool": "Brunswick School"
+ },
+ {
+  "name": "Mick  Thompson",
+  "jersey": "27",
+  "class": "Jr.",
+  "pos": "Forward",
+  "hometown": "Mississauga, Ont.",
+  "highschool": "Bergen Catholic High"
+ },
+ {
+  "name": "Ben  Charette",
+  "jersey": "31",
+  "class": "Jr.",
+  "pos": "Goaltender",
+  "hometown": "Aurora, Ont.",
+  "highschool": "Dr. G.W. Williams Secondary"
+ },
+ {
+  "name": "James  Mackey",
+  "jersey": "44",
+  "class": "So.",
+  "pos": "Defense",
+  "hometown": "Villanova, Pa.",
+  "highschool": "Hotchkiss School"
+ },
+ {
+  "name": "Eli Heinze",
+  "jersey": "57",
+  "class": "Fy",
+  "pos": "Forward",
+  "hometown": "Santa Barbara, Calif.",
+  "highschool": "The Governor's Academy"
+ },
+ {
+  "name": "Aidan  Lane",
+  "jersey": "88",
+  "class": "So.",
+  "pos": "Forward",
+  "hometown": "Mississauga, Ont.",
+  "highschool": "St. Andrew’s College"
+ }
+]

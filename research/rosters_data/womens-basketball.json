@@ -1,0 +1,146 @@
+[
+ {
+  "name": "Olivia Jones",
+  "jersey": "0",
+  "class": "So.",
+  "pos": "Guard",
+  "hometown": "Harrisburg, Pa.",
+  "highschool": "Westtown High School"
+ },
+ {
+  "name": "Aubrey Shaw",
+  "jersey": "1",
+  "class": "So.",
+  "pos": "Guard",
+  "hometown": "Overland Park, Kan.",
+  "highschool": "Blue Valley North"
+ },
+ {
+  "name": "Asani Ceaser",
+  "jersey": "3",
+  "class": "Jr.",
+  "pos": "Forward",
+  "hometown": "Las Vegas, Nev.",
+  "highschool": "Centennial High School"
+ },
+ {
+  "name": "Lydia Chatira",
+  "jersey": "6",
+  "class": "Jr.",
+  "pos": "Guard",
+  "hometown": "Pikermi, Greece",
+  "highschool": "ACS Athens"
+ },
+ {
+  "name": "Sierra Woolhouse",
+  "jersey": "7",
+  "class": "Fy",
+  "pos": "Guard",
+  "hometown": "Hampton, Victoria, Australia",
+  "highschool": "St. Leonards College"
+ },
+ {
+  "name": "Adyra Rajan",
+  "jersey": "10",
+  "class": "Fy",
+  "pos": "Guard",
+  "hometown": "Cerritos, Calif.",
+  "highschool": "Fairmont Preparatory Academy"
+ },
+ {
+  "name": "Alayna Rocco",
+  "jersey": "11",
+  "class": "Jr.",
+  "pos": "Guard",
+  "hometown": "Pittsburgh, Pa.",
+  "highschool": "North Catholic High School"
+ },
+ {
+  "name": "C Karlee White",
+  "jersey": "12 C",
+  "class": "Sr.",
+  "pos": "Guard",
+  "hometown": "Burbank, Calif.",
+  "highschool": "Oak Park High School"
+ },
+ {
+  "name": "Hana Belibi",
+  "jersey": "13",
+  "class": "Jr.",
+  "pos": "Guard/Forward",
+  "hometown": "Englewood, Colo.",
+  "highschool": "Regis Jesuit High School"
+ },
+ {
+  "name": "Maya Nahar",
+  "jersey": "15",
+  "class": "So.",
+  "pos": "Forward/Center",
+  "hometown": "Paramaribo, Suriname",
+  "highschool": "Western Reserve Academy"
+ },
+ {
+  "name": "Sophie Smith",
+  "jersey": "20",
+  "class": "Fy",
+  "pos": "Forward",
+  "hometown": "Little Silver, N.J.",
+  "highschool": "Red Bank Catholic"
+ },
+ {
+  "name": "Ava Krumwiede",
+  "jersey": "21",
+  "class": "So.",
+  "pos": "Forward/Guard",
+  "hometown": "Nashville, Tenn.",
+  "highschool": "Harpeth Hall"
+ },
+ {
+  "name": "Nina Emnace",
+  "jersey": "23",
+  "class": "Jr.",
+  "pos": "Guard",
+  "hometown": "Toms River, N.J.",
+  "highschool": "Trinity Hall"
+ },
+ {
+  "name": "C Mary Hollensteiner",
+  "jersey": "24 C",
+  "class": "Sr.",
+  "pos": "Guard",
+  "hometown": "Bethesda, Md.",
+  "highschool": "Stone Ridge School of the Sacred Heart"
+ },
+ {
+  "name": "Sam Wills",
+  "jersey": "25",
+  "class": "So.",
+  "pos": "Guard/Forward",
+  "hometown": "Mendota Heights, Minn.",
+  "highschool": "Visitation High School"
+ },
+ {
+  "name": "C Abigail Wright",
+  "jersey": "40 C",
+  "class": "Sr.",
+  "pos": "Forward",
+  "hometown": "Newton, Mass.",
+  "highschool": "Newton North High School"
+ },
+ {
+  "name": "Cora Blain",
+  "jersey": "",
+  "class": "Jr.",
+  "pos": "Team",
+  "hometown": "",
+  "highschool": ""
+ },
+ {
+  "name": "Ella Blain",
+  "jersey": "",
+  "class": "Jr.",
+  "pos": "Team",
+  "hometown": "",
+  "highschool": ""
+ }
+]

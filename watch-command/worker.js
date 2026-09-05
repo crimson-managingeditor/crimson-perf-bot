@@ -105,11 +105,55 @@ async function handle(env, exctx, p) {
   if (command === "/unalert") return await alertCmd(env, "remove", ctx);
   if (command === "/job")     return await mutate(env, "add", ctx);   // watch a job page for changes
   if (command === "/case")    return await caseCmd(env, ctx);
+  if (command === "/casewatch")   return await caseWatchCmd(env, "add", ctx);
+  if (command === "/cases")       return await caseWatchCmd(env, "list", ctx);
+  if (command === "/uncasewatch") return await caseWatchCmd(env, "remove", ctx);
   if (command === "/save")   return saveCmd(env, exctx, ctx);
   if (command === "/links")  return await listCmd(env, ctx);
   if (command === "/unlink") return await mutate(env, "remove", ctx);
   if (command === "/link")   return await mutate(env, "add", ctx);
   return { text: `Unknown command ${command}` };
+}
+
+// --- /casewatch : subscribe to a docket; the poller (research/courtbot.py) pings new filings ---
+const COURT_WATCHES = "court/watches.json";
+async function caseWatchCmd(env, op, c) {
+  const where = c.channel_name && c.channel_name !== "directmessage" ? `#${c.channel_name}` : "here";
+  if (op === "list") {
+    const { list } = await ghGet(env, COURT_WATCHES);
+    const here = list.filter(e => (e.channel || "") === (c.channel || ""));
+    if (!here.length) return { text: "No dockets watched here. Add one with `/casewatch <CourtListener docket URL or id>` (find it via `/case`)." };
+    return { text: `*Dockets watched in ${where}:*\n` + here.map(e => `• <${e.url}|${e.name || e.docket_id}>`).join("\n") };
+  }
+  const raw = (c.text || "").trim();
+  const m = raw.match(/docket\/(\d+)/) || raw.match(/^(\d+)$/);
+  if (!m) return { text: "Usage: `/casewatch <CourtListener docket URL or id>` — e.g. paste a link from `/case`. `/cases` lists them, `/uncasewatch <id>` stops one." };
+  const id = m[1];
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const { list, sha } = await ghGet(env, COURT_WATCHES);
+    let msg, done;
+    if (op === "add") {
+      let name = `Docket ${id}`, url = `https://www.courtlistener.com/docket/${id}/`, court = "";
+      try {   // fetch the case name for a nicer confirmation (needs the token)
+        const h = { "User-Agent": "crimson-watch", "Accept": "application/json" };
+        if (env.COURTLISTENER_TOKEN) h["Authorization"] = "Token " + env.COURTLISTENER_TOKEN;
+        const dr = await fetch(`https://www.courtlistener.com/api/rest/v4/dockets/${id}/`, { headers: h });
+        if (dr.ok) { const d = await dr.json(); name = d.case_name || name; court = d.court_id || ""; if (d.absolute_url) url = "https://www.courtlistener.com" + d.absolute_url; }
+      } catch (_) {}
+      const rec = { docket_id: id, name, court, url, channel: c.channel, added_by: c.user, added_by_id: c.userId, seen: [] };
+      const i = list.findIndex(e => e.docket_id === id && (e.channel || "") === (c.channel || ""));
+      if (i >= 0) { list[i] = { ...rec, seen: list[i].seen || [] }; msg = `casewatch: update ${id}`; done = { text: `🔁 Already watching <${url}|${name}> ${where}.` }; }
+      else { list.push(rec); msg = `casewatch: add ${id}`; done = { text: `⚖️ Watching <${url}|${name}> — new filings post ${where}.` }; }
+    } else {
+      const next = list.filter(e => !(e.docket_id === id && (e.channel || "") === (c.channel || "")));
+      if (next.length === list.length) return { text: `Docket ${id} isn't watched in this channel.` };
+      list.length = 0; list.push(...next); msg = `casewatch: remove ${id}`; done = { text: `🗑️ Stopped watching docket ${id}.` };
+    }
+    const put = await ghPut(env, list, sha, msg, COURT_WATCHES);
+    if (put.ok) return done;
+    if (put.status !== 409) throw new Error(`GitHub write failed (${put.status})`);
+  }
+  throw new Error("court watchlist was busy — try again");
 }
 
 // --- /case : reporters search federal + state court dockets (CourtListener) ---
@@ -353,8 +397,8 @@ function ghHeaders(env) {
            "User-Agent": "crimson-watch-worker",
            "Content-Type": "application/json" };
 }
-async function ghGet(env) {
-  const path = env.WATCHLIST_PATH || "watch/watchlist.json";
+async function ghGet(env, path) {
+  path = path || env.WATCHLIST_PATH || "watch/watchlist.json";
   const r = await fetch(`${GH}/repos/${env.GITHUB_REPO}/contents/${encodeURI(path)}`,
     { headers: ghHeaders(env) });
   if (r.status === 404) return { list: [], sha: null };
@@ -363,8 +407,8 @@ async function ghGet(env) {
   const list = JSON.parse(atob(j.content.replace(/\n/g, "")));
   return { list: Array.isArray(list) ? list : [], sha: j.sha };
 }
-async function ghPut(env, list, sha, message) {
-  const path = env.WATCHLIST_PATH || "watch/watchlist.json";
+async function ghPut(env, list, sha, message, path) {
+  path = path || env.WATCHLIST_PATH || "watch/watchlist.json";
   const content = btoa(unescape(encodeURIComponent(JSON.stringify(list, null, 2) + "\n")));
   return fetch(`${GH}/repos/${env.GITHUB_REPO}/contents/${encodeURI(path)}`, {
     method: "PUT", headers: ghHeaders(env),
