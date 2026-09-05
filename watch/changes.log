@@ -64,3 +64,47 @@
 2026-09-05T02:57:18.980924+00:00  BASELINE https://thecrimson.com  ch=directmessage
 2026-09-05T02:57:18.980924+00:00  BASELINE https://www.thecrimson.com/article/2026/9/1/live-results-2026-primary/  ch=directmessage
 2026-09-05T02:57:18.980924+00:00  BASELINE https://thecrimson.com  ch=directmessage
+2026-09-05T16:30:40.198735+00:00  ERROR    https://www.fas.harvard.edu/initiatives  HTTP Error 403: Forbidden
+2026-09-05T16:30:40.198735+00:00  BASELINE https://www.harvard.edu/federal-lawsuits/  ch=directmessage
+2026-09-05T16:30:40.198735+00:00  BASELINE https://www.hks.harvard.edu  ch=directmessage
+2026-09-05T16:30:40.198735+00:00  BASELINE https://www.thecrimson.com/widget/2026/9/1/live-results-2026/  ch=directmessage
+2026-09-05T16:30:40.198735+00:00  BASELINE https://gocrimson.com  ch=directmessage
+2026-09-05T16:30:40.198735+00:00  BASELINE https://gocrimson.com/  ch=directmessage
+2026-09-05T16:30:40.198735+00:00  BASELINE https://hls.harvard.edu  ch=directmessage
+2026-09-05T16:30:40.198735+00:00  ERROR    https://dso.college.harvard.edu/office-culture-community/about-culture-community  HTTP Error 403: Forbidden
+2026-09-05T16:30:40.198735+00:00  BASELINE https://www.gse.harvard.edu/ideas/news  ch=directmessage
+2026-09-05T16:30:40.198735+00:00  BASELINE https://seas.harvard.edu/  ch=directmessage
+2026-09-05T16:30:40.198735+00:00  BASELINE https://college.harvard.edu/about/dean-deming/deans-office-staff  ch=directmessage
+2026-09-05T16:30:40.198735+00:00  BASELINE https://allstonbrightoncdc.org  ch=directmessage
+2026-09-05T16:30:40.198735+00:00  ERROR    https://forklightning.substack.com/  HTTP Error 403: Forbidden
+2026-09-05T16:30:40.198735+00:00  BASELINE https://hls.harvard.edu/today/  ch=directmessage
+2026-09-05T16:35:41.323876+00:00  ERROR    https://www.fas.harvard.edu/initiatives  HTTP Error 403: Forbidden
+2026-09-05T16:35:41.323876+00:00  BASELINE https://seas.harvard.edu/faculty  ch=directmessage
+2026-09-05T16:35:41.323876+00:00  ERROR    https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation  HTTP Error 403: Forbidden
+2026-09-05T16:35:41.323876+00:00  ERROR    https://titleix.college.harvard.edu/resources  HTTP Error 403: Forbidden
+2026-09-05T16:35:41.323876+00:00  BASELINE https://progressivecambridge.org/  ch=directmessage
+2026-09-05T16:35:41.323876+00:00  BASELINE https://13f.info/manager/0001082621-harvard-management-co-inc  ch=directmessage
+2026-09-05T16:35:41.323876+00:00  ERROR    https://www.hupd.harvard.edu/campus-hazing-transparency-report  HTTP Error 403: Forbidden
+2026-09-05T16:35:41.323876+00:00  BASELINE https://college.harvard.edu/admissions  ch=directmessage
+2026-09-05T16:35:41.323876+00:00  BASELINE https://www.cambridgema.gov/departments/transportation/news  ch=directmessage
+2026-09-05T16:35:41.323876+00:00  BASELINE https://www.cambridgema.gov/news  ch=directmessage
+2026-09-05T16:35:41.323876+00:00  BASELINE https://www.cambridgema.gov/departments/citymanagersoffice  ch=directmessage
+2026-09-05T16:35:41.323876+00:00  BASELINE https://gsas.harvard.edu/programs/life-sciences  ch=directmessage
+2026-09-05T16:35:41.323876+00:00  BASELINE https://hls.harvard.edu/academics/curriculum/2026-2027-course-and-schedule-updates/  ch=directmessage
+2026-09-05T16:35:41.323876+00:00  BASELINE https://college.harvard.edu/admissions  ch=directmessage
+2026-09-05T16:40:43.051075+00:00  ERROR    https://www.fas.harvard.edu/initiatives  HTTP Error 403: Forbidden
+2026-09-05T16:40:43.051075+00:00  ERROR    https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation  HTTP Error 403: Forbidden
+2026-09-05T16:40:43.051075+00:00  BASELINE https://www.justice.gov/opa/pr/justice-department-launches-investigation-determine-whether-harvards-china-based-financial  ch=directmessage
+2026-09-05T16:40:43.051075+00:00  BASELINE https://studentsforfairadmissions.org/  ch=directmessage
+2026-09-05T16:40:43.051075+00:00  BASELINE https://college.harvard.edu/financial-aid  ch=directmessage
+2026-09-05T16:45:44.022952+00:00  ERROR    https://www.fas.harvard.edu/initiatives  HTTP Error 403: Forbidden
+2026-09-05T16:45:44.022952+00:00  ERROR    https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation  HTTP Error 403: Forbidden
+2026-09-05T16:45:44.022952+00:00  BASELINE https://www.courtlistener.com/docket/72090192/president-and-fellows-of-harvard-college-v-us-department-of-health-and/?order_by=desc  ch=directmessage
+2026-09-05T16:45:44.022952+00:00  BASELINE https://www.courtlistener.com/docket/72520538/united-states-v-president-and-fellows-of-harvard-college/?order_by=desc  ch=directmessage
+2026-09-05T16:45:44.022952+00:00  BASELINE https://www.courtlistener.com/docket/72275604/united-states-v-president-and-fellows-of-harvard-college-harvard/?order_by=desc  ch=directmessage
+2026-09-05T16:50:45.296697+00:00  ERROR    https://www.fas.harvard.edu/initiatives  HTTP Error 403: Forbidden
+2026-09-05T16:50:45.296697+00:00  ERROR    https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation  HTTP Error 403: Forbidden
+2026-09-05T16:50:45.296697+00:00  BASELINE https://academicpositions.harvard.edu/postings/search?utf8=%E2%9C%93&query=&query_v0_posted_at_date=day&388%5B%5D=10&commit=Search  ch=directmessage
+2026-09-05T16:50:45.296697+00:00  BASELINE https://academicpositions.harvard.edu/postings/search?utf8=%E2%9C%93&query=&query_v0_posted_at_date=day&388%5B%5D=15&commit=Search  ch=directmessage
+2026-09-05T16:55:46.989492+00:00  ERROR    https://www.fas.harvard.edu/initiatives  HTTP Error 403: Forbidden
+2026-09-05T16:55:46.989492+00:00  ERROR    https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation  HTTP Error 403: Forbidden
