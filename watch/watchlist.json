@@ -48,14 +48,6 @@
     "interval": 5
   },
   {
-    "url": "https://thecrimson.com",
-    "channel": "C112NPUNB",
-    "channel_name": "general",
-    "added_by": "shawn.boehmer",
-    "added_by_id": "U0ADNQV76ES",
-    "interval": 5
-  },
-  {
     "url": "https://www.fas.harvard.edu/initiatives",
     "channel": "D0ADMSVBP1T",
     "channel_name": "directmessage",
