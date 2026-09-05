@@ -213,3 +213,18 @@
 2026-09-05T18:51:53.282862+00:00  ERROR    https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation  HTTP Error 403: Forbidden
 2026-09-05T18:51:53.282862+00:00  ERROR    https://www.war.gov/News/releases/  HTTP Error 403: Forbidden
 2026-09-05T18:51:53.282862+00:00  ERROR    https://www.hhs.gov/press-room/index.html  HTTP Error 403: Forbidden
+2026-09-05T19:23:07.616456+00:00  BLOCKED  https://www.fas.harvard.edu/initiatives
+2026-09-05T19:23:07.616456+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-09-05T19:28:12.395896+00:00  BLOCKED  https://www.fas.harvard.edu/initiatives
+2026-09-05T19:28:12.395896+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-09-05T19:33:16.120943+00:00  BLOCKED  https://www.fas.harvard.edu/initiatives
+2026-09-05T19:33:16.120943+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-culture-community
+2026-09-05T19:33:16.120943+00:00  ERROR    https://forklightning.substack.com/  blocked (bot-wall) + headless render failed: Page.goto: Timeout 35000ms exceeded.
+Call log
+2026-09-05T19:33:16.120943+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-09-05T19:38:56.853985+00:00  BLOCKED  https://www.fas.harvard.edu/initiatives
+2026-09-05T19:38:56.853985+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-09-05T19:38:56.853985+00:00  BLOCKED  https://titleix.college.harvard.edu/resources
+2026-09-05T19:38:56.853985+00:00  BLOCKED  https://www.hupd.harvard.edu/campus-hazing-transparency-report
+2026-09-05T19:44:02.937476+00:00  BLOCKED  https://www.fas.harvard.edu/initiatives
+2026-09-05T19:44:02.937476+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
