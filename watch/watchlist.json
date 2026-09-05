@@ -198,5 +198,13 @@
     "added_by": "megan.blonigen",
     "added_by_id": "U0AD9QLRK0F",
     "interval": 120
+  },
+  {
+    "url": "https://www.hupd.harvard.edu/campus-hazing-transparency-report",
+    "channel": "D0AEKGCAL72",
+    "channel_name": "directmessage",
+    "added_by": "sebastian.connolly",
+    "added_by_id": "U0ADR7TE29Y",
+    "interval": 30
   }
 ]
