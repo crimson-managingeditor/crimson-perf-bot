@@ -13,17 +13,28 @@ import report   # reuse the watch engine's headless render + structure-preservin
 
 MODEL = os.environ.get("ANTHROPIC_MODEL", "claude-haiku-4-5-20251001")
 
+import urllib.parse
+
 def page_text(url):
-    # render with headless Chromium (handles JS member lists); fall back to a plain fetch
-    try:
-        kind, payload = report._fetch_rendered(url)
-        print(f"[debug] rendered ok kind={kind} htmllen={len(payload) if payload else 0}")
-    except Exception as e:
-        print(f"[debug] render FAILED ({type(e).__name__}: {e}); using plain fetch")
-        kind, payload = report._fetch(report._fetch_target(url))
-    t = report._page_text(payload) if kind == "text" else ""
-    print(f"[debug] extracted text len={len(t)}; head={t[:200]!r}")
-    return t
+    """Render a page to text. If SCRAPER_API_KEY is set, fetch through ScraperAPI's
+    residential-IP renderer — needed for sites behind Akamai (e.g. *.harvard.edu) that
+    block datacenter IPs like GitHub Actions. Otherwise render locally (headless Chromium)."""
+    key = os.environ.get("SCRAPER_API_KEY")
+    kind = payload = None
+    if key:
+        api = "https://api.scraperapi.com/?" + urllib.parse.urlencode(
+            {"api_key": key, "url": url, "render": "true"})
+        try:
+            kind, payload = report._fetch(api, timeout=75)
+        except Exception as e:
+            print(f"[debug] scraperapi failed ({e})")
+    if payload is None:
+        try:
+            kind, payload = report._fetch_rendered(url)
+        except Exception as e:
+            print(f"[debug] render failed ({e}); plain fetch")
+            kind, payload = report._fetch(report._fetch_target(url))
+    return report._page_text(payload) if kind == "text" and payload else ""
 
 def extract(text):
     key = os.environ["ANTHROPIC_API_KEY"]
@@ -59,6 +70,9 @@ def main():
     url = os.environ["PEOPLE_URL"]; resp = os.environ.get("PEOPLE_RESPONSE_URL", "")
     try:
         text = page_text(url)
+        if "Access Denied" in text[:400] or "don't have permission to access" in text[:600]:
+            raise RuntimeError("the site blocked our server's IP (Akamai/WAF — common on *.harvard.edu). "
+                               "Set a SCRAPER_API_KEY (free ScraperAPI) to fetch via a residential IP.")
         if len(text) < 40:
             raise RuntimeError("page had no readable text")
         people = extract(text)

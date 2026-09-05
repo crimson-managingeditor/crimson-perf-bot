@@ -32,4 +32,5 @@ jobs:
           PEOPLE_URL: ${{ inputs.url }}
           PEOPLE_RESPONSE_URL: ${{ inputs.response_url }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SCRAPER_API_KEY: ${{ secrets.SCRAPER_API_KEY }}   # optional: residential IP for Akamai-blocked (*.harvard.edu) sites
         run: python research/people.py
