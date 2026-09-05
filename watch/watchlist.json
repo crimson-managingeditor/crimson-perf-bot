@@ -230,5 +230,13 @@
     "added_by": "shawn.boehmer",
     "added_by_id": "U0ADNQV76ES",
     "interval": 5
+  },
+  {
+    "url": "https://www.cambridgema.gov/departments/citymanagersoffice",
+    "channel": "D0AD9DADKGX",
+    "channel_name": "directmessage",
+    "added_by": "risha.sinha",
+    "added_by_id": "U0ADQSDKENN",
+    "interval": 60
   }
 ]
