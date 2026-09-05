@@ -17,9 +17,13 @@ def page_text(url):
     # render with headless Chromium (handles JS member lists); fall back to a plain fetch
     try:
         kind, payload = report._fetch_rendered(url)
-    except Exception:
+        print(f"[debug] rendered ok kind={kind} htmllen={len(payload) if payload else 0}")
+    except Exception as e:
+        print(f"[debug] render FAILED ({type(e).__name__}: {e}); using plain fetch")
         kind, payload = report._fetch(report._fetch_target(url))
-    return report._page_text(payload) if kind == "text" else ""
+    t = report._page_text(payload) if kind == "text" else ""
+    print(f"[debug] extracted text len={len(t)}; head={t[:200]!r}")
+    return t
 
 def extract(text):
     key = os.environ["ANTHROPIC_API_KEY"]
