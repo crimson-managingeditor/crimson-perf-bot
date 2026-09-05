@@ -126,5 +126,13 @@
     "added_by": "stephanie.dragoi",
     "added_by_id": "U0ADJTYA53M",
     "interval": 5
+  },
+  {
+    "url": "https://college.harvard.edu/about/dean-deming/deans-office-staff",
+    "channel": "D0AEKGCAL72",
+    "channel_name": "directmessage",
+    "added_by": "sebastian.connolly",
+    "added_by_id": "U0ADR7TE29Y",
+    "interval": 30
   }
 ]
