@@ -54,5 +54,13 @@
     "added_by": "shawn.boehmer",
     "added_by_id": "U0ADNQV76ES",
     "interval": 5
+  },
+  {
+    "url": "https://www.fas.harvard.edu/initiatives",
+    "channel": "D0ADMSVBP1T",
+    "channel_name": "directmessage",
+    "added_by": "amann.mahajan",
+    "added_by_id": "U0AEKJFMGCQ",
+    "interval": 5
   }
 ]
