@@ -118,5 +118,13 @@
     "added_by": "wyeth.renwick",
     "added_by_id": "U0AEK98FKCG",
     "interval": 60
+  },
+  {
+    "url": "https://www.gse.harvard.edu/ideas/news",
+    "channel": "D0AEK5PCQJC",
+    "channel_name": "directmessage",
+    "added_by": "mahpara.faatin",
+    "added_by_id": "U0ADUF1KZJ8",
+    "interval": 5
   }
 ]
