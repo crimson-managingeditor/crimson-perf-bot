@@ -374,5 +374,13 @@
     "added_by": "hugo.chiasson",
     "added_by_id": "U0ADP6M5ZCN",
     "interval": 5
+  },
+  {
+    "url": "https://secretary.college.harvard.edu/data/",
+    "channel": "D0AEKGCAL72",
+    "channel_name": "directmessage",
+    "added_by": "sebastian.connolly",
+    "added_by_id": "U0ADR7TE29Y",
+    "interval": 5
   }
 ]
