@@ -520,7 +520,7 @@
   },
   {
     "url": "https://news.google.com/rss/search?q=*Mart%C3%ADn%20Escobari*&hl=en-US&gl=US&ceid=US:en",
-    "alert": "*MartÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ­n Escobari*",
+    "alert": "*MartÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ­n Escobari*",
     "channel": "D0ADUS7DQVA",
     "channel_name": "directmessage",
     "added_by": "megan.blonigen",
@@ -574,6 +574,15 @@
   {
     "url": "https://news.google.com/rss/search?q=*600%20Atlantic%20Avenue%20Boston*&hl=en-US&gl=US&ceid=US:en",
     "alert": "*600 Atlantic Avenue Boston*",
+    "channel": "D0ADUS7DQVA",
+    "channel_name": "directmessage",
+    "added_by": "megan.blonigen",
+    "added_by_id": "U0AD9QLRK0F",
+    "interval": 30
+  },
+  {
+    "url": "https://news.google.com/rss/search?q=Harvard%20investment&hl=en-US&gl=US&ceid=US:en",
+    "alert": "Harvard investment",
     "channel": "D0ADUS7DQVA",
     "channel_name": "directmessage",
     "added_by": "megan.blonigen",
