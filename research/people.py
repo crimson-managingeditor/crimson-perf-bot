@@ -48,8 +48,36 @@ def fetch_html(url):
         kind, payload = report._fetch(report._fetch_target(url))
     return payload if kind == "text" else ""
 
-def page_text(url):
-    return report._page_text(fetch_html(url))
+def next_page_url(page_html, base):
+    """Find a 'next page' link (rel=next, or a link labelled Next) — agnostic across CMSs."""
+    def resolve(h): return urllib.parse.urljoin(base, h.replace("&amp;", "&").strip())
+    m = re.search(r'<a\b[^>]*\brel=["\']?next\b[^>]*>', page_html, re.I)
+    if m:
+        h = re.search(r'href=["\']([^"\']+)', m.group(0))
+        if h: return resolve(h.group(1))
+    for attrs, inner in re.findall(r"<a\b([^>]*)>(.*?)</a>", page_html, re.S | re.I):
+        it = re.sub(r"<[^>]+>", " ", inner).strip().lower()
+        al = attrs.lower()
+        if it[:4] == "next" or "go to next page" in al or "next page" in al:
+            h = re.search(r'href=["\']([^"\']+)', attrs)
+            if h: return resolve(h.group(1))
+    return None
+
+def page_text(url, max_pages=20):
+    """Fetch the page and follow its own pagination ('next') links, so a paginated people
+    directory returns everyone — not just page 1. Concatenate the pages' text for one extract."""
+    seen, parts, cur = set(), [], url
+    while cur and cur not in seen and len(seen) < max_pages:
+        seen.add(cur)
+        doc = fetch_html(cur)
+        if not doc:
+            break
+        if "Access Denied" in doc[:800] or "don't have permission to access" in doc[:1200]:
+            return "__BLOCKED__"
+        parts.append(report._page_text(doc))
+        cur = next_page_url(doc, cur)
+    print(f"[debug] fetched {len(parts)} page(s)")
+    return "\n\n".join(parts)
 
 def extract(text):
     key = os.environ["ANTHROPIC_API_KEY"]
@@ -57,8 +85,9 @@ def extract(text):
               "(ignore navigation, publications/citations, news items). Return ONLY a JSON array, "
               'no prose:\n[{"name":"","role":"","email":""}]\n'
               'role must be one of: PI/Professor, Postdoc, Grad Student, Undergrad, Staff, Other. '
-              'Use "" for a missing email.\n\nPAGE:\n' + text[:60000])
-    body = json.dumps({"model": MODEL, "max_tokens": 4096,
+              'Use "" for a missing email. De-duplicate people who appear on more than one page.'
+              '\n\nPAGE:\n' + text[:120000])
+    body = json.dumps({"model": MODEL, "max_tokens": 8000,
                        "messages": [{"role": "user", "content": prompt}]}).encode()
     req = urllib.request.Request("https://api.anthropic.com/v1/messages", data=body, headers={
         "x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json"})
@@ -85,9 +114,9 @@ def main():
     url = os.environ["PEOPLE_URL"]; resp = os.environ.get("PEOPLE_RESPONSE_URL", "")
     try:
         text = page_text(url)
-        if "Access Denied" in text[:400] or "don't have permission to access" in text[:600]:
+        if text == "__BLOCKED__":
             raise RuntimeError("the site blocked our server's IP (Akamai/WAF — common on *.harvard.edu). "
-                               "Set a SCRAPER_API_KEY (free ScraperAPI) to fetch via a residential IP.")
+                               "Set SCRAPFLY_KEY (free, no CC) or SCRAPER_API_KEY to fetch via a residential IP.")
         if len(text) < 40:
             raise RuntimeError("page had no readable text")
         people = extract(text)
