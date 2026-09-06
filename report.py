@@ -1106,8 +1106,26 @@ def _normalize_json(s):
     except Exception:
         return None
 
+def _item_date(item_xml):
+    """A feed item's publish date (RSS pubDate / Atom published|updated / dc:date) -> date."""
+    m = re.search(r"(?is)<(?:pubDate|published|updated|dc:date)[^>]*>(.*?)</", item_xml)
+    if not m:
+        return None
+    s = clean(m.group(1))
+    try:
+        return datetime.datetime.fromisoformat(s.replace("Z", "+00:00")).date()
+    except Exception:
+        pass
+    try:
+        import email.utils
+        dt = email.utils.parsedate_to_datetime(s)
+        return dt.date() if dt else None
+    except Exception:
+        return None
+
 def _feed_text(s):
-    """RSS/Atom/sitemap -> one line per item (title + link), so NEW items diff cleanly."""
+    """RSS/Atom/sitemap -> one line per item ([date] title + link), so NEW items diff cleanly
+    and each line carries its publish date for recency filtering."""
     if not re.search(r"<(rss|feed|rdf:RDF|urlset|sitemapindex)\b", s[:3000], re.I):
         return None
     out = []
@@ -1117,7 +1135,11 @@ def _feed_text(s):
               or re.search(r'(?is)<link[^>]+href=["\']([^"\']+)', it)
         t = clean(title.group(1)) if title else ""
         l = clean(loc.group(1)) if loc else ""
-        if t or l: out.append(f"• {t} {l}".strip())
+        if not (t or l):
+            continue
+        d = _item_date(it)
+        line = f"• {t} {l}".strip()
+        out.append((f"[{d.isoformat()}] " + line) if d else line)
     return "\n".join(out) if out else None
 
 def _page_text(h):
@@ -1289,16 +1311,45 @@ def _deliver(entry, blocks, text):
     slack_post(blocks, text)
     return "webhook"
 
+def _recent_days():
+    try: return int(os.environ.get("WATCH_RECENT_DAYS", "1"))
+    except Exception: return 1
+
+def _line_date(line):
+    """Publish date embedded in a diff line: a [YYYY-MM-DD] tag, an /article/Y/M/D/ URL,
+    or a bare ISO date. Returns a date or None (undated)."""
+    m = (re.search(r"\[(\d{4})-(\d{1,2})-(\d{1,2})\]", line)
+         or re.search(r"/article/(\d{4})/(\d{1,2})/(\d{1,2})/", line)
+         or re.search(r"\b(\d{4})-(\d{2})-(\d{2})\b", line))
+    if not m:
+        return None
+    try: return datetime.date(int(m.group(1)), int(m.group(2)), int(m.group(3)))
+    except Exception: return None
+
+def _recent_lines(lines, days):
+    """Keep lines that are undated OR dated within the last `days`; drop old-dated ones
+    (an article that merely reordered/resurfaced in a list). days<=0 disables the filter."""
+    if days <= 0:
+        return list(lines)
+    cutoff = now_date() - datetime.timedelta(days=days)
+    return [l for l in lines if (_line_date(l) is None or _line_date(l) >= cutoff)]
+
 def _watch_alert(entry, diff):
+    # Only surface RECENT changes: drop diff lines referencing an old date (an article that
+    # just reordered into a list). If the whole change was old-dated churn, don't alert at all.
+    kept = _recent_lines(diff, _recent_days())
+    if not any(l[:1] in "+-" for l in kept):
+        return None
     # keyword alerts (/alert): the watched page is a Google-News RSS feed, so a "change"
     # is new matching articles — show just the new (added) headlines, framed as an alert.
     if entry.get("alert"):
         q = entry["alert"]
-        added = [l[1:].strip() for l in diff if l.startswith("+") and l[1:].strip()][:12]
+        added = [l[1:].strip() for l in kept if l.startswith("+") and l[1:].strip()][:12]
         body = "\n".join(added) or "(new activity — open the search to see)"
         blocks = [{"type": "section", "text": {"type": "mrkdwn", "text": f"🔔 *New results for* `{q}`"}},
                   {"type": "section", "text": {"type": "mrkdwn", "text": body[:2800]}}]
         return _deliver(entry, blocks, f"New results for {q}")
+    diff = kept
     label = entry.get("label") or entry["url"]
     meta = []
     if entry.get("css"): meta.append(f"`{entry['css']}`")
@@ -1447,7 +1498,12 @@ def watch():
                 print(f"change on {url} didn't match trigger — accepting silently")
                 _watch_log(f"{nowiso}  NOTRIGGER {url}  (change didn't match trigger)")
                 snaps[key] = {"hash": h, "text": text[:40000], "last": nowiso}; continue
-            status = _watch_alert(entry, diff); changed += 1
+            status = _watch_alert(entry, diff)
+            if status is None:   # the only changes were old-dated items resurfacing — don't alert
+                print(f"stale-only change on {url} — not alerting")
+                _watch_log(f"{nowiso}  STALE    {url}  (only items older than WATCH_RECENT_DAYS changed)")
+                snaps[key] = {"hash": h, "text": text[:40000], "last": nowiso}; continue
+            changed += 1
             _watch_log(f"{nowiso}  CHANGED  {url}  by={entry.get('added_by','?')}  "
                        f"ch={entry.get('channel_name', entry.get('channel','?'))}  via={status}")
         elif not prev:
