@@ -256,3 +256,5 @@ Call log
 2026-09-06T02:25:12.291352+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
 2026-09-06T03:29:24.907177+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
 2026-09-06T04:12:57.506839+00:00  ERROR    https://www.courtlistener.com/docket/72090192/president-and-fellows-of-harvard-college-v-us-department-of-health-and/?order_by=desc  HTTP Error 502: Bad Gateway
+2026-09-06T04:31:23.030253+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-09-06T04:41:45.222713+00:00  BLOCKED  https://titleix.college.harvard.edu/resources
