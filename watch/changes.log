@@ -276,3 +276,13 @@ Call log
 2026-09-06T11:16:57.224263+00:00  STALE    https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  (only items older than WATCH_RECENT_DAYS changed)
 2026-09-06T11:47:25.704743+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
 2026-09-06T12:17:07.562376+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-09-06T12:34:42.940491+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-09-06T12:44:47.469649+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-culture-community
+2026-09-06T12:44:47.469649+00:00  ERROR    https://forklightning.substack.com/  headless render failed: Page.goto: Timeout 35000ms exceeded.
+Call log:
+  - navigating to "
+2026-09-06T12:44:47.469649+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-09-06T12:44:47.469649+00:00  BLOCKED  https://titleix.college.harvard.edu/resources
+2026-09-06T12:50:28.691793+00:00  CHANGED  https://www.hks.harvard.edu  by=jen.phan  ch=directmessage  via=DM->jen.phan
+2026-09-06T12:50:28.691793+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-09-06T12:55:31.352882+00:00  BLOCKED  https://www.hupd.harvard.edu/campus-hazing-transparency-report
