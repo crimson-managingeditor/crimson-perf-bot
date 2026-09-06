@@ -391,5 +391,14 @@
     "added_by": "dhruv.patel",
     "added_by_id": "U0ADPHTCCMQ",
     "interval": 60
+  },
+  {
+    "url": "https://news.google.com/rss/search?q=Harvard%20Management%20Company&hl=en-US&gl=US&ceid=US:en",
+    "alert": "Harvard Management Company",
+    "channel": "D0ADUS7DQVA",
+    "channel_name": "directmessage",
+    "added_by": "megan.blonigen",
+    "added_by_id": "U0AD9QLRK0F",
+    "interval": 30
   }
 ]
