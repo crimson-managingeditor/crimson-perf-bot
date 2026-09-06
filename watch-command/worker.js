@@ -129,7 +129,7 @@ async function peopleCmd(env, c) {
     body: JSON.stringify({ ref: "main", inputs: { url, response_url: c.responseUrl || "" } }),
   });
   if (!r.ok) return { text: `Couldn't start the extractor (${r.status}). Needs the GitHub token's Actions:write scope.` };
-  return { text: `🔎 Extracting people from <${url}>… (headless render + AI, ~1–2 min) — I'll post the list here.` };
+  return { text: `🔎 Extracting people from <${url}>… I'll post the list here.` };
 }
 
 // --- /jobs : search current Harvard postings (SmartRecruiters public API) ---
