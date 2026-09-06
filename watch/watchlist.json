@@ -499,5 +499,14 @@
     "added_by": "megan.blonigen",
     "added_by_id": "U0AD9QLRK0F",
     "interval": 30
+  },
+  {
+    "url": "https://news.google.com/rss/search?q=Mary%20Erdoes&hl=en-US&gl=US&ceid=US:en",
+    "alert": "Mary Erdoes",
+    "channel": "D0ADUS7DQVA",
+    "channel_name": "directmessage",
+    "added_by": "megan.blonigen",
+    "added_by_id": "U0AD9QLRK0F",
+    "interval": 30
   }
 ]
