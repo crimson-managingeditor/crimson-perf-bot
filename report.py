@@ -1106,26 +1106,30 @@ def _normalize_json(s):
     except Exception:
         return None
 
-def _item_date(item_xml):
-    """A feed item's publish date (RSS pubDate / Atom published|updated / dc:date) -> date."""
+def _item_dt(item_xml):
+    """A feed item's publish TIME (RSS pubDate / Atom published|updated / dc:date) as a
+    timezone-aware datetime — so we can flag an item the minute it's published, not a day
+    later. Returns a datetime (UTC-normalized) or None."""
     m = re.search(r"(?is)<(?:pubDate|published|updated|dc:date)[^>]*>(.*?)</", item_xml)
     if not m:
         return None
     s = clean(m.group(1))
+    dt = None
     try:
-        return datetime.datetime.fromisoformat(s.replace("Z", "+00:00")).date()
+        dt = datetime.datetime.fromisoformat(s.replace("Z", "+00:00"))
     except Exception:
-        pass
-    try:
-        import email.utils
-        dt = email.utils.parsedate_to_datetime(s)
-        return dt.date() if dt else None
-    except Exception:
-        return None
+        try:
+            import email.utils
+            dt = email.utils.parsedate_to_datetime(s)
+        except Exception:
+            dt = None
+    if dt is not None and dt.tzinfo is None:
+        dt = dt.replace(tzinfo=datetime.timezone.utc)
+    return dt
 
 def _feed_text(s):
-    """RSS/Atom/sitemap -> one line per item ([date] title + link), so NEW items diff cleanly
-    and each line carries its publish date for recency filtering."""
+    """RSS/Atom/sitemap -> one line per item ([timestamp] title + link), so NEW items diff
+    cleanly and each line carries its publish TIME for real-time recency filtering."""
     if not re.search(r"<(rss|feed|rdf:RDF|urlset|sitemapindex)\b", s[:3000], re.I):
         return None
     out = []
@@ -1137,9 +1141,11 @@ def _feed_text(s):
         l = clean(loc.group(1)) if loc else ""
         if not (t or l):
             continue
-        d = _item_date(it)
+        dt = _item_dt(it)
         line = f"• {t} {l}".strip()
-        out.append((f"[{d.isoformat()}] " + line) if d else line)
+        # tag with the full ISO timestamp (kept in the snapshot for stable diffs + filtering);
+        # it's prettified out of the alert the user actually sees.
+        out.append((f"[{dt.isoformat()}] " + line) if dt else line)
     return "\n".join(out) if out else None
 
 def _page_text(h):
@@ -1311,14 +1317,30 @@ def _deliver(entry, blocks, text):
     slack_post(blocks, text)
     return "webhook"
 
-def _recent_days():
-    try: return int(os.environ.get("WATCH_RECENT_DAYS", "1"))
-    except Exception: return 1
+def _recent_hours():
+    """How fresh a publish must be to alert. Feeds carry a real timestamp, so this is the
+    window (in hours) since publish — small enough to mean 'just published', big enough to
+    cover a slow watch's cadence + feed-index lag. <0 disables the filter."""
+    try: return float(os.environ.get("WATCH_RECENT_HOURS", "6"))
+    except Exception: return 6.0
+
+def _line_dt(line):
+    """Publish TIMESTAMP embedded in a diff line: a full [ISO8601] tag from a feed item.
+    Returns a tz-aware datetime or None (no timestamp on this line)."""
+    m = re.search(r"\[(\d{4}-\d{2}-\d{2}T[0-9:.+\-]+)\]", line)
+    if not m:
+        return None
+    try:
+        dt = datetime.datetime.fromisoformat(m.group(1))
+        return dt if dt.tzinfo else dt.replace(tzinfo=datetime.timezone.utc)
+    except Exception:
+        return None
 
 def _line_date(line):
-    """Publish date embedded in a diff line: a [YYYY-MM-DD] tag, an /article/Y/M/D/ URL,
-    or a bare ISO date. Returns a date or None (undated)."""
-    m = (re.search(r"\[(\d{4})-(\d{1,2})-(\d{1,2})\]", line)
+    """Publish DATE embedded in a diff line: the [YYYY-MM-DD...] tag, an /article/Y/M/D/ URL,
+    or a bare ISO date. The finest granularity for date-only content (HTML article lists carry
+    no publish time). Returns a date or None (undated)."""
+    m = (re.search(r"\[(\d{4})-(\d{1,2})-(\d{1,2})", line)
          or re.search(r"/article/(\d{4})/(\d{1,2})/(\d{1,2})/", line)
          or re.search(r"\b(\d{4})-(\d{2})-(\d{2})\b", line))
     if not m:
@@ -1326,18 +1348,47 @@ def _line_date(line):
     try: return datetime.date(int(m.group(1)), int(m.group(2)), int(m.group(3)))
     except Exception: return None
 
-def _recent_lines(lines, days):
-    """Keep lines that are undated OR dated within the last `days`; drop old-dated ones
-    (an article that merely reordered/resurfaced in a list). days<=0 disables the filter."""
-    if days <= 0:
+def _recent_lines(lines):
+    """Keep only lines that are freshly published, so a watch pings the minute something
+    posts — not a day later. A line with a real timestamp must be within WATCH_RECENT_HOURS
+    of now; a date-only line (HTML lists) must be dated today; an undated line is kept (we
+    can't tell, so a genuine change still alerts)."""
+    hrs = _recent_hours()
+    if hrs < 0:
         return list(lines)
-    cutoff = now_date() - datetime.timedelta(days=days)
-    return [l for l in lines if (_line_date(l) is None or _line_date(l) >= cutoff)]
+    now = datetime.datetime.now(datetime.timezone.utc)
+    today = now_date()
+    out = []
+    for l in lines:
+        dt = _line_dt(l)
+        if dt is not None:                                  # timestamped feed item
+            if (now - dt).total_seconds() <= hrs * 3600:    # published within the window
+                out.append(l)
+            continue
+        d = _line_date(l)
+        if d is None or d >= today:                         # undated -> keep; date-only -> today
+            out.append(l)
+    return out
+
+def _pretty_line(line):
+    """Turn the machine timestamp tag ([2026-09-06T14:23:00+00:00]) into a compact, human
+    [Sep 6 14:23Z] for the alert the user reads (diff marker preserved)."""
+    m = re.match(r"^([+\-])?\[(\d{4}-\d{2}-\d{2}T[0-9:.+\-]+)\]\s*(.*)$", line)
+    if not m:
+        return line
+    sign = m.group(1) or ""
+    try:
+        dt = datetime.datetime.fromisoformat(m.group(2)).astimezone(datetime.timezone.utc)
+        tag = dt.strftime("[%b %d %H:%MZ]").replace(" 0", " ")
+    except Exception:
+        tag = ""
+    return f"{sign}{tag} {m.group(3)}".strip()
 
 def _watch_alert(entry, diff):
-    # Only surface RECENT changes: drop diff lines referencing an old date (an article that
-    # just reordered into a list). If the whole change was old-dated churn, don't alert at all.
-    kept = _recent_lines(diff, _recent_days())
+    # Only surface JUST-PUBLISHED changes: keep diff lines whose publish time is fresh and
+    # drop anything old (an article that merely reordered into a list). If nothing fresh
+    # changed, don't alert at all.
+    kept = [_pretty_line(l) for l in _recent_lines(diff)]
     if not any(l[:1] in "+-" for l in kept):
         return None
     # keyword alerts (/alert): the watched page is a Google-News RSS feed, so a "change"
@@ -1499,9 +1550,9 @@ def watch():
                 _watch_log(f"{nowiso}  NOTRIGGER {url}  (change didn't match trigger)")
                 snaps[key] = {"hash": h, "text": text[:40000], "last": nowiso}; continue
             status = _watch_alert(entry, diff)
-            if status is None:   # the only changes were old-dated items resurfacing — don't alert
+            if status is None:   # the only changes were older items resurfacing — don't alert
                 print(f"stale-only change on {url} — not alerting")
-                _watch_log(f"{nowiso}  STALE    {url}  (only items older than WATCH_RECENT_DAYS changed)")
+                _watch_log(f"{nowiso}  STALE    {url}  (no just-published item; only older items resurfaced)")
                 snaps[key] = {"hash": h, "text": text[:40000], "last": nowiso}; continue
             changed += 1
             _watch_log(f"{nowiso}  CHANGED  {url}  by={entry.get('added_by','?')}  "
