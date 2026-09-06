@@ -1059,19 +1059,45 @@ def _needs_browser(res):
         return len(payload) < 1500 and bool(_BLOCKED.search(payload))
     return False
 
+def _fetch_scrapfly(url):
+    """Fetch via Scrapfly's residential-IP + anti-bot renderer (SCRAPFLY_KEY). This is what
+    gets past Akamai on *.harvard.edu / *.gov and other bot-walls that block datacenter IPs
+    even with a local headless browser. Returns ('text', html) or None (no key / failure)."""
+    key = os.environ.get("SCRAPFLY_KEY")
+    if not key:
+        return None
+    api = "https://api.scrapfly.io/scrape?" + urllib.parse.urlencode(
+        {"key": key, "url": url, "render_js": "true", "asp": "true", "country": "us"})
+    try:
+        kind, payload = _fetch(api, timeout=120)
+        if kind == "text":
+            content = json.loads(payload).get("result", {}).get("content", "")
+            if content:
+                return ("text", content)
+    except Exception as e:
+        print(f"scrapfly failed for {url}: {e}")
+    return None
+
+def _try_rendered(url):
+    try: return _fetch_rendered(url)
+    except Exception as e: return ("error", f"headless render failed: {e}")
+
+def _beat_botwall(url):
+    """Get a bot-walled/JS page: Scrapfly (residential, beats Akamai) first, else local render."""
+    return _fetch_scrapfly(url) or _try_rendered(url)
+
 def _fetch_for_watch(url, render):
     """Fetch a URL the way the watcher does: rendered if flagged, else a plain fetch with a
-    headless-browser fallback when the plain fetch is bot-walled (403 etc.). Returns
-    (kind, payload); never raises. NOT thread-safe (may drive Playwright) — call it
-    sequentially, e.g. from the stability re-check, not inside the fetch threadpool."""
+    bot-wall fallback (Scrapfly, else headless browser) when the plain fetch is blocked (403
+    etc.). Returns (kind, payload); never raises. NOT thread-safe (may drive Playwright) —
+    call it sequentially, e.g. from the stability re-check, not inside the fetch threadpool."""
     if render:
-        try: return _fetch_rendered(url)
-        except Exception as e: return ("error", f"render failed: {e}")
+        return _beat_botwall(url)
     try: res = _fetch(_fetch_target(url))
     except Exception as e: res = ("error", str(e))
     if _needs_browser(res):
-        try: return _fetch_rendered(url)
-        except Exception as e: return ("error", f"blocked (bot-wall) + headless render failed: {e}")
+        got = _beat_botwall(url)
+        return got if got and got[0] == "text" else res
     return res
 
 def _normalize_json(s):
@@ -1354,15 +1380,13 @@ def watch():
     workers = int(os.environ.get("WATCH_WORKERS", "20"))
     with cf.ThreadPoolExecutor(max_workers=workers) as ex:
         raw = dict(ex.map(fetch_one, plain_urls))
-    # Sites behind bot-walls (Akamai etc.) 403 a plain fetch but load in a real browser —
-    # retry those with headless Chromium. Capped so a bad batch can't blow the run's budget.
+    # Sites behind bot-walls (Akamai on *.harvard.edu/*.gov, Substack, etc.) 403 a plain fetch
+    # AND block a datacenter headless browser — so retry those through Scrapfly's residential
+    # renderer (SCRAPFLY_KEY), falling back to local headless. Capped to protect the run budget.
     cap = int(os.environ.get("RENDER_MAX", "12"))
     retry = [u for u in plain_urls if u not in render_urls and _needs_browser(raw.get(u))][:cap]
     for u in list(render_urls) + retry:   # sequential — Playwright sync isn't thread-safe
-        try: raw[u] = _fetch_rendered(u)
-        except Exception as e:
-            if u in retry: raw[u] = ("error", f"blocked (bot-wall) + headless render failed: {e}")
-            else: raw[u] = ("error", f"render failed: {e}")
+        raw[u] = _beat_botwall(u)
 
     changed = 0
     recheck = {}   # (url, render) -> re-fetched raw, so N subscribers to one URL don't each re-fetch

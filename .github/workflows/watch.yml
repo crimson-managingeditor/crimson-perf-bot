@@ -43,6 +43,7 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_BOT_TOKEN:   ${{ secrets.SLACK_BOT_TOKEN }}
+          SCRAPFLY_KEY:      ${{ secrets.SCRAPFLY_KEY }}   # residential fetch for Akamai-blocked watches
           WATCHLIST_FILE:    ${{ runner.temp }}/watchlist.json
           STATE_FILE:        watch/.state/snapshots.json
           WATCH_LOG:         watch/changes.log

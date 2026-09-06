@@ -194,8 +194,11 @@ async function caseWatchCmd(env, op, c) {
 
 // --- /case : reporters search federal + state court dockets (CourtListener) ---
 async function caseCmd(env, c) {
-  const q = (c.text || "").trim();
-  if (!q) return { text: "Usage: `/case <search>` — searches federal & state court dockets. e.g. `/case harvard admissions`" };
+  const raw = (c.text || "").trim();
+  if (!raw) return { text: "Usage: `/case <party or case name>` — finds dockets where that's a *party*, not any doc mentioning it. e.g. `/case harvard`, `/case students for fair admissions`. Add `text:` to full-text search instead (e.g. `/case text:harvard endowment`)." };
+  // Precise by default: match the case NAME (parties), so `/case harvard` = Harvard-is-a-party,
+  // not the 53k dockets that merely mention "harvard". Power users can pass their own field query.
+  const q = /\b(caseName|text|docketNumber|court|party):/i.test(raw) ? raw : `caseName:(${raw})`;
   const headers = { "User-Agent": "crimson-watch", "Accept": "application/json" };
   if (env.COURTLISTENER_TOKEN) headers["Authorization"] = "Token " + env.COURTLISTENER_TOKEN;
   const u = `https://www.courtlistener.com/api/rest/v4/search/?q=${encodeURIComponent(q)}`
@@ -203,14 +206,14 @@ async function caseCmd(env, c) {
   const r = await fetch(u, { headers });
   if (!r.ok) return { text: `CourtListener returned ${r.status}.` };
   const d = await r.json();
-  const res = (d.results || []).slice(0, 6);
-  if (!res.length) return { text: `No dockets found for \`${q}\`.` };
+  const res = (d.results || []).slice(0, 8);
+  if (!res.length) return { text: `No dockets with \`${raw}\` in the case name. Try \`/case text:${raw}\` to full-text search instead.` };
   const lines = res.map(x => {
     const url = x.docket_absolute_url ? "https://www.courtlistener.com" + x.docket_absolute_url : "";
     return `• <${url}|${(x.caseName || "(case)").slice(0, 80)}> — ${x.court_id || x.court || ""}, filed ${x.dateFiled || "?"}`;
   });
-  return { text: `*${d.count} dockets match \`${q}\`* (newest first):\n` + lines.join("\n")
-    + "\n_Use `/casewatch <docket url>` to get pinged on new filings (coming next)._" };
+  return { text: `*${d.count} case(s) named \`${raw}\`* (newest first):\n` + lines.join("\n")
+    + "\n_`/casewatch <docket url>` to get pinged on new filings._" };
 }
 
 // --- /alert : reporters drop keywords; new Google-News matches ping this channel ---
