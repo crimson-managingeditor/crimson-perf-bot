@@ -1396,9 +1396,10 @@ def _watch_alert(entry, diff):
     if entry.get("alert"):
         q = entry["alert"]
         added = [l[1:].strip() for l in kept if l.startswith("+") and l[1:].strip()][:12]
-        body = "\n".join(added) or "(new activity — open the search to see)"
+        if not added:   # only a removal/reorder in the feed — not a new result. Stay silent.
+            return None
         blocks = [{"type": "section", "text": {"type": "mrkdwn", "text": f"🔔 *New results for* `{q}`"}},
-                  {"type": "section", "text": {"type": "mrkdwn", "text": body[:2800]}}]
+                  {"type": "section", "text": {"type": "mrkdwn", "text": "\n".join(added)[:2800]}}]
         return _deliver(entry, blocks, f"New results for {q}")
     diff = kept
     label = entry.get("label") or entry["url"]
