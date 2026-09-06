@@ -520,7 +520,16 @@
   },
   {
     "url": "https://news.google.com/rss/search?q=*Mart%C3%ADn%20Escobari*&hl=en-US&gl=US&ceid=US:en",
-    "alert": "*Martín Escobari*",
+    "alert": "*MartÃ­n Escobari*",
+    "channel": "D0ADUS7DQVA",
+    "channel_name": "directmessage",
+    "added_by": "megan.blonigen",
+    "added_by_id": "U0AD9QLRK0F",
+    "interval": 30
+  },
+  {
+    "url": "https://news.google.com/rss/search?q=*Ritu%20Kalra*&hl=en-US&gl=US&ceid=US:en",
+    "alert": "*Ritu Kalra*",
     "channel": "D0ADUS7DQVA",
     "channel_name": "directmessage",
     "added_by": "megan.blonigen",
