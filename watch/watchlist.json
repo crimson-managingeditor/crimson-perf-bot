@@ -374,5 +374,14 @@
     "added_by": "sebastian.connolly",
     "added_by_id": "U0ADR7TE29Y",
     "interval": 5
+  },
+  {
+    "url": "https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en",
+    "alert": "harvard",
+    "channel": "D0AEHSCD27J",
+    "channel_name": "directmessage",
+    "added_by": "dhruv.patel",
+    "added_by_id": "U0ADPHTCCMQ",
+    "interval": 30
   }
 ]
