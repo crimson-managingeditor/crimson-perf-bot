@@ -247,3 +247,9 @@ Call log
 2026-09-05T23:41:30.240328+00:00  BLOCKED  https://www.hupd.harvard.edu/campus-hazing-transparency-report
 2026-09-06T00:31:24.532125+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
 2026-09-06T00:36:27.439600+00:00  CHANGED  https://www.hks.harvard.edu  by=jen.phan  ch=directmessage  via=DM->jen.phan
+2026-09-06T01:28:24.096085+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-06T01:33:30.011766+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-09-06T01:33:30.011766+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-06T01:38:34.908359+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-06T01:43:39.070991+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-06T01:48:43.035169+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
