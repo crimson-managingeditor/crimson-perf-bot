@@ -1,0 +1,45 @@
+name: Slack whoami
+
+# Diagnostic: who is SLACK_BOT_TOKEN, and what is it allowed to do?
+#
+# Answers the two questions that come up whenever a feed is pointed at a new
+# channel: what to type after `/invite @`, and whether an invite is needed at
+# all (chat:write.public lets the bot post to any public channel without
+# joining). Prints identity and scopes only -- never the token.
+on:
+  workflow_dispatch: {}
+
+jobs:
+  whoami:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Identify the bot
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.request
+          tok = os.environ.get("SLACK_BOT_TOKEN", "")
+          if not tok:
+              print("SLACK_BOT_TOKEN is not set"); raise SystemExit(1)
+          req = urllib.request.Request("https://slack.com/api/auth.test",
+                headers={"Authorization": "Bearer " + tok})
+          with urllib.request.urlopen(req, timeout=20) as r:
+              scopes = r.headers.get("x-oauth-scopes", "(not reported)")
+              d = json.load(r)
+          if not d.get("ok"):
+              print("auth.test failed:", d.get("error")); raise SystemExit(1)
+          print("workspace :", d.get("team"))
+          print("bot name  :", d.get("user"))          # <- what to type after /invite @
+          print("bot id    :", d.get("bot_id"))
+          print("app id    :", d.get("app_id"))
+          print()
+          print("scopes    :", scopes)
+          have = [s.strip() for s in scopes.split(",")]
+          if "chat:write.public" in have:
+              print("\n=> has chat:write.public: can post to ANY public channel, no invite needed.")
+          elif "chat:write" in have:
+              print("\n=> has chat:write only: must be invited to each channel first.")
+          else:
+              print("\n=> no chat:write scope -- it cannot post anywhere yet.")
+          PY
