@@ -1,11 +1,16 @@
 name: Roster tracker
 
 # Scrapes every Harvard varsity roster daily, diffs vs the committed baseline,
-# posts adds/drops to Slack, and commits the updated rosters.
+# posts adds/drops to #sports-admin, and commits the updated rosters.
 on:
   schedule:
     - cron: "17 12 * * *"     # ~08:17 ET daily
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: "Override the Slack channel (blank = #sports-admin)"
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -20,27 +25,18 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -r requirements.txt
-      - name: Scrape + diff rosters
-        run: python research/rosters.py track > /tmp/roster_changes.txt || true
-      - name: Post changes to Slack
-        if: ${{ env.SLACK_WEBHOOK_URL != '' }}
+
+      # Posting lives in rosters.py now, not in a heredoc here: it's testable
+      # locally (`rosters.py ping`) and it shares courtbot's chat.postMessage
+      # helper. SLACK_WEBHOOK_URL is deliberately NOT passed -- an incoming
+      # webhook only ever posts to the channel it was created for, which is how
+      # roster moves ended up in the analytics feed.
+      - name: Scrape, diff, and post roster changes
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        run: |
-          if [ -s /tmp/roster_changes.txt ]; then
-            python3 - "$SLACK_WEBHOOK_URL" <<'PY'
-          import sys, json, urllib.request
-          hook = sys.argv[1]
-          rows = [l.split("\t") for l in open("/tmp/roster_changes.txt").read().strip().splitlines() if l.strip()]
-          if not rows: sys.exit()
-          body = "*🏟️ Harvard roster changes*\n" + "\n".join(
-              f"{'🟢' if t=='ADDED' else '🔴'} *{s}* — {t.title()}: {n}" for s, t, n in rows)
-          req = urllib.request.Request(hook, data=json.dumps({"text": body}).encode(),
-                                       headers={"Content-Type": "application/json"})
-          urllib.request.urlopen(req, timeout=20)
-          print("posted", len(rows), "roster changes")
-          PY
-          fi
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          ROSTER_SLACK_CHANNEL: ${{ github.event.inputs.channel || '#sports-admin' }}
+        run: python research/rosters.py track
+
       - name: Commit updated rosters
         if: always()
         run: |

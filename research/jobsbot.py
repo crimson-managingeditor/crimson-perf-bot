@@ -3,14 +3,23 @@
 Harvard job postings and pings Slack. (Reporters also get /jobs <keyword> to search and
 /job <url> to watch a single posting page.)
 
-env:   SLACK_WEBHOOK_URL (where the firehose posts)
+env:   SLACK_BOT_TOKEN, JOBS_SLACK_CHANNEL (default #job-postings)
 state: jobs/seen.json — {"ids": [...]}
+
+  python3 jobsbot.py          # poll + alert on new postings
+  python3 jobsbot.py ping     # post a one-line routing test to the jobs channel
 """
 import json, os, urllib.request
 
 API = "https://api.smartrecruiters.com/v1/companies/HarvardUniversity/postings"
 UA = "CrimsonNewsroom/1.0 (dhruv.patel@thecrimson.com)"
 STATE = os.environ.get("JOBS_STATE", "jobs/seen.json")
+
+# Job postings are their own feed, not an analytics report. Deliberately
+# chat.postMessage and not SLACK_WEBHOOK_URL: an incoming webhook is welded to
+# the one channel it was created for, so anything using it lands in analytics
+# no matter what.
+CHANNEL = os.environ.get("JOBS_SLACK_CHANNEL", "#job-postings")
 
 def get(url):
     req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "application/json"})
@@ -36,14 +45,23 @@ def line(p):
     where = ", ".join(x for x in (loc.get("city"), loc.get("region")) if x)
     return f"• <{posting_url(p)}|{(p.get('name') or '')[:72]}> — {where}{(' · ' + dept) if dept else ''}"
 
-def slack(text):
-    hook = os.environ.get("SLACK_WEBHOOK_URL")
-    if not hook:
-        print("(no SLACK_WEBHOOK_URL)"); return
-    req = urllib.request.Request(hook, data=json.dumps({"text": text}).encode(),
-                                 headers={"Content-Type": "application/json"})
-    try: urllib.request.urlopen(req, timeout=20)
-    except Exception as e: print("slack err", e)
+def slack(text, channel=None):
+    """Post to Slack as the bot. Same shape as research/courtbot.py."""
+    tok = os.environ.get("SLACK_BOT_TOKEN")
+    ch = channel or CHANNEL
+    if not tok or not ch:
+        print("(no SLACK_BOT_TOKEN/channel — not posting)"); return False
+    req = urllib.request.Request("https://slack.com/api/chat.postMessage",
+        data=json.dumps({"channel": ch, "text": text, "unfurl_links": False}).encode(),
+        headers={"Authorization": "Bearer " + tok, "Content-Type": "application/json"})
+    try:
+        r = json.load(urllib.request.urlopen(req, timeout=20))
+        if not r.get("ok"):
+            # channel_not_found / not_in_channel both mean: invite the bot to `ch`.
+            print(f"slack error posting to {ch}: {r.get('error')}"); return False
+        print(f"posted to {ch}"); return True
+    except Exception as e:
+        print(f"slack error posting to {ch}: {e}"); return False
 
 def run():
     try: seen = set(json.load(open(STATE)).get("ids", []))
@@ -63,4 +81,9 @@ def run():
     json.dump({"ids": ids}, open(STATE, "w"))
 
 if __name__ == "__main__":
-    run()
+    import sys
+    if len(sys.argv) > 1 and sys.argv[1] == "ping":
+        slack("Jobs firehose routing test — new Harvard postings will post here.",
+              sys.argv[2] if len(sys.argv) > 2 else None)
+    else:
+        run()
