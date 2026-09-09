@@ -1,11 +1,16 @@
 name: Harvard jobs firehose
 
 # Polls the SmartRecruiters public postings API for ALL new Harvard job postings and
-# pings Slack (SLACK_WEBHOOK_URL — point it at your DM or a #jobs channel).
+# posts them to #job-postings.
 on:
   schedule:
     - cron: "31 */3 * * *"     # every 3 hours (postings don't move minute-to-minute)
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: "Override the Slack channel (blank = #job-postings)"
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -18,9 +23,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      # SLACK_WEBHOOK_URL is deliberately NOT passed -- an incoming webhook only
+      # ever posts to the channel it was created for, which is how postings
+      # ended up in the analytics feed.
       - name: Poll Harvard postings + alert on new ones
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          JOBS_SLACK_CHANNEL: ${{ github.event.inputs.channel || '#job-postings' }}
         run: python research/jobsbot.py
       - name: Commit state
         if: always()
