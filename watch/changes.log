@@ -3341,3 +3341,4 @@ Call log:
 2026-09-09T20:34:59.806999+00:00  STALE    https://news.google.com/rss/search?q=HMC%20San%20Francisco&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-09T20:34:59.806999+00:00  FLAPPED  https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en
 2026-09-09T20:34:59.806999+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-09T21:32:01.526621+00:00  CHANGED  https://www.courtlistener.com/docket/72275604/united-states-v-president-and-fellows-of-harvard-college-harvard/?order_by=desc  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
