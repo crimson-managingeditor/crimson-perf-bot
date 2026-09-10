@@ -1,16 +1,8 @@
 [
  {
-  "name": "Sutchie Ofori-Nyako",
+  "name": "Orli  Cooper",
   "jersey": "1",
-  "class": "Sr.",
-  "pos": "Goalie",
-  "hometown": "Palo Alto, Calif.",
-  "highschool": "Castilleja School"
- },
- {
-  "name": "1A Orli  Cooper",
-  "jersey": "1A",
-  "class": "So.",
+  "class": "Jr.",
   "pos": "Goalie",
   "hometown": "Greensboro, NC",
   "highschool": ""
@@ -18,23 +10,23 @@
  {
   "name": "Lucy  Berkman",
   "jersey": "2",
-  "class": "Jr.",
+  "class": "Sr.",
   "pos": "Attacker",
   "hometown": "Orinda, Calif.",
   "highschool": "Miramonte High School"
  },
  {
-  "name": "Heidi Heffelfinger",
+  "name": "Lucy  Levenberg-Penklis",
   "jersey": "3",
-  "class": "Sr.",
+  "class": "So.",
   "pos": "Utility",
-  "hometown": "Lafayette, Calif.",
-  "highschool": "Acalanes"
+  "hometown": "Sydney, Australia",
+  "highschool": "Meriden School"
  },
  {
   "name": "Beatrice  Hearey",
   "jersey": "4",
-  "class": "Fy",
+  "class": "So.",
   "pos": "Attacker",
   "hometown": "Orinda, Calif",
   "highschool": "Miramonte High School"
@@ -42,7 +34,7 @@
  {
   "name": "Serafina  Cortez",
   "jersey": "5",
-  "class": "Jr.",
+  "class": "Sr.",
   "pos": "Attacker",
   "hometown": "Redwood City, Calif.",
   "highschool": "Castilleja School"
@@ -50,23 +42,31 @@
  {
   "name": "Sofia Wang",
   "jersey": "6",
-  "class": "Fy",
+  "class": "So.",
   "pos": "Utility",
   "hometown": "Greenwich, Conn.",
   "highschool": "Greenwich High School"
  },
  {
-  "name": "Ella Schneider",
+  "name": "Eloise Kytle",
   "jersey": "7",
-  "class": "Sr.",
+  "class": "Fy",
+  "pos": "Defender",
+  "hometown": "Fresno, Calif.",
+  "highschool": "Edison"
+ },
+ {
+  "name": "Sierra Verma",
+  "jersey": "8",
+  "class": "Fy",
   "pos": "Utility",
-  "hometown": "San Clemente, Calif.",
-  "highschool": "Santa Margarita Catholic"
+  "hometown": "Los Altos Hills, Calif.",
+  "highschool": "Castilleja School"
  },
  {
   "name": "Maya  O'Dea",
   "jersey": "9",
-  "class": "Jr.",
+  "class": "Sr.",
   "pos": "Attacker",
   "hometown": "Long Beach, Calif.",
   "highschool": "Woodrow Wilson High School"
@@ -74,7 +74,7 @@
  {
   "name": "Lily Britt",
   "jersey": "10",
-  "class": "Jr.",
+  "class": "Sr.",
   "pos": "Attacker",
   "hometown": "Newport Beach, Calif.",
   "highschool": "Corona del Mar High School"
@@ -82,7 +82,7 @@
  {
   "name": "Petra  Klemm",
   "jersey": "11",
-  "class": "Fy",
+  "class": "So.",
   "pos": "Center",
   "hometown": "Budapest, Hungary",
   "highschool": "ELTE Apáczai Csere János Gyakorló Gimnázium és Kollégium"
@@ -90,7 +90,7 @@
  {
   "name": "Sofia  Del Villar",
   "jersey": "12",
-  "class": "So.",
+  "class": "Jr.",
   "pos": "Attacker",
   "hometown": "Newport Beach, Calif.",
   "highschool": "Newport Harbor High School"
@@ -98,23 +98,39 @@
  {
   "name": "Emma Gilbert",
   "jersey": "13",
-  "class": "Jr.",
+  "class": "Sr.",
   "pos": "Center",
   "hometown": "Santa Barbara, Calif.",
   "highschool": "Dos Pueblos High School"
  },
  {
-  "name": "Lucy  Levenberg-Penklis",
+  "name": "Bethany King",
   "jersey": "15",
   "class": "Fy",
   "pos": "Utility",
-  "hometown": "Sydney, Australia",
-  "highschool": "Meriden School"
+  "hometown": "Santa Barbara, Calif.",
+  "highschool": "San Marcos"
+ },
+ {
+  "name": "Synnove Robinson",
+  "jersey": "16",
+  "class": "Fy",
+  "pos": "Attacker",
+  "hometown": "Honolulu, Hawai'i",
+  "highschool": "Punahou"
+ },
+ {
+  "name": "Sophie Vickers",
+  "jersey": "17",
+  "class": "Fy",
+  "pos": "Attacker",
+  "hometown": "Cape Town, South Africa",
+  "highschool": "Herschel Girls School"
  },
  {
   "name": "Niki Piovan",
   "jersey": "20",
-  "class": "So.",
+  "class": "Jr.",
   "pos": "Defense",
   "hometown": "Vouliagmeni, Greece",
   "highschool": "HAEF Athens College"
