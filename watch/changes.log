@@ -4897,3 +4897,8 @@ Call log:
 2026-09-11T12:52:34.453383+00:00  STALE    https://news.google.com/rss/search?q=HMC%20San%20Francisco&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-11T12:52:34.453383+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-11T12:52:34.453383+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-11T13:34:30.856812+00:00  CHANGED  https://thecrimson.com  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-09-11T13:34:30.856812+00:00  CHANGED  https://thecrimson.com  by=matteo.diaz  ch=matteo-internal  via=DM->matteo.diaz
+2026-09-11T13:34:30.856812+00:00  CHANGED  https://thecrimson.com  by=matteo.diaz  ch=directmessage  via=DM->matteo.diaz
+2026-09-11T13:34:30.856812+00:00  CHANGED  https://www.thecrimson.com/  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-09-11T13:49:40.346033+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
