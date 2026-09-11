@@ -16,9 +16,25 @@
   "highschool": "Trinity School (N.Y.)"
  },
  {
+  "name": "William Bourell",
+  "jersey": "",
+  "class": "Jr.",
+  "pos": "",
+  "hometown": "Westwood, Mass.",
+  "highschool": "Milton Academy"
+ },
+ {
+  "name": "Noelle Brighton",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Scituate, Mass.",
+  "highschool": "Scituate High School"
+ },
+ {
   "name": "Emily Chamish",
   "jersey": "",
-  "class": "Sr.",
+  "class": "Jr.",
   "pos": "",
   "hometown": "Baltimore, Md.",
   "highschool": "Concordia Prepatory School"
@@ -72,12 +88,36 @@
   "highschool": "Gould Academy"
  },
  {
+  "name": "Victoria Hole",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Weehawken, N.J.",
+  "highschool": "Weehawken High School"
+ },
+ {
+  "name": "Pax Huybers",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Cambridge, Mass.",
+  "highschool": "Cambridge Rindge and Latin"
+ },
+ {
   "name": "Rosella Irfan",
   "jersey": "",
   "class": "Sr.",
   "pos": "",
   "hometown": "Orland Park, Ill.",
   "highschool": "Carl Sandburg High School"
+ },
+ {
+  "name": "Elizabeth Jacobsson",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "New York, N.Y.",
+  "highschool": "Tabor Academy"
  },
  {
   "name": "Antonia Kolb",
@@ -96,12 +136,20 @@
   "highschool": "Huron High School"
  },
  {
-  "name": "Robby Meek",
+  "name": "Louise Martin",
   "jersey": "",
-  "class": "Sr.",
+  "class": "Fy",
   "pos": "",
-  "hometown": "Annapolis, Md.",
-  "highschool": "Severn School"
+  "hometown": "Charleston, S.C.",
+  "highschool": "Academic Magnet High School"
+ },
+ {
+  "name": "Grace Montgomery",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Bangkok, Thailand",
+  "highschool": "NIST International School"
  },
  {
   "name": "Grace Naylor",
@@ -110,6 +158,14 @@
   "pos": "",
   "hometown": "Hull, Mass.",
   "highschool": "Hull High School"
+ },
+ {
+  "name": "Whitney Pickett",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "New York, N.Y.",
+  "highschool": "Phillips Exeter Academy"
  },
  {
   "name": "Jacob Posner",
@@ -125,7 +181,7 @@
   "class": "So.",
   "pos": "",
   "hometown": "Wilton, Conn.",
-  "highschool": ""
+  "highschool": "Wilton High School"
  },
  {
   "name": "Katherine Shin",
@@ -144,12 +200,28 @@
   "highschool": "Cape Elizabeth High School"
  },
  {
+  "name": "Theresa Straw",
+  "jersey": "",
+  "class": "Jr.",
+  "pos": "",
+  "hometown": "Cape Elizabeth, Maine",
+  "highschool": "Cape Elizabeth High School"
+ },
+ {
   "name": "Harrison Strom",
   "jersey": "",
   "class": "Jr.",
   "pos": "",
   "hometown": "San Diego, Calif.",
   "highschool": "Point Loma High School"
+ },
+ {
+  "name": "Erika  Tinmouth",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Belmont, Mass.",
+  "highschool": "Lawrence Academy"
  },
  {
   "name": "Jakob Usandivaras",
@@ -160,12 +232,28 @@
   "highschool": "American School of Asunción"
  },
  {
+  "name": "Ross Wilson",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Boston, Mass.",
+  "highschool": "Boston Latin School"
+ },
+ {
+  "name": "Max Wolfensberger",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Westwood, Mass.",
+  "highschool": "Milton Academy"
+ },
+ {
   "name": "Mizuki Yashiro",
   "jersey": "",
   "class": "Jr.",
   "pos": "",
   "hometown": "Scottsdale, Ariz.",
-  "highschool": ""
+  "highschool": "Scottsdale Preparatory Academy"
  },
  {
   "name": "Hanah Youn",
@@ -187,6 +275,14 @@
   "name": "Amelie Zucker",
   "jersey": "",
   "class": "Jr.",
+  "pos": "",
+  "hometown": "St. John, U.S. Virgin Islands",
+  "highschool": "Peter Gruber International Academy"
+ },
+ {
+  "name": "Zia Zucker",
+  "jersey": "",
+  "class": "Fy",
   "pos": "",
   "hometown": "St. John, U.S. Virgin Islands",
   "highschool": "Peter Gruber International Academy"
