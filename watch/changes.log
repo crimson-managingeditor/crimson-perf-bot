@@ -5995,3 +5995,6 @@ Call log:
 2026-09-12T20:06:57.637651+00:00  STALE    https://news.google.com/rss/search?q=HMC%20San%20Francisco&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-12T20:06:57.637651+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-12T20:06:57.637651+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-12T20:48:29.645900+00:00  BLOCKED  https://www.hupd.harvard.edu/campus-hazing-transparency-report
+2026-09-12T20:58:34.228399+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-09-12T20:58:34.228399+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
