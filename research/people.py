@@ -25,7 +25,8 @@ def fetch_html(url):
     sf, sa = os.environ.get("SCRAPFLY_KEY"), os.environ.get("SCRAPER_API_KEY")
     if sf:
         api = "https://api.scrapfly.io/scrape?" + urllib.parse.urlencode(
-            {"key": sf, "url": url, "render_js": "true", "asp": "true", "country": "us"})
+            {"key": sf, "url": url, "render_js": "true", "asp": "true", "country": "us",
+             "auto_scroll": "true"})   # pulls lazy/infinite-scroll members into the DOM
         try:
             kind, payload = report._fetch(api, timeout=120)
             if kind == "text":
@@ -42,26 +43,117 @@ def fetch_html(url):
         except Exception as e:
             print(f"[debug] scraperapi failed ({e})")
     try:
-        kind, payload = report._fetch_rendered(url)
+        return render_exhaustive(url)
     except Exception as e:
         print(f"[debug] local render failed ({e}); plain fetch")
         kind, payload = report._fetch(report._fetch_target(url))
     return payload if kind == "text" else ""
 
+
+# Controls that reveal more of a directory in place, rather than linking to a page 2.
+_MORE_JS = r"""() => {
+  const re = /\b(load|show|view|see)\s+(more|all)\b|\bmore\s+(results|people|members|staff)\b/i;
+  const els = [...document.querySelectorAll(
+    'button, a, [role=button], input[type=button], input[type=submit]')];
+  for (const el of els) {
+    const label = (el.innerText || el.value || el.getAttribute('aria-label') || '').trim();
+    if (!re.test(label)) continue;
+    if (el.disabled || el.getAttribute('aria-disabled') === 'true') continue;
+    const r = el.getBoundingClientRect();
+    const st = getComputedStyle(el);
+    if (!r.width || !r.height || st.visibility === 'hidden' || st.display === 'none') continue;
+    el.scrollIntoView({block: 'center'});
+    el.click();
+    return label.slice(0, 40);
+  }
+  return null;
+}"""
+
+def render_exhaustive(url, timeout=35, max_rounds=40, budget_s=150):
+    """Render a page AND exhaust its in-place pagination.
+
+    Plenty of people directories never link to a page 2 -- they ship one batch and a
+    "Load More" button, or load on scroll. report._fetch_rendered() returns the first
+    batch and nothing detects that more exists, which is why a 200-person directory
+    came back as "fetched 1 page(s)" with a couple of dozen names.
+
+    So: click any visible load-more control, fall back to scrolling for infinite lists,
+    and stop when a round adds no new text (or we hit the round/time budget).
+    """
+    from playwright.sync_api import sync_playwright
+    import time
+    start = time.time()
+    rounds, clicks, last_len = 0, 0, 0
+    with sync_playwright() as pw:
+        browser = pw.chromium.launch(args=["--no-sandbox", "--disable-dev-shm-usage"])
+        try:
+            page = browser.new_page(user_agent=report._UA)
+            page.set_default_timeout(timeout * 1000)
+            page.goto(url, wait_until="networkidle")
+            while rounds < max_rounds and time.time() - start < budget_s:
+                label = page.evaluate(_MORE_JS)
+                if label:
+                    clicks += 1
+                else:
+                    page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+                page.wait_for_timeout(1200)
+                try:
+                    page.wait_for_load_state("networkidle", timeout=8000)
+                except Exception:
+                    pass
+                cur = page.evaluate("document.body.innerText.length")
+                if cur <= last_len:
+                    break                      # nothing new appeared -- the list is complete
+                last_len = cur
+                rounds += 1
+            html = page.content()
+        finally:
+            browser.close()
+    print(f"[debug] expanded in place: {clicks} load-more click(s), "
+          f"{rounds} round(s), {last_len:,} chars")
+    return html
+
+# /page/2/, ?page=2, ?paged=2, ?pg=2 — the usual numbered-pagination shapes.
+PAGE_NUM_RE = re.compile(r"(?i)(?:/page/|[?&](?:page|paged|pg)=)(\d+)")
+
+def _page_num(u):
+    m = PAGE_NUM_RE.search(u or "")
+    return int(m.group(1)) if m else 1
+
 def next_page_url(page_html, base):
-    """Find a 'next page' link (rel=next, or a link labelled Next) — agnostic across CMSs."""
+    """Find the next page of a directory, across the shapes CMSs actually use:
+    rel=next (anchor or <link>), a control labelled/classed 'next', or numbered
+    pagination where only 1 2 3 … are rendered and there is no 'next' at all."""
     def resolve(h): return urllib.parse.urljoin(base, h.replace("&amp;", "&").strip())
-    m = re.search(r'<a\b[^>]*\brel=["\']?next\b[^>]*>', page_html, re.I)
-    if m:
-        h = re.search(r'href=["\']([^"\']+)', m.group(0))
-        if h: return resolve(h.group(1))
+
+    # 1. rel=next, on an <a> or on a <link> in the head
+    for tag in ("a", "link"):
+        m = re.search(r'<%s\b[^>]*\brel=["\']?next\b[^>]*>' % tag, page_html, re.I)
+        if m:
+            h = re.search(r'href=["\']([^"\']+)', m.group(0))
+            if h: return resolve(h.group(1))
+
+    # 2. a link labelled, aria-labelled, titled or classed "next"
     for attrs, inner in re.findall(r"<a\b([^>]*)>(.*?)</a>", page_html, re.S | re.I):
         it = re.sub(r"<[^>]+>", " ", inner).strip().lower()
         al = attrs.lower()
-        if it[:4] == "next" or "go to next page" in al or "next page" in al:
+        if (it[:4] == "next" or it in ("\u203a", "\u00bb", "\u2192")
+                or re.search(r'(aria-label|title)=["\'][^"\']*next', al)
+                or re.search(r'class=["\'][^"\']*\bnext\b', al)):
             h = re.search(r'href=["\']([^"\']+)', attrs)
             if h: return resolve(h.group(1))
-    return None
+
+    # 3. numbered pagination with no "next" control: take the link one past this page
+    here = _page_num(base)
+    best = None
+    for h in re.findall(r'<a\b[^>]*href=["\']([^"\']+)', page_html, re.I):
+        full = resolve(h)
+        if not PAGE_NUM_RE.search(full):
+            continue
+        n = _page_num(full)
+        if n == here + 1 and (best is None or len(full) < len(best)):
+            best = full
+    return best
 
 def page_text(url, max_pages=20):
     """Fetch the page and follow its own pagination ('next') links, so a paginated people
@@ -76,7 +168,7 @@ def page_text(url, max_pages=20):
             return "__BLOCKED__"
         parts.append(report._page_text(doc))
         cur = next_page_url(doc, cur)
-    print(f"[debug] fetched {len(parts)} page(s)")
+    print(f"[debug] fetched {len(parts)} page(s) of pagination")
     return "\n\n".join(parts)
 
 def extract(text):
