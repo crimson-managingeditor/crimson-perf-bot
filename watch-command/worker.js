@@ -469,6 +469,30 @@ function ghHeaders(env) {
            "User-Agent": "crimson-watch-worker",
            "Content-Type": "application/json" };
 }
+// base64 -> string, decoded as UTF-8.
+//
+// atob() yields a *binary* (Latin-1) string, so decoding has to go through
+// TextDecoder to undo what ghPut's UTF-8 encoding did. Reading with a bare
+// atob() and writing back re-encoded the already-encoded bytes, doubling every
+// non-ASCII character on each read-modify-write. One `/alert *Martín Escobari*`
+// grew from 17 characters to 524,304 in 19 cycles and pushed watchlist.json
+// over 1 MB, which is what broke every slash command.
+function b64utf8(b64) {
+  const bin = atob(String(b64 || "").replace(/\s/g, ""));
+  const bytes = Uint8Array.from(bin, ch => ch.charCodeAt(0));
+  return new TextDecoder("utf-8").decode(bytes);
+}
+
+// string -> base64, encoded as UTF-8. Chunked because String.fromCharCode
+// applied to a whole megabyte of bytes blows the argument limit.
+function utf8b64(str) {
+  const bytes = new TextEncoder().encode(str);
+  let bin = "";
+  for (let i = 0; i < bytes.length; i += 0x8000)
+    bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+  return btoa(bin);
+}
+
 async function ghGet(env, path) {
   path = path || env.WATCHLIST_PATH || "watch/watchlist.json";
   const r = await fetch(`${GH}/repos/${env.GITHUB_REPO}/contents/${encodeURI(path)}`,
@@ -476,12 +500,31 @@ async function ghGet(env, path) {
   if (r.status === 404) return { list: [], sha: null };
   if (!r.ok) throw new Error(`GitHub read failed (${r.status})`);
   const j = await r.json();
-  const list = JSON.parse(atob(j.content.replace(/\n/g, "")));
+
+  // Over 1 MB the Contents API stops inlining the file and returns
+  // `content: ""` with `encoding: "none"` -- no error, just an empty string,
+  // which used to surface as "Unexpected end of JSON input". Blobs carry the
+  // same content up to 100 MB.
+  let raw = j.content;
+  if (!raw || j.encoding === "none") {
+    if (!j.sha) throw new Error(`GitHub read failed: ${path} is ${j.size} bytes and has no blob sha`);
+    const br = await fetch(`${GH}/repos/${env.GITHUB_REPO}/git/blobs/${j.sha}`,
+      { headers: ghHeaders(env) });
+    if (!br.ok) throw new Error(`GitHub blob read failed (${br.status})`);
+    raw = (await br.json()).content;
+  }
+
+  let list;
+  try {
+    list = JSON.parse(b64utf8(raw));
+  } catch (e) {
+    throw new Error(`${path} is not valid JSON (${j.size} bytes): ${e.message}`);
+  }
   return { list: Array.isArray(list) ? list : [], sha: j.sha };
 }
 async function ghPut(env, list, sha, message, path) {
   path = path || env.WATCHLIST_PATH || "watch/watchlist.json";
-  const content = btoa(unescape(encodeURIComponent(JSON.stringify(list, null, 2) + "\n")));
+  const content = utf8b64(JSON.stringify(list, null, 2) + "\n");
   return fetch(`${GH}/repos/${env.GITHUB_REPO}/contents/${encodeURI(path)}`, {
     method: "PUT", headers: ghHeaders(env),
     body: JSON.stringify(sha ? { message, content, sha } : { message, content }) });
