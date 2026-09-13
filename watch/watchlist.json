@@ -655,5 +655,13 @@
     "added_by": "elise.spenner",
     "added_by_id": "U0ADP6LL39C",
     "interval": 60
+  },
+  {
+    "url": "https://chinaselectcommittee.house.gov/media/press-releases",
+    "channel": "D0ADUS7P2Q4",
+    "channel_name": "directmessage",
+    "added_by": "hugo.chiasson",
+    "added_by_id": "U0ADP6M5ZCN",
+    "interval": 5
   }
 ]
