@@ -9698,3 +9698,10 @@ Call log:
 2026-09-16T20:39:38.999602+00:00  CHANGED  https://thecrimson.com  by=matteo.diaz  ch=matteo-internal  via=DM->matteo.diaz
 2026-09-16T20:39:38.999602+00:00  CHANGED  https://thecrimson.com  by=matteo.diaz  ch=directmessage  via=DM->matteo.diaz
 2026-09-16T20:39:38.999602+00:00  CHANGED  https://www.thecrimson.com/  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-09-16T21:11:51.363244+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-09-16T21:11:51.363244+00:00  CHANGED  https://chinaselectcommittee.house.gov/media/press-releases  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-09-16T21:16:55.020546+00:00  CHANGED  https://www.ed.gov/about/news/press-release  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-09-16T21:21:57.901929+00:00  CHANGED  https://chinaselectcommittee.house.gov/media/press-releases  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-09-16T21:27:02.450357+00:00  FLAPPED  https://chinaselectcommittee.house.gov/media/press-releases
+2026-09-16T21:32:03.844382+00:00  CHANGED  https://hls.harvard.edu  by=uy.pham  ch=directmessage  via=DM->uy.pham
+2026-09-16T21:32:03.844382+00:00  CHANGED  https://hls.harvard.edu/academics/curriculum/2026-2027-course-and-schedule-updates/  by=uy.pham  ch=directmessage  via=DM->uy.pham
