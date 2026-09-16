@@ -584,6 +584,14 @@
   "highschool": "Malvern Prep"
  },
  {
+  "name": "Chris Gorman",
+  "jersey": "57",
+  "class": "Jr.",
+  "pos": "OL",
+  "hometown": "Moorestown, N.J.",
+  "highschool": "Moorestown"
+ },
+ {
   "name": "Jack Baade",
   "jersey": "58",
   "class": "So.",
@@ -862,13 +870,5 @@
   "pos": "DT",
   "hometown": "Boerne, Texas",
   "highschool": "San Marcos"
- },
- {
-  "name": "Chris Gorman",
-  "jersey": "99",
-  "class": "Jr.",
-  "pos": "OL",
-  "hometown": "Moorestown, N.J.",
-  "highschool": "Moorestown"
  }
 ]

@@ -2,7 +2,7 @@
  {
   "name": "Harry Luong",
   "jersey": "0",
-  "class": "Fy",
+  "class": "So.",
   "pos": "Faceoff",
   "hometown": "Highlands Ranch, Colo.",
   "highschool": "Valor Christian"
@@ -10,7 +10,7 @@
  {
   "name": "Jared Maznik",
   "jersey": "1",
-  "class": "So.",
+  "class": "Jr.",
   "pos": "Attack",
   "hometown": "Delta, British Columbia, Canada",
   "highschool": "Western Reserve Academy"
@@ -18,23 +18,23 @@
  {
   "name": "Mac Mohn",
   "jersey": "2",
-  "class": "So.",
+  "class": "Jr.",
   "pos": "Attack",
   "hometown": "Pittsburgh, Pa.",
   "highschool": "Shady Side Academy"
  },
  {
-  "name": "Logan Ip",
+  "name": "Nathan Cobery",
   "jersey": "3",
-  "class": "Sr.",
-  "pos": "Midfield",
-  "hometown": "Newport Coast, Calif.",
-  "highschool": "Corona Del Mar"
+  "class": "Jr.",
+  "pos": "Attack",
+  "hometown": "Bristol, R.I.",
+  "highschool": "The Loomis Chaffee School"
  },
  {
   "name": "Jack Speidell",
   "jersey": "4",
-  "class": "Jr.",
+  "class": "Sr.",
   "pos": "Attack",
   "hometown": "East Setauket, N.Y.",
   "highschool": "St. Anthony’s"
@@ -42,7 +42,7 @@
  {
   "name": "Jackson Greene",
   "jersey": "5",
-  "class": "Jr.",
+  "class": "Sr.",
   "pos": "Midfield",
   "hometown": "Lloyd Harbor, N.Y.",
   "highschool": "St. Anthony’s"
@@ -50,31 +50,31 @@
  {
   "name": "Nick Bruckner",
   "jersey": "6",
-  "class": "Jr.",
+  "class": "Sr.",
   "pos": "Midfield",
   "hometown": "Port Jefferson, N.Y.",
   "highschool": "Ward Melville"
  },
  {
-  "name": "Charlie  Muller",
+  "name": "Nigel Strazzini",
   "jersey": "8",
-  "class": "Sr.",
+  "class": "Fy",
   "pos": "Defense",
-  "hometown": "Chevy Chase, Md.",
-  "highschool": "Bullis School"
+  "hometown": "Rye, N.Y.",
+  "highschool": "Rye H.S."
  },
  {
-  "name": "Finn Pokorny",
+  "name": "Callan McLaughlin",
   "jersey": "9",
-  "class": "Sr.",
+  "class": "So.",
   "pos": "Midfield",
-  "hometown": "Darien, Conn.",
-  "highschool": "Darien"
+  "hometown": "Stony Brook, N.Y.",
+  "highschool": "Ward Melville"
  },
  {
   "name": "Andrew Van Stone",
   "jersey": "10",
-  "class": "So.",
+  "class": "Jr.",
   "pos": "Defense",
   "hometown": "Philadelphia, Pa.",
   "highschool": "LaSalle College High School"
@@ -82,7 +82,7 @@
  {
   "name": "Patrick Grimley",
   "jersey": "11",
-  "class": "So.",
+  "class": "Jr.",
   "pos": "Midfield",
   "hometown": "Margate City, N.J.",
   "highschool": "Ocean City High School"
@@ -90,7 +90,7 @@
  {
   "name": "Owen Umansky",
   "jersey": "12",
-  "class": "Jr.",
+  "class": "Sr.",
   "pos": "Faceoff",
   "hometown": "Derry, N.H.",
   "highschool": "Governor’s Academy"
@@ -98,7 +98,7 @@
  {
   "name": "Zachary Marco",
   "jersey": "13",
-  "class": "Fy",
+  "class": "So.",
   "pos": "Midfield",
   "hometown": "Huntington, N.Y.",
   "highschool": "Half Hollow Hills High School"
@@ -106,7 +106,7 @@
  {
   "name": "Jackson Henehan",
   "jersey": "14",
-  "class": "So.",
+  "class": "Jr.",
   "pos": "Faceoff",
   "hometown": "Marshfield, Mass.",
   "highschool": "Thayer Academy"
@@ -114,7 +114,7 @@
  {
   "name": "Miles Barakett",
   "jersey": "15",
-  "class": "Jr.",
+  "class": "Sr.",
   "pos": "Goalkeeper",
   "hometown": "Greenwich, Conn.",
   "highschool": "Brunswick School"
@@ -122,7 +122,7 @@
  {
   "name": "Andrew Glinski",
   "jersey": "16",
-  "class": "Jr.",
+  "class": "Sr.",
   "pos": "Midfield",
   "hometown": "Larchmont, N.Y.",
   "highschool": "Mamaroneck"
@@ -130,7 +130,7 @@
  {
   "name": "Michael Savadove",
   "jersey": "17",
-  "class": "So.",
+  "class": "Jr.",
   "pos": "Defense",
   "hometown": "Bryn Mawr, Pa.",
   "highschool": "Radnor High School"
@@ -138,7 +138,7 @@
  {
   "name": "Cole Goodwillie",
   "jersey": "18",
-  "class": "Fy",
+  "class": "So.",
   "pos": "Midfield",
   "hometown": "Chicago, Ill.",
   "highschool": "The Loomis Chaffee School"
@@ -146,31 +146,31 @@
  {
   "name": "Quinn Kelly",
   "jersey": "19",
-  "class": "Fy",
+  "class": "So.",
   "pos": "Defense",
   "hometown": "Little Silver, N.J.",
   "highschool": "Christian Brothers Academy"
  },
  {
-  "name": "Finn Jensen",
+  "name": "Tate Sedlachek",
   "jersey": "20",
-  "class": "Sr.",
-  "pos": "Midfield",
-  "hometown": "Arlington, Va.",
-  "highschool": "St. Stephen's & St. Agnes"
+  "class": "Fy",
+  "pos": "Attack",
+  "hometown": "Oakland, Calif.",
+  "highschool": "Marin Catholic"
  },
  {
-  "name": "Callan McLaughlin",
+  "name": "Brock Getson",
   "jersey": "21",
-  "class": "Fy",
-  "pos": "Midfield",
-  "hometown": "Stony Brook, N.Y.",
-  "highschool": "Ward Melville"
+  "class": "So.",
+  "pos": "LSM",
+  "hometown": "Los Angeles, Calif.",
+  "highschool": "The Lawrenceville School"
  },
  {
   "name": "Hudson McCarthy",
   "jersey": "22",
-  "class": "Fy",
+  "class": "So.",
   "pos": "Attack",
   "hometown": "Greer, S.C.",
   "highschool": "Boys Latin School of Maryland"
@@ -178,7 +178,7 @@
  {
   "name": "Wyatt Wiggins",
   "jersey": "23",
-  "class": "Jr.",
+  "class": "Sr.",
   "pos": "Defense",
   "hometown": "Peterborough, Ontario",
   "highschool": "The Kiski School"
@@ -186,7 +186,7 @@
  {
   "name": "Logan Turley",
   "jersey": "24",
-  "class": "Fy",
+  "class": "So.",
   "pos": "Midfield",
   "hometown": "Malvern, Pa.",
   "highschool": "Malvern Prep"
@@ -194,23 +194,23 @@
  {
   "name": "Trevor Sardis",
   "jersey": "25",
-  "class": "So.",
+  "class": "Jr.",
   "pos": "Faceoff",
   "hometown": "Bernardsville, N.J.",
   "highschool": "Bernards High School"
  },
  {
-  "name": "Teddy Malone",
+  "name": "Cooper Brozek",
   "jersey": "26",
-  "class": "Sr.",
+  "class": "Fy",
   "pos": "Attack",
-  "hometown": "Wilmington, Del.",
-  "highschool": "Haverford School"
+  "hometown": "Toronto, Ontario",
+  "highschool": "Deerfield Academy"
  },
  {
   "name": "James Canipe",
   "jersey": "27",
-  "class": "Jr.",
+  "class": "Sr.",
   "pos": "Midfield",
   "hometown": "Johns Creek, Ga.",
   "highschool": "Greater Atlanta Christian"
@@ -218,39 +218,39 @@
  {
   "name": "Teddy Kim",
   "jersey": "28",
-  "class": "Jr.",
+  "class": "Sr.",
   "pos": "Goalkeeper",
   "hometown": "Greenwich, Conn.",
   "highschool": "The Hotchkiss School"
  },
  {
-  "name": "Matt Barraco",
+  "name": "Jay Cohn",
   "jersey": "29",
-  "class": "Sr.",
-  "pos": "Faceoff",
-  "hometown": "Allentown, Pa.",
-  "highschool": "Parkland"
- },
- {
-  "name": "Nathan Cobery",
-  "jersey": "30",
-  "class": "So.",
+  "class": "Fy",
   "pos": "Attack",
-  "hometown": "Bristol, R.I.",
-  "highschool": "The Loomis Chaffee School"
+  "hometown": "Cary, N.C.",
+  "highschool": "Athens Drive Magnet"
  },
  {
-  "name": "Brock Getson",
+  "name": "Carson Miller",
+  "jersey": "30",
+  "class": "Fy",
+  "pos": "Midfield",
+  "hometown": "Rye, N.Y.",
+  "highschool": "Rye H.S."
+ },
+ {
+  "name": "Ian Stefonowicz",
   "jersey": "31",
   "class": "Fy",
-  "pos": "LSM",
-  "hometown": "Los Angeles, Calif.",
-  "highschool": "The Lawrenceville School"
+  "pos": "Goalkeeper",
+  "hometown": "Littleton, Colo.",
+  "highschool": "Valor Christian"
  },
  {
   "name": "Jack Petersen",
   "jersey": "32",
-  "class": "Jr.",
+  "class": "Sr.",
   "pos": "Midfield",
   "hometown": "Manhasset, N.Y.",
   "highschool": "Manhasset Secondary"
@@ -258,7 +258,7 @@
  {
   "name": "Matthew Moore",
   "jersey": "33",
-  "class": "Jr.",
+  "class": "Sr.",
   "pos": "Midfielder",
   "hometown": "Mclean, Va.",
   "highschool": "St. Alban's School"
@@ -266,7 +266,7 @@
  {
   "name": "Jack Weissenburger",
   "jersey": "34",
-  "class": "Fy",
+  "class": "So.",
   "pos": "Defense",
   "hometown": "Marblehead, Mass.",
   "highschool": "St. John's Preparatory School"
@@ -274,7 +274,7 @@
  {
   "name": "Chase McCann",
   "jersey": "35",
-  "class": "So.",
+  "class": "Jr.",
   "pos": "Midfield",
   "hometown": "Needham, Mass.",
   "highschool": "St. Sebastian's School"
@@ -282,39 +282,39 @@
  {
   "name": "Liam O'Keefe",
   "jersey": "36",
-  "class": "Fy",
+  "class": "So.",
   "pos": "Goalkeeper",
   "hometown": "Nashua, N.H.",
   "highschool": "The Loomis Chaffee School"
  },
  {
-  "name": "Owen Guest",
+  "name": "Brian Burke",
   "jersey": "39",
-  "class": "Sr.",
-  "pos": "Midfield",
-  "hometown": "Harrison, N.Y.",
-  "highschool": "Brunswick School"
+  "class": "Fy",
+  "pos": "Defense",
+  "hometown": "Westwood, Mass.",
+  "highschool": "St. Sebastian's School"
  },
  {
   "name": "Tyler Mininno",
   "jersey": "40",
-  "class": "So.",
+  "class": "Jr.",
   "pos": "Defense",
   "hometown": "Moorestown, N.J.",
   "highschool": "The Lawrenceville School"
  },
  {
-  "name": "Andrew Perry",
+  "name": "Wyatt Shaw",
   "jersey": "41",
-  "class": "Sr.",
-  "pos": "Midfield",
-  "hometown": "Franklin, Mass.",
-  "highschool": "Moses Brown School"
+  "class": "Fy",
+  "pos": "Defense",
+  "hometown": "Arnold, Md.",
+  "highschool": "Broadneck High School"
  },
  {
   "name": "Jack Baade",
   "jersey": "42",
-  "class": "Fy",
+  "class": "So.",
   "pos": "Attack",
   "hometown": "Fort Mill, S.C.",
   "highschool": "Charlotte Catholic (N.C.)"
@@ -322,7 +322,7 @@
  {
   "name": "Michael Smyth",
   "jersey": "43",
-  "class": "Jr.",
+  "class": "Sr.",
   "pos": "Midfield",
   "hometown": "Cockeysville, Md.",
   "highschool": "St. Paul’s School"
@@ -330,7 +330,7 @@
  {
   "name": "Blake Hetherington",
   "jersey": "44",
-  "class": "So.",
+  "class": "Jr.",
   "pos": "Midfield",
   "hometown": "Hillsborough, Calif.",
   "highschool": "Sacred Heart Prep"
@@ -338,23 +338,23 @@
  {
   "name": "Joost de Koning",
   "jersey": "45",
-  "class": "Jr.",
+  "class": "Sr.",
   "pos": "LSM",
   "hometown": "Denver, Col.",
   "highschool": "The Loomis Chaffee School"
  },
  {
-  "name": "John Aurandt IV",
+  "name": "Carsen Winters",
   "jersey": "49",
-  "class": "Sr.",
-  "pos": "M",
-  "hometown": "Brighton, Mich.",
-  "highschool": "Brighton"
+  "class": "Fy",
+  "pos": "Attack",
+  "hometown": "Larchmont, N.Y.",
+  "highschool": "Mamaroneck H.S."
  },
  {
   "name": "Oscar Woloson",
   "jersey": "50",
-  "class": "So.",
+  "class": "Jr.",
   "pos": "Midfield",
   "hometown": "Baltimore, Md.",
   "highschool": "Gilman School"
@@ -362,31 +362,31 @@
  {
   "name": "Brandon DeBerardinis",
   "jersey": "51",
-  "class": "Fy",
+  "class": "So.",
   "pos": "Midfield",
   "hometown": "Mooresville, N.C.",
   "highschool": "Lake Norman HS"
  },
  {
-  "name": "Sean Jordan",
-  "jersey": "52",
-  "class": "Sr.",
-  "pos": "LSM",
-  "hometown": "Boca Raton, Fla.",
-  "highschool": "St. Andrew's School"
+  "name": "Rex Friedholm",
+  "jersey": "54",
+  "class": "Fy",
+  "pos": "Midfield",
+  "hometown": "Sudbury, Mass.",
+  "highschool": "Lincoln-Sudbury Regional"
  },
  {
-  "name": "Francisco  Cortes",
+  "name": "Michael Brennan",
   "jersey": "55",
-  "class": "Sr.",
-  "pos": "Midfield",
-  "hometown": "Shoreham, N.Y.",
-  "highschool": "Shoreham Wading River"
+  "class": "Fy",
+  "pos": "Defense",
+  "hometown": "Vorhees, N.J.",
+  "highschool": "The Loomis Chaffee School"
  },
  {
   "name": "Graham Stevens",
   "jersey": "56",
-  "class": "So.",
+  "class": "Jr.",
   "pos": "Goalkeeper",
   "hometown": "Chester, N.J.",
   "highschool": "Pingry School"
