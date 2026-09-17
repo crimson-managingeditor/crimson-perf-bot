@@ -10174,3 +10174,5 @@ Call log:
 2026-09-17T09:59:26.329609+00:00  STALE    https://news.google.com/rss/search?q=HMC%20San%20Francisco&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-17T09:59:26.329609+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-17T09:59:26.329609+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-17T10:06:07.321907+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-09-17T10:26:16.306858+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
