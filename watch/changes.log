@@ -10558,3 +10558,5 @@ Call log:
 2026-09-17T19:42:41.958440+00:00  STALE    https://news.google.com/rss/search?q=HMC%20San%20Francisco&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-17T19:42:41.958440+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-17T19:42:41.958440+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-17T20:19:59.228395+00:00  CHANGED  https://www.courtlistener.com/docket/72090192/president-and-fellows-of-harvard-college-v-us-department-of-health-and/?order_by=desc  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-09-17T20:40:07.736062+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
