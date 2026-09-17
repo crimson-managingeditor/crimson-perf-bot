@@ -10362,3 +10362,8 @@ Call log:
 2026-09-17T14:35:42.340896+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Singapore&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-17T14:35:42.340896+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-17T14:35:42.340896+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-17T15:08:34.135628+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-09-17T15:08:34.135628+00:00  CHANGED  https://studentsforfairadmissions.org/  by=alexa.schmitt  ch=directmessage  via=DM->alexa.schmitt
+2026-09-17T15:13:38.402211+00:00  CHANGED  https://www.harvard.edu/media-relations/category/press-releases/  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-09-17T15:33:48.291602+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-09-17T15:33:48.291602+00:00  CHANGED  https://www.ed.gov/about/news/press-release  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
