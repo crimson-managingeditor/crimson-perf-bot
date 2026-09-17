@@ -80,6 +80,14 @@
   "highschool": "Junipero Serra"
  },
  {
+  "name": "Chase Mason",
+  "jersey": "6",
+  "class": "Fy",
+  "pos": "DB",
+  "hometown": "Ladera Ranch, Calif.",
+  "highschool": "San Juan Hills"
+ },
+ {
   "name": "Damien Henderson",
   "jersey": "7",
   "class": "Sr.",
@@ -224,14 +232,6 @@
   "highschool": "St. Joseph Regional"
  },
  {
-  "name": "Chase Mason",
-  "jersey": "17",
-  "class": "Fy",
-  "pos": "DB",
-  "hometown": "Ladera Ranch, Calif.",
-  "highschool": "San Juan Hills"
- },
- {
   "name": "DJ Gordon",
   "jersey": "18",
   "class": "Jr.",
@@ -312,12 +312,12 @@
   "highschool": "St. John's School"
  },
  {
-  "name": "Kennard McGuire Jr.",
+  "name": "Austin Olivas",
   "jersey": "23",
-  "class": "Jr.",
+  "class": "Fy",
   "pos": "DB",
-  "hometown": "Sugar Land, Texas",
-  "highschool": "George Ranch"
+  "hometown": "Seminole, Texas",
+  "highschool": "Seminole"
  },
  {
   "name": "Caleb Phillips",
@@ -368,12 +368,12 @@
   "highschool": "Grayson"
  },
  {
-  "name": "Austin Olivas",
+  "name": "Kennard McGuire Jr.",
   "jersey": "28",
-  "class": "Fy",
+  "class": "Jr.",
   "pos": "DB",
-  "hometown": "Seminole, Texas",
-  "highschool": "Seminole"
+  "hometown": "Sugar Land, Texas",
+  "highschool": "George Ranch"
  },
  {
   "name": "Maddux Reid",

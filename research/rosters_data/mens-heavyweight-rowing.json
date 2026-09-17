@@ -16,6 +16,14 @@
   "highschool": "Sir William Borlase's Grammar School"
  },
  {
+  "name": "Sofia Branco",
+  "jersey": "",
+  "class": "Jr.",
+  "pos": "",
+  "hometown": "Hanover, Mass.",
+  "highschool": "Noble and Greenough School"
+ },
+ {
   "name": "George Burney",
   "jersey": "",
   "class": "Sr.",
@@ -48,6 +56,14 @@
   "highschool": "Greenwich High School"
  },
  {
+  "name": "Jonathan Cleugh",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "",
+  "highschool": "Cadley College"
+ },
+ {
   "name": "Ryan Cornelius",
   "jersey": "",
   "class": "Sr.",
@@ -62,6 +78,22 @@
   "pos": "",
   "hometown": "Aspen, Colo.",
   "highschool": "Vail Mountain School"
+ },
+ {
+  "name": "Owen Cruz-Abrams",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Aspen, Colo.",
+  "highschool": "Aspen"
+ },
+ {
+  "name": "Tobias Elias",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Sydney, Australia",
+  "highschool": "Beaches Secondary College"
  },
  {
   "name": "George Farkas",
@@ -110,6 +142,14 @@
   "pos": "",
   "hometown": "Bellagio, Italy",
   "highschool": "IISS Ezio Vanoni"
+ },
+ {
+  "name": "Thomas Grieser",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Newton, Mass.",
+  "highschool": "Eton College (U.K.)"
  },
  {
   "name": "Jack Hansen-Knarhoi",
@@ -176,6 +216,22 @@
   "highschool": "PCS High School"
  },
  {
+  "name": "Andrew Miller",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "London, England",
+  "highschool": "Eton College"
+ },
+ {
+  "name": "Evan O'Byrne",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Limerick, Ireland",
+  "highschool": "Arscoil Ris"
+ },
+ {
   "name": "Julian Paul",
   "jersey": "",
   "class": "So.",
@@ -190,6 +246,14 @@
   "pos": "",
   "hometown": "Lawrenceville, N.J.",
   "highschool": "The Lawrenceville School"
+ },
+ {
+  "name": "Isaac Rabinowitz",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Rye, N.Y.",
+  "highschool": "Rye Neck"
  },
  {
   "name": "Robert Rawlinson",
@@ -208,12 +272,28 @@
   "highschool": "Deerfield Academy"
  },
  {
+  "name": "Babikir Saeed",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Belmont, Mass.",
+  "highschool": "Belmont Hill"
+ },
+ {
   "name": "Alexander Sanchez Fretz",
   "jersey": "",
   "class": "Jr.",
   "pos": "",
   "hometown": "London, England",
   "highschool": "Dulwich College London"
+ },
+ {
+  "name": "Paul Schinnerl",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Baumgartenberg, Austria",
+  "highschool": "Europagymnasium"
  },
  {
   "name": "Jack Sulger",
@@ -230,6 +310,14 @@
   "pos": "",
   "hometown": "London, England",
   "highschool": "St. Paul's School"
+ },
+ {
+  "name": "Mike Thomas",
+  "jersey": "",
+  "class": "Sr.",
+  "pos": "",
+  "hometown": "Waltham, Mass.",
+  "highschool": "Roxbury Latin"
  },
  {
   "name": "Natalia Toms",
@@ -256,6 +344,14 @@
   "highschool": "Belmont Hill High School"
  },
  {
+  "name": "Richard Wolskel",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Shrewsbury, U.K.",
+  "highschool": ""
+ },
+ {
   "name": "Sam Woodgate",
   "jersey": "",
   "class": "Jr.",
@@ -264,11 +360,27 @@
   "highschool": "St. Bedes High School"
  },
  {
+  "name": "Kevin Wu",
+  "jersey": "",
+  "class": "So.",
+  "pos": "",
+  "hometown": "Toronto, Ontario",
+  "highschool": "St. Paul's School (N.H.)"
+ },
+ {
   "name": "Nicholas Yoo",
   "jersey": "",
   "class": "Jr.",
   "pos": "",
   "hometown": "Ramsey, N.J.",
   "highschool": "Delbarton School"
+ },
+ {
+  "name": "Max Yu",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Scarsdale, N.Y.",
+  "highschool": "Scarsdale"
  }
 ]
