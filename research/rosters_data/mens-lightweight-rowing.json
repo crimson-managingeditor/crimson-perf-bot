@@ -1,8 +1,24 @@
 [
  {
-  "name": "Grant Atkinson",
+  "name": "Graham Alderson",
   "jersey": "",
   "class": "Fy",
+  "pos": "",
+  "hometown": "Carlisle, Mass.",
+  "highschool": "Concord-Carlisle"
+ },
+ {
+  "name": "Lars Andrews",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Seattle, Wash.",
+  "highschool": "University Prep"
+ },
+ {
+  "name": "Grant Atkinson",
+  "jersey": "",
+  "class": "So.",
   "pos": "",
   "hometown": "Elm Grove, Wis.",
   "highschool": "Brookfield East"
@@ -10,7 +26,7 @@
  {
   "name": "Herbie Austin-Baker",
   "jersey": "",
-  "class": "Fy",
+  "class": "So.",
   "pos": "",
   "hometown": "Oxford, England",
   "highschool": "Oxford Spires Academy"
@@ -18,15 +34,23 @@
  {
   "name": "Douglas Bassi",
   "jersey": "",
-  "class": "Jr.",
+  "class": "Sr.",
   "pos": "",
   "hometown": "Overland Park, Kan.",
   "highschool": "Blue Valley West"
  },
  {
+  "name": "Michael Betzler",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Newport Beach, Calif.",
+  "highschool": "Newport Harbor"
+ },
+ {
   "name": "Ryan Brewington",
   "jersey": "",
-  "class": "So.",
+  "class": "Jr.",
   "pos": "",
   "hometown": "Philadelphia, Pa.",
   "highschool": "The Haverford School"
@@ -34,31 +58,31 @@
  {
   "name": "Andrew Buda",
   "jersey": "",
-  "class": "So.",
+  "class": "Jr.",
   "pos": "",
   "hometown": "Newport Beach, Calif.",
   "highschool": "Orange Lutheran"
  },
  {
-  "name": "Cécile Chen",
-  "jersey": "",
-  "class": "Fy",
-  "pos": "",
-  "hometown": "Saint-Germain-en-Laye, France",
-  "highschool": ""
- },
- {
   "name": "Rupert Chen",
   "jersey": "",
-  "class": "Jr.",
+  "class": "Sr.",
   "pos": "",
   "hometown": "Stanford, Calif.",
   "highschool": "The Harker School"
  },
  {
+  "name": "Raphael Corbett",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "London, U.K.",
+  "highschool": "Latymer Upper School"
+ },
+ {
   "name": "Preston Darling",
   "jersey": "",
-  "class": "Jr.",
+  "class": "Sr.",
   "pos": "",
   "hometown": "Fenwick, Ontario",
   "highschool": "E.L. Crossley Secondary"
@@ -66,71 +90,63 @@
  {
   "name": "Jack Duggan",
   "jersey": "",
-  "class": "So.",
+  "class": "Jr.",
   "pos": "",
   "hometown": "London, England",
   "highschool": "Shiplake College"
  },
  {
-  "name": "Alex Forbes",
-  "jersey": "",
-  "class": "Sr.",
-  "pos": "",
-  "hometown": "London, England",
-  "highschool": "King's College School, Wimbledon"
- },
- {
   "name": "Nathalie Gregg",
   "jersey": "",
-  "class": "Fy",
+  "class": "So.",
   "pos": "",
   "hometown": "London, England",
   "highschool": "Latymer Upper School"
  },
  {
-  "name": "Sona Hawkins",
-  "jersey": "",
-  "class": "So.",
-  "pos": "",
-  "hometown": "Kenosha, Wis.",
-  "highschool": ""
- },
- {
   "name": "Haley Hicks",
   "jersey": "",
-  "class": "Fy",
+  "class": "So.",
   "pos": "",
   "hometown": "Cambridge, Mass.",
   "highschool": "Buckingham Browne & Nichols"
  },
  {
-  "name": "Howard  Huang",
-  "jersey": "",
-  "class": "Sr.",
-  "pos": "",
-  "hometown": "Woburn, Mass.",
-  "highschool": "Belmont Hill School"
- },
- {
   "name": "Jack Jawork",
   "jersey": "",
-  "class": "Fy",
+  "class": "So.",
   "pos": "",
   "hometown": "Philadelphia, Pa.",
   "highschool": "St. Joseph's Prep"
  },
  {
+  "name": "Parker Johnson",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Newport Beach, Calif.",
+  "highschool": "Pacifica Christian"
+ },
+ {
   "name": "Henry Jones",
   "jersey": "",
-  "class": "Jr.",
+  "class": "Sr.",
   "pos": "",
   "hometown": "Worcester, England",
   "highschool": "Radley College"
  },
  {
-  "name": "Maxton Kilroy",
+  "name": "Ellie Keum",
   "jersey": "",
   "class": "Fy",
+  "pos": "",
+  "hometown": "Englewood Cliffs, N.J.",
+  "highschool": "The Hotchkiss School"
+ },
+ {
+  "name": "Maxton Kilroy",
+  "jersey": "",
+  "class": "So.",
   "pos": "",
   "hometown": "Mendham, N.J.",
   "highschool": "West Morris Mendham"
@@ -138,7 +154,7 @@
  {
   "name": "Ericka Lai",
   "jersey": "",
-  "class": "Jr.",
+  "class": "Sr.",
   "pos": "",
   "hometown": "Manhasset, N.Y.",
   "highschool": "Manhasset"
@@ -146,7 +162,7 @@
  {
   "name": "Cedar Larson",
   "jersey": "",
-  "class": "So.",
+  "class": "Jr.",
   "pos": "",
   "hometown": "Cambridge, Mass,",
   "highschool": "Cambridge Rindge and Latin"
@@ -154,7 +170,7 @@
  {
   "name": "Alberto Lasso",
   "jersey": "",
-  "class": "Jr.",
+  "class": "Sr.",
   "pos": "",
   "hometown": "Los Gatos, Calif.",
   "highschool": "Los Gatos"
@@ -162,39 +178,15 @@
  {
   "name": "Brody Luce",
   "jersey": "",
-  "class": "Fy",
+  "class": "So.",
   "pos": "",
   "hometown": "Albany, Calif.",
   "highschool": "Albany"
  },
  {
-  "name": "Ben Lundie",
-  "jersey": "",
-  "class": "Sr.",
-  "pos": "",
-  "hometown": "London, England",
-  "highschool": "King's College School, Wimbledon"
- },
- {
-  "name": "Matt  Lyons",
-  "jersey": "",
-  "class": "Sr.",
-  "pos": "",
-  "hometown": "Orinda, Calif.",
-  "highschool": "Miramonte"
- },
- {
-  "name": "Zarret  Mills",
-  "jersey": "",
-  "class": "Sr.",
-  "pos": "",
-  "hometown": "Johannesburg, South Africa",
-  "highschool": "St. Stithians Boys' College"
- },
- {
   "name": "Russell O'Donnell",
   "jersey": "",
-  "class": "Jr.",
+  "class": "Sr.",
   "pos": "",
   "hometown": "Melrose, Mass.",
   "highschool": "Melrose"
@@ -202,7 +194,7 @@
  {
   "name": "Ian O'Riley",
   "jersey": "",
-  "class": "So.",
+  "class": "Jr.",
   "pos": "",
   "hometown": "Scottsdale, Ariz.",
   "highschool": "Brophy College Preparatory"
@@ -210,7 +202,7 @@
  {
   "name": "Nathan Pappas",
   "jersey": "",
-  "class": "So.",
+  "class": "Jr.",
   "pos": "",
   "hometown": "Walpole, Mass.",
   "highschool": "Belmont Hill School"
@@ -218,7 +210,7 @@
  {
   "name": "Lucas Pinsent",
   "jersey": "",
-  "class": "So.",
+  "class": "Jr.",
   "pos": "",
   "hometown": "London, England",
   "highschool": "Eton College"
@@ -226,7 +218,7 @@
  {
   "name": "Charles Rahdon",
   "jersey": "",
-  "class": "So.",
+  "class": "Jr.",
   "pos": "",
   "hometown": "Geelong, Australia",
   "highschool": "The Geelong College"
@@ -234,31 +226,31 @@
  {
   "name": "Nikhil Ramaraju",
   "jersey": "",
-  "class": "Jr.",
+  "class": "Sr.",
   "pos": "",
   "hometown": "Bettendorf, Iowa",
   "highschool": "Pleasant Valley"
  },
  {
-  "name": "Sylvie  Spitz",
+  "name": "T.Z. Snail",
   "jersey": "",
-  "class": "Sr.",
+  "class": "Fy",
   "pos": "",
-  "hometown": "Newton, Mass.",
-  "highschool": "Newton South High School"
+  "hometown": "Lexington, Mass.",
+  "highschool": "Belmont Hill"
  },
  {
-  "name": "Kyle Sutherland",
+  "name": "Isaac Thornton",
   "jersey": "",
-  "class": "Sr.",
+  "class": "Fy",
   "pos": "",
-  "hometown": "Mill Valley, Calif.",
-  "highschool": "Marin Catholic"
+  "hometown": "Windsor, U.K.",
+  "highschool": "The Windsor Boys School"
  },
  {
   "name": "Yehudah Tor",
   "jersey": "",
-  "class": "So.",
+  "class": "Jr.",
   "pos": "",
   "hometown": "Tel Aviv, Israel",
   "highschool": ""
@@ -266,7 +258,7 @@
  {
   "name": "Jackson Violich",
   "jersey": "",
-  "class": "Fy",
+  "class": "So.",
   "pos": "",
   "hometown": "Piedmont, Calif.",
   "highschool": "Piedmont"
