@@ -11677,3 +11677,4 @@ Call log:
 2026-09-19T02:35:47.538929+00:00  STALE    https://news.google.com/rss/search?q=HMC%20San%20Francisco&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-19T02:35:47.538929+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-19T02:35:47.538929+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-19T03:23:22.133656+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
