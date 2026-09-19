@@ -16,6 +16,14 @@
   "highschool": "Weil Tennis Academy and College Preparatory School"
  },
  {
+  "name": "Elizabeth Evans",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Cardiff, Wales, United Kingdom",
+  "highschool": "Howell's School Llandaf"
+ },
+ {
   "name": "Kavya Karra",
   "jersey": "",
   "class": "Sr.",
@@ -80,11 +88,27 @@
   "highschool": "Florida Virtual School"
  },
  {
+  "name": "Anna Tabunshchyk",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Burlington, Ontario, Canada",
+  "highschool": "Dr. Frank J. Hayden Secondary School"
+ },
+ {
   "name": "Stephanie Yakoff",
   "jersey": "",
   "class": "Sr.",
   "pos": "",
   "hometown": "Fort Lee, N.J.",
   "highschool": "Fort Lee"
+ },
+ {
+  "name": "Amina Zeghlouli",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Tangier, Morocco",
+  "highschool": "CNED"
  }
 ]
