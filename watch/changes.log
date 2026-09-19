@@ -11858,3 +11858,7 @@ Call log:
 2026-09-19T07:43:34.631409+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-19T07:43:34.631409+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-19T07:48:37.205526+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-09-19T08:30:22.660899+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-09-19T08:30:22.660899+00:00  CHANGED  https://www.courtlistener.com/docket/72275604/united-states-v-president-and-fellows-of-harvard-college-harvard/?order_by=desc  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-09-19T08:35:26.374703+00:00  FLAPPED  https://www.courtlistener.com/docket/72275604/united-states-v-president-and-fellows-of-harvard-college-harvard/?order_by=desc
+2026-09-19T08:40:28.088216+00:00  FLAPPED  https://www.courtlistener.com/docket/72275604/united-states-v-president-and-fellows-of-harvard-college-harvard/?order_by=desc
