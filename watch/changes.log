@@ -12965,3 +12965,14 @@ Call log:
 2026-09-20T14:34:24.508906+00:00  STALE    https://news.google.com/rss/search?q=HMC%20San%20Francisco&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-20T14:34:24.508906+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-20T14:34:24.508906+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-20T15:06:21.379964+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-culture-community
+2026-09-20T15:06:21.379964+00:00  ERROR    https://forklightning.substack.com/  headless render failed: Page.goto: Timeout 35000ms exceeded.
+Call log:
+  - navigating to "
+2026-09-20T15:06:21.379964+00:00  BLOCKED  https://titleix.college.harvard.edu/resources
+2026-09-20T15:06:21.379964+00:00  BLOCKED  https://www.hupd.harvard.edu/campus-hazing-transparency-report
+2026-09-20T15:22:07.158135+00:00  CHANGED  https://www.courtlistener.com/docket/72275604/united-states-v-president-and-fellows-of-harvard-college-harvard/?order_by=desc  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-09-20T15:27:08.994279+00:00  FLAPPED  https://www.courtlistener.com/docket/72275604/united-states-v-president-and-fellows-of-harvard-college-harvard/?order_by=desc
+2026-09-20T15:32:11.618816+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-09-20T15:32:11.618816+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-09-20T15:32:11.618816+00:00  FLAPPED  https://www.courtlistener.com/docket/72275604/united-states-v-president-and-fellows-of-harvard-college-harvard/?order_by=desc
