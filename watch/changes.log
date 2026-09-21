@@ -14021,3 +14021,6 @@ Call log:
 2026-09-21T18:50:01.698381+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-21T18:50:01.698381+00:00  CHANGED  https://chinaselectcommittee.house.gov/media/press-releases  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
 2026-09-21T18:55:09.740431+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-09-21T19:27:26.551409+00:00  CHANGED  https://chinaselectcommittee.house.gov/media/press-releases  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-09-21T19:42:32.827073+00:00  CHANGED  https://www.hks.harvard.edu  by=jen.phan  ch=directmessage  via=DM->jen.phan
+2026-09-21T19:47:35.435853+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
