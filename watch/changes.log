@@ -13633,3 +13633,5 @@ Call log:
 2026-09-21T08:35:29.628385+00:00  STALE    https://news.google.com/rss/search?q=HMC%20San%20Francisco&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-21T08:35:29.628385+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-21T08:35:29.628385+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-21T09:29:05.394783+00:00  ERROR    https://www.harvard.edu/federal-lawsuits/  <urlopen error [Errno 104] Connection reset by peer>
+2026-09-21T09:34:08.599074+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
