@@ -15850,3 +15850,24 @@ Call log:
 2026-09-23T15:23:18.797446+00:00  STALE    https://news.google.com/rss/search?q=Joshua%20Friedman&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-23T15:23:18.797446+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-23T15:28:25.578188+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-23T15:35:59.500377+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-23T15:41:05.627444+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-23T15:46:10.411536+00:00  CHANGED  https://www.hks.harvard.edu  by=jen.phan  ch=directmessage  via=DM->jen.phan
+2026-09-23T15:46:10.411536+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-09-23T15:46:10.411536+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-09-23T15:46:10.411536+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-23T15:51:16.843783+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-23T15:51:16.843783+00:00  STALE    https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-23T15:51:16.843783+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Management%20Company&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-23T15:51:16.843783+00:00  ERROR    https://news.google.com/rss/search?q=Sanjeev%20Daga&hl=en-US&gl=US&ceid=US:en  HTTP Error 503: Service Unavailable
+2026-09-23T15:51:16.843783+00:00  CHANGED  https://news.google.com/rss/search?q=Tim%20Barakett&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-09-23T15:51:16.843783+00:00  ERROR    https://news.google.com/rss/search?q=Alan%20Garber&hl=en-US&gl=US&ceid=US:en  HTTP Error 503: Service Unavailable
+2026-09-23T15:51:16.843783+00:00  CHANGED  https://news.google.com/rss/search?q=*Eric%20Doppstadt*&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-09-23T15:51:16.843783+00:00  STALE    https://news.google.com/rss/search?q=Paul%20Edgerley&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-23T15:51:16.843783+00:00  STALE    https://news.google.com/rss/search?q=*Robert%20Jain*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-23T15:51:16.843783+00:00  STALE    https://news.google.com/rss/search?q=*Raymond%20McGuire*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-23T15:51:16.843783+00:00  ERROR    https://news.google.com/rss/search?q=*600%20Atlantic%20Avenue%20Boston*&hl=en-US&gl=US&ceid=US:en  HTTP Error 503: Service Unavailable
+2026-09-23T15:51:16.843783+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20investment&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-23T15:51:16.843783+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Singapore&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-23T15:51:16.843783+00:00  CHANGED  https://news.google.com/rss/search?q=HMC%20San%20Francisco&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-09-23T15:51:16.843783+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
