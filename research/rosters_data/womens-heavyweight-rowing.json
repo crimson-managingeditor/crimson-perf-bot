@@ -1,5 +1,13 @@
 [
  {
+  "name": "Aleksandra Belov",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Gatlinburg, Tenn.",
+  "highschool": "St. Andrew's School (Del.)"
+ },
+ {
   "name": "Claudia Chadwick",
   "jersey": "",
   "class": "Jr.",
@@ -14,6 +22,14 @@
   "pos": "",
   "hometown": "Melbourne, Australia",
   "highschool": "Melbourne Girls Grammar School"
+ },
+ {
+  "name": "Charlotte Dassori",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "New York, N.Y.",
+  "highschool": "Phillips Exeter Academy"
  },
  {
   "name": "Ella Digilio",
@@ -40,12 +56,12 @@
   "highschool": "Noble & Greenough"
  },
  {
-  "name": "Araminta Gaitskell",
+  "name": "Virginia Gates",
   "jersey": "",
-  "class": "So.",
+  "class": "Fy",
   "pos": "",
-  "hometown": "Barrington, RI",
-  "highschool": "Lincoln School"
+  "hometown": "Niagara Falls, Ont.",
+  "highschool": "St. Paul Catholic High School"
  },
  {
   "name": "Isabelle Goldstein",
@@ -96,6 +112,14 @@
   "highschool": "The Waterford School"
  },
  {
+  "name": "Isabelle Hou",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Plano, Texas",
+  "highschool": "Plano Senior"
+ },
+ {
   "name": "Asha Hug",
   "jersey": "",
   "class": "So.",
@@ -110,6 +134,22 @@
   "pos": "",
   "hometown": "Newport Beach, CA",
   "highschool": "Orange County School of the Arts"
+ },
+ {
+  "name": "Clementine Kirt",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Westport, Conn.",
+  "highschool": "Greens Farms Academy"
+ },
+ {
+  "name": "Colette Kriegel",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Augusta, Ga.",
+  "highschool": "Davidson Fine Arts Magnet School"
  },
  {
   "name": "Beatrix Lay",
@@ -160,6 +200,14 @@
   "highschool": "Ransom Everglades High School"
  },
  {
+  "name": "Sophie Shepherd",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Boston, Mass.",
+  "highschool": "Boston Latin School"
+ },
+ {
   "name": "Jacqueline Stjernfeldt",
   "jersey": "",
   "class": "Jr.",
@@ -184,6 +232,14 @@
   "highschool": "Glebe Collegiate Institute"
  },
  {
+  "name": "Defne Tiftikcioglu",
+  "jersey": "",
+  "class": "So.",
+  "pos": "",
+  "hometown": "Istanbul, Turkey",
+  "highschool": "Robert College of Istanbul"
+ },
+ {
   "name": "Carrie Truong",
   "jersey": "",
   "class": "So.",
@@ -192,11 +248,35 @@
   "highschool": "St. Joseph Notre Dame High School"
  },
  {
+  "name": "Veronika Vachkova",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Roudnice nad Labem, Czech Republic",
+  "highschool": "Gymnázium Roudnice nad Labem"
+ },
+ {
+  "name": "Ruby Wattenberg",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "London, England",
+  "highschool": "St. Paul's Girls' School"
+ },
+ {
   "name": "Ava Weneck",
   "jersey": "",
   "class": "Jr.",
   "pos": "",
   "hometown": "South Salem, N.Y.",
   "highschool": "St. Luke's School"
+ },
+ {
+  "name": "Sadie Zweig",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Woodside, Calif.",
+  "highschool": "Woodside Priory School"
  }
 ]
