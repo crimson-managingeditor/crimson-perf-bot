@@ -16707,3 +16707,20 @@ Call log:
 2026-09-24T09:29:32.162068+00:00  STALE    https://news.google.com/rss/search?q=Joshua%20Friedman&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-24T09:29:32.162068+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-24T09:34:38.263606+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-24T10:06:55.090956+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-24T10:12:00.816803+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-24T10:17:05.820001+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-24T10:22:10.585599+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-24T10:22:10.585599+00:00  STALE    https://news.google.com/rss/search?q=Sanjeev%20Daga&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-24T10:22:10.585599+00:00  STALE    https://news.google.com/rss/search?q=Alan%20Garber&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-24T10:27:14.709942+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-24T10:27:14.709942+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-09-24T10:27:14.709942+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Management%20Company&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-24T10:27:14.709942+00:00  STALE    https://news.google.com/rss/search?q=Tim%20Barakett&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-24T10:27:14.709942+00:00  STALE    https://news.google.com/rss/search?q=Paul%20Edgerley&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-24T10:27:14.709942+00:00  STALE    https://news.google.com/rss/search?q=*Robert%20Jain*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-24T10:27:14.709942+00:00  STALE    https://news.google.com/rss/search?q=*Raymond%20McGuire*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-24T10:27:14.709942+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20investment&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-24T10:27:14.709942+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Singapore&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-24T10:27:14.709942+00:00  STALE    https://news.google.com/rss/search?q=HMC%20San%20Francisco&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-24T10:27:14.709942+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
