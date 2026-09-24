@@ -16914,3 +16914,13 @@ Call log:
 2026-09-24T14:38:02.866469+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-24T14:38:02.866469+00:00  FLAPPED  https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en
 2026-09-24T14:43:14.303526+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-24T15:16:38.370571+00:00  CHANGED  https://www.cambridgema.gov/news  by=shawn.boehmer  ch=directmessage  via=DM->shawn.boehmer
+2026-09-24T15:16:38.370571+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-24T15:21:43.536763+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-24T15:26:48.280922+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-24T15:31:53.354427+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-09-24T15:31:53.354427+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-24T15:31:53.354427+00:00  STALE    https://news.google.com/rss/search?q=Sanjeev%20Daga&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-24T15:31:53.354427+00:00  STALE    https://news.google.com/rss/search?q=Alan%20Garber&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-24T15:31:53.354427+00:00  STALE    https://news.google.com/rss/search?q=*600%20Atlantic%20Avenue%20Boston*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-24T15:36:58.532199+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
