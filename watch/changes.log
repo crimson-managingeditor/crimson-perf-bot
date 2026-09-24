@@ -17309,3 +17309,17 @@ Call log:
 2026-09-24T23:26:42.671264+00:00  STALE    https://news.google.com/rss/search?q=HMC%20San%20Francisco&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-24T23:26:42.671264+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-24T23:26:42.671264+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-24T23:31:18.786464+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-24T23:31:18.786464+00:00  ERROR    https://secretary.college.harvard.edu/data/  <urlopen error timed out>
+2026-09-24T23:37:12.872808+00:00  CHANGED  https://thecrimson.com  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-09-24T23:37:12.872808+00:00  CHANGED  https://thecrimson.com  by=matteo.diaz  ch=matteo-internal  via=DM->matteo.diaz
+2026-09-24T23:37:12.872808+00:00  CHANGED  https://thecrimson.com  by=matteo.diaz  ch=directmessage  via=DM->matteo.diaz
+2026-09-24T23:37:12.872808+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-24T23:37:12.872808+00:00  CHANGED  https://www.thecrimson.com/  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-09-24T23:42:19.390331+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-24T23:42:19.390331+00:00  ERROR    https://secretary.college.harvard.edu/data/  <urlopen error timed out>
+2026-09-24T23:48:12.869838+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-24T23:48:12.869838+00:00  STALE    https://news.google.com/rss/search?q=Sanjeev%20Daga&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-24T23:48:12.869838+00:00  STALE    https://news.google.com/rss/search?q=Alan%20Garber&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-24T23:48:12.869838+00:00  STALE    https://news.google.com/rss/search?q=*600%20Atlantic%20Avenue%20Boston*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-24T23:53:23.531616+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
