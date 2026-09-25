@@ -64,6 +64,14 @@
   "highschool": "Orange Lutheran"
  },
  {
+  "name": "Joseph Cavanagh",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Providence, R.I.",
+  "highschool": "La Salle Academy"
+ },
+ {
   "name": "Rupert Chen",
   "jersey": "",
   "class": "Sr.",
@@ -214,6 +222,14 @@
   "pos": "",
   "hometown": "London, England",
   "highschool": "Eton College"
+ },
+ {
+  "name": "Liam Quinn",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "Libertyville, Ill.",
+  "highschool": "St. Albans School"
  },
  {
   "name": "Charles Rahdon",
