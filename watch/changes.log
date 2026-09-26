@@ -19490,3 +19490,12 @@ Call log:
 2026-09-26T21:21:36.440838+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-26T21:21:36.440838+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-26T21:26:41.689490+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-26T21:58:57.372000+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-26T22:04:01.625967+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-26T22:09:10.476878+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-26T22:14:15.517496+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-26T22:14:15.517496+00:00  STALE    https://news.google.com/rss/search?q=Sanjeev%20Daga&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-26T22:14:15.517496+00:00  STALE    https://news.google.com/rss/search?q=Alan%20Garber&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-26T22:14:15.517496+00:00  STALE    https://news.google.com/rss/search?q=*600%20Atlantic%20Avenue%20Boston*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-26T22:19:20.992388+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-09-26T22:19:20.992388+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
