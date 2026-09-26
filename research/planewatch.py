@@ -35,6 +35,11 @@ DRY = os.environ.get("PLANE_DRY") or ("--dry-run" in sys.argv)
 UA  = {"User-Agent": "penny-plane-watch/1.0 (Harvard Crimson newsroom; dhruv.patel@thecrimson.com)"}
 GLOBE = f"https://globe.adsbexchange.com/?icao={HEX}"
 
+# descent-prediction tuning
+DESCENT_RATE = float(os.environ.get("DESCENT_RATE_FPM", "-500"))   # <= this = descending
+DESCENT_CEIL = float(os.environ.get("DESCENT_CEIL_FT", "13000"))   # only predict once below this
+JET_RWY_FT   = int(os.environ.get("JET_RWY_FT", "4500"))           # min hard runway for this jet
+
 SOURCES = [
     ("adsb.fi",        f"https://opendata.adsb.fi/api/v2/hex/{HEX}"),
     ("adsb.lol",       f"https://api.adsb.lol/v2/hex/{HEX}"),
@@ -119,6 +124,47 @@ def airport_label(ap):
     if ap["km"] > 6:
         return f"near {base} (~{ap['km']:.0f} km away)"
     return base
+
+def ap_name(row):
+    """Plain '{Name} ({CODE}) — {city, country}' for an airport DB row (no distance)."""
+    code = row["iata"] or row["ident"]
+    place = ", ".join(x for x in (row["muni"], row["country"]) if x)
+    return f"{row['name']} ({code})" + (f" — {place}" if place else "")
+
+def _bearing(a, b, c, d):
+    p = math.pi / 180
+    y = math.sin((d-b)*p) * math.cos(c*p)
+    x = math.cos(a*p)*math.sin(c*p) - math.sin(a*p)*math.cos(c*p)*math.cos((d-b)*p)
+    return (math.degrees(math.atan2(y, x)) + 360) % 360
+
+def predict_destination(lat, lon, track, gs):
+    """Best-guess arrival airport while descending: the JET-CAPABLE field (hard runway
+    >= JET_RWY_FT) whose bearing best lines up with the current track, nearest first.
+    Returns {row, dist_km, off_deg, eta_min, conf, alt} or None if nothing fits the cone."""
+    if lat is None or lon is None or track is None:
+        return None
+    cand = []
+    for alat, alon, row in _load_airports():
+        try:
+            if int(row.get("hard", 0) or 0) != 1 or int(row.get("rwy_ft", 0) or 0) < JET_RWY_FT:
+                continue
+        except Exception:
+            continue
+        d = _km(lat, lon, alat, alon)
+        if d < 1 or d > 260:
+            continue
+        off = abs((_bearing(lat, lon, alat, alon) - track + 180) % 360 - 180)
+        if off > 45:
+            continue
+        cand.append((off + d * 0.12, d, off, row))
+    if not cand:
+        return None
+    cand.sort(key=lambda x: x[0])
+    _, d, off, row = cand[0]
+    eta = round(d / (gs * 1.852) * 60) if gs else None      # gs (kt) -> km/h
+    conf = "high" if (off < 8 and d < 130) else ("likely" if off < 20 else "tentative")
+    alt = ap_name(cand[1][3]) if len(cand) > 1 else None
+    return {"row": row, "dist": round(d), "off": round(off, 1), "eta": eta, "conf": conf, "alt2": alt}
 
 # ---------------------------------------------------------------- state
 def load_state():
@@ -223,9 +269,50 @@ def alert_takeoff(obs, dep_ap):
     ]
     return blocks, text
 
-def alert_landing(obs, arr_ap, flight):
+def alert_descent(obs, pred):
+    reg, t, owner = craft(obs)
+    dest = ap_name(pred["row"])
+    conf = {"high": "high confidence", "likely": "likely", "tentative": "tentative — could still divert"}[pred["conf"]]
+    eta = f"~{pred['eta']} min out" if pred.get("eta") else "inbound"
+    when = et_now()
+    alt = f"{int(obs['alt']):,} ft" if isinstance(obs.get("alt"), (int, float)) else "?"
+    text = f"🛬 {reg} descending — likely headed to {dest} ({eta})"
+    body = (f"🛬 *{reg} is descending — likely headed to {dest}*\n"
+            f"{eta} · {pred['dist']} km away · {pred['off']:.0f}° off track · _{conf}_")
+    if pred.get("alt2") and pred["conf"] != "high":
+        body += f"\n_or possibly {pred['alt2']}_"
+    ctx = " · ".join(x for x in [t, f"now {alt}, {int(obs['gs'])} kt" if isinstance(obs.get('gs'), (int,float)) else None,
+                                 f"<{GLOBE}|track on ADS-B Exchange>"] if x)
+    blocks = [
+        {"type": "section", "text": {"type": "mrkdwn", "text": body}},
+        {"type": "context", "elements": [{"type": "mrkdwn", "text": ctx}]},
+    ]
+    return blocks, text
+
+def maybe_descent_alert(st, obs):
+    """Fire ONE 'descending — likely headed to X' heads-up per flight, once the plane is
+    below the ceiling and descending toward a jet-capable airport."""
+    if st.get("descent_alerted"):
+        return
+    alt, rate = obs.get("alt"), obs.get("baro_rate")
+    if not isinstance(alt, (int, float)) or not isinstance(rate, (int, float)):
+        return
+    if rate > DESCENT_RATE or alt > DESCENT_CEIL:      # not descending, or still too high
+        return
+    pred = predict_destination(obs.get("lat"), obs.get("lon"), obs.get("track"), obs.get("gs"))
+    if not pred or pred["off"] > 25 or pred["dist"] > 220:
+        return                                          # no confident airport ahead yet — wait
+    ok = post(*alert_descent(obs, pred))
+    st["descent_alerted"] = True
+    st["predicted_dest"] = pred["row"].get("iata") or pred["row"].get("ident")
+    log_event("DESCENT", pred["row"], obs)
+    print(f"DESCENT alert posted={ok} -> {st['predicted_dest']} ({pred['conf']})")
+
+def alert_landing(obs, arr_ap, flight, predicted_ok=False):
     reg, t, owner = craft(obs)
     arr = airport_label(arr_ap) or (f"{obs['lat']:.3f}, {obs['lon']:.3f}" if obs.get("lat") else "unknown location")
+    if predicted_ok:
+        arr += "  🎯 _(as predicted)_"
     when = et_now()
     dur = ""
     dep_line = ""
@@ -285,6 +372,8 @@ def main():
         return
 
     if cur == prev:
+        if cur == "air":
+            maybe_descent_alert(st, obs)     # once-per-flight "likely headed to X" heads-up
         st["status"] = cur
         save_state(st)
         return
@@ -296,6 +385,8 @@ def main():
         blocks, text = alert_takeoff(obs, dep_ap)
         ok = post(blocks, text)
         st["status"] = "air"
+        st["descent_alerted"] = False        # fresh flight -> allow one descent heads-up
+        st["predicted_dest"] = None
         st["flight"] = {"dep_ts": now_iso,
                         "dep_label": airport_label(dep_ap),
                         "dep_code": (dep_ap or {}).get("iata") or (dep_ap or {}).get("ident")}
@@ -306,10 +397,14 @@ def main():
 
     if prev == "air" and cur == "ground":
         arr_ap = nearest_airport(obs.get("lat"), obs.get("lon"))
-        blocks, text = alert_landing(obs, arr_ap, st.get("flight"))
+        arr_code = (arr_ap or {}).get("iata") or (arr_ap or {}).get("ident")
+        predicted_ok = bool(st.get("predicted_dest")) and st.get("predicted_dest") == arr_code
+        blocks, text = alert_landing(obs, arr_ap, st.get("flight"), predicted_ok)
         ok = post(blocks, text)
         st["status"] = "ground"
         st["flight"] = None
+        st["descent_alerted"] = False
+        st["predicted_dest"] = None
         log_event("LANDING", arr_ap, obs)
         save_state(st)
         print(f"LANDING posted={ok}")
