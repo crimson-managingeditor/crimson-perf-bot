@@ -16,14 +16,6 @@
   "highschool": "JSerra Catholic"
  },
  {
-  "name": "Jack Burghardt",
-  "jersey": "2",
-  "class": "Sr.",
-  "pos": "Utility",
-  "hometown": "Manhattan Beach, Calif.",
-  "highschool": "Harvard-Westlake"
- },
- {
   "name": "Clay Carrington",
   "jersey": "3",
   "class": "Fy",
@@ -118,6 +110,14 @@
   "pos": "Center",
   "hometown": "Ventura, Calif.",
   "highschool": "Ventura"
+ },
+ {
+  "name": "Jack Burghardt",
+  "jersey": "18",
+  "class": "Sr.",
+  "pos": "Utility",
+  "hometown": "Manhattan Beach, Calif.",
+  "highschool": "Harvard-Westlake"
  },
  {
   "name": "Emil Sogaard-Srikrishnan",
