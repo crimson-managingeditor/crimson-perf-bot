@@ -24,7 +24,7 @@ Stdlib only. Env:
   AIRPORTS_CSV      default plane/airports.csv
   PLANE_DRY=1       print instead of posting
 """
-import os, sys, json, math, csv, time, urllib.request, datetime
+import os, sys, json, math, csv, time, urllib.request, urllib.parse, datetime
 
 HEX      = os.environ.get("PLANE_HEX", "a642a3").lower()
 CHANNEL  = os.environ.get("PLANE_CHANNEL", "#penny-plane")
@@ -148,19 +148,57 @@ def et_now():
     except Exception:
         return datetime.datetime.now(datetime.timezone.utc).strftime("%a %b %d, %H:%M UTC")
 
+_CH_ID = None
+def resolve_channel(token, ch):
+    """chat.postMessage needs a channel ID, not a #name. If PLANE_CHANNEL is already an
+    ID (C…/G…), use it; if it's #name, look the ID up via conversations.list (needs
+    channels:read / groups:read, and bot membership for private channels)."""
+    global _CH_ID
+    if not ch:
+        return None
+    if not ch.startswith("#"):
+        return ch                      # already an ID (or bare name Slack accepts)
+    if _CH_ID:
+        return _CH_ID
+    name, cursor = ch[1:], ""
+    for _ in range(25):
+        url = ("https://slack.com/api/conversations.list"
+               "?types=public_channel,private_channel&limit=1000&exclude_archived=true"
+               + (f"&cursor={urllib.parse.quote(cursor)}" if cursor else ""))
+        try:
+            rq = urllib.request.Request(url, headers={"Authorization": f"Bearer {token}"})
+            r = json.load(urllib.request.urlopen(rq, timeout=20))
+        except Exception as e:
+            print("conversations.list error:", e); return None
+        if not r.get("ok"):
+            print("conversations.list failed:", r.get("error")); return None
+        for c in r.get("channels", []):
+            if c.get("name") == name:
+                _CH_ID = c.get("id"); return _CH_ID
+        cursor = (r.get("response_metadata") or {}).get("next_cursor") or ""
+        if not cursor:
+            break
+    print(f"channel '{ch}' not found via conversations.list "
+          "(is the bot invited? does it have channels:read/groups:read?)")
+    return None
+
 def post(blocks, text):
     token = os.environ.get("SLACK_BOT_TOKEN")
     if DRY or not token:
         print(f"── {'DRY' if DRY else 'NO TOKEN'} — would post to {CHANNEL} ──\n{text}\n")
         return True
+    target = resolve_channel(token, CHANNEL) or CHANNEL
     try:
         rq = urllib.request.Request("https://slack.com/api/chat.postMessage",
-            data=json.dumps({"channel": CHANNEL, "text": text, "blocks": blocks,
+            data=json.dumps({"channel": target, "text": text, "blocks": blocks,
                              "unfurl_links": False}).encode(),
             headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"})
         r = json.load(urllib.request.urlopen(rq, timeout=20))
         if not r.get("ok"):
-            print("slack post failed:", r.get("error"))
+            err = r.get("error")
+            print(f"slack post failed: {err} (channel={target})")
+            if err in ("not_in_channel", "channel_not_found"):
+                print("  -> invite the bot to #penny-plane (/invite @<bot>) in Slack")
         return bool(r.get("ok"))
     except Exception as e:
         print("slack post error:", e); return False
