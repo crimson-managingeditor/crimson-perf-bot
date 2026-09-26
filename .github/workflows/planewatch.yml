@@ -13,7 +13,12 @@ name: penny-plane watch
 on:
   schedule:
     - cron: "*/10 * * * *"
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      test_ping:
+        description: "Post a one-time 'watch is live' message to #penny-plane to verify wiring"
+        type: boolean
+        default: false
 
 concurrency:
   group: planewatch
@@ -40,12 +45,14 @@ jobs:
       - name: Poll loop (every 2 min for ~8 min)
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          PLANE_TEST_PING: ${{ github.event.inputs.test_ping == 'true' && '1' || '' }}
           PLANE_CHANNEL:   "#penny-plane"
           PLANE_HEX:       "a642a3"
           STATE_FILE:      plane/.state/state.json
           FLIGHT_LOG:      plane/flights.log
           AIRPORTS_CSV:    plane/airports.csv
         run: |
+          if [ -n "$PLANE_TEST_PING" ]; then python research/planewatch.py || true; exit 0; fi
           END=$(( $(date +%s) + 480 ))
           while :; do
             python research/planewatch.py || true

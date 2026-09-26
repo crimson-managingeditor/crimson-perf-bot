@@ -213,6 +213,15 @@ def alert_landing(obs, arr_ap, flight):
 
 # ---------------------------------------------------------------- main
 def main():
+    if os.environ.get("PLANE_TEST_PING") == "1":
+        reg = HEX.upper()
+        text = f"✅ penny-plane watch is live — tracking N502P ({reg}) for takeoffs & landings."
+        blocks = [{"type": "section", "text": {"type": "mrkdwn",
+                   "text": f"✅ *penny-plane watch is live*\nTracking *N502P* (Gulfstream G500, PSP Capital) — "
+                           f"you'll get a 🛫 on takeoff and 🛬 on landing.\n<{GLOBE}|live map>"}}]
+        ok = post(blocks, text)
+        print(f"test ping posted={ok}")
+        return
     obs, src = fetch()
     st = load_state()
     now_iso = datetime.datetime.now(datetime.timezone.utc).isoformat()
