@@ -1,0 +1,71 @@
+name: penny-plane watch
+
+# Pings #penny-plane on every takeoff/landing of N502P (hex a642a3, Penny Pritzker's
+# Gulfstream G500). Free ADS-B community feeds give current position only, so we poll
+# and detect ground<->air transitions. State (last definitive status) lives in the
+# Actions cache; takeoff/landing events append to plane/flights.log (committed).
+#
+# NOTE: GitHub's scheduler drops/delays short-interval crons, so each run also polls
+# internally every 2 min for ~8 min. Detection is gap-robust (it compares to the last
+# *definitive* status), so a delayed poll still catches the event — just a bit later.
+# For true to-the-minute pings you'd need an always-on host or a Cloudflare Cron Trigger.
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch: {}
+
+concurrency:
+  group: planewatch
+  cancel-in-progress: false
+
+permissions:
+  contents: write        # to commit plane/flights.log
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 11
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Restore plane state
+        uses: actions/cache/restore@v4
+        with:
+          path: plane/.state
+          key: plane-state-${{ github.run_id }}
+          restore-keys: plane-state-
+      - name: Poll loop (every 2 min for ~8 min)
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          PLANE_CHANNEL:   "#penny-plane"
+          PLANE_HEX:       "a642a3"
+          STATE_FILE:      plane/.state/state.json
+          FLIGHT_LOG:      plane/flights.log
+          AIRPORTS_CSV:    plane/airports.csv
+        run: |
+          END=$(( $(date +%s) + 480 ))
+          while :; do
+            python research/planewatch.py || true
+            [ $(( $(date +%s) + 120 )) -ge "$END" ] && break
+            sleep 120
+          done
+      - name: Save plane state
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: plane/.state
+          key: plane-state-${{ github.run_id }}
+      - name: Commit flight log
+        if: always()
+        run: |
+          if [ -n "$(git status --porcelain plane/flights.log 2>/dev/null)" ]; then
+            git config user.name  "penny-plane"
+            git config user.email "actions@users.noreply.github.com"
+            git add plane/flights.log
+            git commit -m "penny-plane: flight event $(date -u +%FT%TZ)"
+            git pull --rebase --quiet origin main || true
+            git push || true
+          fi
