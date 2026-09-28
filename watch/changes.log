@@ -21220,3 +21220,11 @@ Call log:
 2026-09-28T16:27:37.153487+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-28T16:27:37.153487+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-28T16:27:37.153487+00:00  CHANGED  https://chinaselectcommittee.house.gov/media/press-releases  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-09-28T17:06:16.808857+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-28T17:11:23.834818+00:00  CHANGED  https://www.hks.harvard.edu  by=jen.phan  ch=directmessage  via=DM->jen.phan
+2026-09-28T17:11:23.834818+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-09-28T17:16:28.468313+00:00  CHANGED  https://hls.harvard.edu  by=uy.pham  ch=directmessage  via=DM->uy.pham
+2026-09-28T17:16:28.468313+00:00  CHANGED  https://allstonbrightoncdc.org  by=thamini.vijeyasingam  ch=directmessage  via=DM->thamini.vijeyasingam
+2026-09-28T17:26:32.898047+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-28T17:26:32.898047+00:00  STALE    https://news.google.com/rss/search?q=Sanjeev%20Daga&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-28T17:26:32.898047+00:00  STALE    https://news.google.com/rss/search?q=Alan%20Garber&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
