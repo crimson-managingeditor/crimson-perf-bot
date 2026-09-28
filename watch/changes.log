@@ -21147,3 +21147,10 @@ Call log:
 2026-09-28T13:51:53.502247+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-28T13:51:53.502247+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-28T13:56:58.911541+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-09-28T14:36:27.952702+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-28T14:36:27.952702+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-09-28T14:41:34.247214+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-09-28T14:46:35.644730+00:00  CHANGED  https://www.courtlistener.com/docket/72520538/united-states-v-president-and-fellows-of-harvard-college/?order_by=desc  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-09-28T14:46:35.644730+00:00  STALE    https://news.google.com/rss/search?q=Sanjeev%20Daga&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-28T14:46:35.644730+00:00  STALE    https://news.google.com/rss/search?q=Alan%20Garber&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-28T14:46:35.644730+00:00  STALE    https://news.google.com/rss/search?q=*600%20Atlantic%20Avenue%20Boston*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
