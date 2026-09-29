@@ -22248,3 +22248,8 @@ Call log:
 2026-09-29T15:34:47.283954+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
 2026-09-29T15:34:47.283954+00:00  CHANGED  https://www.justice.gov/opa/pr/justice-department-launches-investigation-determine-whether-harvards-china-based-financial  by=alexa.schmitt  ch=directmessage  via=DM->alexa.schmitt
 2026-09-29T15:34:47.283954+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-29T16:18:25.853334+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-29T16:28:50.695071+00:00  CHANGED  https://www.cambridgema.gov/news  by=shawn.boehmer  ch=directmessage  via=DM->shawn.boehmer
+2026-09-29T16:28:50.695071+00:00  STALE    https://news.google.com/rss/search?q=Sanjeev%20Daga&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-29T16:28:50.695071+00:00  STALE    https://news.google.com/rss/search?q=Alan%20Garber&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-29T16:28:50.695071+00:00  STALE    https://news.google.com/rss/search?q=*600%20Atlantic%20Avenue%20Boston*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
