@@ -22641,3 +22641,7 @@ Call log:
 2026-09-30T00:06:50.701001+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-30T00:06:50.701001+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-30T00:06:50.701001+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-09-30T00:39:19.835177+00:00  CHANGED  https://www.hks.harvard.edu  by=jen.phan  ch=directmessage  via=DM->jen.phan
+2026-09-30T00:39:19.835177+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-09-30T00:39:19.835177+00:00  CHANGED  https://www.justice.gov/opa/pr/justice-department-launches-investigation-determine-whether-harvards-china-based-financial  by=alexa.schmitt  ch=directmessage  via=DM->alexa.schmitt
+2026-09-30T00:49:27.335414+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
