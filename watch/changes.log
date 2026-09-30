@@ -22930,3 +22930,5 @@ Call log:
 2026-09-30T06:44:34.587234+00:00  STALE    https://news.google.com/rss/search?q=HMC%20San%20Francisco&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-30T06:44:34.587234+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-09-30T06:44:34.587234+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-09-30T07:21:21.953757+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-09-30T07:41:32.257574+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
