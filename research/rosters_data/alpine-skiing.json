@@ -32,6 +32,14 @@
   "highschool": "Kelowna Secondary School"
  },
  {
+  "name": "Zola Bruner",
+  "jersey": "",
+  "class": "Rs.",
+  "pos": "Nordic",
+  "hometown": "South Londonderry, Vt.",
+  "highschool": "Stratton Mountain School"
+ },
+ {
   "name": "Caroline Collins",
   "jersey": "",
   "class": "So.",
@@ -54,6 +62,14 @@
   "pos": "Alpine",
   "hometown": "Pacific Palisades, Calif.",
   "highschool": "Rowland Hall (Utah)"
+ },
+ {
+  "name": "Elli Englund",
+  "jersey": "",
+  "class": "Rs.",
+  "pos": "Nordic",
+  "hometown": "Plymouth, N.H.",
+  "highschool": "Plymouth Regional High School"
  },
  {
   "name": "Cyrus Hamlin",
@@ -110,6 +126,14 @@
   "pos": "Nordic",
   "hometown": "Anchorage, Alaska",
   "highschool": "Robert Service"
+ },
+ {
+  "name": "Mark Shapovalov",
+  "jersey": "",
+  "class": "Rs.",
+  "pos": "Nordic",
+  "hometown": "Burnaby, British Columbia, Canada",
+  "highschool": "Moscrop Secondary School"
  },
  {
   "name": "Skylar Sheppard",
