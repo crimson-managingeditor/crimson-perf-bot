@@ -695,5 +695,13 @@
     "added_by": "thamini.vijeyasingam",
     "added_by_id": "U0AEK5Q1UTA",
     "interval": 60
+  },
+  {
+    "url": "https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad",
+    "channel": "D0ADUS7P2Q4",
+    "channel_name": "directmessage",
+    "added_by": "hugo.chiasson",
+    "added_by_id": "U0ADP6M5ZCN",
+    "interval": 5
   }
 ]
