@@ -687,5 +687,13 @@
     "added_by": "hugo.chiasson",
     "added_by_id": "U0ADP6M5ZCN",
     "interval": 5
+  },
+  {
+    "url": "https://ercallston.com/",
+    "channel": "D0ADNQVRP8E",
+    "channel_name": "directmessage",
+    "added_by": "thamini.vijeyasingam",
+    "added_by_id": "U0AEK5Q1UTA",
+    "interval": 60
   }
 ]
