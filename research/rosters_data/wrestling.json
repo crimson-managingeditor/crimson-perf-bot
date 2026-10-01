@@ -8,14 +8,6 @@
   "highschool": "Salesianum School"
  },
  {
-  "name": "Connor Bercume",
-  "jersey": "",
-  "class": "Fy",
-  "pos": "197/285",
-  "hometown": "Novi, Mich.",
-  "highschool": "Detroit Catholic Central/Blair Academy (N.J.)"
- },
- {
   "name": "Daniel Bittner",
   "jersey": "",
   "class": "Sr.",
@@ -27,7 +19,7 @@
   "name": "Declan Bligh",
   "jersey": "",
   "class": "Fy",
-  "pos": "174",
+  "pos": "165/174",
   "hometown": "Medfield, Mass.",
   "highschool": "Roxbury Latin School"
  },
@@ -43,7 +35,7 @@
   "name": "Nathan Braun",
   "jersey": "",
   "class": "Fy",
-  "pos": "141/149",
+  "pos": "133",
   "hometown": "Rockaway, N.J.",
   "highschool": "Bergen Catholic"
  },
@@ -59,7 +51,7 @@
   "name": "Joseph Cangro",
   "jersey": "",
   "class": "Sr.",
-  "pos": "165",
+  "pos": "157",
   "hometown": "Woodland Park, N.J.",
   "highschool": "Bergen Catholic"
  },
@@ -83,7 +75,7 @@
   "name": "Braedon Goes",
   "jersey": "",
   "class": "Fy",
-  "pos": "133",
+  "pos": "141",
   "hometown": "Danvers, Mass.",
   "highschool": "St. John's Prep/Northfield Mount Hermon"
  },
@@ -99,7 +91,7 @@
   "name": "Faraz Hakim",
   "jersey": "",
   "class": "Sr.",
-  "pos": "157",
+  "pos": "184",
   "hometown": "Niles, Ill.",
   "highschool": "Niles West"
  },
@@ -107,7 +99,7 @@
   "name": "Wyatt Hepner",
   "jersey": "",
   "class": "So.",
-  "pos": "157",
+  "pos": "157/165",
   "hometown": "Point Park, Mich.",
   "highschool": "Grosse Pointe South"
  },
@@ -131,7 +123,7 @@
   "name": "Nolan Liess",
   "jersey": "",
   "class": "Jr.",
-  "pos": "157",
+  "pos": "165",
   "hometown": "Rochester, N.Y.",
   "highschool": "Wyoming Seminary"
  },
@@ -147,7 +139,7 @@
   "name": "Coleman Nogle",
   "jersey": "",
   "class": "Sr.",
-  "pos": "133",
+  "pos": "141",
   "hometown": "Laurel, Md.",
   "highschool": "Mount Saint Joseph"
  },
@@ -155,7 +147,7 @@
   "name": "Donny Pigoni",
   "jersey": "",
   "class": "Jr.",
-  "pos": "157",
+  "pos": "157/165",
   "hometown": "North Aurora, Ill.",
   "highschool": "Marmion Academy"
  },
