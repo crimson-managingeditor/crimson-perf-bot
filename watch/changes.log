@@ -25270,3 +25270,9 @@ Call log:
 2026-10-02T11:27:23.466608+00:00  STALE    https://news.google.com/rss/search?q=HMC%20San%20Francisco&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-10-02T11:27:23.466608+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-10-02T11:27:23.466608+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-02T11:31:56.141990+00:00  ERROR    https://secretary.college.harvard.edu/data/  <urlopen error timed out>
+2026-10-02T11:37:47.110323+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-10-02T11:42:51.905227+00:00  ERROR    https://secretary.college.harvard.edu/data/  <urlopen error timed out>
+2026-10-02T11:42:51.905227+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-10-02T11:48:44.148872+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-10-02T11:54:00.087071+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
