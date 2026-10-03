@@ -26140,3 +26140,20 @@ Call log:
 2026-10-03T04:51:54.109308+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
 2026-10-03T04:51:54.109308+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
 2026-10-03T04:57:03.011232+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-10-03T05:01:50.395250+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Management%20Company&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-03T05:01:50.395250+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-10-03T05:01:50.395250+00:00  STALE    https://news.google.com/rss/search?q=N.P.%20Narvekar&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-03T05:01:50.395250+00:00  STALE    https://news.google.com/rss/search?q=Rick%20Slocum&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-03T05:01:50.395250+00:00  STALE    https://news.google.com/rss/search?q=Sanjeev%20Daga&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-03T05:01:50.395250+00:00  STALE    https://news.google.com/rss/search?q=Tricia%20Glynn&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-03T05:01:50.395250+00:00  STALE    https://news.google.com/rss/search?q=*Eric%20Doppstadt*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-03T05:01:50.395250+00:00  STALE    https://news.google.com/rss/search?q=Paul%20Edgerley&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-03T05:01:50.395250+00:00  STALE    https://news.google.com/rss/search?q=*Mart%C3%ADn%20Escobari*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-03T05:01:50.395250+00:00  STALE    https://news.google.com/rss/search?q=*Ritu%20Kalra*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-03T05:01:50.395250+00:00  STALE    https://news.google.com/rss/search?q=Paul%20Finnegan&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-03T05:01:50.395250+00:00  CHANGED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-10-03T05:06:53.775601+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-10-03T05:11:55.592424+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-10-03T05:11:55.592424+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-10-03T05:11:55.592424+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-10-03T05:17:00.860837+00:00  ERROR    https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad  The read operation timed out
