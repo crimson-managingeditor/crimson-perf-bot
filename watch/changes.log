@@ -26680,3 +26680,7 @@ Call log:
 2026-10-03T18:58:20.742118+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-10-03T18:58:20.742118+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-10-03T19:03:52.774035+00:00  ERROR    https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad  The read operation timed out
+2026-10-03T19:41:58.177824+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-10-03T19:47:03.759708+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-10-03T19:47:03.759708+00:00  ERROR    https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad  The read operation timed out
+2026-10-03T19:57:32.595411+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
