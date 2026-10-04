@@ -695,5 +695,13 @@
     "added_by": "hugo.chiasson",
     "added_by_id": "U0ADP6M5ZCN",
     "interval": 5
+  },
+  {
+    "url": "https://www.foreignfundinghighered.gov/downloads",
+    "channel": "D0ADUS7DQVA",
+    "channel_name": "directmessage",
+    "added_by": "megan.blonigen",
+    "added_by_id": "U0AD9QLRK0F",
+    "interval": 30
   }
 ]
