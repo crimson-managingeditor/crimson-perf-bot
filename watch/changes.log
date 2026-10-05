@@ -28921,3 +28921,10 @@ Call log:
 2026-10-05T17:41:10.071699+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
 2026-10-05T17:41:10.071699+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
 2026-10-05T17:41:10.071699+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-10-05T18:13:21.286659+00:00  ERROR    https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad  The read operation timed out
+2026-10-05T18:18:47.124793+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-10-05T18:23:51.411025+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-10-05T18:23:51.411025+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-10-05T18:28:56.066924+00:00  CHANGED  https://hls.harvard.edu  by=uy.pham  ch=directmessage  via=DM->uy.pham
+2026-10-05T18:33:58.979361+00:00  FLAPPED  https://www.courtlistener.com/docket/72090192/president-and-fellows-of-harvard-college-v-us-department-of-health-and/?order_by=desc
+2026-10-05T18:33:58.979361+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
