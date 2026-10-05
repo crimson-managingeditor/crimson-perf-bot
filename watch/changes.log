@@ -27966,3 +27966,8 @@ Call log:
 2026-10-04T23:06:40.714000+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-10-04T23:06:40.714000+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-10-04T23:11:44.224330+00:00  FLAPPED  https://www.courtlistener.com/docket/72520538/united-states-v-president-and-fellows-of-harvard-college/?order_by=desc
+2026-10-04T23:58:56.132226+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-10-04T23:58:56.132226+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-10-04T23:58:56.132226+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-10-05T00:04:23.929727+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-10-05T00:04:23.929727+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
