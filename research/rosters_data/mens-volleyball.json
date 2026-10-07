@@ -1,5 +1,13 @@
 [
  {
+  "name": "Kahi Marumoto",
+  "jersey": "1",
+  "class": "Fy",
+  "pos": "Setter",
+  "hometown": "Honolulu, Hawaii",
+  "highschool": "Punahou School"
+ },
+ {
   "name": "Thomas Phung",
   "jersey": "2",
   "class": "Jr.",
@@ -14,6 +22,14 @@
   "pos": "Middle",
   "hometown": "Carlsbad, Calif.",
   "highschool": "Carlsbad"
+ },
+ {
+  "name": "Tyler Pence",
+  "jersey": "4",
+  "class": "Fy",
+  "pos": "Setter",
+  "hometown": "Newport Beach, Calif.",
+  "highschool": "Newport Harbor"
  },
  {
   "name": "Eric Su",
@@ -40,6 +56,22 @@
   "highschool": "Kennett"
  },
  {
+  "name": "Miles Hiscox",
+  "jersey": "8",
+  "class": "Fy",
+  "pos": "Middle",
+  "hometown": "Vancouver, British Columbia",
+  "highschool": "Sir Charles Tupper Secondary School"
+ },
+ {
+  "name": "Khang Pham",
+  "jersey": "9",
+  "class": "Rs.",
+  "pos": "",
+  "hometown": "",
+  "highschool": ""
+ },
+ {
   "name": "Kai Gan",
   "jersey": "10",
   "class": "So.",
@@ -64,51 +96,35 @@
   "highschool": "William T. Dwyer"
  },
  {
-  "name": "Owen Woolbert",
-  "jersey": "35",
-  "class": "Sr.",
-  "pos": "Middle",
-  "hometown": "Jackson, Ohio",
-  "highschool": "Jackson"
- },
- {
-  "name": "Miles Hiscox",
-  "jersey": "",
+  "name": "Simon Vardeh",
+  "jersey": "19",
   "class": "Fy",
-  "pos": "Middle",
-  "hometown": "Vancouver, British Columbia",
-  "highschool": "Sir Charles Tupper Secondary School"
- },
- {
-  "name": "Kahi Marumoto",
-  "jersey": "",
-  "class": "Fy",
-  "pos": "Setter",
-  "hometown": "Honolulu, Hawaii",
-  "highschool": "Punahou School"
- },
- {
-  "name": "Tyler Pence",
-  "jersey": "",
-  "class": "Fy",
-  "pos": "Setter",
-  "hometown": "Newport Beach, Calif.",
-  "highschool": "Newport Harbor"
+  "pos": "Outside",
+  "hometown": "Newton, Mass.",
+  "highschool": "Newton North"
  },
  {
   "name": "Mateo Sanz",
-  "jersey": "",
+  "jersey": "22",
   "class": "Fy",
   "pos": "Outside",
   "hometown": "The Woodlands, Texas",
   "highschool": "The Woodlands"
  },
  {
-  "name": "Simon Vardeh",
-  "jersey": "",
-  "class": "Fy",
-  "pos": "Outside",
-  "hometown": "Newton, Mass.",
-  "highschool": "Newton North"
+  "name": "Jeremiah Flores",
+  "jersey": "31",
+  "class": "Rs.",
+  "pos": "",
+  "hometown": "",
+  "highschool": ""
+ },
+ {
+  "name": "Owen Woolbert",
+  "jersey": "35",
+  "class": "Sr.",
+  "pos": "Middle",
+  "hometown": "Jackson, Ohio",
+  "highschool": "Jackson"
  }
 ]
