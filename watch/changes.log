@@ -30800,3 +30800,9 @@ Call log:
 2026-10-07T08:04:38.758552+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20investment&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-10-07T08:04:38.758552+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
 2026-10-07T08:09:45.426204+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-10-07T08:41:38.615181+00:00  CHANGED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-10-07T08:46:40.825267+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-10-07T08:46:40.825267+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-10-07T08:51:48.003819+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-10-07T08:51:48.003819+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-10-07T08:56:52.247360+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
