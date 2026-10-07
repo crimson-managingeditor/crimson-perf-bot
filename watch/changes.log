@@ -30881,3 +30881,26 @@ Call log:
 2026-10-07T10:52:15.905780+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
 2026-10-07T10:57:20.709337+00:00  FLAPPED  https://www.courtlistener.com/docket/72275604/united-states-v-president-and-fellows-of-harvard-college-harvard/?order_by=desc
 2026-10-07T10:57:20.709337+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-10-07T11:01:58.066149+00:00  CHANGED  https://www.courtlistener.com/docket/72275604/united-states-v-president-and-fellows-of-harvard-college-harvard/?order_by=desc  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-10-07T11:07:01.398853+00:00  CHANGED  https://www.courtlistener.com/docket/72520538/united-states-v-president-and-fellows-of-harvard-college/?order_by=desc  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-10-07T11:07:01.398853+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-10-07T11:07:01.398853+00:00  STALE    https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-07T11:07:01.398853+00:00  STALE    https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-07T11:07:01.398853+00:00  STALE    https://news.google.com/rss/search?q=Rick%20Slocum&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-07T11:07:01.398853+00:00  STALE    https://news.google.com/rss/search?q=Paul%20Edgerley&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-07T11:07:01.398853+00:00  STALE    https://news.google.com/rss/search?q=*Robert%20Jain*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-07T11:07:01.398853+00:00  STALE    https://news.google.com/rss/search?q=*Ritu%20Kalra*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-07T11:07:01.398853+00:00  STALE    https://news.google.com/rss/search?q=Paul%20Finnegan&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-07T11:07:01.398853+00:00  STALE    https://news.google.com/rss/search?q=Joshua%20Friedman&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-07T11:07:01.398853+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20investment&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-07T11:07:01.398853+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Singapore&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-07T11:07:01.398853+00:00  STALE    https://news.google.com/rss/search?q=HMC%20San%20Francisco&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-07T11:07:01.398853+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-07T11:12:09.743465+00:00  FLAPPED  https://www.courtlistener.com/docket/72520538/united-states-v-president-and-fellows-of-harvard-college/?order_by=desc
+2026-10-07T11:17:12.565646+00:00  FLAPPED  https://www.courtlistener.com/docket/72520538/united-states-v-president-and-fellows-of-harvard-college/?order_by=desc
+2026-10-07T11:17:12.565646+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-10-07T11:22:17.700494+00:00  FLAPPED  https://www.courtlistener.com/docket/72520538/united-states-v-president-and-fellows-of-harvard-college/?order_by=desc
+2026-10-07T11:22:17.700494+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-10-07T11:27:20.144444+00:00  FLAPPED  https://www.courtlistener.com/docket/72520538/united-states-v-president-and-fellows-of-harvard-college/?order_by=desc
+2026-10-07T11:27:20.144444+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-10-07T11:27:20.144444+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
