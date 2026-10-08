@@ -31667,3 +31667,6 @@ Call log:
 2026-10-08T08:59:09.205031+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-10-08T08:59:09.205031+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
 2026-10-08T09:04:16.780073+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-10-08T09:37:06.013098+00:00  CHANGED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-10-08T09:42:10.130119+00:00  BLOCKED  https://www.hupd.harvard.edu/campus-hazing-transparency-report
+2026-10-08T09:42:10.130119+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
