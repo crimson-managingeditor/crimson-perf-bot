@@ -8,6 +8,14 @@
   "highschool": "Palos Verdes High School"
  },
  {
+  "name": "Chloe Callaway",
+  "jersey": "",
+  "class": "Sr.",
+  "pos": "Sabre",
+  "hometown": "Atlanta, Ga.",
+  "highschool": "Atlanta Classical Academy"
+ },
+ {
   "name": "Isabella Chin",
   "jersey": "",
   "class": "Sr.",
@@ -86,14 +94,6 @@
   "pos": "Epee",
   "hometown": "Brookline, Mass.",
   "highschool": "Brookline High School"
- },
- {
-  "name": "Chloe Williams",
-  "jersey": "",
-  "class": "Sr.",
-  "pos": "Sabre",
-  "hometown": "Atlanta, Ga.",
-  "highschool": "Atlanta Classical Academy"
  },
  {
   "name": "Julie Xiao",

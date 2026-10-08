@@ -34,7 +34,7 @@
  {
   "name": "Zola Bruner",
   "jersey": "",
-  "class": "Rs.",
+  "class": "Fy",
   "pos": "Nordic",
   "hometown": "South Londonderry, Vt.",
   "highschool": "Stratton Mountain School"
@@ -66,10 +66,18 @@
  {
   "name": "Elli Englund",
   "jersey": "",
-  "class": "Rs.",
+  "class": "Fy",
   "pos": "Nordic",
   "hometown": "Plymouth, N.H.",
   "highschool": "Plymouth Regional High School"
+ },
+ {
+  "name": "Luca Fulga",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "Alpine",
+  "hometown": "Ottawa, Ontario, Canada",
+  "highschool": ""
  },
  {
   "name": "Cyrus Hamlin",
@@ -96,12 +104,28 @@
   "highschool": "Newton North"
  },
  {
+  "name": "Thomas Legg",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "Alpine",
+  "hometown": "Whistler, British Columbia, Canada",
+  "highschool": ""
+ },
+ {
   "name": "Tristan Leightell",
   "jersey": "",
   "class": "So.",
   "pos": "Alpine",
   "hometown": "Toronto, Ontario",
   "highschool": "Green Mountain Valley School (Vt.)"
+ },
+ {
+  "name": "Hadley Reed",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "Alpine",
+  "hometown": "Hingham, Mass.",
+  "highschool": ""
  },
  {
   "name": "Josh Rosenberg",
@@ -130,7 +154,7 @@
  {
   "name": "Mark Shapovalov",
   "jersey": "",
-  "class": "Rs.",
+  "class": "Fy",
   "pos": "Nordic",
   "hometown": "Burnaby, British Columbia, Canada",
   "highschool": "Moscrop Secondary School"
