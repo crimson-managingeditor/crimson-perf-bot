@@ -41,9 +41,9 @@ DESCENT_CEIL = float(os.environ.get("DESCENT_CEIL_FT", "13000"))   # only predic
 JET_RWY_FT   = int(os.environ.get("JET_RWY_FT", "4500"))           # min hard runway for this jet
 
 SOURCES = [
-    ("adsb.fi",        f"https://opendata.adsb.fi/api/v2/hex/{HEX}"),
-    ("adsb.lol",       f"https://api.adsb.lol/v2/hex/{HEX}"),
-    ("airplanes.live", f"https://api.airplanes.live/v2/hex/{HEX}"),
+    ("adsb.fi",  f"https://opendata.adsb.fi/api/v2/hex/{HEX}"),
+    ("adsb.lol", f"https://api.adsb.lol/v2/hex/{HEX}"),
+    # airplanes.live omitted: it 403s datacenter IPs (GitHub runners), just clutters logs.
 ]
 
 # ---------------------------------------------------------------- data source

@@ -2,17 +2,18 @@ name: penny-plane watch
 
 # Pings #penny-plane on every takeoff/landing of N502P (hex a642a3, Penny Pritzker's
 # Gulfstream G500). Free ADS-B community feeds give current position only, so we poll
-# and detect ground<->air transitions. State (last definitive status) lives in the
-# Actions cache; takeoff/landing events append to plane/flights.log (committed).
+# and detect ground<->air transitions.
 #
-# NOTE: GitHub's scheduler drops/delays short-interval crons, so each run also polls
-# internally every 2 min for ~8 min. Detection is gap-robust (it compares to the last
-# *definitive* status), so a delayed poll still catches the event — just a bit later.
-# For true to-the-minute pings you'd need an always-on host or a Cloudflare Cron Trigger.
+# WHY A LONG-RUNNING JOB: GitHub throttles scheduled crons HARD — a "*/10" cron was
+# only actually firing every few HOURS, so short 8-min runs missed whole flights that
+# happened in the gaps. Instead each run now polls continuously every 90s for ~5h40m,
+# and the hourly cron (plus concurrency: one run + one pending) keeps a poller alive
+# essentially 24/7. The repo is public, so Actions minutes are free. State (last
+# definitive status) lives in the Actions cache; events append to plane/flights.log.
 
 on:
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "23 * * * *"       # hourly relaunch backstop (GitHub throttles; long job bridges gaps)
   workflow_dispatch:
     inputs:
       test_ping:
@@ -22,15 +23,15 @@ on:
 
 concurrency:
   group: planewatch
-  cancel-in-progress: false
+  cancel-in-progress: false     # a new scheduled run waits behind the running one -> continuous
 
 permissions:
-  contents: write        # to commit plane/flights.log
+  contents: write               # to commit plane/flights.log
 
 jobs:
   watch:
     runs-on: ubuntu-latest
-    timeout-minutes: 11
+    timeout-minutes: 350        # just over the ~340-min internal loop
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -42,7 +43,7 @@ jobs:
           path: plane/.state
           key: plane-state-${{ github.run_id }}
           restore-keys: plane-state-
-      - name: Poll loop (every 2 min for ~8 min)
+      - name: Poll loop (every 90s for ~5h40m)
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           PLANE_TEST_PING: ${{ github.event.inputs.test_ping == 'true' && '1' || '' }}
@@ -53,11 +54,20 @@ jobs:
           AIRPORTS_CSV:    plane/airports.csv
         run: |
           if [ -n "$PLANE_TEST_PING" ]; then python research/planewatch.py || true; exit 0; fi
-          END=$(( $(date +%s) + 480 ))
+          git config user.name  "penny-plane"
+          git config user.email "actions@users.noreply.github.com"
+          END=$(( $(date +%s) + 20400 ))     # 340 min
           while :; do
             python research/planewatch.py || true
-            [ $(( $(date +%s) + 120 )) -ge "$END" ] && break
-            sleep 120
+            # commit new flight events promptly (durable history even if the run is killed)
+            if [ -n "$(git status --porcelain plane/flights.log 2>/dev/null)" ]; then
+              git add plane/flights.log
+              git commit -q -m "penny-plane: flight event $(date -u +%FT%TZ)" || true
+              git pull --rebase --quiet origin main || true
+              git push --quiet || true
+            fi
+            [ $(( $(date +%s) + 90 )) -ge "$END" ] && break
+            sleep 90
           done
       - name: Save plane state
         if: always()
@@ -65,14 +75,3 @@ jobs:
         with:
           path: plane/.state
           key: plane-state-${{ github.run_id }}
-      - name: Commit flight log
-        if: always()
-        run: |
-          if [ -n "$(git status --porcelain plane/flights.log 2>/dev/null)" ]; then
-            git config user.name  "penny-plane"
-            git config user.email "actions@users.noreply.github.com"
-            git add plane/flights.log
-            git commit -m "penny-plane: flight event $(date -u +%FT%TZ)"
-            git pull --rebase --quiet origin main || true
-            git push || true
-          fi
