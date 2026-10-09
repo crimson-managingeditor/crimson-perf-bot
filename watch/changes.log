@@ -32708,3 +32708,8 @@ Call log:
 2026-10-09T14:19:48.930125+00:00  STALE    https://news.google.com/rss/search?q=Tricia%20Glynn&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-10-09T14:19:48.930125+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20investment&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-10-09T14:19:48.930125+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-10-09T14:52:21.445595+00:00  STALE    https://news.google.com/rss/search?q=Rick%20Slocum&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-09T14:52:21.445595+00:00  STALE    https://news.google.com/rss/search?q=*Robert%20Jain*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-09T14:57:27.292033+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-10-09T15:02:31.455744+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-10-09T15:07:52.364705+00:00  CHANGED  https://hls.harvard.edu  by=uy.pham  ch=directmessage  via=DM->uy.pham
