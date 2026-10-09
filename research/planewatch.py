@@ -37,8 +37,14 @@ GLOBE = f"https://globe.adsbexchange.com/?icao={HEX}"
 
 # descent-prediction tuning
 DESCENT_RATE = float(os.environ.get("DESCENT_RATE_FPM", "-500"))   # <= this = descending
-DESCENT_CEIL = float(os.environ.get("DESCENT_CEIL_FT", "13000"))   # only predict once below this
+DESCENT_CEIL = float(os.environ.get("DESCENT_CEIL_FT", "18000"))   # predict once below this (MSL;
+                                                                   # high so mountain fields still fire)
 JET_RWY_FT   = int(os.environ.get("JET_RWY_FT", "4500"))           # min hard runway for this jet
+# inferred-landing: if we lose ADS-B while low + descending near a jet airport (Aspen, Telluride,
+# Eagle… have no ground coverage), infer a landing instead of leaving it "airborne" forever.
+LOST_LANDING_MIN = float(os.environ.get("LOST_LANDING_MIN", "12"))  # unseen this long -> infer
+LOST_ALT_CEIL    = float(os.environ.get("LOST_ALT_CEIL", "18000"))  # only if last seen at/below this
+LOST_RADIUS_KM   = float(os.environ.get("LOST_RADIUS_KM", "45"))    # ...and this close to a jet field
 
 SOURCES = [
     ("adsb.fi",  f"https://opendata.adsb.fi/api/v2/hex/{HEX}"),
@@ -166,6 +172,24 @@ def predict_destination(lat, lon, track, gs):
     alt = ap_name(cand[1][3]) if len(cand) > 1 else None
     return {"row": row, "dist": round(d), "off": round(off, 1), "eta": eta, "conf": conf, "alt2": alt}
 
+def nearest_jet_airport(lat, lon, radius_km):
+    """Closest jet-capable (hard runway >= JET_RWY_FT) airport within radius_km, or None.
+    Proximity beats track once a plane is low/descending — on approach (esp. circling into a
+    valley like Aspen) the track no longer points at the field, but the field is the closest one."""
+    if lat is None or lon is None:
+        return None
+    best, bk = None, 1e9
+    for alat, alon, row in _load_airports():
+        try:
+            if int(row.get("hard", 0) or 0) != 1 or int(row.get("rwy_ft", 0) or 0) < JET_RWY_FT:
+                continue
+        except Exception:
+            continue
+        d = _km(lat, lon, alat, alon)
+        if d < bk:
+            best, bk = row, d
+    return {**best, "km": round(bk, 1)} if (best and bk <= radius_km) else None
+
 # ---------------------------------------------------------------- state
 def load_state():
     try:
@@ -278,7 +302,7 @@ def alert_descent(obs, pred):
     alt = f"{int(obs['alt']):,} ft" if isinstance(obs.get("alt"), (int, float)) else "?"
     text = f"🛬 {reg} descending — likely headed to {dest} ({eta})"
     body = (f"🛬 *{reg} is descending — likely headed to {dest}*\n"
-            f"{eta} · {pred['dist']} km away · {pred['off']:.0f}° off track · _{conf}_")
+            f"{eta} · {pred['dist']} km away · _{conf}_")
     if pred.get("alt2") and pred["conf"] != "high":
         body += f"\n_or possibly {pred['alt2']}_"
     ctx = " · ".join(x for x in [t, f"now {alt}, {int(obs['gs'])} kt" if isinstance(obs.get('gs'), (int,float)) else None,
@@ -290,8 +314,10 @@ def alert_descent(obs, pred):
     return blocks, text
 
 def maybe_descent_alert(st, obs):
-    """Fire ONE 'descending — likely headed to X' heads-up per flight, once the plane is
-    below the ceiling and descending toward a jet-capable airport."""
+    """Fire ONE 'descending — likely headed to X' heads-up per flight, once the plane is below
+    the ceiling and descending. PROXIMITY FIRST: a jet airport within ~55 km is almost certainly
+    the destination (true even for valley approaches like Aspen where the track doesn't point at
+    the field); only fall back to track projection when nothing is close yet."""
     if st.get("descent_alerted"):
         return
     alt, rate = obs.get("alt"), obs.get("baro_rate")
@@ -299,14 +325,67 @@ def maybe_descent_alert(st, obs):
         return
     if rate > DESCENT_RATE or alt > DESCENT_CEIL:      # not descending, or still too high
         return
-    pred = predict_destination(obs.get("lat"), obs.get("lon"), obs.get("track"), obs.get("gs"))
-    if not pred or pred["off"] > 25 or pred["dist"] > 220:
-        return                                          # no confident airport ahead yet — wait
+    near = nearest_jet_airport(obs.get("lat"), obs.get("lon"), 55)
+    if near:
+        gs = obs.get("gs")
+        pred = {"row": near, "dist": near["km"], "off": 0.0,
+                "eta": round(near["km"] / (gs * 1.852) * 60) if gs else None,
+                "conf": "high" if near["km"] < 30 else "likely", "alt2": None}
+    else:
+        pred = predict_destination(obs.get("lat"), obs.get("lon"), obs.get("track"), obs.get("gs"))
+        if not pred or pred["off"] > 25 or pred["dist"] > 220:
+            return                                      # no confident airport ahead yet — wait
     ok = post(*alert_descent(obs, pred))
     st["descent_alerted"] = True
     st["predicted_dest"] = pred["row"].get("iata") or pred["row"].get("ident")
     log_event("DESCENT", pred["row"], obs)
     print(f"DESCENT alert posted={ok} -> {st['predicted_dest']} ({pred['conf']})")
+
+def alert_inferred_landing(la, ap, mins):
+    name = ap_name(ap)
+    when = et_now()
+    text = f"🛬 N502P likely landed at {name} (lost ADS-B on approach — unconfirmed)"
+    body = (f"🛬 *N502P likely landed — {name}*\n"
+            f"Lost ADS-B contact ~{int(mins)} min ago at *{int(la['alt']):,} ft*, {ap['km']:.0f} km out on "
+            f"approach — so I can't 100% confirm touchdown. Coverage is poor at mountain airports like this.")
+    blocks = [{"type": "section", "text": {"type": "mrkdwn", "text": body}},
+              {"type": "context", "elements": [{"type": "mrkdwn",
+                  "text": f"last seen {when} · <{GLOBE}|ADS-B Exchange>"}]}]
+    return blocks, text
+
+def maybe_inferred_landing(st):
+    """On an UNSEEN poll: if we were airborne and lost contact a while ago while LOW and
+    DESCENDING near a jet airport, infer the landing — otherwise the plane stays 'airborne'
+    forever and we miss the arrival (exactly what happened at Aspen). Returns True if it acted."""
+    if st.get("status") != "air":
+        return False
+    la = st.get("last_air")
+    if not la or la.get("alt") is None:
+        return False
+    try:
+        last = datetime.datetime.fromisoformat(st.get("last_seen", ""))
+        if last.tzinfo is None:
+            last = last.replace(tzinfo=datetime.timezone.utc)
+        mins = (datetime.datetime.now(datetime.timezone.utc) - last).total_seconds() / 60
+    except Exception:
+        return False
+    if mins < LOST_LANDING_MIN or la["alt"] > LOST_ALT_CEIL:
+        return False                       # too soon, or lost at cruise (just a coverage gap)
+    ap = nearest_jet_airport(la.get("lat"), la.get("lon"), LOST_RADIUS_KM)
+    if not ap:
+        return False
+    if (la.get("rate") or 0) > -200 and ap["km"] > 20:
+        return False                       # not clearly descending into a field
+    ok = post(*alert_inferred_landing(la, ap, mins))
+    st["status"] = "ground"
+    st["last_ground"] = {"lat": float(ap["lat"]), "lon": float(ap["lon"]),
+                         "ts": datetime.datetime.now(datetime.timezone.utc).isoformat()}
+    st["flight"] = None
+    st["descent_alerted"] = False
+    st["predicted_dest"] = None
+    log_event("LANDING?", ap, {"lat": la.get("lat"), "lon": la.get("lon"), "reg": "N502P"})
+    print(f"INFERRED LANDING near {ap.get('iata') or ap.get('ident')} posted={ok}")
+    return True
 
 def alert_landing(obs, arr_ap, flight, predicted_ok=False):
     reg, t, owner = craft(obs)
@@ -352,7 +431,11 @@ def main():
     now_iso = datetime.datetime.now(datetime.timezone.utc).isoformat()
 
     if obs is None:
-        print("unseen this poll — no change"); return
+        if maybe_inferred_landing(st):     # lost contact low+descending near a field -> landed
+            save_state(st)
+        else:
+            print("unseen this poll — no change")
+        return
     cur = obs["status"]
     if cur is None:
         print("seen but altitude ambiguous — no change"); return
@@ -363,6 +446,9 @@ def main():
     # record most-recent on-ground fix (used to name the DEPARTURE airport at next takeoff)
     if cur == "ground":
         st["last_ground"] = {"lat": obs.get("lat"), "lon": obs.get("lon"), "ts": now_iso}
+    else:  # airborne: remember the fix so we can infer a landing if we then lose contact
+        st["last_air"] = {"lat": obs.get("lat"), "lon": obs.get("lon"), "alt": obs.get("alt"),
+                          "gs": obs.get("gs"), "rate": obs.get("baro_rate"), "ts": now_iso}
     st["last_seen"] = now_iso
 
     if prev is None:
