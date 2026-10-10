@@ -33261,3 +33261,21 @@ Call log:
 2026-10-10T05:17:32.232237+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
 2026-10-10T05:22:34.729087+00:00  FLAPPED  https://www.courtlistener.com/docket/72090192/president-and-fellows-of-harvard-college-v-us-department-of-health-and/?order_by=desc
 2026-10-10T05:27:37.823236+00:00  FLAPPED  https://www.courtlistener.com/docket/72090192/president-and-fellows-of-harvard-college-v-us-department-of-health-and/?order_by=desc
+2026-10-10T05:31:52.659976+00:00  CHANGED  https://www.courtlistener.com/docket/72090192/president-and-fellows-of-harvard-college-v-us-department-of-health-and/?order_by=desc  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-10-10T05:31:52.659976+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-10-10T05:31:52.659976+00:00  STALE    https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-10T05:31:52.659976+00:00  STALE    https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-10T05:31:52.659976+00:00  STALE    https://news.google.com/rss/search?q=Alan%20Garber&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-10T05:31:52.659976+00:00  STALE    https://news.google.com/rss/search?q=Patrick%20Healy&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-10T05:31:52.659976+00:00  STALE    https://news.google.com/rss/search?q=*Raymond%20McGuire*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-10T05:31:52.659976+00:00  STALE    https://news.google.com/rss/search?q=Joshua%20Friedman&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-10T05:31:52.659976+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-10T05:36:59.784368+00:00  ERROR    https://www.courtlistener.com/docket/72275604/united-states-v-president-and-fellows-of-harvard-college-harvard/?order_by=desc  The read operation timed out
+2026-10-10T05:36:59.784368+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Management%20Company&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-10T05:36:59.784368+00:00  STALE    https://news.google.com/rss/search?q=N.P.%20Narvekar&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-10T05:36:59.784368+00:00  STALE    https://news.google.com/rss/search?q=*Robert%20Jain*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-10T05:36:59.784368+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Singapore&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-10T05:47:27.500777+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-10-10T05:47:27.500777+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-10-10T05:47:27.500777+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-10-10T05:52:33.173654+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
