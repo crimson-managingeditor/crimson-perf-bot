@@ -33417,3 +33417,30 @@ Call log:
 2026-10-10T11:21:56.923622+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
 2026-10-10T11:27:00.595710+00:00  FLAPPED  https://www.courtlistener.com/docket/72520538/united-states-v-president-and-fellows-of-harvard-college/?order_by=desc
 2026-10-10T11:27:00.595710+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-10-10T11:31:40.655541+00:00  CHANGED  https://www.courtlistener.com/docket/72520538/united-states-v-president-and-fellows-of-harvard-college/?order_by=desc  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-10-10T11:31:40.655541+00:00  CHANGED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-10-10T11:36:44.474718+00:00  CHANGED  https://www.courtlistener.com/docket/72090192/president-and-fellows-of-harvard-college-v-us-department-of-health-and/?order_by=desc  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-10-10T11:36:44.474718+00:00  CHANGED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-10-10T11:41:47.139011+00:00  FLAPPED  https://www.courtlistener.com/docket/72090192/president-and-fellows-of-harvard-college-v-us-department-of-health-and/?order_by=desc
+2026-10-10T11:41:47.139011+00:00  CHANGED  https://www.courtlistener.com/docket/72520538/united-states-v-president-and-fellows-of-harvard-college/?order_by=desc  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-10-10T11:41:47.139011+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-10-10T11:41:47.139011+00:00  STALE    https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-10T11:41:47.139011+00:00  STALE    https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-10T11:41:47.139011+00:00  STALE    https://news.google.com/rss/search?q=Alan%20Garber&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-10T11:41:47.139011+00:00  STALE    https://news.google.com/rss/search?q=Joshua%20Friedman&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-10T11:41:47.139011+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-10T11:41:47.139011+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-10-10T11:46:53.011477+00:00  FLAPPED  https://www.courtlistener.com/docket/72090192/president-and-fellows-of-harvard-college-v-us-department-of-health-and/?order_by=desc
+2026-10-10T11:46:53.011477+00:00  FLAPPED  https://www.courtlistener.com/docket/72520538/united-states-v-president-and-fellows-of-harvard-college/?order_by=desc
+2026-10-10T11:46:53.011477+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Management%20Company&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-10T11:46:53.011477+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20investment&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-10T11:46:53.011477+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Singapore&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-10T11:46:53.011477+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-10-10T11:51:56.218796+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-10-10T11:51:56.218796+00:00  FLAPPED  https://www.courtlistener.com/docket/72090192/president-and-fellows-of-harvard-college-v-us-department-of-health-and/?order_by=desc
+2026-10-10T11:51:56.218796+00:00  FLAPPED  https://www.courtlistener.com/docket/72520538/united-states-v-president-and-fellows-of-harvard-college/?order_by=desc
+2026-10-10T11:51:56.218796+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-10-10T11:51:56.218796+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-10-10T11:57:02.214913+00:00  FLAPPED  https://www.courtlistener.com/docket/72090192/president-and-fellows-of-harvard-college-v-us-department-of-health-and/?order_by=desc
+2026-10-10T11:57:02.214913+00:00  FLAPPED  https://www.courtlistener.com/docket/72520538/united-states-v-president-and-fellows-of-harvard-college/?order_by=desc
+2026-10-10T11:57:02.214913+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
