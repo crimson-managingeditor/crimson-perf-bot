@@ -34263,3 +34263,13 @@ Call log:
 2026-10-11T12:52:09.523164+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20investment&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-10-11T12:52:09.523164+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
 2026-10-11T12:57:14.095831+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-10-11T13:34:04.778280+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-10-11T13:44:12.387956+00:00  STALE    https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-11T13:44:12.387956+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-10-11T13:44:12.387956+00:00  STALE    https://news.google.com/rss/search?q=Alan%20Garber&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-11T13:44:12.387956+00:00  STALE    https://news.google.com/rss/search?q=Patrick%20Healy&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-11T13:44:12.387956+00:00  STALE    https://news.google.com/rss/search?q=Mary%20Erdoes&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-11T13:44:12.387956+00:00  STALE    https://news.google.com/rss/search?q=*Raymond%20McGuire*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-11T13:44:12.387956+00:00  STALE    https://news.google.com/rss/search?q=HMC%20San%20Francisco&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-11T13:44:12.387956+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-10-11T13:49:17.492684+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
