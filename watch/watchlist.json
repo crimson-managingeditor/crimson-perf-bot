@@ -743,5 +743,13 @@
     "added_by": "megan.blonigen",
     "added_by_id": "U0AD9QLRK0F",
     "interval": 60
+  },
+  {
+    "url": "https://finance.harvard.edu/annual-report",
+    "channel": "D0ADUS7DQVA",
+    "channel_name": "directmessage",
+    "added_by": "megan.blonigen",
+    "added_by_id": "U0AD9QLRK0F",
+    "interval": 5
   }
 ]
