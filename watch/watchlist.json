@@ -735,5 +735,13 @@
     "added_by": "mirei.saneyoshi",
     "added_by_id": "U0C0NHBD43S",
     "interval": 60
+  },
+  {
+    "url": "https://finance.harvard.edu/annual-report1m",
+    "channel": "D0ADUS7DQVA",
+    "channel_name": "directmessage",
+    "added_by": "megan.blonigen",
+    "added_by_id": "U0AD9QLRK0F",
+    "interval": 60
   }
 ]
