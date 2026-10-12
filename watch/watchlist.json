@@ -711,5 +711,13 @@
     "added_by": "megan.blonigen",
     "added_by_id": "U0AD9QLRK0F",
     "interval": 30
+  },
+  {
+    "url": "https://iop.harvard.edu/about/staff",
+    "channel": "D0BV85ZN410",
+    "channel_name": "directmessage",
+    "added_by": "mirei.saneyoshi",
+    "added_by_id": "U0C0NHBD43S",
+    "interval": 30
   }
 ]
