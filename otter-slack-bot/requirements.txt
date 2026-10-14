@@ -1,0 +1,5 @@
+slack-bolt>=1.21.0
+requests>=2.31.0
+# Unofficial Otter.ai API. If this git install ever fails (repo packaging changes),
+# clone it and add the `otterai/` package next to app.py instead.
+otterai @ git+https://github.com/gmchad/otterai-api.git

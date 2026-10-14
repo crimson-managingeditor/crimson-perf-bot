@@ -1,0 +1,20 @@
+# Fly.io alternative to Render. Socket Mode needs no inbound ports, so there is no
+# [http_service] block — this runs as a single always-on worker machine.
+#
+#   fly launch --no-deploy --copy-config --name otter-slack-bot
+#   fly secrets set SLACK_BOT_TOKEN=... SLACK_APP_TOKEN=... OTTER_JR_EMAIL=... (etc.)
+#   fly deploy
+#   fly scale count 1
+app = "otter-slack-bot"
+primary_region = "bos"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"
+
+# Keep exactly one instance running; do not auto-stop (it must stay connected to Slack).
+[deploy]
+  strategy = "immediate"

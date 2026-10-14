@@ -1,0 +1,28 @@
+# Render.com blueprint. A "worker" has no inbound port — perfect for Socket Mode.
+# Push this repo to GitHub, then on Render: New -> Blueprint -> pick the repo.
+# Set the secret env vars (marked sync:false) in the Render dashboard, not here.
+services:
+  - type: worker
+    name: otter-slack-bot
+    runtime: docker
+    plan: starter            # ~$7/mo and always on; "free" workers sleep, don't use them
+    autoDeploy: true
+    envVars:
+      - key: SLACK_BOT_TOKEN
+        sync: false
+      - key: SLACK_APP_TOKEN
+        sync: false
+      - key: OTTER_JR_EMAIL
+        sync: false
+      - key: OTTER_JR_PASSWORD
+        sync: false
+      - key: OTTER_SR_EMAIL
+        sync: false
+      - key: OTTER_SR_PASSWORD
+        sync: false
+      - key: OTTER_CONF_EMAIL
+        sync: false
+      - key: OTTER_CONF_PASSWORD
+        sync: false
+      - key: CONF_ALLOWLIST
+        sync: false
