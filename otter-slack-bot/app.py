@@ -64,6 +64,62 @@ def _status_blocks(text: str) -> list:
 
 
 # --------------------------------------------------------------------------- #
+# /otter slash command -> a modal with a file picker + account dropdown.
+# (Slash commands can't carry a file, so the file comes via the modal.)
+# --------------------------------------------------------------------------- #
+def build_modal(channel_id: str) -> dict:
+    options = [{"text": {"type": "plain_text", "text": acct["label"]}, "value": key}
+               for key, acct in config.ACCOUNTS.items()]
+    return {
+        "type": "modal",
+        "callback_id": "otter_modal",
+        "private_metadata": channel_id or "",     # remember where to post results
+        "title": {"type": "plain_text", "text": "Upload to Otter"},
+        "submit": {"type": "plain_text", "text": "Upload"},
+        "close": {"type": "plain_text", "text": "Cancel"},
+        "blocks": [
+            {"type": "input", "block_id": "otter_file",
+             "label": {"type": "plain_text", "text": "Audio file"},
+             "element": {"type": "file_input", "action_id": "file", "max_files": 1}},
+            {"type": "input", "block_id": "otter_acct",
+             "label": {"type": "plain_text", "text": "Which Otter account?"},
+             "element": {"type": "static_select", "action_id": "acct",
+                         "placeholder": {"type": "plain_text", "text": "Choose one"},
+                         "options": options}},
+        ],
+    }
+
+
+def parse_modal(view: dict):
+    """Return (file_id, account_key) from a submitted otter_modal view."""
+    vals = (view.get("state") or {}).get("values") or {}
+    files = ((vals.get("otter_file") or {}).get("file") or {}).get("files") or []
+    file_id = files[0]["id"] if files else None
+    selected = ((vals.get("otter_acct") or {}).get("acct") or {}).get("selected_option") or {}
+    return file_id, selected.get("value")
+
+
+def start_status(client, channel: str, user: str, text: str):
+    """Post the first status message, falling back to a DM if the channel isn't reachable
+    (e.g. the bot isn't a member). Returns (channel_id, message_ts) to update + thread under."""
+    if channel:
+        try:
+            r = client.chat_postMessage(channel=channel, text=text)
+            return channel, r["ts"]
+        except Exception as e:
+            log.warning("cannot post to %s (%s) — DMing the user instead", channel, e)
+    dm = client.conversations_open(users=user)["channel"]["id"]
+    r = client.chat_postMessage(channel=dm, text=text)
+    return dm, r["ts"]
+
+
+def run_modal_upload(client, channel, user, account_key, file_id):
+    label = config.ACCOUNTS[account_key]["label"]
+    target, ts = start_status(client, channel, user, f"⏳ Routing to *{label}* Otter…")
+    process_upload(client, target, ts, ts, account_key, file_id, user)
+
+
+# --------------------------------------------------------------------------- #
 # The heavy lifting: download from Slack -> upload to Otter -> post transcript
 # --------------------------------------------------------------------------- #
 def download_slack_file(url: str) -> bytes:
@@ -203,6 +259,37 @@ def build_app():
         threading.Thread(
             target=process_upload,
             args=(client, channel, thread_ts, status_ts, account_key, file_id, clicker),
+            daemon=True,
+        ).start()
+
+    @app.command("/otter")
+    def on_command(ack, body, client, logger):
+        ack()
+        if not config.ACCOUNTS:
+            client.chat_postEphemeral(channel=body["channel_id"], user=body["user_id"],
+                                      text="No Otter accounts are configured yet.")
+            return
+        client.views_open(trigger_id=body["trigger_id"], view=build_modal(body["channel_id"]))
+
+    @app.view("otter_modal")
+    def on_modal_submit(ack, body, view, client, logger):
+        file_id, account_key = parse_modal(view)
+        user = body["user"]["id"]
+        errors = {}
+        if not file_id:
+            errors["otter_file"] = "Attach an audio file."
+        if account_key not in config.ACCOUNTS:
+            errors["otter_acct"] = "Pick an account."
+        elif account_key == "conf" and not config.conf_allowed(user):
+            errors["otter_acct"] = "You're not allowed to use the Confidential account."
+        if errors:
+            ack(response_action="errors", errors=errors)
+            return
+        ack()   # close the modal; work happens off-thread
+        channel = view.get("private_metadata") or ""
+        threading.Thread(
+            target=run_modal_upload,
+            args=(client, channel, user, account_key, file_id),
             daemon=True,
         ).start()
 
