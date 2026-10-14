@@ -1,20 +1,29 @@
 # Otter Uploader — Slack bot
 
-A reporter drops an audio file into Slack, taps **Jr reporters / Sr reporters / Confidential**,
-and the bot uploads it to the matching Otter.ai account for them — then posts the finished
-transcript back into the thread. It automates exactly what an editor does by hand today.
+A reporter runs **`/otter`**, drops in an audio file, picks **Jr / Sr / Confidential**, and the
+bot uploads it to the matching Otter.ai account for them — then posts the finished transcript back.
+It automates exactly what an editor does by hand today.
 
 ```
-reporter drags interview.mp3 into Slack
+reporter types  /otter
         │
         ▼
-🎙️ interview.mp3 — which Otter account?   [ Jr reporters ] [ Sr reporters ] [ Confidential ]
-        │ (taps Sr reporters)
+┌─────────── Upload to Otter ───────────┐
+│  Audio file:   [ ⬆ interview.mp3 ]    │
+│  Account:      [ Sr reporters ▾ ]     │
+│                        [ Cancel ][ Upload ]
+└───────────────────────────────────────┘
+        │
         ▼
 ✅ Uploaded to Sr reporters Otter — transcribing now…
         ▼
 📝 Transcript ready — Sr reporters Otter      interview.docx
 ```
+
+There are **two ways in**, both end up in the same place:
+- **`/otter`** → a popup with a file picker + account dropdown (the main way).
+- **Drag-and-drop** an audio file into a channel the bot is in → it replies with
+  `[ Jr reporters ] [ Sr reporters ] [ Confidential ]` buttons.
 
 ## How it works under the hood
 Otter has **no public upload API** except on Enterprise plans, so this uses the community
@@ -44,13 +53,19 @@ features:
   bot_user:
     display_name: otter-uploader
     always_online: true
+  slash_commands:
+    - command: /otter
+      description: Upload an audio file to Otter.ai
+      should_escape: false
 oauth_config:
   scopes:
     bot:
+      - commands          # the /otter slash command
       - chat:write        # post the buttons + status messages
       - files:read        # download the audio the reporter uploaded
       - files:write       # post the finished transcript back
-      - channels:history   # receive uploads in public channels it's invited to
+      - im:write          # DM results back if a channel isn't reachable
+      - channels:history   # receive drag-and-drop uploads in public channels it's invited to
       - groups:history     # ... in private channels
       - im:history         # ... in DMs to the bot
       - mpim:history       # ... in group DMs
@@ -62,10 +77,14 @@ settings:
       - message.im
       - message.mpim
   interactivity:
-    is_enabled: true       # the Jr/Sr/Confidential buttons
+    is_enabled: true       # the /otter modal + Jr/Sr/Confidential buttons
   socket_mode_enabled: true
   org_deploy_enabled: false
 ```
+
+> With Socket Mode on, the `/otter` command needs no request URL — Slack delivers it over the
+> socket. **If you add `/otter` to an app you already installed, hit *Install App → Reinstall to
+> Workspace*** so the new `commands` scope and the slash command take effect.
 
 Then:
 1. **Install to Workspace** (left sidebar → *Install App*). Copy the **Bot User OAuth Token**
