@@ -107,6 +107,28 @@ def test_conf_gate():
     assert not config.conf_allowed("USTRANGER")
 
 
+def test_modal_has_file_input_and_all_accounts():
+    modal = app.build_modal("C123")
+    assert modal["callback_id"] == "otter_modal"
+    assert modal["private_metadata"] == "C123"
+    elems = {b["block_id"]: b["element"]["type"] for b in modal["blocks"]}
+    assert elems["otter_file"] == "file_input"
+    assert elems["otter_acct"] == "static_select"
+    opts = [o["value"] for b in modal["blocks"] if b["block_id"] == "otter_acct"
+            for o in b["element"]["options"]]
+    assert opts == ["jr", "sr", "conf"]
+
+
+def test_parse_modal_extracts_file_and_account():
+    view = {"state": {"values": {
+        "otter_file": {"file": {"files": [{"id": "F9", "name": "a.mp3"}]}},
+        "otter_acct": {"acct": {"selected_option": {"value": "conf"}}},
+    }}}
+    assert app.parse_modal(view) == ("F9", "conf")
+    # empty submission -> (None, None), handled as a validation error upstream
+    assert app.parse_modal({"state": {"values": {}}}) == (None, None)
+
+
 def test_happy_path_posts_transcript_and_uses_right_account():
     slack = run("sr", "UANYONE")
     assert FakeUploader.last.email == "sr@x"                         # routed to Sr account
