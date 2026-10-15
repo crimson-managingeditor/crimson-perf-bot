@@ -173,7 +173,7 @@
   "class": "So.",
   "pos": "Attack",
   "hometown": "Greer, S.C.",
-  "highschool": "Boys Latin School of Maryland"
+  "highschool": "Christ Church Episcopal School"
  },
  {
   "name": "Wyatt Wiggins",
@@ -366,6 +366,14 @@
   "pos": "Midfield",
   "hometown": "Mooresville, N.C.",
   "highschool": "Lake Norman HS"
+ },
+ {
+  "name": "Joseph Tuohey",
+  "jersey": "52",
+  "class": "Fy",
+  "pos": "Defense",
+  "hometown": "Silver Spring, Md.",
+  "highschool": "Gonzaga College H.S."
  },
  {
   "name": "Rex Friedholm",
