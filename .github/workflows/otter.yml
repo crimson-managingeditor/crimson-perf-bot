@@ -1,0 +1,54 @@
+name: Otter upload
+
+# Triggered by the /otter slash-command modal (via the Cloudflare Worker). Downloads the
+# audio the reporter attached, uploads it to the chosen Otter.ai account, waits for the
+# transcript, and posts it back to Slack — all with the bot token. No file ever lands in git.
+on:
+  workflow_dispatch:
+    inputs:
+      file_id:
+        description: Slack file id of the uploaded audio
+        required: true
+      account:
+        description: jr | sr | conf
+        required: true
+      channel:
+        description: Slack channel the /otter command was run in
+        required: false
+        default: ""
+      user:
+        description: Slack user id who submitted
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+concurrency:
+  group: otter-${{ inputs.file_id }}
+  cancel-in-progress: false
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install deps
+        run: pip install requests "otterai @ git+https://github.com/gmchad/otterai-api.git"
+      - name: Upload to Otter + post transcript
+        env:
+          SLACK_BOT_TOKEN:    ${{ secrets.SLACK_BOT_TOKEN }}
+          OTTER_JR_EMAIL:     ${{ secrets.OTTER_JR_EMAIL }}
+          OTTER_JR_PASSWORD:  ${{ secrets.OTTER_JR_PASSWORD }}
+          OTTER_SR_EMAIL:     ${{ secrets.OTTER_SR_EMAIL }}
+          OTTER_SR_PASSWORD:  ${{ secrets.OTTER_SR_PASSWORD }}
+          OTTER_CONF_EMAIL:   ${{ secrets.OTTER_CONF_EMAIL }}
+          OTTER_CONF_PASSWORD: ${{ secrets.OTTER_CONF_PASSWORD }}
+          OTTER_FILE_ID:  ${{ inputs.file_id }}
+          OTTER_ACCOUNT:  ${{ inputs.account }}
+          OTTER_CHANNEL:  ${{ inputs.channel }}
+          OTTER_USER:     ${{ inputs.user }}
+        run: python research/otter.py
