@@ -35,7 +35,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.14"   # otterai-api's metadata requires >=3.14
       - name: Install deps
         # package name is otterai-api (imports as `otterai`); leave the name off so pip
         # reads it from the repo rather than rejecting a name mismatch.
