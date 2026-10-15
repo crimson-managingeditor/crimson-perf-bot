@@ -56,6 +56,9 @@ POLL_INTERVAL = int(os.environ.get("OTTER_POLL_INTERVAL", "20"))
 POLL_TIMEOUT = int(os.environ.get("OTTER_POLL_TIMEOUT", "2400"))
 # Otter now requires an `appid` on its API calls; the web client sends "otter-web".
 APPID = os.environ.get("OTTER_APPID", "otter-web")
+# Link we post back to the transcript page. Override via OTTER_SPEECH_URL if Otter's
+# path changes (e.g. "https://otter.ai/note/{otid}") — no code change needed.
+OTTER_SPEECH_URL = os.environ.get("OTTER_SPEECH_URL", "https://otter.ai/u/{otid}")
 
 
 # --------------------------------------------------------------------------- #
@@ -340,23 +343,12 @@ def main():
         otid = otter.upload(tmp, content_type_for(filename))
         log.info("uploaded account=%s otid=%s file=%s", account, otid,
                  "<redacted>" if account == "conf" else filename)
-        update_status(tgt, ts, f"✅ Uploaded to *{label}* Otter — transcribing now…")
-
-        posted = False
-        speech = otter.wait_for_transcript(otid)
-        if speech is not None:
-            content = otter.download(otid)
-            if content:
-                base = filename.rsplit(".", 1)[0]
-                posted = upload_transcript(tgt, ts, f"{base}.{TRANSCRIPT_FORMAT}", content,
-                                           f"📝 Transcript ready — *{label}* Otter")
-        if account != "conf":
-            _slack("chat.postMessage", channel=tgt, thread_ts=ts,
-                   text=f"🔗 In Otter: https://otter.ai/u/{otid}")
-
-        update_status(tgt, ts, f"✅ Done — *{filename}* → *{label}* Otter."
-                      if posted else
-                      f"✅ Uploaded *{filename}* to *{label}* Otter. It'll finish transcribing there shortly.")
+        # Post the Otter page link (no docx, no waiting) — the page fills in the transcript
+        # as Otter finishes processing it.
+        link = OTTER_SPEECH_URL.format(otid=otid)
+        update_status(tgt, ts,
+                      f"✅ Uploaded *{filename}* to *{label}* Otter.\n"
+                      f"📝 Open the transcript: {link}")
 
     except OtterError as e:
         log.warning("otter failed: %s", e)
