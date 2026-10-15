@@ -130,8 +130,9 @@ async function handle(env, exctx, p) {
 // Slash commands can't carry a file, so /otter opens a modal with a file_input + an account
 // dropdown. On submit we dispatch otter.yml (research/otter.py), which downloads the file,
 // uploads it to the chosen Otter account, and posts the transcript back — all with the bot token.
-// Worker secrets this needs: SLACK_BOT_TOKEN (to open the modal) and OTTER_CONF_ALLOWLIST
-// (comma-separated Slack user IDs allowed to use the Confidential account).
+// Worker secrets this needs: SLACK_BOT_TOKEN (to open the modal) and OTTER_CONF_ALLOWLIST —
+// "*" = anyone can use the Confidential account, a comma-separated list of Slack user IDs = only
+// those people, empty = nobody (safe default).
 const OTTER_ACCOUNTS = [["jr", "Jr reporters"], ["sr", "Sr reporters"], ["conf", "Confidential"]];
 
 function jsonResponse(obj) {
@@ -147,8 +148,10 @@ async function slackApi(env, method, payload) {
   return r.json().catch(() => ({ ok: false, error: "bad_json" }));
 }
 function otterConfAllowed(env, userId) {
-  const allow = (env.OTTER_CONF_ALLOWLIST || "").split(",").map(s => s.trim()).filter(Boolean);
-  return allow.length ? allow.includes(userId) : false;   // empty allowlist = nobody (safe default)
+  const raw = (env.OTTER_CONF_ALLOWLIST || "").trim();
+  if (raw === "*" || raw.toLowerCase() === "all") return true;   // "*" = anyone in the workspace
+  const allow = raw.split(",").map(s => s.trim()).filter(Boolean);
+  return allow.length ? allow.includes(userId) : false;          // empty = nobody (safe default)
 }
 function otterModal(channelId) {
   return {
