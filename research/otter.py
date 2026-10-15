@@ -17,6 +17,7 @@ login is email+password (no 2FA), and upload_speech() doesn't return the new spe
 diff the speech list to find it. Everything Otter-specific is tolerant + logged, because the
 first live run is the only way to confirm Otter hasn't renamed a field.
 """
+import json
 import logging
 import os
 import tempfile
@@ -194,11 +195,19 @@ class Otter:
 
     def upload(self, path, content_type):
         before = self._ids()
+        size = os.path.getsize(path) if os.path.exists(path) else -1
+        log.info("upload start: content_type=%s bytes=%s existing_speeches=%d",
+                 content_type, size, len(before))
         try:
             resp = self.c.upload_speech(path, content_type)
         except Exception as e:
-            raise OtterError(f"upload failed: {e}") from e
+            raise OtterError(f"upload call errored: {e}") from e
         if not _ok(resp):
+            try:
+                detail = json.dumps(resp.get("data"))[:800]
+            except Exception:
+                detail = str(resp)[:800]
+            log.warning("upload REJECTED status=%s data=%s", resp.get("status"), detail)
             raise OtterError(f"Otter rejected the upload (status {resp.get('status')!r})")
         direct = _otid(_data(resp))
         if direct:
