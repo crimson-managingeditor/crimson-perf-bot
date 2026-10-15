@@ -37,7 +37,9 @@ jobs:
         with:
           python-version: "3.12"
       - name: Install deps
-        run: pip install requests "otterai @ git+https://github.com/gmchad/otterai-api.git"
+        # package name is otterai-api (imports as `otterai`); leave the name off so pip
+        # reads it from the repo rather than rejecting a name mismatch.
+        run: pip install requests git+https://github.com/gmchad/otterai-api.git
       - name: Upload to Otter + post transcript
         env:
           SLACK_BOT_TOKEN:    ${{ secrets.SLACK_BOT_TOKEN }}
