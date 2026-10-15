@@ -54,6 +54,8 @@ CONTENT_TYPES = {
 TRANSCRIPT_FORMAT = "docx"
 POLL_INTERVAL = int(os.environ.get("OTTER_POLL_INTERVAL", "20"))
 POLL_TIMEOUT = int(os.environ.get("OTTER_POLL_TIMEOUT", "2400"))
+# Otter now requires an `appid` on its API calls; the web client sends "otter-web".
+APPID = os.environ.get("OTTER_APPID", "otter-web")
 
 
 # --------------------------------------------------------------------------- #
@@ -193,25 +195,63 @@ class Otter:
             log.warning("snapshot speeches failed: %s", e)
             return set()
 
+    def _api_get(self, path, **params):
+        """GET an Otter API endpoint on the logged-in session, with appid attached."""
+        params.setdefault("appid", APPID)
+        r = self.c._session.get(self.c.API_BASE_URL + path, params=params, timeout=120)
+        try:
+            return r.status_code, r.json()
+        except Exception:
+            return r.status_code, {}
+
     def upload(self, path, content_type):
+        # Reimplements the library's upload with appid on every call (Otter returns
+        # {"message":"missing appid","code":10} otherwise). Uses the logged-in session.
+        import xml.etree.ElementTree as ET
+        from requests_toolbelt.multipart.encoder import MultipartEncoder
+        sess, uid = self.c._session, self.c._userid
+        api, s3base = self.c.API_BASE_URL, self.c.S3_BASE_URL
         before = self._ids()
         size = os.path.getsize(path) if os.path.exists(path) else -1
         log.info("upload start: content_type=%s bytes=%s existing_speeches=%d",
                  content_type, size, len(before))
+
+        # 1. presigned S3 form fields
+        pr = sess.get(api + "speech_upload_params", params={"userid": uid, "appid": APPID}, timeout=120)
+        if pr.status_code != 200:
+            log.warning("speech_upload_params %s: %s", pr.status_code, pr.text[:300])
+            raise OtterError(f"Otter rejected the upload prep (status {pr.status_code})")
+        fields = dict(pr.json()["data"])
+        fields["success_action_status"] = str(fields.get("success_action_status", 201))
+        fields.pop("form_action", None)
+
+        # 2. POST the audio to S3
+        with open(path, "rb") as fh:
+            fields["file"] = (os.path.basename(path), fh, content_type)
+            mpe = MultipartEncoder(fields=fields)
+            s3r = requests.post(s3base + "speech-upload-prod", data=mpe,
+                                headers={"Content-Type": mpe.content_type}, timeout=600)
+        if s3r.status_code != 201:
+            log.warning("S3 upload %s: %s", s3r.status_code, s3r.text[:300])
+            raise OtterError(f"storage upload failed (status {s3r.status_code})")
+        root = ET.fromstring(s3r.text)
+        bucket, key = root[1].text, root[2].text
+
+        # 3. finish the upload
+        fr = sess.get(api + "finish_speech_upload",
+                      params={"bucket": bucket, "key": key, "language": "en",
+                              "country": "us", "userid": uid, "appid": APPID}, timeout=120)
+        if fr.status_code != 200:
+            log.warning("finish_speech_upload %s: %s", fr.status_code, fr.text[:300])
+            raise OtterError(f"Otter rejected the upload (status {fr.status_code})")
         try:
-            resp = self.c.upload_speech(path, content_type)
-        except Exception as e:
-            raise OtterError(f"upload call errored: {e}") from e
-        if not _ok(resp):
-            try:
-                detail = json.dumps(resp.get("data"))[:800]
-            except Exception:
-                detail = str(resp)[:800]
-            log.warning("upload REJECTED status=%s data=%s", resp.get("status"), detail)
-            raise OtterError(f"Otter rejected the upload (status {resp.get('status')!r})")
-        direct = _otid(_data(resp))
-        if direct:
-            return direct
+            fj = fr.json()
+        except Exception:
+            fj = {}
+        otid = _otid(fj) or _otid((fj.get("speech") or {}) if isinstance(fj, dict) else {})
+        if otid:
+            return otid
+        # otid not in the finish response -> find the new speech by diffing the list
         deadline = time.time() + 90
         while time.time() < deadline:
             time.sleep(4)
@@ -225,15 +265,12 @@ class Otter:
     def wait_for_transcript(self, otid):
         deadline = time.time() + POLL_TIMEOUT
         while time.time() < deadline:
-            try:
-                sp = _data(self.c.get_speech(otid))
-                sp = sp.get("speech", sp) if isinstance(sp.get("speech"), dict) else sp
-            except Exception as e:
-                log.warning("get_speech retry: %s", e)
-                time.sleep(POLL_INTERVAL)
-                continue
+            code, j = self._api_get("speech", userid=self.c._userid, otid=otid)
+            sp = j.get("speech", j) if isinstance(j, dict) else {}
+            if not isinstance(sp, dict):
+                sp = {}
             if not self._logged:
-                log.info("otter speech keys: %s", sorted(sp.keys()))
+                log.info("otter speech keys: %s (http %s)", sorted(sp.keys()), code)
                 self._logged = True
             if _looks_done(sp):
                 return sp
@@ -241,23 +278,22 @@ class Otter:
         return None
 
     def download(self, otid, fmt=TRANSCRIPT_FORMAT):
-        base = os.path.join(tempfile.gettempdir(), f"otter_{otid}")
+        sess, uid = self.c._session, self.c._userid
+        csrf = (self.c._cookies or {}).get("csrftoken") or sess.cookies.get("csrftoken")
+        headers = {"referer": "https://otter.ai/"}
+        if csrf:
+            headers["x-csrftoken"] = csrf
         try:
-            resp = self.c.download_speech(otid, name=base, fileformat=fmt)
+            r = sess.post(self.c.API_BASE_URL + "bulk_export",
+                          params={"userid": uid, "appid": APPID}, headers=headers,
+                          data={"formats": fmt, "speech_otid_list": [otid]}, timeout=180)
         except Exception as e:
-            log.warning("download_speech failed: %s", e)
+            log.warning("bulk_export error: %s", e)
             return None
-        path = _data(resp).get("filename")
-        if path and os.path.exists(path):
-            try:
-                with open(path, "rb") as fh:
-                    return fh.read()
-            finally:
-                try:
-                    os.remove(path)
-                except OSError:
-                    pass
-        return None
+        if not r.ok:
+            log.warning("bulk_export %s: %s", r.status_code, r.text[:200])
+            return None
+        return r.content
 
 
 def content_type_for(name):
