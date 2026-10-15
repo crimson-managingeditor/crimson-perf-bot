@@ -37878,3 +37878,24 @@ Call log:
 2026-10-15T22:19:26.101471+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
 2026-10-15T22:19:26.101471+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
 2026-10-15T22:19:26.101471+00:00  BLOCKED  https://finance.harvard.edu/annual-report
+2026-10-15T23:17:49.038314+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-10-15T23:17:49.038314+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard%20Management%20Company&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-10-15T23:17:49.038314+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-10-15T23:17:49.038314+00:00  STALE    https://news.google.com/rss/search?q=N.P.%20Narvekar&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-15T23:17:49.038314+00:00  STALE    https://news.google.com/rss/search?q=Alan%20Garber&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-15T23:17:49.038314+00:00  STALE    https://news.google.com/rss/search?q=Tricia%20Glynn&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-15T23:17:49.038314+00:00  STALE    https://news.google.com/rss/search?q=*Mart%C3%ADn%20Escobari*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-15T23:17:49.038314+00:00  CHANGED  https://news.google.com/rss/search?q=*Ritu%20Kalra*&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-10-15T23:17:49.038314+00:00  STALE    https://news.google.com/rss/search?q=*Raymond%20McGuire*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-15T23:17:49.038314+00:00  STALE    https://news.google.com/rss/search?q=Joshua%20Friedman&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-15T23:17:49.038314+00:00  STALE    https://news.google.com/rss/search?q=*600%20Atlantic%20Avenue%20Boston*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-15T23:17:49.038314+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard%20investment&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-10-15T23:17:49.038314+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Singapore&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-15T23:17:49.038314+00:00  STALE    https://news.google.com/rss/search?q=HMC%20San%20Francisco&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-15T23:17:49.038314+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-15T23:22:54.432639+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-10-15T23:22:54.432639+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-10-15T23:22:54.432639+00:00  ERROR    https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad  The read operation timed out
+2026-10-15T23:22:54.432639+00:00  BLOCKED  https://finance.harvard.edu/annual-report
+2026-10-15T23:28:25.039586+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-10-15T23:33:30.128278+00:00  BLOCKED  https://finance.harvard.edu/annual-report1m
