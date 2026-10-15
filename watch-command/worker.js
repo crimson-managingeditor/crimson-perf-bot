@@ -8,9 +8,14 @@
 //   /links          list what's watched in THIS channel (only)
 //   /save <url>     preserve a page in the Wayback Machine and get a permalink back
 //                   (for citing / before it changes or gets deleted).
+//   /otter          upload an audio file to Otter.ai — opens a modal (file + Jr/Sr/Confidential),
+//                   then a GitHub Action (research/otter.py) uploads it and posts the transcript.
 //
 // Cloudflare secrets: SLACK_SIGNING_SECRET, GITHUB_TOKEN,
 //   GITHUB_REPO (e.g. crimson-managingeditor/crimson-perf-bot), WATCHLIST_PATH.
+//   SLACK_BOT_TOKEN (xoxb) + OTTER_CONF_ALLOWLIST — required for /otter (open the modal +
+//   gate the Confidential account). The Otter account passwords live as GitHub Actions
+//   secrets (used by otter.yml), not here.
 //   WAYBACK_KEY (optional) — "accesskey:secret" from https://archive.org/account/s3.php;
 //   set it for guaranteed-fresh captures. Without it, /save still works (best-effort
 //   capture + the latest snapshot), just without the reliability of an authenticated save.
@@ -28,7 +33,10 @@ export default {
     if (!ok) return reply({ text: "⛔ Slack signature check failed." });
     const p = new URLSearchParams(body);
     try {
-      return reply(await handle(env, exctx, p));
+      // Interactive payloads (the /otter modal submit) arrive as `payload=<json>`.
+      if (p.get("payload")) return await handleInteraction(env, exctx, JSON.parse(p.get("payload")));
+      const out = await handle(env, exctx, p);
+      return out instanceof Response ? out : reply(out);   // /otter returns a raw Response
     } catch (e) {
       return reply({ text: `⚠️ ${e.message}` });
     }
@@ -110,11 +118,92 @@ async function handle(env, exctx, p) {
   if (command === "/casewatch")   return await caseWatchCmd(env, "add", ctx);
   if (command === "/cases")       return await caseWatchCmd(env, "list", ctx);
   if (command === "/uncasewatch") return await caseWatchCmd(env, "remove", ctx);
+  if (command === "/otter")  return await otterCommand(env, p);     // audio file -> Otter.ai (opens a modal)
   if (command === "/save")   return saveCmd(env, exctx, ctx);
   if (command === "/links")  return await listCmd(env, ctx);
   if (command === "/unlink") return await mutate(env, "remove", ctx);
   if (command === "/link")   return await mutate(env, "add", ctx);
   return { text: `Unknown command ${command}` };
+}
+
+// === /otter : a reporter uploads audio in a modal; a GitHub Action puts it in Otter.ai ===
+// Slash commands can't carry a file, so /otter opens a modal with a file_input + an account
+// dropdown. On submit we dispatch otter.yml (research/otter.py), which downloads the file,
+// uploads it to the chosen Otter account, and posts the transcript back — all with the bot token.
+// Worker secrets this needs: SLACK_BOT_TOKEN (to open the modal) and OTTER_CONF_ALLOWLIST
+// (comma-separated Slack user IDs allowed to use the Confidential account).
+const OTTER_ACCOUNTS = [["jr", "Jr reporters"], ["sr", "Sr reporters"], ["conf", "Confidential"]];
+
+function jsonResponse(obj) {
+  return new Response(JSON.stringify(obj), { headers: { "Content-Type": "application/json" } });
+}
+async function slackApi(env, method, payload) {
+  const r = await fetch("https://slack.com/api/" + method, {
+    method: "POST",
+    headers: { "Authorization": "Bearer " + (env.SLACK_BOT_TOKEN || ""),
+               "Content-Type": "application/json; charset=utf-8" },
+    body: JSON.stringify(payload),
+  });
+  return r.json().catch(() => ({ ok: false, error: "bad_json" }));
+}
+function otterConfAllowed(env, userId) {
+  const allow = (env.OTTER_CONF_ALLOWLIST || "").split(",").map(s => s.trim()).filter(Boolean);
+  return allow.length ? allow.includes(userId) : false;   // empty allowlist = nobody (safe default)
+}
+function otterModal(channelId) {
+  return {
+    type: "modal", callback_id: "otter_modal", private_metadata: channelId || "",
+    title: { type: "plain_text", text: "Upload to Otter" },
+    submit: { type: "plain_text", text: "Upload" },
+    close: { type: "plain_text", text: "Cancel" },
+    blocks: [
+      { type: "input", block_id: "otter_file",
+        label: { type: "plain_text", text: "Audio file" },
+        element: { type: "file_input", action_id: "file", max_files: 1 } },
+      { type: "input", block_id: "otter_acct",
+        label: { type: "plain_text", text: "Which Otter account?" },
+        element: { type: "static_select", action_id: "acct",
+          placeholder: { type: "plain_text", text: "Choose one" },
+          options: OTTER_ACCOUNTS.map(([v, t]) => ({ text: { type: "plain_text", text: t }, value: v })) } },
+    ],
+  };
+}
+async function otterCommand(env, p) {
+  if (!env.SLACK_BOT_TOKEN)
+    return reply({ text: "⚠️ /otter isn't configured yet (the SLACK_BOT_TOKEN secret is missing)." });
+  const r = await slackApi(env, "views.open",
+    { trigger_id: p.get("trigger_id"), view: otterModal(p.get("channel_id") || "") });
+  if (!r.ok) return reply({ text: `⚠️ Couldn't open the upload window (${r.error || "error"}).` });
+  return new Response("", { status: 200 });   // ack the slash command; the modal is already open
+}
+async function handleInteraction(env, exctx, payload) {
+  if (payload.type === "view_submission" && payload.view && payload.view.callback_id === "otter_modal")
+    return await otterSubmit(env, exctx, payload);
+  return new Response("", { status: 200 });    // ignore other interaction types
+}
+async function otterSubmit(env, exctx, payload) {
+  const vals = (payload.view.state && payload.view.state.values) || {};
+  const files = ((vals.otter_file || {}).file || {}).files || [];
+  const fileId = files[0] && files[0].id;
+  const sel = ((vals.otter_acct || {}).acct || {}).selected_option;
+  const account = sel && sel.value;
+  const user = payload.user && payload.user.id;
+  const channel = payload.view.private_metadata || "";
+  const errors = {};
+  if (!fileId) errors.otter_file = "Attach an audio file.";
+  if (!OTTER_ACCOUNTS.some(([v]) => v === account)) errors.otter_acct = "Pick an account.";
+  else if (account === "conf" && !otterConfAllowed(env, user))
+    errors.otter_acct = "You're not allowed to use the Confidential account.";
+  if (Object.keys(errors).length) return jsonResponse({ response_action: "errors", errors });
+
+  const r = await fetch(`${GH}/repos/${env.GITHUB_REPO}/actions/workflows/otter.yml/dispatches`, {
+    method: "POST", headers: ghHeaders(env),
+    body: JSON.stringify({ ref: "main", inputs: { file_id: fileId, account, channel, user } }),
+  });
+  if (!r.ok)
+    return jsonResponse({ response_action: "errors",
+      errors: { otter_acct: `Couldn't start the uploader (${r.status}). Check the GitHub token's Actions:write scope.` } });
+  return new Response("", { status: 200 });    // close the modal; the Action posts progress to Slack
 }
 
 // --- /people : extract {name, role, email} from ANY people page (renders JS + LLM) ---
