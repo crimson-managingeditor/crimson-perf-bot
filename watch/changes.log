@@ -38493,3 +38493,12 @@ Call log:
 2026-10-16T19:36:21.942702+00:00  STALE    https://news.google.com/rss/search?q=*600%20Atlantic%20Avenue%20Boston*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-10-16T19:36:21.942702+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20investment&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-10-16T19:36:21.942702+00:00  FLAPPED  https://iop.harvard.edu/about/student-leadership
+2026-10-16T20:08:45.581147+00:00  ERROR    https://www.courtlistener.com/docket/72090192/president-and-fellows-of-harvard-college-v-us-department-of-health-and/?order_by=desc  The read operation timed out
+2026-10-16T20:08:45.581147+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Management%20Company&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-16T20:08:45.581147+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-10-16T20:08:45.581147+00:00  STALE    https://news.google.com/rss/search?q=*Ritu%20Kalra*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-16T20:08:45.581147+00:00  STALE    https://news.google.com/rss/search?q=Paul%20Finnegan&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-16T20:08:45.581147+00:00  STALE    https://news.google.com/rss/search?q=Joshua%20Friedman&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-16T20:08:45.581147+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20investment&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-16T20:08:45.581147+00:00  CHANGED  https://iop.harvard.edu/about/student-leadership  by=mirei.saneyoshi  ch=directmessage  via=DM->mirei.saneyoshi
+2026-10-16T20:24:37.208672+00:00  BASELINE https://www.hks.harvard.edu/more/about/leadership-administration  ch=directmessage
