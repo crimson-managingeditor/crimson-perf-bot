@@ -751,5 +751,13 @@
     "added_by": "megan.blonigen",
     "added_by_id": "U0AD9QLRK0F",
     "interval": 5
+  },
+  {
+    "url": "https://www.hks.harvard.edu/more/about/leadership-administration",
+    "channel": "D0BV85ZN410",
+    "channel_name": "directmessage",
+    "added_by": "mirei.saneyoshi",
+    "added_by_id": "U0C0NHBD43S",
+    "interval": 30
   }
 ]
