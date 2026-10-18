@@ -39603,3 +39603,17 @@ Call log:
 2026-10-18T06:41:24.532099+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20investment&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-10-18T06:41:24.532099+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Singapore&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-10-18T06:41:24.532099+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-10-18T07:13:43.081828+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Management%20Company&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-18T07:13:43.081828+00:00  STALE    https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-18T07:13:43.081828+00:00  STALE    https://news.google.com/rss/search?q=Rick%20Slocum&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-18T07:13:43.081828+00:00  STALE    https://news.google.com/rss/search?q=Paul%20Finnegan&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-18T07:13:43.081828+00:00  STALE    https://news.google.com/rss/search?q=Joshua%20Friedman&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-18T07:13:43.081828+00:00  STALE    https://news.google.com/rss/search?q=*600%20Atlantic%20Avenue%20Boston*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-18T07:13:43.081828+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20investment&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-18T07:13:43.081828+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Singapore&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-18T07:33:52.028367+00:00  STALE    https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-18T07:33:52.028367+00:00  STALE    https://news.google.com/rss/search?q=N.P.%20Narvekar&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-18T07:33:52.028367+00:00  STALE    https://news.google.com/rss/search?q=Patrick%20Healy&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-18T07:33:52.028367+00:00  STALE    https://news.google.com/rss/search?q=*Raymond%20McGuire*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-18T07:33:52.028367+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-18T07:33:52.028367+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
