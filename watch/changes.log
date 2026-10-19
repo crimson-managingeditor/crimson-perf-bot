@@ -40583,3 +40583,22 @@ Call log:
 2026-10-19T12:16:01.900326+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-10-19T12:26:06.667323+00:00  CHANGED  https://www.cambridgema.gov/departments/transportation/news  by=shawn.boehmer  ch=directmessage  via=DM->shawn.boehmer
 2026-10-19T12:26:06.667323+00:00  CHANGED  https://www.cambridgema.gov/news  by=shawn.boehmer  ch=directmessage  via=DM->shawn.boehmer
+2026-10-19T12:30:49.761380+00:00  CHANGED  https://www.hks.harvard.edu  by=jen.phan  ch=directmessage  via=DM->jen.phan
+2026-10-19T12:30:49.761380+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-10-19T12:30:49.761380+00:00  CHANGED  https://www.justice.gov/opa/pr/justice-department-launches-investigation-determine-whether-harvards-china-based-financial  by=alexa.schmitt  ch=directmessage  via=DM->alexa.schmitt
+2026-10-19T12:30:49.761380+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-10-19T12:30:49.761380+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-10-19T12:30:49.761380+00:00  STALE    https://news.google.com/rss/search?q=Rick%20Slocum&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-19T12:30:49.761380+00:00  STALE    https://news.google.com/rss/search?q=Mary%20Erdoes&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-19T12:30:49.761380+00:00  STALE    https://news.google.com/rss/search?q=Joshua%20Friedman&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-19T12:30:49.761380+00:00  STALE    https://news.google.com/rss/search?q=*600%20Atlantic%20Avenue%20Boston*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-19T12:30:49.761380+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20investment&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-19T12:30:49.761380+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-10-19T12:30:49.761380+00:00  BLOCKED  https://finance.harvard.edu/annual-report
+2026-10-19T12:41:20.118349+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-10-19T12:46:22.377715+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-10-19T12:46:22.377715+00:00  STALE    https://news.google.com/rss/search?q=Paul%20Edgerley&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-19T12:46:22.377715+00:00  STALE    https://news.google.com/rss/search?q=Patrick%20Healy&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-19T12:46:22.377715+00:00  STALE    https://news.google.com/rss/search?q=*Raymond%20McGuire*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-19T12:46:22.377715+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-19T12:46:22.377715+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
