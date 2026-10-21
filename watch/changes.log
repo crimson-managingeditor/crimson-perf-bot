@@ -42179,3 +42179,33 @@ Call log:
 2026-10-21T10:46:09.648251+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
 2026-10-21T10:51:17.196406+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
 2026-10-21T10:51:17.196406+00:00  CHANGED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-10-21T11:31:05.786825+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-10-21T11:31:05.786825+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-10-21T11:31:05.786825+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-10-21T11:31:05.786825+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-10-21T11:31:05.786825+00:00  STALE    https://news.google.com/rss/search?q=Sanjeev%20Daga&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-21T11:31:05.786825+00:00  STALE    https://news.google.com/rss/search?q=Alan%20Garber&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-21T11:31:05.786825+00:00  STALE    https://news.google.com/rss/search?q=Tricia%20Glynn&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-21T11:31:05.786825+00:00  STALE    https://news.google.com/rss/search?q=Paul%20Edgerley&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-21T11:31:05.786825+00:00  CHANGED  https://news.google.com/rss/search?q=Patrick%20Healy&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-10-21T11:31:05.786825+00:00  STALE    https://news.google.com/rss/search?q=*Robert%20Jain*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-21T11:31:05.786825+00:00  STALE    https://news.google.com/rss/search?q=*Mart%C3%ADn%20Escobari*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-21T11:31:05.786825+00:00  STALE    https://news.google.com/rss/search?q=Paul%20Finnegan&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-21T11:31:05.786825+00:00  STALE    https://news.google.com/rss/search?q=*Raymond%20McGuire*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-21T11:31:05.786825+00:00  STALE    https://news.google.com/rss/search?q=*600%20Atlantic%20Avenue%20Boston*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-21T11:31:05.786825+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20investment&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-21T11:31:05.786825+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Singapore&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-21T11:31:05.786825+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-21T11:31:05.786825+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-21T11:31:05.786825+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-10-21T11:31:05.786825+00:00  BLOCKED  https://finance.harvard.edu/annual-report
+2026-10-21T11:31:05.786825+00:00  BLOCKED  https://trademark.harvard.edu/page-type/policies
+2026-10-21T11:31:05.786825+00:00  BLOCKED  https://dso.college.harvard.edu/student-organizations
+2026-10-21T11:31:05.786825+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hazing&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-21T11:31:05.786825+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hillel&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-21T11:31:05.786825+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-21T11:31:05.786825+00:00  BLOCKED  https://dso.college.harvard.edu/opportunities-students
+2026-10-21T11:31:05.786825+00:00  BLOCKED  https://dso.college.harvard.edu/professional-positions
+2026-10-21T11:36:27.496277+00:00  BLOCKED  https://finance.harvard.edu/annual-report1m
+2026-10-21T11:51:40.745297+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-10-21T11:56:42.137632+00:00  CHANGED  https://www.courtlistener.com/docket/72520538/united-states-v-president-and-fellows-of-harvard-college/?order_by=desc  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
