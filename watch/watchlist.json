@@ -817,5 +817,14 @@
     "added_by": "theresabartelme",
     "added_by_id": "U0ADVTYK3JR",
     "interval": 30
+  },
+  {
+    "url": "https://news.google.com/rss/search?q=harvard%20AND%20hazing&hl=en-US&gl=US&ceid=US:en",
+    "alert": "harvard AND hazing",
+    "channel": "D0ADVTYRJLD",
+    "channel_name": "directmessage",
+    "added_by": "theresabartelme",
+    "added_by_id": "U0ADVTYK3JR",
+    "interval": 30
   }
 ]
