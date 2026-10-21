@@ -42265,3 +42265,15 @@ Call log:
 2026-10-21T13:38:22.327351+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-10-21T13:43:29.232004+00:00  FLAPPED  https://www.courtlistener.com/docket/72090192/president-and-fellows-of-harvard-college-v-us-department-of-health-and/?order_by=desc
 2026-10-21T13:43:29.232004+00:00  FLAPPED  https://www.courtlistener.com/docket/72275604/united-states-v-president-and-fellows-of-harvard-college-harvard/?order_by=desc
+2026-10-21T14:15:42.214329+00:00  CHANGED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-10-21T14:20:44.890801+00:00  CHANGED  https://seas.harvard.edu/  by=stephanie.dragoi  ch=directmessage  via=DM->stephanie.dragoi
+2026-10-21T14:20:44.890801+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-10-21T14:20:44.890801+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-10-21T14:25:53.138431+00:00  CHANGED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-10-21T14:30:55.645518+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-10-21T14:35:58.160335+00:00  CHANGED  https://seas.harvard.edu/  by=stephanie.dragoi  ch=directmessage  via=DM->stephanie.dragoi
+2026-10-21T14:35:58.160335+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-10-21T14:35:58.160335+00:00  ERROR    https://studentsforfairadmissions.org/  HTTP Error 500: Internal Server Error
+2026-10-21T14:35:58.160335+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-10-21T14:35:58.160335+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-10-21T14:35:58.160335+00:00  BLOCKED  https://finance.harvard.edu/annual-report
