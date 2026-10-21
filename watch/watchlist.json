@@ -853,5 +853,13 @@
     "added_by": "theresabartelme",
     "added_by_id": "U0ADVTYK3JR",
     "interval": 30
+  },
+  {
+    "url": "https://dso.college.harvard.edu/opportunities-students",
+    "channel": "D0ADVTYRJLD",
+    "channel_name": "directmessage",
+    "added_by": "theresabartelme",
+    "added_by_id": "U0ADVTYK3JR",
+    "interval": 60
   }
 ]
