@@ -41873,3 +41873,27 @@ Call log:
 2026-10-21T03:56:12.710123+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
 2026-10-21T03:56:12.710123+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
 2026-10-21T03:56:12.710123+00:00  BLOCKED  https://finance.harvard.edu/annual-report
+2026-10-21T04:00:51.401568+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-culture-community
+2026-10-21T04:00:51.401568+00:00  ERROR    https://forklightning.substack.com/  headless render failed: Page.goto: Timeout 35000ms exceeded.
+Call log:
+  - navigating to "
+2026-10-21T04:00:51.401568+00:00  BLOCKED  https://titleix.college.harvard.edu/resources
+2026-10-21T04:00:51.401568+00:00  CHANGED  https://academicpositions.harvard.edu/postings/search?utf8=%E2%9C%93&query=&query_v0_posted_at_date=day&388%5B%5D=10&commit=Search  by=stephanie.dragoi  ch=directmessage  via=DM->stephanie.dragoi
+2026-10-21T04:00:51.401568+00:00  CHANGED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-10-21T04:06:34.344513+00:00  STALE    https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-21T04:06:34.344513+00:00  STALE    https://news.google.com/rss/search?q=Alan%20Garber&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-21T04:06:34.344513+00:00  STALE    https://news.google.com/rss/search?q=Tricia%20Glynn&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-21T04:06:34.344513+00:00  STALE    https://news.google.com/rss/search?q=Patrick%20Healy&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-21T04:06:34.344513+00:00  STALE    https://news.google.com/rss/search?q=*Raymond%20McGuire*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-21T04:06:34.344513+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-21T04:16:39.062436+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-10-21T04:21:41.630998+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-10-21T04:26:43.437384+00:00  BLOCKED  https://www.hupd.harvard.edu/campus-hazing-transparency-report
+2026-10-21T04:26:43.437384+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Management%20Company&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-21T04:26:43.437384+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-10-21T04:26:43.437384+00:00  STALE    https://news.google.com/rss/search?q=Rick%20Slocum&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-21T04:26:43.437384+00:00  STALE    https://news.google.com/rss/search?q=Mary%20Erdoes&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-21T04:26:43.437384+00:00  STALE    https://news.google.com/rss/search?q=Paul%20Finnegan&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-21T04:26:43.437384+00:00  STALE    https://news.google.com/rss/search?q=*600%20Atlantic%20Avenue%20Boston*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-21T04:26:43.437384+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20investment&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-21T04:26:43.437384+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Singapore&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
