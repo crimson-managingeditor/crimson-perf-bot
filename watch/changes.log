@@ -45216,3 +45216,10 @@ Call log:
 2026-10-24T15:51:28.390236+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hillel&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-10-24T15:51:28.390236+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20chabad&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-10-24T15:51:28.390236+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-24T16:28:58.104956+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-10-24T16:28:58.104956+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-10-24T16:34:04.524871+00:00  BLOCKED  https://www.hupd.harvard.edu/campus-hazing-transparency-report
+2026-10-24T16:44:11.059513+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-10-24T16:44:11.059513+00:00  CHANGED  https://www.justice.gov/opa/pr/justice-department-launches-investigation-determine-whether-harvards-china-based-financial  by=alexa.schmitt  ch=directmessage  via=DM->alexa.schmitt
+2026-10-24T16:44:11.059513+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-10-24T16:44:11.059513+00:00  BLOCKED  https://finance.harvard.edu/annual-report
