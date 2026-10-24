@@ -45166,3 +45166,25 @@ Call log:
 2026-10-24T14:51:31.624138+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
 2026-10-24T14:51:31.624138+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hillel&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-10-24T14:56:34.507269+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-10-24T15:01:20.540564+00:00  CHANGED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-10-24T15:06:23.692760+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-10-24T15:06:23.692760+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-10-24T15:11:39.986284+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-10-24T15:16:42.733663+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-10-24T15:21:44.740046+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-10-24T15:21:44.740046+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-10-24T15:21:44.740046+00:00  CHANGED  https://news.google.com/rss/search?q=Rick%20Slocum&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-10-24T15:21:44.740046+00:00  STALE    https://news.google.com/rss/search?q=Tim%20Barakett&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-24T15:21:44.740046+00:00  STALE    https://news.google.com/rss/search?q=Alan%20Garber&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-24T15:21:44.740046+00:00  STALE    https://news.google.com/rss/search?q=Mary%20Erdoes&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-24T15:21:44.740046+00:00  STALE    https://news.google.com/rss/search?q=Joshua%20Friedman&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-24T15:21:44.740046+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20investment&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-24T15:21:44.740046+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Singapore&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-24T15:21:44.740046+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-24T15:21:44.740046+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-24T15:21:44.740046+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-10-24T15:21:44.740046+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hazing&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-24T15:21:44.740046+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hillel&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-24T15:21:44.740046+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-24T15:26:50.511618+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-10-24T15:26:50.511618+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
