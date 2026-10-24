@@ -1,5 +1,13 @@
 [
  {
+  "name": "Albert Cao",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "Epee",
+  "hometown": "Washington D.C.",
+  "highschool": "Centennial High School"
+ },
+ {
   "name": "Tommy Choi",
   "jersey": "",
   "class": "Jr.",
@@ -64,6 +72,14 @@
   "highschool": "Trinity"
  },
  {
+  "name": "Derek Lee",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "Epee",
+  "hometown": "",
+  "highschool": ""
+ },
+ {
   "name": "Stewart Lee",
   "jersey": "",
   "class": "Fy",
@@ -94,6 +110,14 @@
   "pos": "Foil",
   "hometown": "Boston, Mass.",
   "highschool": ""
+ },
+ {
+  "name": "Zachary Piesner",
+  "jersey": "",
+  "class": "Jr.",
+  "pos": "Foil",
+  "hometown": "Calabasas, Calif.",
+  "highschool": "Calabasas High School"
  },
  {
   "name": "Alexander Tafur",
