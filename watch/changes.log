@@ -46048,3 +46048,12 @@ Call log:
 2026-10-25T13:32:48.089139+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20chabad&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-10-25T13:32:48.089139+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-10-25T13:37:51.636765+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-10-25T14:10:15.624966+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-10-25T14:10:15.624966+00:00  CHANGED  https://www.justice.gov/opa/pr/justice-department-launches-investigation-determine-whether-harvards-china-based-financial  by=alexa.schmitt  ch=directmessage  via=DM->alexa.schmitt
+2026-10-25T14:10:15.624966+00:00  CHANGED  https://www.courtlistener.com/docket/72090192/president-and-fellows-of-harvard-college-v-us-department-of-health-and/?order_by=desc  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-10-25T14:10:15.624966+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-10-25T14:10:15.624966+00:00  BLOCKED  https://finance.harvard.edu/annual-report
+2026-10-25T14:20:25.984110+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-10-25T14:20:25.984110+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-10-25T14:25:30.659094+00:00  CHANGED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-10-25T14:30:32.928677+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
