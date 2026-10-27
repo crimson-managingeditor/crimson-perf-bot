@@ -136,6 +136,14 @@
   "highschool": "Trinity College"
  },
  {
+  "name": "James Hazen",
+  "jersey": "",
+  "class": "Fy",
+  "pos": "",
+  "hometown": "",
+  "highschool": ""
+ },
+ {
   "name": "Martin Houska",
   "jersey": "",
   "class": "So.",
@@ -230,14 +238,6 @@
   "pos": "",
   "hometown": "Winston-Salem, N.C.",
   "highschool": "Deerfield Academy"
- },
- {
-  "name": "Babikir Saeed",
-  "jersey": "",
-  "class": "Fy",
-  "pos": "",
-  "hometown": "Belmont, Mass.",
-  "highschool": "Belmont Hill"
  },
  {
   "name": "Alexander Sanchez Fretz",
