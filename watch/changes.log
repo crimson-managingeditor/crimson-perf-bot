@@ -47365,3 +47365,17 @@ Call log:
 2026-10-27T02:42:48.816168+00:00  FLAPPED  https://www.courtlistener.com/docket/72520538/united-states-v-president-and-fellows-of-harvard-college/?order_by=desc
 2026-10-27T02:42:48.816168+00:00  ERROR    https://www.courtlistener.com/docket/72275604/united-states-v-president-and-fellows-of-harvard-college-harvard/?order_by=desc  The read operation timed out
 2026-10-27T02:42:48.816168+00:00  ERROR    https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad  The read operation timed out
+2026-10-27T03:16:36.607425+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-10-27T03:16:36.607425+00:00  CHANGED  https://www.justice.gov/opa/pr/justice-department-launches-investigation-determine-whether-harvards-china-based-financial  by=alexa.schmitt  ch=directmessage  via=DM->alexa.schmitt
+2026-10-27T03:16:36.607425+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-10-27T03:16:36.607425+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-10-27T03:16:36.607425+00:00  BLOCKED  https://finance.harvard.edu/annual-report
+2026-10-27T03:27:11.725099+00:00  ERROR    https://www.courtlistener.com/docket/72090192/president-and-fellows-of-harvard-college-v-us-department-of-health-and/?order_by=desc  The read operation timed out
+2026-10-27T03:27:11.725099+00:00  ERROR    https://www.courtlistener.com/docket/72520538/united-states-v-president-and-fellows-of-harvard-college/?order_by=desc  The read operation timed out
+2026-10-27T03:27:11.725099+00:00  ERROR    https://www.courtlistener.com/docket/72275604/united-states-v-president-and-fellows-of-harvard-college-harvard/?order_by=desc  The read operation timed out
+2026-10-27T03:27:11.725099+00:00  ERROR    https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad  The read operation timed out
+2026-10-27T03:32:37.461875+00:00  CHANGED  https://thecrimson.com  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-10-27T03:32:37.461875+00:00  CHANGED  https://thecrimson.com  by=matteo.diaz  ch=matteo-internal  via=DM->matteo.diaz
+2026-10-27T03:32:37.461875+00:00  CHANGED  https://thecrimson.com  by=matteo.diaz  ch=directmessage  via=DM->matteo.diaz
+2026-10-27T03:32:37.461875+00:00  CHANGED  https://www.thecrimson.com/  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-10-27T03:37:40.455918+00:00  CHANGED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
