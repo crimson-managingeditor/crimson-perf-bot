@@ -50141,3 +50141,5 @@ Call log:
 2026-10-29T14:18:07.583875+00:00  CHANGED  https://ercallston.com/  by=thamini.vijeyasingam  ch=directmessage  via=DM->thamini.vijeyasingam
 2026-10-29T14:18:07.583875+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
 2026-10-29T14:18:07.583875+00:00  BLOCKED  https://finance.harvard.edu/annual-report
+2026-10-29T14:51:18.780210+00:00  ERROR    https://www.courtlistener.com/docket/72090192/president-and-fellows-of-harvard-college-v-us-department-of-health-and/?order_by=desc  The read operation timed out
+2026-10-29T14:56:44.587293+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
