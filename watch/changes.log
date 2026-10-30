@@ -50939,3 +50939,9 @@ Call log:
 2026-10-30T06:43:39.246113+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hillel&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-10-30T06:43:39.246113+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20chabad&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-10-30T06:43:39.246113+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-10-30T07:21:38.689436+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-10-30T07:21:38.689436+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-10-30T07:21:38.689436+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-10-30T07:21:38.689436+00:00  CHANGED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-10-30T07:21:38.689436+00:00  BLOCKED  https://finance.harvard.edu/annual-report
+2026-10-30T07:42:01.748013+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
