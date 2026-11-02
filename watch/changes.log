@@ -54150,3 +54150,10 @@ Call log:
 2026-11-02T08:07:03.150242+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hillel&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-02T08:07:03.150242+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20chabad&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-02T08:07:03.150242+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-02T08:44:28.692023+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-11-02T08:44:28.692023+00:00  ERROR    https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad  The read operation timed out
+2026-11-02T08:49:54.695813+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-11-02T08:49:54.695813+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-02T08:49:54.695813+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-11-02T08:49:54.695813+00:00  BLOCKED  https://finance.harvard.edu/annual-report
+2026-11-02T08:55:04.097856+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
