@@ -53867,3 +53867,4 @@ Call log:
 2026-11-02T01:58:15.573173+00:00  FLAPPED  https://news.google.com/rss/search?q=harvard%20AND%20hazing&hl=en-US&gl=US&ceid=US:en
 2026-11-02T01:58:15.573173+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hillel&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-02T01:58:15.573173+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-02T02:11:27.799728+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
