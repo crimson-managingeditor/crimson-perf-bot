@@ -55625,3 +55625,10 @@ Call log:
 2026-11-03T17:56:45.969354+00:00  CHANGED  https://careers.harvard.edu/jobs?options=296&page=1  by=theresabartelme  ch=directmessage  via=DM->theresabartelme
 2026-11-03T18:02:05.861914+00:00  ERROR    https://www.courtlistener.com/docket/72090192/president-and-fellows-of-harvard-college-v-us-department-of-health-and/?order_by=desc  The read operation timed out
 2026-11-03T18:02:05.861914+00:00  ERROR    https://www.courtlistener.com/docket/72520538/united-states-v-president-and-fellows-of-harvard-college/?order_by=desc  The read operation timed out
+2026-11-03T18:46:45.778832+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-11-03T18:56:49.131974+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-11-03T18:56:49.131974+00:00  CHANGED  https://college.harvard.edu/admissions  by=celine.muir  ch=directmessage  via=DM->celine.muir
+2026-11-03T18:56:49.131974+00:00  CHANGED  https://college.harvard.edu/admissions  by=alexa.schmitt  ch=directmessage  via=DM->alexa.schmitt
+2026-11-03T18:56:49.131974+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-03T18:56:49.131974+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-11-03T18:56:49.131974+00:00  BLOCKED  https://finance.harvard.edu/annual-report
