@@ -55922,3 +55922,8 @@ Call log:
 2026-11-04T01:09:21.137702+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hillel&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-04T01:09:21.137702+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-04T01:14:25.591527+00:00  FLAPPED  https://www.courtlistener.com/docket/72090192/president-and-fellows-of-harvard-college-v-us-department-of-health-and/?order_by=desc
+2026-11-04T01:51:14.583029+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-11-04T02:01:18.493074+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-11-04T02:01:18.493074+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-04T02:01:18.493074+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-11-04T02:01:18.493074+00:00  BLOCKED  https://finance.harvard.edu/annual-report
