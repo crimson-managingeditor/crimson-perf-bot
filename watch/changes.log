@@ -57510,3 +57510,10 @@ Call log:
 2026-11-05T21:38:47.387562+00:00  CHANGED  https://chinaselectcommittee.house.gov/media/press-releases  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
 2026-11-05T21:38:47.387562+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-05T21:43:53.730449+00:00  CHANGED  https://chinaselectcommittee.house.gov/media/press-releases  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-11-05T22:15:53.047101+00:00  CHANGED  https://www.courtlistener.com/docket/72090192/president-and-fellows-of-harvard-college-v-us-department-of-health-and/?order_by=desc  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-11-05T22:20:56.720452+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-11-05T22:31:03.523302+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-11-05T22:31:03.523302+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-05T22:31:03.523302+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-11-05T22:31:03.523302+00:00  BLOCKED  https://finance.harvard.edu/annual-report
+2026-11-05T22:36:15.626205+00:00  CHANGED  https://www.cambridgema.gov/news  by=shawn.boehmer  ch=directmessage  via=DM->shawn.boehmer
