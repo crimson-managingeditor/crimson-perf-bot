@@ -56909,3 +56909,31 @@ Call log:
 2026-11-05T01:21:50.094482+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
 2026-11-05T01:21:50.094482+00:00  BLOCKED  https://finance.harvard.edu/annual-report
 2026-11-05T01:27:01.257377+00:00  FLAPPED  https://www.courtlistener.com/docket/72275604/united-states-v-president-and-fellows-of-harvard-college-harvard/?order_by=desc
+2026-11-05T01:31:12.581362+00:00  ERROR    https://www.courtlistener.com/docket/72520538/united-states-v-president-and-fellows-of-harvard-college/?order_by=desc  The read operation timed out
+2026-11-05T01:31:12.581362+00:00  CHANGED  https://chinaselectcommittee.house.gov/media/press-releases  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-11-05T01:36:38.971859+00:00  FLAPPED  https://www.courtlistener.com/docket/72275604/united-states-v-president-and-fellows-of-harvard-college-harvard/?order_by=desc
+2026-11-05T01:41:42.736174+00:00  ERROR    https://www.courtlistener.com/docket/72520538/united-states-v-president-and-fellows-of-harvard-college/?order_by=desc  HTTP Error 502: Bad Gateway
+2026-11-05T01:41:42.736174+00:00  CHANGED  https://chinaselectcommittee.house.gov/media/press-releases  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-11-05T01:46:46.176754+00:00  CHANGED  https://thecrimson.com  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-11-05T01:46:46.176754+00:00  CHANGED  https://thecrimson.com  by=matteo.diaz  ch=matteo-internal  via=DM->matteo.diaz
+2026-11-05T01:46:46.176754+00:00  CHANGED  https://thecrimson.com  by=matteo.diaz  ch=directmessage  via=DM->matteo.diaz
+2026-11-05T01:46:46.176754+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-11-05T01:46:46.176754+00:00  FLAPPED  https://www.courtlistener.com/docket/72275604/united-states-v-president-and-fellows-of-harvard-college-harvard/?order_by=desc
+2026-11-05T01:46:46.176754+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-11-05T01:46:46.176754+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-11-05T01:46:46.176754+00:00  STALE    https://news.google.com/rss/search?q=Paul%20Edgerley&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-05T01:46:46.176754+00:00  STALE    https://news.google.com/rss/search?q=*Robert%20Jain*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-05T01:46:46.176754+00:00  STALE    https://news.google.com/rss/search?q=Paul%20Finnegan&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-05T01:46:46.176754+00:00  STALE    https://news.google.com/rss/search?q=*Raymond%20McGuire*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-05T01:46:46.176754+00:00  STALE    https://news.google.com/rss/search?q=Joshua%20Friedman&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-05T01:46:46.176754+00:00  STALE    https://news.google.com/rss/search?q=*600%20Atlantic%20Avenue%20Boston*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-05T01:46:46.176754+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20investment&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-05T01:46:46.176754+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Singapore&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-05T01:46:46.176754+00:00  CHANGED  https://www.thecrimson.com/  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-11-05T01:46:46.176754+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20student%20organizations&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-05T01:46:46.176754+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-05T01:51:51.407061+00:00  CHANGED  https://thecrimson.com  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-11-05T01:51:51.407061+00:00  CHANGED  https://thecrimson.com  by=matteo.diaz  ch=matteo-internal  via=DM->matteo.diaz
+2026-11-05T01:51:51.407061+00:00  CHANGED  https://thecrimson.com  by=matteo.diaz  ch=directmessage  via=DM->matteo.diaz
+2026-11-05T01:51:51.407061+00:00  CHANGED  https://www.thecrimson.com/  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-11-05T01:57:03.272658+00:00  CHANGED  https://www.courtlistener.com/docket/72275604/united-states-v-president-and-fellows-of-harvard-college-harvard/?order_by=desc  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
