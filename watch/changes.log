@@ -57048,3 +57048,15 @@ Call log:
 2026-11-05T04:47:06.527709+00:00  STALE    https://news.google.com/rss/search?q=Joshua%20Friedman&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-05T04:47:06.527709+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20student%20organizations&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-05T04:47:06.527709+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20chabad&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-05T05:01:14.213355+00:00  ERROR    https://www.courtlistener.com/docket/72520538/united-states-v-president-and-fellows-of-harvard-college/?order_by=desc  The read operation timed out
+2026-11-05T05:16:43.673278+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-11-05T05:16:43.673278+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-11-05T05:16:43.673278+00:00  STALE    https://news.google.com/rss/search?q=Sanjeev%20Daga&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-05T05:16:43.673278+00:00  STALE    https://news.google.com/rss/search?q=Tim%20Barakett&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-05T05:16:43.673278+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20investment&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-05T05:16:43.673278+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-05T05:21:47.613855+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-11-05T05:21:47.613855+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-05T05:21:47.613855+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-11-05T05:21:47.613855+00:00  BLOCKED  https://finance.harvard.edu/annual-report
+2026-11-05T05:21:47.613855+00:00  CHANGED  https://careers.harvard.edu/jobs?options=296&page=1  by=theresabartelme  ch=directmessage  via=DM->theresabartelme
