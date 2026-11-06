@@ -57544,3 +57544,13 @@ Call log:
 2026-11-05T23:46:16.126810+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20student%20organizations&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-05T23:46:16.126810+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hazing&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-05T23:46:16.126810+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T00:16:27.385498+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-11-06T00:16:27.385498+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-11-06T00:16:27.385498+00:00  STALE    https://news.google.com/rss/search?q=Tricia%20Glynn&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T00:16:27.385498+00:00  STALE    https://news.google.com/rss/search?q=*Robert%20Jain*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T00:16:27.385498+00:00  STALE    https://news.google.com/rss/search?q=*Mart%C3%ADn%20Escobari*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T00:16:27.385498+00:00  STALE    https://news.google.com/rss/search?q=*600%20Atlantic%20Avenue%20Boston*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T00:16:27.385498+00:00  STALE    https://news.google.com/rss/search?q=HMC%20San%20Francisco&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T00:16:27.385498+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20student%20organizations&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T00:26:35.159963+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-11-06T00:26:35.159963+00:00  ERROR    https://research.harvard.edu/research-policies-compliance/export-control-policies-procedures/  The read operation timed out
