@@ -58142,3 +58142,19 @@ Call log:
 2026-11-06T18:52:45.093797+00:00  CHANGED  https://www.hks.harvard.edu/admissions-blog  by=mirei.saneyoshi  ch=directmessage  via=DM->mirei.saneyoshi
 2026-11-06T18:52:45.093797+00:00  BLOCKED  https://finance.harvard.edu/annual-report
 2026-11-06T18:58:03.756055+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-11-06T19:37:14.055676+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T19:42:19.019667+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-11-06T19:47:25.326641+00:00  CHANGED  https://hls.harvard.edu  by=uy.pham  ch=directmessage  via=DM->uy.pham
+2026-11-06T19:47:25.326641+00:00  CHANGED  https://www.courtlistener.com/docket/72275604/united-states-v-president-and-fellows-of-harvard-college-harvard/?order_by=desc  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-11-06T19:47:25.326641+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T19:47:25.326641+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-11-06T19:47:25.326641+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Management%20Company&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T19:47:25.326641+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-11-06T19:47:25.326641+00:00  STALE    https://news.google.com/rss/search?q=Patrick%20Healy&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T19:47:25.326641+00:00  STALE    https://news.google.com/rss/search?q=Mary%20Erdoes&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T19:47:25.326641+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20student%20organizations&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T19:47:25.326641+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20salient&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T19:52:31.589542+00:00  CHANGED  https://www.hks.harvard.edu  by=jen.phan  ch=directmessage  via=DM->jen.phan
+2026-11-06T19:52:31.589542+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-11-06T19:52:31.589542+00:00  FLAPPED  https://www.courtlistener.com/docket/72275604/united-states-v-president-and-fellows-of-harvard-college-harvard/?order_by=desc
+2026-11-06T19:52:31.589542+00:00  BLOCKED  https://finance.harvard.edu/annual-report
