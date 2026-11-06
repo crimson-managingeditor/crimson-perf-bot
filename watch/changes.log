@@ -57728,3 +57728,20 @@ Call log:
 2026-11-06T04:52:20.609046+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hillel&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-06T04:52:20.609046+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-06T04:57:26.890693+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T05:01:20.662416+00:00  CHANGED  https://academicpositions.harvard.edu/postings/search?utf8=%E2%9C%93&query=&query_v0_posted_at_date=day&388%5B%5D=10&commit=Search  by=stephanie.dragoi  ch=directmessage  via=DM->stephanie.dragoi
+2026-11-06T05:01:20.662416+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T05:06:27.755063+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T05:11:32.025433+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T05:11:32.025433+00:00  BLOCKED  https://finance.harvard.edu/annual-report1m
+2026-11-06T05:16:37.951161+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T05:21:42.180210+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T05:21:42.180210+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-11-06T05:21:42.180210+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-11-06T05:21:42.180210+00:00  STALE    https://news.google.com/rss/search?q=N.P.%20Narvekar&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T05:21:42.180210+00:00  STALE    https://news.google.com/rss/search?q=Patrick%20Healy&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T05:21:42.180210+00:00  STALE    https://news.google.com/rss/search?q=Mary%20Erdoes&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T05:21:42.180210+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20investment&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T05:21:42.180210+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hazing&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T05:21:42.180210+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T05:26:48.123708+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-11-06T05:26:48.123708+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
