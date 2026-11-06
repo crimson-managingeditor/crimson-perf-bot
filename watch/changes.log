@@ -57762,3 +57762,20 @@ Call log:
 2026-11-06T05:51:45.648574+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Singapore&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-06T05:51:45.648574+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hazing&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-06T05:56:52.339354+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T06:01:25.101055+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T06:06:32.134275+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T06:11:37.111942+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T06:16:42.956816+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T06:21:49.251393+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T06:21:49.251393+00:00  STALE    https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T06:21:49.251393+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Management%20Company&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T06:21:49.251393+00:00  STALE    https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T06:21:49.251393+00:00  STALE    https://news.google.com/rss/search?q=*Robert%20Jain*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T06:21:49.251393+00:00  STALE    https://news.google.com/rss/search?q=*Mart%C3%ADn%20Escobari*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T06:21:49.251393+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20student%20organizations&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T06:21:49.251393+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20salient&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T06:21:49.251393+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hazing&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T06:21:49.251393+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hillel&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T06:21:49.251393+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T06:26:57.674875+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-11-06T06:26:57.674875+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
