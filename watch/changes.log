@@ -57779,3 +57779,26 @@ Call log:
 2026-11-06T06:21:49.251393+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-06T06:26:57.674875+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
 2026-11-06T06:26:57.674875+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T06:31:13.375084+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T06:31:13.375084+00:00  CHANGED  https://chinaselectcommittee.house.gov/media/press-releases  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-11-06T06:36:21.596139+00:00  ERROR    https://www.courtlistener.com/docket/72275604/united-states-v-president-and-fellows-of-harvard-college-harvard/?order_by=desc  HTTP Error 502: Bad Gateway
+2026-11-06T06:36:21.596139+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T06:41:27.982768+00:00  CHANGED  https://www.hks.harvard.edu  by=jen.phan  ch=directmessage  via=DM->jen.phan
+2026-11-06T06:41:27.982768+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-11-06T06:41:27.982768+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T06:41:27.982768+00:00  BLOCKED  https://finance.harvard.edu/annual-report
+2026-11-06T06:46:37.091461+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T06:46:37.091461+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-11-06T06:51:43.554558+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T06:51:43.554558+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-11-06T06:51:43.554558+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-11-06T06:51:43.554558+00:00  STALE    https://news.google.com/rss/search?q=Paul%20Edgerley&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T06:51:43.554558+00:00  STALE    https://news.google.com/rss/search?q=Mary%20Erdoes&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T06:51:43.554558+00:00  STALE    https://news.google.com/rss/search?q=*Mart%C3%ADn%20Escobari*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T06:51:43.554558+00:00  STALE    https://news.google.com/rss/search?q=*Ritu%20Kalra*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T06:51:43.554558+00:00  STALE    https://news.google.com/rss/search?q=HMC%20San%20Francisco&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T06:51:43.554558+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hazing&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T06:51:43.554558+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hillel&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T06:51:43.554558+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T06:56:50.179704+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T06:56:50.179704+00:00  CHANGED  https://chinaselectcommittee.house.gov/media/press-releases  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
