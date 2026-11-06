@@ -57802,3 +57802,17 @@ Call log:
 2026-11-06T06:51:43.554558+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-06T06:56:50.179704+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
 2026-11-06T06:56:50.179704+00:00  CHANGED  https://chinaselectcommittee.house.gov/media/press-releases  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-11-06T07:29:06.434651+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-11-06T07:29:06.434651+00:00  FLAPPED  https://www.courtlistener.com/docket/72520538/united-states-v-president-and-fellows-of-harvard-college/?order_by=desc
+2026-11-06T07:29:06.434651+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T07:34:37.690026+00:00  FLAPPED  https://www.courtlistener.com/docket/72520538/united-states-v-president-and-fellows-of-harvard-college/?order_by=desc
+2026-11-06T07:34:37.690026+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T07:39:42.430429+00:00  FLAPPED  https://www.courtlistener.com/docket/72520538/united-states-v-president-and-fellows-of-harvard-college/?order_by=desc
+2026-11-06T07:39:42.430429+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T07:44:50.501962+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-11-06T07:44:50.501962+00:00  FLAPPED  https://www.courtlistener.com/docket/72520538/united-states-v-president-and-fellows-of-harvard-college/?order_by=desc
+2026-11-06T07:44:50.501962+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T07:44:50.501962+00:00  BLOCKED  https://finance.harvard.edu/annual-report
+2026-11-06T07:49:58.922680+00:00  FLAPPED  https://www.courtlistener.com/docket/72520538/united-states-v-president-and-fellows-of-harvard-college/?order_by=desc
+2026-11-06T07:49:58.922680+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T07:49:58.922680+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
