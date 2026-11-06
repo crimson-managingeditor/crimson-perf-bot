@@ -57745,3 +57745,20 @@ Call log:
 2026-11-06T05:21:42.180210+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-06T05:26:48.123708+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
 2026-11-06T05:26:48.123708+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T05:31:19.790703+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T05:36:24.373108+00:00  BLOCKED  https://www.hupd.harvard.edu/campus-hazing-transparency-report
+2026-11-06T05:36:24.373108+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T05:41:30.411607+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-11-06T05:41:30.411607+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T05:41:30.411607+00:00  CHANGED  https://ercallston.com/  by=thamini.vijeyasingam  ch=directmessage  via=DM->thamini.vijeyasingam
+2026-11-06T05:41:30.411607+00:00  BLOCKED  https://finance.harvard.edu/annual-report
+2026-11-06T05:46:40.218480+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T05:46:40.218480+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-11-06T05:51:45.648574+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-06T05:51:45.648574+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-11-06T05:51:45.648574+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-11-06T05:51:45.648574+00:00  STALE    https://news.google.com/rss/search?q=Patrick%20Healy&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T05:51:45.648574+00:00  CHANGED  https://news.google.com/rss/search?q=Mary%20Erdoes&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-11-06T05:51:45.648574+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Singapore&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T05:51:45.648574+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hazing&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-06T05:56:52.339354+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
