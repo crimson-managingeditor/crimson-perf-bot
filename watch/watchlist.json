@@ -894,5 +894,14 @@
     "added_by": "alma.barak",
     "added_by_id": "U0AEK5NTGEL",
     "interval": 30
+  },
+  {
+    "url": "https://news.google.com/rss/search?q=Harvard%20AND%20Salient&hl=en-US&gl=US&ceid=US:en",
+    "alert": "Harvard AND Salient",
+    "channel": "D0ADNQUK5RU",
+    "channel_name": "directmessage",
+    "added_by": "alma.barak",
+    "added_by_id": "U0AEK5NTGEL",
+    "interval": 30
   }
 ]
