@@ -58736,3 +58736,21 @@ Call log:
 2026-11-07T15:46:44.430408+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-07T15:51:47.144332+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
 2026-11-07T16:01:54.769396+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-07T16:31:04.843166+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-culture-community
+2026-11-07T16:31:04.843166+00:00  ERROR    https://forklightning.substack.com/  headless render failed: Page.goto: Timeout 35000ms exceeded.
+Call log:
+  - navigating to "
+2026-11-07T16:31:04.843166+00:00  BLOCKED  https://titleix.college.harvard.edu/resources
+2026-11-07T16:36:44.007030+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-07T16:41:53.482319+00:00  STALE    https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T16:41:53.482319+00:00  STALE    https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T16:41:53.482319+00:00  STALE    https://news.google.com/rss/search?q=Patrick%20Healy&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T16:41:53.482319+00:00  STALE    https://news.google.com/rss/search?q=*600%20Atlantic%20Avenue%20Boston*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T16:41:53.482319+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T16:41:53.482319+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hazing&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T16:41:53.482319+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T16:46:55.992674+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-07T16:46:55.992674+00:00  CHANGED  https://chinaselectcommittee.house.gov/media/press-releases  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-11-07T16:52:00.390046+00:00  CHANGED  https://chinaselectcommittee.house.gov/media/press-releases  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-11-07T16:57:03.360522+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-07T16:57:03.360522+00:00  CHANGED  https://chinaselectcommittee.house.gov/media/press-releases  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
