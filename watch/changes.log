@@ -59015,3 +59015,10 @@ Call log:
 2026-11-07T22:49:19.689389+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Student%20Organizations&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-07T22:49:19.689389+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Salient&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-07T22:49:19.689389+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T23:21:16.444221+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-11-07T23:21:16.444221+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-07T23:21:16.444221+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Student%20Organizations&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T23:26:22.154092+00:00  ERROR    https://www.courtlistener.com/docket/72090192/president-and-fellows-of-harvard-college-v-us-department-of-health-and/?order_by=desc  The read operation timed out
+2026-11-07T23:31:48.013316+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-07T23:36:52.209671+00:00  BLOCKED  https://www.hupd.harvard.edu/campus-hazing-transparency-report
+2026-11-07T23:41:56.286279+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
