@@ -58714,3 +58714,25 @@ Call log:
 2026-11-07T15:09:18.820622+00:00  BLOCKED  https://finance.harvard.edu/annual-report
 2026-11-07T15:09:18.820622+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20chabad&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-07T15:09:18.820622+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T15:41:38.097798+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-07T15:41:38.097798+00:00  STALE    https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T15:41:38.097798+00:00  STALE    https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T15:41:38.097798+00:00  STALE    https://news.google.com/rss/search?q=Rick%20Slocum&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T15:41:38.097798+00:00  STALE    https://news.google.com/rss/search?q=Alan%20Garber&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T15:41:38.097798+00:00  STALE    https://news.google.com/rss/search?q=Tricia%20Glynn&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T15:41:38.097798+00:00  STALE    https://news.google.com/rss/search?q=Paul%20Edgerley&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T15:41:38.097798+00:00  STALE    https://news.google.com/rss/search?q=Mary%20Erdoes&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T15:41:38.097798+00:00  STALE    https://news.google.com/rss/search?q=*Robert%20Jain*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T15:41:38.097798+00:00  STALE    https://news.google.com/rss/search?q=*Mart%C3%ADn%20Escobari*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T15:41:38.097798+00:00  STALE    https://news.google.com/rss/search?q=Joshua%20Friedman&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T15:41:38.097798+00:00  STALE    https://news.google.com/rss/search?q=*600%20Atlantic%20Avenue%20Boston*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T15:41:38.097798+00:00  STALE    https://news.google.com/rss/search?q=HMC%20San%20Francisco&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T15:41:38.097798+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20student%20organizations&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T15:41:38.097798+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hazing&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T15:41:38.097798+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20chabad&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T15:41:38.097798+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T15:46:44.430408+00:00  CHANGED  https://13f.info/manager/0001082621-harvard-management-co-inc  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-11-07T15:46:44.430408+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Student%20Organizations&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T15:46:44.430408+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T15:51:47.144332+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-07T16:01:54.769396+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
