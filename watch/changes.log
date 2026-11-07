@@ -58588,3 +58588,16 @@ Call log:
 2026-11-07T11:11:38.771199+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
 2026-11-07T11:11:38.771199+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
 2026-11-07T11:21:44.676734+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-07T11:31:13.522023+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-11-07T11:31:13.522023+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-07T11:31:13.522023+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-11-07T11:31:13.522023+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-11-07T11:31:13.522023+00:00  STALE    https://news.google.com/rss/search?q=Sanjeev%20Daga&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T11:31:13.522023+00:00  STALE    https://news.google.com/rss/search?q=Patrick%20Healy&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T11:31:13.522023+00:00  STALE    https://news.google.com/rss/search?q=Mary%20Erdoes&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T11:31:13.522023+00:00  STALE    https://news.google.com/rss/search?q=*Robert%20Jain*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T11:31:13.522023+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20chabad&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T11:36:19.342846+00:00  BLOCKED  https://www.hupd.harvard.edu/campus-hazing-transparency-report
+2026-11-07T11:36:19.342846+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T11:41:22.840494+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-07T11:51:29.729363+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
