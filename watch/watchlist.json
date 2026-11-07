@@ -885,5 +885,14 @@
     "added_by": "alexa.schmitt",
     "added_by_id": "U0ADME2L7HB",
     "interval": 60
+  },
+  {
+    "url": "https://news.google.com/rss/search?q=Harvard%20AND%20Student%20Organizations&hl=en-US&gl=US&ceid=US:en",
+    "alert": "Harvard AND Student Organizations",
+    "channel": "D0ADNQUK5RU",
+    "channel_name": "directmessage",
+    "added_by": "alma.barak",
+    "added_by_id": "U0AEK5NTGEL",
+    "interval": 30
   }
 ]
