@@ -58601,3 +58601,22 @@ Call log:
 2026-11-07T11:36:19.342846+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-07T11:41:22.840494+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
 2026-11-07T11:51:29.729363+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-07T12:01:09.974240+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-11-07T12:01:09.974240+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-07T12:01:09.974240+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-11-07T12:01:09.974240+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-11-07T12:01:09.974240+00:00  STALE    https://news.google.com/rss/search?q=N.P.%20Narvekar&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T12:01:09.974240+00:00  STALE    https://news.google.com/rss/search?q=Tricia%20Glynn&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T12:01:09.974240+00:00  STALE    https://news.google.com/rss/search?q=*Robert%20Jain*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T12:01:09.974240+00:00  STALE    https://news.google.com/rss/search?q=Paul%20Finnegan&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T12:01:09.974240+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20investment&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T12:01:09.974240+00:00  STALE    https://news.google.com/rss/search?q=HMC%20San%20Francisco&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T12:01:09.974240+00:00  BLOCKED  https://finance.harvard.edu/annual-report
+2026-11-07T12:01:09.974240+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20chabad&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T12:01:09.974240+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T12:06:20.931021+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-11-07T12:06:20.931021+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Republican%20Club&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T12:06:20.931021+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-07T12:11:24.899782+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-11-07T12:11:24.899782+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-07T12:21:34.753729+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
