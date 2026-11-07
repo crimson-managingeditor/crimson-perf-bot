@@ -921,5 +921,13 @@
     "added_by": "alma.barak",
     "added_by_id": "U0AEK5NTGEL",
     "interval": 30
+  },
+  {
+    "url": "https://harvardlawrecord.com/",
+    "channel": "D0ADNQUELMC",
+    "channel_name": "directmessage",
+    "added_by": "uy.pham",
+    "added_by_id": "U0AEK5NN76C",
+    "interval": 5
   }
 ]
