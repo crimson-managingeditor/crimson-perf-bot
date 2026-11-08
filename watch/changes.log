@@ -59525,3 +59525,14 @@ Call log:
 2026-11-08T14:09:03.373850+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
 2026-11-08T14:14:09.072993+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
 2026-11-08T14:19:10.285270+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-08T14:51:27.397985+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-08T15:01:35.129316+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-08T15:06:39.634485+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-11-08T15:06:39.634485+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-11-08T15:06:39.634485+00:00  STALE    https://news.google.com/rss/search?q=Paul%20Edgerley&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-08T15:06:39.634485+00:00  STALE    https://news.google.com/rss/search?q=Mary%20Erdoes&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-08T15:06:39.634485+00:00  STALE    https://news.google.com/rss/search?q=*Robert%20Jain*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-08T15:06:39.634485+00:00  STALE    https://news.google.com/rss/search?q=*Mart%C3%ADn%20Escobari*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-08T15:06:39.634485+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hillel&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-08T15:06:39.634485+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20chabad&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-08T15:11:42.058956+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
