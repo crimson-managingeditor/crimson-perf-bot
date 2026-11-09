@@ -60128,3 +60128,20 @@ Call log:
 2026-11-09T10:07:27.218861+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-09T10:12:32.176029+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
 2026-11-09T10:22:49.141989+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-09T10:31:13.808903+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-11-09T10:31:13.808903+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-11-09T10:31:13.808903+00:00  STALE    https://news.google.com/rss/search?q=*Robert%20Jain*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-09T10:31:13.808903+00:00  STALE    https://news.google.com/rss/search?q=Joshua%20Friedman&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-09T10:31:13.808903+00:00  STALE    https://news.google.com/rss/search?q=*600%20Atlantic%20Avenue%20Boston*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-09T10:31:13.808903+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hazing&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-09T10:31:13.808903+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-09T10:36:15.826827+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-09T10:36:15.826827+00:00  ERROR    https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad  The read operation timed out
+2026-11-09T10:36:15.826827+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Student%20Organizations&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-09T10:36:15.826827+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-09T10:41:45.135249+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-11-09T10:46:47.949660+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-11-09T10:46:47.949660+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-09T10:46:47.949660+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-11-09T10:46:47.949660+00:00  BLOCKED  https://finance.harvard.edu/annual-report
+2026-11-09T10:56:59.842005+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
