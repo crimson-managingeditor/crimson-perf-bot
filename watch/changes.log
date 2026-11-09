@@ -60300,3 +60300,19 @@ Call log:
 2026-11-09T14:46:36.624643+00:00  BLOCKED  https://finance.harvard.edu/annual-report
 2026-11-09T14:46:36.624643+00:00  CHANGED  https://careers.harvard.edu/jobs?options=296&page=1  by=theresabartelme  ch=directmessage  via=DM->theresabartelme
 2026-11-09T14:56:52.469142+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-09T15:01:08.504219+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-11-09T15:01:08.504219+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-11-09T15:01:08.504219+00:00  STALE    https://news.google.com/rss/search?q=Tim%20Barakett&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-09T15:01:08.504219+00:00  STALE    https://news.google.com/rss/search?q=Alan%20Garber&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-09T15:01:08.504219+00:00  STALE    https://news.google.com/rss/search?q=Mary%20Erdoes&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-09T15:01:08.504219+00:00  STALE    https://news.google.com/rss/search?q=*Robert%20Jain*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-09T15:01:08.504219+00:00  STALE    https://news.google.com/rss/search?q=Joshua%20Friedman&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-09T15:01:08.504219+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20student%20organizations&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-09T15:01:08.504219+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hillel&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-09T15:06:15.507156+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-09T15:06:15.507156+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Student%20Organizations&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-09T15:06:15.507156+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Republican%20Club&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-09T15:11:21.723448+00:00  CHANGED  https://www.cambridgema.gov/news  by=shawn.boehmer  ch=directmessage  via=DM->shawn.boehmer
+2026-11-09T15:16:29.335650+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-09T15:21:35.622055+00:00  CHANGED  https://www.hhs.gov/press-room/index.html  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-11-09T15:26:55.428139+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
