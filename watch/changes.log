@@ -61365,3 +61365,26 @@ Call log:
 2026-11-10T19:16:56.148868+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-10T19:22:05.481872+00:00  CHANGED  https://www.courtlistener.com/docket/72275604/united-states-v-president-and-fellows-of-harvard-college-harvard/?order_by=desc  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
 2026-11-10T19:27:08.003366+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-10T19:36:27.138916+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-10T19:41:37.165611+00:00  ERROR    https://www.courtlistener.com/docket/72275604/united-states-v-president-and-fellows-of-harvard-college-harvard/?order_by=desc  The read operation timed out
+2026-11-10T19:47:02.966811+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-10T19:47:02.966811+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-11-10T19:47:02.966811+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-11-10T19:47:02.966811+00:00  STALE    https://news.google.com/rss/search?q=Tim%20Barakett&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-10T19:47:02.966811+00:00  STALE    https://news.google.com/rss/search?q=Paul%20Edgerley&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-10T19:47:02.966811+00:00  STALE    https://news.google.com/rss/search?q=*Ritu%20Kalra*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-10T19:47:02.966811+00:00  STALE    https://news.google.com/rss/search?q=Paul%20Finnegan&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-10T19:47:02.966811+00:00  STALE    https://news.google.com/rss/search?q=Joshua%20Friedman&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-10T19:47:02.966811+00:00  STALE    https://news.google.com/rss/search?q=*600%20Atlantic%20Avenue%20Boston*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-10T19:47:02.966811+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Singapore&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-10T19:47:02.966811+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-10T19:47:02.966811+00:00  CHANGED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-11-10T19:47:02.966811+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hillel&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-10T19:47:02.966811+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20chabad&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-10T19:47:02.966811+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-10T19:47:02.966811+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Student%20Organizations&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-10T19:47:02.966811+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-10T19:52:11.055125+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-11-10T19:57:16.154946+00:00  CHANGED  https://www.cambridgema.gov/news  by=shawn.boehmer  ch=directmessage  via=DM->shawn.boehmer
+2026-11-10T19:57:16.154946+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-10T19:57:16.154946+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
