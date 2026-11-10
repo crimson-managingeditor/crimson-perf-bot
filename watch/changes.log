@@ -61405,3 +61405,17 @@ Call log:
 2026-11-10T20:50:58.004909+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-10T20:50:58.004909+00:00  CHANGED  https://edworkforce.house.gov/news/documentquery.aspx?DocumentTypeID=1823  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
 2026-11-10T20:50:58.004909+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20student%20organizations&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-10T21:23:40.800930+00:00  CHANGED  https://www.cambridgema.gov/departments/transportation/news  by=shawn.boehmer  ch=directmessage  via=DM->shawn.boehmer
+2026-11-10T21:23:40.800930+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-10T21:23:40.800930+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-11-10T21:23:40.800930+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-11-10T21:23:40.800930+00:00  STALE    https://news.google.com/rss/search?q=N.P.%20Narvekar&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-10T21:23:40.800930+00:00  STALE    https://news.google.com/rss/search?q=Alan%20Garber&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-10T21:23:40.800930+00:00  STALE    https://news.google.com/rss/search?q=Mary%20Erdoes&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-10T21:23:40.800930+00:00  STALE    https://news.google.com/rss/search?q=*Raymond%20McGuire*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-10T21:23:40.800930+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Singapore&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-10T21:23:40.800930+00:00  STALE    https://news.google.com/rss/search?q=HMC%20San%20Francisco&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-10T21:23:40.800930+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-10T21:23:40.800930+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hazing&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-10T21:34:05.741521+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-10T21:44:34.570851+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
