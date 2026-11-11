@@ -62337,3 +62337,22 @@ Call log:
 2026-11-11T22:06:28.551991+00:00  BLOCKED  https://finance.harvard.edu/annual-report
 2026-11-11T22:11:34.972172+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
 2026-11-11T22:21:42.160007+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-11T22:32:34.075254+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-11T22:32:34.075254+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-11-11T22:32:34.075254+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Management%20Company&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-11T22:32:34.075254+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-11-11T22:32:34.075254+00:00  STALE    https://news.google.com/rss/search?q=Tricia%20Glynn&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-11T22:32:34.075254+00:00  STALE    https://news.google.com/rss/search?q=Paul%20Edgerley&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-11T22:32:34.075254+00:00  STALE    https://news.google.com/rss/search?q=*Mart%C3%ADn%20Escobari*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-11T22:32:34.075254+00:00  STALE    https://news.google.com/rss/search?q=*Raymond%20McGuire*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-11T22:32:34.075254+00:00  STALE    https://news.google.com/rss/search?q=Joshua%20Friedman&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-11T22:32:34.075254+00:00  STALE    https://news.google.com/rss/search?q=HMC%20San%20Francisco&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-11T22:32:34.075254+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-11T22:32:34.075254+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20salient&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-11T22:32:34.075254+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hillel&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-11T22:32:34.075254+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-11T22:37:50.660840+00:00  ERROR    https://www.courtlistener.com/docket/72090192/president-and-fellows-of-harvard-college-v-us-department-of-health-and/?order_by=desc  The read operation timed out
+2026-11-11T22:37:50.660840+00:00  ERROR    https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad  The read operation timed out
+2026-11-11T22:43:16.525407+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-11T22:48:21.541366+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-11-11T22:53:29.495610+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
