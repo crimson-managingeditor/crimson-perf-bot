@@ -929,5 +929,13 @@
     "added_by": "uy.pham",
     "added_by_id": "U0AEK5NN76C",
     "interval": 5
+  },
+  {
+    "url": "https://www.sec.gov/edgar/browse/?CIK=10826215m",
+    "channel": "D0ADUS7DQVA",
+    "channel_name": "directmessage",
+    "added_by": "megan.blonigen",
+    "added_by_id": "U0AD9QLRK0F",
+    "interval": 60
   }
 ]
