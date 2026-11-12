@@ -63524,3 +63524,16 @@ Call log:
 2026-11-12T20:50:38.768496+00:00  FLAPPED  https://www.courtlistener.com/docket/72520538/united-states-v-president-and-fellows-of-harvard-college/?order_by=desc
 2026-11-12T20:50:38.768496+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
 2026-11-12T20:50:38.768496+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-11-12T21:18:26.349120+00:00  CHANGED  https://www.hks.harvard.edu  by=jen.phan  ch=directmessage  via=DM->jen.phan
+2026-11-12T21:18:26.349120+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-11-12T21:18:26.349120+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-11-12T21:18:26.349120+00:00  CHANGED  https://www.hks.harvard.edu/admissions-blog  by=mirei.saneyoshi  ch=directmessage  via=DM->mirei.saneyoshi
+2026-11-12T21:18:26.349120+00:00  BLOCKED  https://finance.harvard.edu/annual-report
+2026-11-12T21:23:34.813632+00:00  CHANGED  https://www.courtlistener.com/docket/72090192/president-and-fellows-of-harvard-college-v-us-department-of-health-and/?order_by=desc  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-11-12T21:23:34.813632+00:00  CHANGED  https://www.courtlistener.com/docket/72520538/united-states-v-president-and-fellows-of-harvard-college/?order_by=desc  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-11-12T21:23:34.813632+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-12T21:23:34.813632+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-11-12T21:34:01.653659+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-12T21:34:01.653659+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-11-12T21:44:12.250402+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-12T21:44:12.250402+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
