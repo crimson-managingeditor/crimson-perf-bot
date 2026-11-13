@@ -64367,3 +64367,28 @@ Call log:
 2026-11-13T17:22:33.810642+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20student%20organizations&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-13T17:22:33.810642+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Student%20Organizations&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-13T17:27:41.120886+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-13T17:31:26.954308+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-11-13T17:31:26.954308+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-11-13T17:31:26.954308+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-11-13T17:31:26.954308+00:00  BLOCKED  https://finance.harvard.edu/annual-report
+2026-11-13T17:36:34.569267+00:00  BLOCKED  https://www.hupd.harvard.edu/campus-hazing-transparency-report
+2026-11-13T17:36:34.569267+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-13T17:46:43.056194+00:00  CHANGED  https://www.cambridgema.gov/news  by=shawn.boehmer  ch=directmessage  via=DM->shawn.boehmer
+2026-11-13T17:46:43.056194+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-13T17:52:11.430956+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-11-13T17:52:11.430956+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Management%20Company&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-13T17:52:11.430956+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-11-13T17:52:11.430956+00:00  STALE    https://news.google.com/rss/search?q=Rick%20Slocum&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-13T17:52:11.430956+00:00  STALE    https://news.google.com/rss/search?q=Alan%20Garber&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-13T17:52:11.430956+00:00  STALE    https://news.google.com/rss/search?q=*Eric%20Doppstadt*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-13T17:52:11.430956+00:00  STALE    https://news.google.com/rss/search?q=Patrick%20Healy&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-13T17:52:11.430956+00:00  STALE    https://news.google.com/rss/search?q=Paul%20Finnegan&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-13T17:52:11.430956+00:00  STALE    https://news.google.com/rss/search?q=Joshua%20Friedman&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-13T17:52:11.430956+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20investment&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-13T17:52:11.430956+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Singapore&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-13T17:52:11.430956+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20student%20organizations&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-13T17:52:11.430956+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-13T17:52:11.430956+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Student%20Organizations&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-13T17:52:11.430956+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-13T17:57:14.930230+00:00  ERROR    https://www.courtlistener.com/docket/72520538/united-states-v-president-and-fellows-of-harvard-college/?order_by=desc  The read operation timed out
+2026-11-13T17:57:14.930230+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
