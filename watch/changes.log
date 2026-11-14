@@ -65346,3 +65346,22 @@ Call log:
 2026-11-14T15:46:38.158658+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Republican%20Club&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-14T15:46:38.158658+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-14T15:57:07.588626+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-14T16:06:02.706290+00:00  ERROR    https://forklightning.substack.com/  headless render failed: Page.goto: Timeout 35000ms exceeded.
+Call log:
+  - navigating to "
+2026-11-14T16:16:46.964263+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-14T16:16:46.964263+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-11-14T16:16:46.964263+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-11-14T16:16:46.964263+00:00  STALE    https://news.google.com/rss/search?q=Rick%20Slocum&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-14T16:16:46.964263+00:00  STALE    https://news.google.com/rss/search?q=Alan%20Garber&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-14T16:16:46.964263+00:00  STALE    https://news.google.com/rss/search?q=Patrick%20Healy&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-14T16:16:46.964263+00:00  STALE    https://news.google.com/rss/search?q=*Raymond%20McGuire*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-14T16:16:46.964263+00:00  STALE    https://news.google.com/rss/search?q=Joshua%20Friedman&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-14T16:16:46.964263+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20investment&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-14T16:16:46.964263+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Singapore&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-14T16:16:46.964263+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hazing&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-14T16:16:46.964263+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hillel&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-14T16:16:46.964263+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20chabad&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-14T16:16:46.964263+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-14T16:16:46.964263+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Republican%20Club&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-14T16:16:46.964263+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
