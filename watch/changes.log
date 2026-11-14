@@ -65290,3 +65290,25 @@ Call log:
 2026-11-14T14:46:34.968042+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-14T14:51:39.783365+00:00  CHANGED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
 2026-11-14T14:56:42.251021+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-14T15:16:13.229327+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-14T15:16:13.229327+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-11-14T15:16:13.229327+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-11-14T15:16:13.229327+00:00  STALE    https://news.google.com/rss/search?q=N.P.%20Narvekar&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-14T15:16:13.229327+00:00  STALE    https://news.google.com/rss/search?q=Rick%20Slocum&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-14T15:16:13.229327+00:00  STALE    https://news.google.com/rss/search?q=Alan%20Garber&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-14T15:16:13.229327+00:00  STALE    https://news.google.com/rss/search?q=Tricia%20Glynn&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-14T15:16:13.229327+00:00  STALE    https://news.google.com/rss/search?q=Patrick%20Healy&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-14T15:16:13.229327+00:00  STALE    https://news.google.com/rss/search?q=*Robert%20Jain*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-14T15:16:13.229327+00:00  STALE    https://news.google.com/rss/search?q=*Ritu%20Kalra*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-14T15:16:13.229327+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Singapore&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-14T15:16:13.229327+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-14T15:16:13.229327+00:00  CHANGED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-11-14T15:16:13.229327+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20salient&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-14T15:16:13.229327+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hazing&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-14T15:16:13.229327+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hillel&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-14T15:16:13.229327+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-14T15:16:13.229327+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Salient&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-14T15:16:13.229327+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Republican%20Club&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-14T15:16:13.229327+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-14T15:21:22.483682+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-11-14T15:26:24.718566+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
