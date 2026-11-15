@@ -66097,3 +66097,22 @@ Call log:
 2026-11-15T11:17:00.988206+00:00  ERROR    https://news.google.com/rss/search?q=Harvard%20AND%20Republican%20Club&hl=en-US&gl=US&ceid=US:en  HTTP Error 503: Service Unavailable
 2026-11-15T11:17:00.988206+00:00  ERROR    https://news.google.com/rss/search?q=Harvard%20AND%20Debate&hl=en-US&gl=US&ceid=US:en  HTTP Error 503: Service Unavailable
 2026-11-15T11:27:21.137504+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-15T11:31:08.039381+00:00  CHANGED  https://www.justice.gov/news  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-11-15T11:36:10.645741+00:00  BLOCKED  https://www.hupd.harvard.edu/campus-hazing-transparency-report
+2026-11-15T11:46:17.752848+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-15T11:46:17.752848+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Management%20Company&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-15T11:46:17.752848+00:00  STALE    https://news.google.com/rss/search?q=N.P.%20Narvekar&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-15T11:46:17.752848+00:00  STALE    https://news.google.com/rss/search?q=Rick%20Slocum&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-15T11:46:17.752848+00:00  STALE    https://news.google.com/rss/search?q=*Eric%20Doppstadt*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-15T11:46:17.752848+00:00  STALE    https://news.google.com/rss/search?q=*Robert%20Jain*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-15T11:46:17.752848+00:00  STALE    https://news.google.com/rss/search?q=*Ritu%20Kalra*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-15T11:46:17.752848+00:00  STALE    https://news.google.com/rss/search?q=Paul%20Finnegan&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-15T11:46:17.752848+00:00  STALE    https://news.google.com/rss/search?q=*Raymond%20McGuire*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-15T11:46:17.752848+00:00  STALE    https://news.google.com/rss/search?q=HMC%20San%20Francisco&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-15T11:46:17.752848+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hazing&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-15T11:46:17.752848+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Student%20Organizations&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-15T11:46:17.752848+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Salient&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-15T11:51:26.566805+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-11-15T11:51:26.566805+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-11-15T11:51:26.566805+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-11-15T11:51:26.566805+00:00  BLOCKED  https://finance.harvard.edu/annual-report
