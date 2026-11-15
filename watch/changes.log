@@ -66426,3 +66426,14 @@ Call log:
 2026-11-15T19:49:49.105199+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20chabad&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-15T19:49:49.105199+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-15T19:49:49.105199+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Republican%20Club&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-15T20:22:43.151431+00:00  STALE    https://news.google.com/rss/search?q=Rick%20Slocum&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-15T20:22:43.151431+00:00  STALE    https://news.google.com/rss/search?q=Alan%20Garber&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-15T20:22:43.151431+00:00  STALE    https://news.google.com/rss/search?q=Patrick%20Healy&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-15T20:22:43.151431+00:00  STALE    https://news.google.com/rss/search?q=*Ritu%20Kalra*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-15T20:22:43.151431+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hazing&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-15T20:22:43.151431+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20chabad&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-15T20:27:46.026134+00:00  BLOCKED  https://trademark.harvard.edu/page-type/policies
+2026-11-15T20:27:46.026134+00:00  BLOCKED  https://dso.college.harvard.edu/student-organizations
+2026-11-15T20:27:46.026134+00:00  BLOCKED  https://dso.college.harvard.edu/opportunities-students
+2026-11-15T20:27:46.026134+00:00  BLOCKED  https://dso.college.harvard.edu/professional-positions
+2026-11-15T20:32:58.212318+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
