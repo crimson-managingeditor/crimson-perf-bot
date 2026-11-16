@@ -67425,3 +67425,18 @@ Call log:
 2026-11-16T22:23:18.473506+00:00  FLAPPED  https://www.courtlistener.com/docket/72090192/president-and-fellows-of-harvard-college-v-us-department-of-health-and/?order_by=desc
 2026-11-16T22:28:22.060845+00:00  FLAPPED  https://www.courtlistener.com/docket/72090192/president-and-fellows-of-harvard-college-v-us-department-of-health-and/?order_by=desc
 2026-11-16T22:28:22.060845+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-16T22:36:08.624628+00:00  CHANGED  https://www.courtlistener.com/docket/72090192/president-and-fellows-of-harvard-college-v-us-department-of-health-and/?order_by=desc  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-11-16T22:41:26.030477+00:00  CHANGED  https://chinaselectcommittee.house.gov/media/press-releases  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-11-16T22:46:37.701808+00:00  ERROR    https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  HTTP Error 429: Too Many Requests
+2026-11-16T22:46:37.701808+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-11-16T22:46:37.701808+00:00  STALE    https://news.google.com/rss/search?q=N.P.%20Narvekar&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-16T22:46:37.701808+00:00  STALE    https://news.google.com/rss/search?q=*Eric%20Doppstadt*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-16T22:46:37.701808+00:00  STALE    https://news.google.com/rss/search?q=Patrick%20Healy&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-16T22:46:37.701808+00:00  FLAPPED  https://news.google.com/rss/search?q=*Raymond%20McGuire*&hl=en-US&gl=US&ceid=US:en
+2026-11-16T22:46:37.701808+00:00  STALE    https://news.google.com/rss/search?q=Joshua%20Friedman&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-16T22:46:37.701808+00:00  CHANGED  https://chinaselectcommittee.house.gov/media/press-releases  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-11-16T22:46:37.701808+00:00  FLAPPED  https://news.google.com/rss/search?q=harvard%20AND%20salient&hl=en-US&gl=US&ceid=US:en
+2026-11-16T22:46:37.701808+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hillel&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-16T22:46:37.701808+00:00  FLAPPED  https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en
+2026-11-16T22:46:37.701808+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Republican%20Club&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-16T22:52:03.193053+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
