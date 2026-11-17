@@ -68471,3 +68471,6 @@ Call log:
 2026-11-17T18:27:58.256809+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Student%20Organizations&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-17T18:27:58.256809+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Republican%20Club&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-17T18:27:58.256809+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-17T18:36:11.165482+00:00  ERROR    https://secretary.college.harvard.edu/data/  <urlopen error timed out>
+2026-11-17T18:47:20.516850+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-17T18:47:20.516850+00:00  ERROR    https://secretary.college.harvard.edu/data/  <urlopen error timed out>
