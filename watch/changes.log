@@ -69089,3 +69089,12 @@ Call log:
 2026-11-18T11:56:20.956135+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Student%20Organizations&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-18T11:56:20.956135+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Republican%20Club&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-18T11:56:20.956135+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-18T12:13:05.739387+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-18T12:28:24.222124+00:00  CHANGED  https://www.hks.harvard.edu  by=jen.phan  ch=directmessage  via=DM->jen.phan
+2026-11-18T12:28:24.222124+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-11-18T12:28:24.222124+00:00  ERROR    https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation  HTTP Error 403: Forbidden
+2026-11-18T12:28:24.222124+00:00  CHANGED  https://www.courtlistener.com/docket/72275604/united-states-v-president-and-fellows-of-harvard-college-harvard/?order_by=desc  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-11-18T12:28:24.222124+00:00  STALE    https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-18T12:28:24.222124+00:00  ERROR    https://news.google.com/rss/search?q=Harvard%20Management%20Company&hl=en-US&gl=US&ceid=US:en  HTTP Error 503: Service Unavailable
+2026-11-18T12:28:24.222124+00:00  ERROR    https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  HTTP Error 503: Service Unavailable
+2026-11-18T12:28:24.222124+00:00  CHANGED  https://news.google.com/rss/search?q=N.P.%20Narvekar&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
