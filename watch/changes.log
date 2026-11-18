@@ -69159,3 +69159,30 @@ Call log:
 2026-11-18T13:46:51.438521+00:00  CHANGED  https://thecrimson.com  by=matteo.diaz  ch=directmessage  via=DM->matteo.diaz
 2026-11-18T13:46:51.438521+00:00  CHANGED  https://www.thecrimson.com/  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
 2026-11-18T13:56:59.864905+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-18T14:00:56.471626+00:00  CHANGED  https://thecrimson.com  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-11-18T14:00:56.471626+00:00  CHANGED  https://thecrimson.com  by=matteo.diaz  ch=matteo-internal  via=DM->matteo.diaz
+2026-11-18T14:00:56.471626+00:00  CHANGED  https://thecrimson.com  by=matteo.diaz  ch=directmessage  via=DM->matteo.diaz
+2026-11-18T14:00:56.471626+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-11-18T14:00:56.471626+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-11-18T14:00:56.471626+00:00  STALE    https://news.google.com/rss/search?q=N.P.%20Narvekar&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-18T14:00:56.471626+00:00  STALE    https://news.google.com/rss/search?q=Tricia%20Glynn&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-18T14:00:56.471626+00:00  STALE    https://news.google.com/rss/search?q=Paul%20Edgerley&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-18T14:00:56.471626+00:00  STALE    https://news.google.com/rss/search?q=Mary%20Erdoes&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-18T14:00:56.471626+00:00  STALE    https://news.google.com/rss/search?q=*Robert%20Jain*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-18T14:00:56.471626+00:00  STALE    https://news.google.com/rss/search?q=*Raymond%20McGuire*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-18T14:00:56.471626+00:00  CHANGED  https://www.thecrimson.com/  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-11-18T14:00:56.471626+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-18T14:00:56.471626+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20student%20organizations&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-18T14:00:56.471626+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20salient&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-18T14:00:56.471626+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Student%20Organizations&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-18T14:00:56.471626+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Salient&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-18T14:06:07.166568+00:00  CHANGED  https://thecrimson.com  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-11-18T14:06:07.166568+00:00  CHANGED  https://thecrimson.com  by=matteo.diaz  ch=matteo-internal  via=DM->matteo.diaz
+2026-11-18T14:06:07.166568+00:00  CHANGED  https://thecrimson.com  by=matteo.diaz  ch=directmessage  via=DM->matteo.diaz
+2026-11-18T14:06:07.166568+00:00  CHANGED  https://www.cambridgema.gov/news  by=shawn.boehmer  ch=directmessage  via=DM->shawn.boehmer
+2026-11-18T14:06:07.166568+00:00  CHANGED  https://www.thecrimson.com/  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-11-18T14:16:17.446714+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-18T14:21:23.328408+00:00  ERROR    https://forklightning.substack.com/  headless render failed: Page.goto: Timeout 35000ms exceeded.
+Call log:
+  - navigating to "
+2026-11-18T14:27:01.319238+00:00  ERROR    https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad  The read operation timed out
