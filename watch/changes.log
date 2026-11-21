@@ -72965,3 +72965,10 @@ Call log:
 2026-11-21T19:21:26.153522+00:00  FLAPPED  https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en
 2026-11-21T19:21:26.153522+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-21T19:27:08.655728+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-11-21T20:10:51.072492+00:00  CHANGED  https://www.hks.harvard.edu  by=jen.phan  ch=directmessage  via=DM->jen.phan
+2026-11-21T20:10:51.072492+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-11-21T20:10:51.072492+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-11-21T20:10:51.072492+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-11-21T20:10:51.072492+00:00  BLOCKED  https://finance.harvard.edu/annual-report
+2026-11-21T20:16:14.074391+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-21T20:21:18.291352+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
