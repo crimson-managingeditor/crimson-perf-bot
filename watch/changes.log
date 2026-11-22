@@ -73972,3 +73972,27 @@ Call log:
 2026-11-22T17:26:10.743974+00:00  ERROR    https://gsas.harvard.edu/programs/life-sciences  headless render failed: Page.goto: Timeout 35000ms exceeded.
 Call log:
   - navigating to "
+2026-11-22T17:30:44.092431+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-22T17:30:44.092431+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-11-22T17:30:44.092431+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-11-22T17:30:44.092431+00:00  STALE    https://news.google.com/rss/search?q=Rick%20Slocum&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-22T17:30:44.092431+00:00  STALE    https://news.google.com/rss/search?q=Sanjeev%20Daga&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-22T17:30:44.092431+00:00  STALE    https://news.google.com/rss/search?q=Tim%20Barakett&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-22T17:30:44.092431+00:00  STALE    https://news.google.com/rss/search?q=Alan%20Garber&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-22T17:30:44.092431+00:00  STALE    https://news.google.com/rss/search?q=Tricia%20Glynn&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-22T17:30:44.092431+00:00  STALE    https://news.google.com/rss/search?q=Patrick%20Healy&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-22T17:30:44.092431+00:00  STALE    https://news.google.com/rss/search?q=*Robert%20Jain*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-22T17:30:44.092431+00:00  STALE    https://news.google.com/rss/search?q=Joshua%20Friedman&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-22T17:30:44.092431+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20student%20organizations&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-22T17:30:44.092431+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hazing&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-22T17:30:44.092431+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20chabad&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-22T17:30:44.092431+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Student%20Organizations&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-22T17:40:53.533058+00:00  CHANGED  https://thecrimson.com  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-11-22T17:40:53.533058+00:00  CHANGED  https://thecrimson.com  by=matteo.diaz  ch=matteo-internal  via=DM->matteo.diaz
+2026-11-22T17:40:53.533058+00:00  CHANGED  https://thecrimson.com  by=matteo.diaz  ch=directmessage  via=DM->matteo.diaz
+2026-11-22T17:40:53.533058+00:00  CHANGED  https://www.thecrimson.com/  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-11-22T17:46:00.691799+00:00  BLOCKED  https://www.hupd.harvard.edu/campus-hazing-transparency-report
+2026-11-22T17:46:00.691799+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-11-22T17:51:05.786039+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-22T17:51:05.786039+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-11-22T17:56:10.188268+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
