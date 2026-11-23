@@ -74715,3 +74715,20 @@ Call log:
 2026-11-23T07:51:56.076027+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hazing&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-23T07:51:56.076027+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-23T07:57:00.431471+00:00  FLAPPED  https://www.courtlistener.com/docket/72520538/united-states-v-president-and-fellows-of-harvard-college/?order_by=desc
+2026-11-23T08:30:42.786023+00:00  CHANGED  https://www.hks.harvard.edu  by=jen.phan  ch=directmessage  via=DM->jen.phan
+2026-11-23T08:30:42.786023+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-11-23T08:30:42.786023+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-11-23T08:30:42.786023+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-11-23T08:30:42.786023+00:00  BLOCKED  https://finance.harvard.edu/annual-report
+2026-11-23T08:35:51.657750+00:00  ERROR    https://gsas.harvard.edu/programs/life-sciences  headless render failed: Page.goto: Timeout 35000ms exceeded.
+Call log:
+  - navigating to "
+2026-11-23T08:35:51.657750+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-11-23T08:41:29.926589+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-11-23T08:41:29.926589+00:00  BLOCKED  https://trademark.harvard.edu/page-type/policies
+2026-11-23T08:41:29.926589+00:00  BLOCKED  https://dso.college.harvard.edu/student-organizations
+2026-11-23T08:41:29.926589+00:00  BLOCKED  https://dso.college.harvard.edu/opportunities-students
+2026-11-23T08:41:29.926589+00:00  BLOCKED  https://dso.college.harvard.edu/professional-positions
+2026-11-23T08:46:36.648756+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-23T08:46:36.648756+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-11-23T08:51:57.783070+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
