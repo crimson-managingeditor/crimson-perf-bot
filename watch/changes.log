@@ -74454,3 +74454,29 @@ Call log:
 2026-11-23T03:28:01.136670+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
 2026-11-23T03:28:01.136670+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
 2026-11-23T03:28:01.136670+00:00  BLOCKED  https://finance.harvard.edu/annual-report
+2026-11-23T03:31:02.395567+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-23T03:31:02.395567+00:00  ERROR    https://research.harvard.edu/research-policies-compliance/export-control-policies-procedures/  <urlopen error timed out>
+2026-11-23T03:31:02.395567+00:00  ERROR    https://oira.harvard.edu/factbook/fact-book-enrollment/#enr_intl  <urlopen error timed out>
+2026-11-23T03:36:56.060672+00:00  ERROR    https://secretary.college.harvard.edu/data/  <urlopen error timed out>
+2026-11-23T03:42:46.753428+00:00  ERROR    https://gsas.harvard.edu/programs/life-sciences  headless render failed: Page.goto: Timeout 35000ms exceeded.
+Call log:
+  - navigating to "
+2026-11-23T03:42:46.753428+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-11-23T03:48:25.002766+00:00  ERROR    https://secretary.college.harvard.edu/data/  <urlopen error timed out>
+2026-11-23T03:48:25.002766+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-11-23T03:48:25.002766+00:00  STALE    https://news.google.com/rss/search?q=Tim%20Barakett&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-23T03:48:25.002766+00:00  STALE    https://news.google.com/rss/search?q=Alan%20Garber&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-23T03:48:25.002766+00:00  STALE    https://news.google.com/rss/search?q=Paul%20Edgerley&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-23T03:48:25.002766+00:00  STALE    https://news.google.com/rss/search?q=Mary%20Erdoes&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-23T03:48:25.002766+00:00  STALE    https://news.google.com/rss/search?q=*Robert%20Jain*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-23T03:48:25.002766+00:00  STALE    https://news.google.com/rss/search?q=*Ritu%20Kalra*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-23T03:48:25.002766+00:00  STALE    https://news.google.com/rss/search?q=*600%20Atlantic%20Avenue%20Boston*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-23T03:48:25.002766+00:00  STALE    https://news.google.com/rss/search?q=John%20Shue&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-23T03:48:25.002766+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-11-23T03:48:25.002766+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20chabad&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-23T03:48:25.002766+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Salient&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-23T03:48:25.002766+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Republican%20Club&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-23T03:54:16.516096+00:00  ERROR    https://gsas.harvard.edu/programs/life-sciences  headless render failed: Page.goto: Timeout 35000ms exceeded.
+Call log:
+  - navigating to "
+2026-11-23T03:54:16.516096+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
