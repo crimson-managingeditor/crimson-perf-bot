@@ -75227,3 +75227,27 @@ Call log:
 2026-11-23T18:57:42.176999+00:00  ERROR    https://gsas.harvard.edu/programs/life-sciences  headless render failed: Page.goto: Timeout 35000ms exceeded.
 Call log:
   - navigating to "
+2026-11-23T19:01:09.006101+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-23T19:01:09.006101+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=dhruv.patel  ch=directmessage  via=DM->dhruv.patel
+2026-11-23T19:01:09.006101+00:00  FLAPPED  https://news.google.com/rss/search?q=Harvard%20Management%20Company&hl=en-US&gl=US&ceid=US:en
+2026-11-23T19:01:09.006101+00:00  CHANGED  https://news.google.com/rss/search?q=Harvard&hl=en-US&gl=US&ceid=US:en  by=megan.blonigen  ch=directmessage  via=DM->megan.blonigen
+2026-11-23T19:01:09.006101+00:00  STALE    https://news.google.com/rss/search?q=Sanjeev%20Daga&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-23T19:01:09.006101+00:00  STALE    https://news.google.com/rss/search?q=*Eric%20Doppstadt*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-23T19:01:09.006101+00:00  FLAPPED  https://news.google.com/rss/search?q=Paul%20Edgerley&hl=en-US&gl=US&ceid=US:en
+2026-11-23T19:01:09.006101+00:00  STALE    https://news.google.com/rss/search?q=Mary%20Erdoes&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-23T19:01:09.006101+00:00  STALE    https://news.google.com/rss/search?q=Paul%20Finnegan&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-23T19:01:09.006101+00:00  STALE    https://news.google.com/rss/search?q=*Raymond%20McGuire*&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-23T19:01:09.006101+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20Singapore&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-23T19:01:09.006101+00:00  FLAPPED  https://news.google.com/rss/search?q=HMC%20San%20Francisco&hl=en-US&gl=US&ceid=US:en
+2026-11-23T19:01:09.006101+00:00  STALE    https://news.google.com/rss/search?q=marcus%20loveland&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-23T19:01:09.006101+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20student%20organizations&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-23T19:01:09.006101+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20salient&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-23T19:01:09.006101+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20hillel&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-23T19:01:09.006101+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-23T19:01:09.006101+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Student%20Organizations&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-23T19:01:09.006101+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Salient&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-23T19:11:39.465429+00:00  CHANGED  https://harvardlawrecord.com/  by=uy.pham  ch=directmessage  via=DM->uy.pham
+2026-11-23T19:16:55.396364+00:00  CHANGED  https://chinaselectcommittee.house.gov/media/press-releases  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-11-23T19:21:57.972238+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-23T19:21:57.972238+00:00  CHANGED  https://chinaselectcommittee.house.gov/media/press-releases  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-11-23T19:27:04.543841+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
