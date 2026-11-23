@@ -74800,3 +74800,15 @@ Call log:
 2026-11-23T11:29:55.231124+00:00  STALE    https://news.google.com/rss/search?q=harvard%20AND%20debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-23T11:29:55.231124+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Student%20Organizations&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-23T11:29:55.231124+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Republican%20Club&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
+2026-11-23T11:36:00.505213+00:00  CHANGED  https://www.hks.harvard.edu  by=jen.phan  ch=directmessage  via=DM->jen.phan
+2026-11-23T11:36:00.505213+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-11-23T11:36:00.505213+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-11-23T11:36:00.505213+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-23T11:36:00.505213+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-11-23T11:36:00.505213+00:00  BLOCKED  https://finance.harvard.edu/annual-report
+2026-11-23T11:46:14.993209+00:00  BLOCKED  https://www.hupd.harvard.edu/campus-hazing-transparency-report
+2026-11-23T11:46:14.993209+00:00  ERROR    https://gsas.harvard.edu/programs/life-sciences  headless render failed: Page.goto: Timeout 35000ms exceeded.
+Call log:
+  - navigating to "
+2026-11-23T11:56:59.073528+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-23T11:56:59.073528+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
