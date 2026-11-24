@@ -954,5 +954,14 @@
     "added_by": "elise.spenner",
     "added_by_id": "U0ADP6LL39C",
     "interval": 30
+  },
+  {
+    "url": "https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en",
+    "alert": "harvard",
+    "channel": "D0ADMR8F5U5",
+    "channel_name": "directmessage",
+    "added_by": "elise.spenner",
+    "added_by_id": "U0ADP6LL39C",
+    "interval": 30
   }
 ]
