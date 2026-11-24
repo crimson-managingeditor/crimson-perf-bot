@@ -76100,3 +76100,10 @@ Call log:
 2026-11-24T12:29:12.852637+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
 2026-11-24T12:34:53.948945+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
 2026-11-24T12:34:53.948945+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-11-24T13:07:33.962511+00:00  CHANGED  https://www.courtlistener.com/docket/72090192/president-and-fellows-of-harvard-college-v-us-department-of-health-and/?order_by=desc  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-11-24T13:07:33.962511+00:00  ERROR    https://secretary.college.harvard.edu/data/  <urlopen error timed out>
+2026-11-24T13:13:25.439667+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-11-24T13:18:27.863237+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-24T13:18:27.863237+00:00  ERROR    https://secretary.college.harvard.edu/data/  <urlopen error timed out>
+2026-11-24T13:18:27.863237+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-11-24T13:24:21.847255+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
