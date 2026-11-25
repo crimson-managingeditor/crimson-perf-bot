@@ -76786,3 +76786,11 @@ Call log:
 2026-11-25T00:07:48.894938+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-25T00:12:55.794130+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
 2026-11-25T00:12:55.794130+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=elise.spenner  ch=directmessage  via=DM->elise.spenner
+2026-11-25T00:45:51.862536+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=elise.spenner  ch=directmessage  via=DM->elise.spenner
+2026-11-25T00:50:53.558333+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-25T00:50:53.558333+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-11-25T00:56:19.190558+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-11-25T00:56:19.190558+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-11-25T00:56:19.190558+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-11-25T00:56:19.190558+00:00  BLOCKED  https://finance.harvard.edu/annual-report
+2026-11-25T01:01:25.913955+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
