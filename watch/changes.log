@@ -80624,3 +80624,12 @@ Call log:
 2026-11-27T08:51:17.976916+00:00  STALE    https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-27T08:56:27.770121+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
 2026-11-27T08:56:27.770121+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-11-27T09:38:32.063335+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-27T09:38:32.063335+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-11-27T09:43:40.513821+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-11-27T09:48:42.302451+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-11-27T09:48:42.302451+00:00  BLOCKED  https://dso.college.harvard.edu/office-culture-community/about-harvard-foundation
+2026-11-27T09:48:42.302451+00:00  BLOCKED  https://hilt.harvard.edu/2026-conference-resources
+2026-11-27T09:48:42.302451+00:00  CHANGED  https://ercallston.com/  by=thamini.vijeyasingam  ch=directmessage  via=DM->thamini.vijeyasingam
+2026-11-27T09:48:42.302451+00:00  FLAPPED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad
+2026-11-27T09:48:42.302451+00:00  BLOCKED  https://finance.harvard.edu/annual-report
