@@ -82175,3 +82175,15 @@ Call log:
 2026-11-28T08:45:42.437672+00:00  STALE    https://news.google.com/rss/search?q=Harvard%20AND%20Debate&hl=en-US&gl=US&ceid=US:en  (no just-published item; only older items resurfaced)
 2026-11-28T08:45:42.437672+00:00  FLAPPED  https://www.sec.gov/edgar/browse/?CIK=1082621
 2026-11-28T08:45:42.437672+00:00  CHANGED  https://news.google.com/rss/search?q=harvard&hl=en-US&gl=US&ceid=US:en  by=elise.spenner  ch=directmessage  via=DM->elise.spenner
+2026-11-28T09:23:33.334677+00:00  ERROR    https://www.gse.harvard.edu/ideas/news  Remote end closed connection without response
+2026-11-28T09:23:33.334677+00:00  ERROR    https://secretary.college.harvard.edu/data/  <urlopen error timed out>
+2026-11-28T09:23:33.334677+00:00  CHANGED  https://www.courtlistener.com/?q=&type=r&order_by=score%20desc&party_name=Harvard&court=ca1%20mad  by=hugo.chiasson  ch=directmessage  via=DM->hugo.chiasson
+2026-11-28T09:29:25.088605+00:00  ERROR    https://gsas.harvard.edu/programs/life-sciences  headless render failed: Page.goto: Timeout 35000ms exceeded.
+Call log:
+  - navigating to "
+2026-11-28T09:29:25.088605+00:00  FLAPPED  https://www.sec.gov/edgar/browse/?CIK=1082621
+2026-11-28T09:35:05.709132+00:00  ERROR    https://secretary.college.harvard.edu/data/  <urlopen error timed out>
+2026-11-28T09:40:56.428568+00:00  BLOCKED  https://www.war.gov/News/releases/
+2026-11-28T09:40:56.428568+00:00  FLAPPED  https://www.ed.gov/about/news/press-release
+2026-11-28T09:40:56.428568+00:00  BLOCKED  https://www.hhs.gov/press-room/index.html
+2026-11-28T09:40:56.428568+00:00  FLAPPED  https://www.sec.gov/edgar/browse/?CIK=1082621
